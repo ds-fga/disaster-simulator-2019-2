@@ -1,0 +1,21 @@
+{
+  "name": "ds",
+  "version": "1.0.0",
+  "description": "Conspire com os Illuminati para salvar a Terra do desastre",
+  "main": "js/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel web/index.html"
+  },
+  "author": "Turma de Desenvolvimento de Software/UnB",
+  "license": "MIT",
+  "dependencies": {
+    "mithril": "^2.0.4",
+    "nes.css": "^2.2.1",
+    "parcel": "^1.12.3",
+    "sass": "^1.22.12"
+  },
+  "devDependencies": {
+    "typescript": "^3.6.3"
+  }
+}

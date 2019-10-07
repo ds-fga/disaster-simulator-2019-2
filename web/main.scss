@@ -1,0 +1,61 @@
+// SPECTRE
+@import 'css/config';
+@import 'css/spectre/spectre';
+@import 'css/spectre/spectre-exp';
+@import 'css/spectre/spectre-icons';
+
+// NES.CSS
+@import 'css/nes/nes.scss';
+
+
+// COMPONENTES
+@import 'css/event';
+
+// FONTES
+@font-face {
+    font-family: 'Pixel';
+    // src: url('fonts/newsgeek.ttf') format('truetype');
+    src: url('fonts/futile-pro.woff') format('woff');
+}
+@font-face {
+    font-family: 'Equipment Pro';
+    src: url('fonts/equipment-pro.woff') format('woff');
+}
+@font-face {
+    font-family: 'Expression Pro';
+    src: url('fonts/expression-pro.woff') format('woff');
+}
+@font-face {
+    font-family: 'Futile Pro';
+    src: url('fonts/futile-pro.woff') format('woff');
+}
+@font-face {
+    font-family: 'Compass Pro';
+    src: url('fonts/compass-pro.woff') format('woff');
+}
+@font-face {
+    font-family: 'Matchup Pro';
+    src: url('fonts/matchup-pro.woff') format('woff');
+}
+
+
+
+// ESTILOS GLOBAIS
+body {
+    background: $bg-color;
+    color: $light-color;
+}
+
+#app {
+    background: url('img/tmp/globe-bg.png') black;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+}
