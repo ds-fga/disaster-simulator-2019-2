@@ -1,6 +1,6 @@
 $event-img-margin: 350px;
 
-.Event {
+.Event2 {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -60,19 +60,8 @@ $event-img-margin: 350px;
         position: relative;
         z-index: 1000;
     }
-    &-image {
-        background: url('/img/events/terminator.jpg');
-        background-position: center;
-        background-size: cover;
-        box-shadow: 2px 0 7px 0 rgba(0, 0, 0, 0.35);
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: $event-img-margin;
-    }
     &-description {
-        background: url('img/bg/interlaced.png');
+        //background: url('../img/bg/interlaced.png');
         background-clip: border-box;
         padding: 1.5rem;
         min-height: 25%;

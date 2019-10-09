@@ -1,0 +1,99 @@
+// UTILITIDADES
+.VScroll { overflow-y: auto; }
+
+
+// COMPONENTES
+.Sidebar {
+    box-shadow: 2px 0 1.5rem rgba(48,55,66,.5),
+                0 0 4px 0px rgba(48,55,66,.75);
+    height: 100%;
+    max-height: 100vh;
+    max-width: 350px;
+    z-index: 10;
+
+    &-footer,
+    &-title {
+        background: $color-dark;
+        color: $color-light;
+        
+        padding: 0.5rem;
+        
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    &-footer {
+        display: flex;
+        justify-content: space-between;
+    }
+    &-back {
+        font-size: 1rem;
+        button {
+            background: $color-dark;
+            border: 0;
+            color: $color-light;
+            margin-right: 0.5rem;
+        }
+    }
+    &-points {
+        font-size: 1.3rem;
+    }
+    img {
+        display: block;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.Window  {
+    background: $color-light;
+    border:4px solid black;
+    padding: 0;
+    
+    // Posição e distância para as bordas
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    // Tamanho
+    height: 100vh;
+    width: 100vw;
+
+    > * {
+        height: 100%;
+    }
+
+    &.has-sidebar {
+        display: flex;
+
+        > * {
+            flex: 1;
+        }
+        .Sidebar {
+            flex: 1;
+        }
+    }
+}
+
+
+.Tabs {
+    height: 100%;
+    width: 100%;
+    
+    &-head {
+        display: flex;
+        background: darken($color-light, 10%);
+    }
+    &-tab {
+        padding: 0.5rem 1.5rem;
+    }
+    &-tab.is-selected {
+        background: $color-light;
+    }
+    &-content {
+        overflow-y: auto;
+        height: 100%;
+    }
+}

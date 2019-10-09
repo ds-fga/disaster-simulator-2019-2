@@ -1,0 +1,47 @@
+@import 'config';
+
+// SPECTRE
+@import 'spectre/spectre';
+@import 'spectre/spectre-exp';
+@import 'spectre/spectre-icons';
+
+// NES.CSS
+@import 'nes/nes.scss';
+
+// PRISM
+@import '../../node_modules/prismjs/themes/prism-okaidia';
+code[class*=language-], pre[class*=language-] { font-family: 'Press Start 2P'; }
+
+// COMPONENTES
+@import 'ui';
+@import '../src/initial/initial';
+@import '../src/intro/intro';
+@import '../src/event/event';
+@import '../src/science/science';
+@import '../src/politics/politics';
+@import '../src/economy/economy';
+@import '../src/conspiracy/conspiracy';
+@import '../src/graphics/graphics';
+@import '../src/illuminati/illuminati';
+@import '../src/population/population';
+
+
+// ESTILOS GLOBAIS
+body {
+    background: $color-bg;
+    color: $color-text;
+}
+
+#app {
+    background: url('../img/tmp/globe-bg.png') $color-dark;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+}
