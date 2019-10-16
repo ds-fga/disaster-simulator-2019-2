@@ -12,6 +12,7 @@ import { Science } from './science/science';
 import { Politics } from './politics/politics';
 import { Economy } from './economy/economy';
 import { Conspiracy } from './conspiracy/conspiracy';
+import { Culture } from './culture/culture';
 
 import { Graphics } from './graphics/graphics';
 import { Illuminati } from './illuminati/illuminati';
@@ -28,6 +29,7 @@ let pages = {
     Politics: Politics,
     Economy: Economy,
     Conspiracy: Conspiracy,
+    Culture: Culture,
 
     Graphics: Graphics,
     Illuminati: Illuminati,
