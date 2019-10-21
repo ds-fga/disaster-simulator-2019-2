@@ -41,7 +41,7 @@ class Riqueza {
 
 class Saude {
     view () {
-        return <div>Saude idsjfo isdjofsio</div>
+        return <div>Saude</div>
     }
 }
 
