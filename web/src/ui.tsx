@@ -36,8 +36,8 @@ interface IBtnAttrs extends IGenericAttrs {
  */
 export class Btn extends Component<IBtnAttrs> {
     view(vnode: m.Vnode<IBtnAttrs>) {
-        let extraClasses = '';
-        return <button class={`btn ${extraClasses}`}>{vnode.children}</button>
+        let extraClasses = vnode.attrs.btn;
+        return <button class={`nes-btn is-${extraClasses}`}>{vnode.children}</button>
     }
 }
 
