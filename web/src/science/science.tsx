@@ -67,28 +67,6 @@ export class Science {
             currentTechSpec: ""
 
         }
-    } 
-
-    // oncreate() {
-    //   const newTechsFilter = {};
-    //   this.estado.techs.forEach((tech) => {
-    //     if (!(tech.type_tech in newTechsFilter)) {
-    //       newTechsFilter[tech.type_tech] = [];
-    //     }
-    //     newTechsFilter[tech.type_tech].push(tech);
-    //   });
-    //   this.estado.techsFilter = newTechsFilter;
-    // }
-
-    oninit () {
-        const newTechsFilter = {};
-      this.estado.techs.forEach((tech) => {
-        if (!(tech.type_tech in newTechsFilter)) {
-          newTechsFilter[tech.type_tech] = [];
-        }
-        newTechsFilter[tech.type_tech].push(tech);
-      });
-      this.estado.techsFilter = newTechsFilter;
     }
 
     oninit () {
