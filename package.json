@@ -15,14 +15,14 @@
     "mithril": "^2.0.4",
     "mithril-tsx-component": "^3.0.1",
     "parcel": "^1.12.3",
-    "prismjs": "^1.17.1",
-    "sass": "^1.22.12"
+    "prismjs": "^1.17.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.7.0",
+    "sass": "^1.23.0",
     "typedoc": "^0.15.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.4"
   }
 }
