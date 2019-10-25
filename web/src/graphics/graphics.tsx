@@ -8,8 +8,8 @@ import './_graphics.scss';
 export class Graphics {
     /**Tabs e como se fosse uma lista de tabs, dai tem que colocar cada Tab dentro de Tabs */
     view() {
-        return <Window>
-            <VScroll id="Graphics-VScroll">
+        return <Window id="GraphicsWindow">
+            <VScroll class="Graphics VScroll">
                 <Tabs>
                     <Tab title="Clima"><Clima></Clima></Tab>
                     <Tab title="Economia"><Economia></Economia></Tab>
@@ -79,9 +79,10 @@ class Clima {
             let data1 = graphicData(pydata.clima);
             return <div>
                 <Chart type="line" data={data1} options={data1.options} height="75" />
-                <div id="Graphics-buttons">
+                <div class="Graphics buttons">
                     <GraphicsButton btn="primary">Botao1</GraphicsButton>
                     <GraphicsButton btn="normal">Botao1</GraphicsButton>
+                    <GraphicsButton btn="warning">Botao1</GraphicsButton>
                     <GraphicsButton btn="warning">Botao1</GraphicsButton>
 
                 </div></div>
@@ -95,7 +96,7 @@ class Economia {
             let data1 = graphicData(pydata.economia);
             return <div>
                 <Chart type="line" data={data1} options={data1.options} height="75" />
-                <div id="Graphics-buttons">
+                <div class="Graphics buttons">
                     <GraphicsButton btn="primary">Botao1</GraphicsButton>
                     <GraphicsButton btn="normal">Botao1</GraphicsButton>
                     <GraphicsButton btn="warning">Botao1</GraphicsButton>
@@ -108,7 +109,7 @@ class Politica {
         {
             let data1 = graphicData(pydata.politica);
             return <div><Chart type="line" data={data1} options={data1.options} height="75" />
-                <div id="Graphics-buttons">
+                <div class="Graphics buttons">
                     <GraphicsButton btn="primary">Botao1</GraphicsButton>
                     <GraphicsButton btn="normal">Botao1</GraphicsButton>
                     <GraphicsButton btn="warning">Botao1</GraphicsButton>
@@ -123,7 +124,7 @@ class Energia {
             let data1 = graphicData(pydata.energia);
             return <div>
                 <Chart type="line" data={data1} options={data1.options} height="75" />
-                <div id="Graphics-buttons">
+                <div class="Graphics buttons">
                     <GraphicsButton btn="primary">Botao1</GraphicsButton>
                     <GraphicsButton btn="normal">Botao1</GraphicsButton>
                     <GraphicsButton btn="warning">Botao1</GraphicsButton>
