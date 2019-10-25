@@ -25,17 +25,33 @@ export class Graphics {
 
 // dados do grafico
 let pydata = {
-    clima: [20, 5, 30, 2, 20, 10],
-    economia: [20, 5, 30, 2, 20],
-    politica: [20, 5, 30, 2, 20],
-    energia: [20, 5, 30, 2, 20],
-};
-// colunas
-let labels = {
-    clima: ['coluna1', 'coluna2', 'coluna3', 'coluna4'],
-    economia: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    politica: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    energia: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    clima: {
+        labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
+        data: {
+            Co2: [20, 5, 30, 2, 20, 10],
+            h2o: [25, 10, 3, 2, 5, 100],
+            CH4: [1, 100, 88, 21, 45, 110]
+        }
+    },
+    economia: {
+        labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
+        data:
+        {
+            Valor1: [20, 5, 30, 2, 20]
+        }
+    },
+    politica: {
+        labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
+        data: {
+            Valor1: [20, 5, 30, 2, 20]
+        }
+    },
+    energia: {
+        labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
+        data: {
+            valor1: [20, 5, 30, 2, 20]
+        }
+    },
 };
 
 
@@ -60,9 +76,9 @@ class GraphicsButton extends Component<Gbtn>{
 class Clima {
     view() {
         {
-            let data1 = graphicData(pydata.clima, labels.clima);
+            let data1 = graphicData(pydata.clima);
             return <div>
-                <Chart type="bar" data={data1} options={data1.options} height="75" />
+                <Chart type="line" data={data1} options={data1.options} height="75" />
                 <div id="Graphics-buttons">
                     <GraphicsButton btn="primary">Botao1</GraphicsButton>
                     <GraphicsButton btn="normal">Botao1</GraphicsButton>
@@ -76,8 +92,9 @@ class Clima {
 class Economia {
     view() {
         {
-            let data1 = graphicData(pydata.economia, labels.economia);
-            return <div><Chart type="line" data={data1} options={data1.options} height="75" />
+            let data1 = graphicData(pydata.economia);
+            return <div>
+                <Chart type="line" data={data1} options={data1.options} height="75" />
                 <div id="Graphics-buttons">
                     <GraphicsButton btn="primary">Botao1</GraphicsButton>
                     <GraphicsButton btn="normal">Botao1</GraphicsButton>
@@ -89,8 +106,8 @@ class Economia {
 class Politica {
     view() {
         {
-            let data1 = graphicData(pydata.politica, labels.politica);
-            return <div><Chart type="radar" data={data1} options={data1.options} height="75" />
+            let data1 = graphicData(pydata.politica);
+            return <div><Chart type="line" data={data1} options={data1.options} height="75" />
                 <div id="Graphics-buttons">
                     <GraphicsButton btn="primary">Botao1</GraphicsButton>
                     <GraphicsButton btn="normal">Botao1</GraphicsButton>
@@ -103,8 +120,9 @@ class Energia {
 
     view() {
         {
-            let data1 = graphicData(pydata.energia, labels.energia);
-            return <div><Chart type="bar" data={data1} options={data1.options} height="75" />
+            let data1 = graphicData(pydata.energia);
+            return <div>
+                <Chart type="line" data={data1} options={data1.options} height="75" />
                 <div id="Graphics-buttons">
                     <GraphicsButton btn="primary">Botao1</GraphicsButton>
                     <GraphicsButton btn="normal">Botao1</GraphicsButton>
@@ -114,31 +132,13 @@ class Energia {
     }
 
 // configuraçoes dos graficos
-function graphicData(data, labels) {
+function graphicData(data) {
+
     let graphicdata = {
-        labels: labels,
-        datasets: [{
-            label: '# of Votes',
-            data: data,
-            backgroundColor: [
-                'hsl(0, 100%, 70%)',
-                'rgba(54, 162, 235, 0.2)',
-                'hsl(75, 100%, 70%)',
-                'rgba(75, 192, 192, 0.2)',
-                'hsl(155, 100%, 70%)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(75, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 10
-        }],
-        
+        // eixo x
+        labels: data.labels,
+        //dados
+        datasets: [],
         //configuracoes do grafico
         options: {
 
@@ -157,25 +157,39 @@ function graphicData(data, labels) {
                 }
             },
             scales: {
-            // eixo y
-            
+                // eixo y
+
                 yAxes: [{
                     ticks: {
                         fontSize: 25,
-                        fontColor:'white',
+                        fontColor: 'white',
                     }
                 }], // eixo x
                 xAxes: [{
                     ticks: {
-                        fontSize:25,
+                        fontSize: 25,
                         fontColor: 'white',
-                        
+
                     }
                 }]
             },
 
         }
 
+    }
+
+    for (var i in data.data) {
+        graphicdata.datasets.push({
+            label: i,
+            data: data.data[i],
+            backgroundColor: [
+                'rgba(255, 0, 0, 0.1)',
+            ],
+            borderColor: [
+                'hsl(0, 100%, 30%)',
+            ],
+            borderWidth: 5
+        })
     }
     return graphicdata;
 }
