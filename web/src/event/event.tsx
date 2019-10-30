@@ -1,6 +1,7 @@
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, Component } from '../ui';
 import terminatorImg from '../../img/events/terminator.jpg';
+import { Culture, CultureTabs } from '../culture/culture';
 
 let event = {
     img: terminatorImg,
@@ -16,6 +17,7 @@ export class Event {
             <Tabs>
                 <Tab title="Tab 1">
                     Tab 1 content
+
                 </Tab>
                 <Tab title="Tab 2">
                     Tab 2 content
@@ -66,3 +68,4 @@ let ev = (
         </div>
     </div>
 );
+
