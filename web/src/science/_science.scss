@@ -26,6 +26,8 @@
     display: flex;
     justify-content: space-between;
     width: 15rem;
+    margin-top: .75rem;
+    height: 2.75rem;
 
     & > * {
         margin: auto 0;
@@ -37,15 +39,5 @@
 
     &--component {
         width: 100%;
-    }
-}
-
-.Tech-List {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-
-    &:not(:last-child) {
-        margin-bottom: 2rem;
     }
 }
