@@ -17,18 +17,18 @@ export class Science {
         this.estado = {
             techs: [
                 {
-                    title: "Nuclear 1",
+                    title: "Conhecimento atômico",
                     price: "50",
                     type: "is-warning",
-                    spec: "Permite pesquisa básica em energia nuclear",
+                    spec: "Estudos necessários para entender melhor o funcionamento das partículas atômicas e subatômicas e como promover mudanças ambientalmente favoráveis.",
                     type_tech: "nuclear",
                     status: "0"
                 },
                 {
-                    title: "Nuclear 2",
+                    title: "Usinas nucleares",
                     price: "100",
                     type: "is-warning",
-                    spec: "Permite pesquisa média em energia nuclear",
+                    spec: "Criação de polos de usinas nucleares para produzirem mais energia com um imacto ambiental menor.",
                     type_tech: "nuclear",
                     status: "1"
                 },
@@ -41,18 +41,18 @@ export class Science {
                     status: "1"
                 },
                 {
-                    title: "Biológico 1",
+                    title: "Conhecimento molecular",
                     price: "50",
                     type: "is-success",
-                    spec: "Permite pesquisa básica em biotecnologia",
+                    spec: "Estudos necessários para entender melhor o funcionamento da microbiologia e como promover mudanças ambientalmente favoráveis.",
                     type_tech: "biológico",
                     status: "0"
                 },
                 {
-                    title: "Biológico 2",
+                    title: "Biofiltro de algas",
                     price: "100",
                     type: "is-success",
-                    spec: "Permite pesquisa média em biotecnologia",
+                    spec: "Biofiltros formados por microalgas aumentam a absorção de CO2 da atmosfera em um nível 100 vezes mais alto que as árvores, podendo melhorar a qualidade de vida na Terra.",
                     type_tech: "biológico",
                     status: "1"
                 },
