@@ -1,102 +1,111 @@
 import m = require('mithril');
 import {Window, Tab, Tabs, Btn, Sidebar} from '../ui';
+import path_icon from '../../img/tela_inicial/frasco.png';
 
 
 var React = {
     createElement: m
 };
-
-//menu esquerdo
-
+/** A parte a seguir do código server para documentar o nome de cada botão,
+ * O redirecionamento feito após clica-lo
+ * E o icone respectivo
+ */
 let leftMenuItens = {
+    "nome": ["Temperatura", "teste 2"],
+    "caminho": ["teste.html", "teste2.html"],
+    "icone": ["frasco.png", "icon icon-link"],
+}
+
+let barMenuItens = {
+    "nome": ["teste 1", "teste 2", "teste 3", "teste 4"],
+    "caminho": ["teste.html", "teste2.html", "teste3.html", "teste4.html"],
+    "icone": ["icon icon-link", "icon icon-link", "icon icon-link", "icon icon-link"],
+}
+let rightMenuItens = {
     "nome": ["teste 1", "teste 2"],
     "caminho": ["teste.html", "teste2.html"],
     "icone": ["icon icon-link", "icon icon-link"],
 }
 
-let rightMenuItens = {
-    "nome": ["teste 3", "teste 4"],
-    "caminho": ["teste.html", "teste2.html"],
-    "icone": ["icon icon-link", "icon icon-link"],
-}
+/** A parte a seguir é o listamento de cada botão
+ * Para cada Dashboard
+ */
 
-function elementsLeft() {
-    var list_left = [], cont, itens = leftMenuItens;
 
-    for(cont=0; cont<itens.nome.length; cont ++) {
-        list_left.push(m('li', {class: 'menu-item'}, [
-            m('a', {href: itens.caminho[cont]}, [
-                m('i', {class: itens.icone[cont]})
-            ], itens.nome[cont])
-        ])) 
+
+function elementsColumn(itens) {
+    var list = [];  
+    for(let i = 0; i < itens.nome.length; i++) {
+        list.push(m('li', {class: 'menu-item inline'}, [
+            m('a', {href: itens.caminho[i]}, [
+                m('img', {src: path_icon})
+            ], itens.nome[i])
+        ]))
     }
-    return list_left;
+    return list;
 }
 
-function leftDashboardElements() {
-    return m('ul', {class: 'menu'}, [
-        m('li', {class: 'divider'}),
-        elementsLeft()
-    ])
-}
+/** A parte a seguir é sobre a coluna da esquerda
+ * E chama seus respectivos itens
+*/
 
 function leftDashboard() {
     return m('div', {class: 'column col-2 text-center'}, [
-            leftDashboardElements()
+        m('ul', {class: 'menu'}, [
+            m('li', {class: 'divider'}),
+            elementsColumn(leftMenuItens)
         ])
-}
-
-// fim do menu lateral esquerdo
-
-//menu lateral direito
-function elementsRight() {
-    var list_right = [], cont, itens = rightMenuItens;
-
-    for(cont=0; cont<itens.nome.length; cont ++) {
-        list_right.push(m('li', {class: 'menu-item'}, [
-            m('a', {href: itens.caminho[cont]}, [
-                m('i', {class: itens.icone[cont]})
-            ], itens.nome[cont])
-        ])) 
-    }
-    return list_right;
-}
-
-function rightDashboardElements() {
-    return m('ul', {class: 'menu'}, [
-        m('li', {class: 'divider'}),
-        elementsRight()
     ])
 }
-//fim
+
+/** A parte a seguir é sobre a coluna da direita
+ * E chama seus respectivos itens
+*/
 
 function rightDashboard() {
     return m('div', {class: 'column col-2 text-center'}, [
-            rightDashboardElements()
+        m('ul', {class: 'menu'}, [
+            m('li', {class: 'divider'}),
+            elementsColumn(rightMenuItens)
         ])
+    ])
 }
 
-//conteudo central
+/** A parte a seguir é sobre a coluna da direita
+ * E chama seus respectivos itens
+*/
+
+function barDashboard() {
+    return m('div', {class: 'initial-icon-bar'}, [
+        elementsColumn(barMenuItens)
+    ])
+}
+
+/** A parte a seguir é a main do projeto
+ * A parte onde ficará globo e a barra
+ */
 
 function main() {
     return m('div', {class: 'col-8'}, [
         m('div', {class: 'card'}, [
             m('div', {class: 'card-image'}, [
                 m('img', {class: '', src: ''})
-            ])
+            ]),
             m('div', {class: 'card-header'}, [
-                m('div', {class: 'card-title h5'}, 'Título do Card')
+                m('div', {class: 'card-title h5'}, 'Título do Card'),
                 m('div', {class: 'card-subtitle text-gray'}, 'Subtitulo')
-            ])
-            m('div', {class: 'card-body'}, 'Corpo do card')
+            ]),
+            m('div', {class: 'card-body'}, 'Corpo do card'),
             m('div', {class: 'card-footer'}, [
-                m('button', {class: 'btn btn-primary'}, 'Botão')
+                barDashboard()
             ])
         ])
     ])
 }
 
-function join() {
+/** A parte a seguir inicia e ordena a tela */
+
+function joins() {
     var join = [
         leftDashboard(),
         main(),
@@ -110,7 +119,7 @@ var app = document.querySelector('#menu-lateral');
 
 
 m.mount(app, {
-    view: () => join()
+    view: () => joins()
 });
     
 /*
