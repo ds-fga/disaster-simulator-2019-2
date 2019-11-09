@@ -1,21 +1,31 @@
+
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, Chart, VScroll, Component } from '../ui';
 import './_graphics.scss';
-import {GraphicsButton} from './UiGraphics.tsx';
+import { GraphicsButton, GraphicTabs} from './UiGraphics.tsx';
 /**
  * Componente para janela com informações e gráficos sobre o mundo.
  */
 export class Graphics {
     /**Tabs e como se fosse uma lista de tabs, dai tem que colocar cada Tab dentro de Tabs */
+    constructor(){
+        
+        
+    }  
     view() {
+        function mudabackground() {
+            let a = window.document.querySelector("#GraphicsWindow");
+            window.alert(a)
+        }
         return <Window id="GraphicsWindow">
             <VScroll class="Graphics VScroll">
-                <Tabs>
+                <GraphicTabs>
                     <Tab title="Clima"><Clima></Clima></Tab>
                     <Tab title="Economia"><Economia></Economia></Tab>
                     <Tab title="Politica"><Politica></Politica></Tab>
                     <Tab title="Energia"><Energia></Energia></Tab>
-                </Tabs>
+                </GraphicTabs>
+                
             </VScroll>
         </Window>
     }
@@ -28,7 +38,8 @@ let pydata = {
         data: {
             Co2: [20, 5, 30, 2, 20, 10],
             h2o: [25, 10, 3, 2, 5, 100],
-            CH4: [1, 100, 88, 21, 45, 110]
+            CH4: [1, 100, 88, 21, 45, 110],
+            Teste: [4, 9, 16, 25, 36]
         }
     },
     economia: {
@@ -47,7 +58,7 @@ let pydata = {
     energia: {
         labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
         data: {
-            valor1: [20, 5, 30, 2, 20]
+            valor1: [20,5,6,4,8]
         }
     },
 };
