@@ -1,7 +1,7 @@
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, Chart, VScroll, Component } from '../ui';
 import './_graphics.scss';
-
+import {GraphicsButton} from './UiGraphics.tsx';
 /**
  * Componente para janela com informações e gráficos sobre o mundo.
  */
@@ -20,8 +20,6 @@ export class Graphics {
         </Window>
     }
 }
-
-
 
 // dados do grafico
 let pydata = {
@@ -54,24 +52,6 @@ let pydata = {
     },
 };
 
-
-interface IGenericAttrs {
-    class?: string | string[];
-    id?: string;
-    onclick?: Function;
-}
-// tipos de butoes
-interface Gbtn extends IGenericAttrs {
-    btn?: "primary" | "success" | "warning" | "error" | "disabled" | "normal";
-}
-
-class GraphicsButton extends Component<Gbtn>{
-    view(vnode: m.Vnode<Gbtn>) {
-        let extraclass = vnode.attrs.btn;
-        return <button type="button" class={`nes-btn is-${extraclass}`}>{vnode.children}</button>
-    }
-
-}
 
 class Clima {
     view() {
