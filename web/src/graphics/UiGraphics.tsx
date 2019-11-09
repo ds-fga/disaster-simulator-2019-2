@@ -33,45 +33,47 @@ export class GraphicTabs extends Elem {
         let selected = this.selected,
             self = this,
             titles = vnode.children.map((e, i) => {
-                let cls = "Tabs-tab";
-                    cls += i == selected? " is-selected": "";
-                let id = e.attrs.title || "";
-                return <div id={`Graphics-Tab-${id}`} class={cls} 
-                            onclick={() => {self.selected = i}}>
-                            {e.attrs.title}</div>
+                let cls = "Graphics Tabs-tab";
+                cls += i == selected ? " is-selected" : "";
+                let btn = "Warning";
+                btn = i == selected ? "primary" : "warning";
+                return <div class={cls}
+                    onclick={() => {self.selected = i; }}>
+                    <GraphicsButton btn={btn}>{e.attrs.title}</GraphicsButton>
+                </div>
             });
-        return <div class="Tabs-head" id="Graphics-Tabs-Head">{titles}</div>;
+    return <div class="Graphics Tab-head">{titles}</div>;
     }
 
     viewContent(vnode) {
-        let id = vnode.children[this.selected].attrs.title || ""
-        return <div class="Tabs-Content" id={`Tabs-Content-Graphics-${id}`}>
+
+        let extraclass = vnode.children[this.selected].attrs.title || ""
+        return <div class={`Graphics Tabs-Content ${extraclass}`}>
             {vnode.children[this.selected]}
         </div>
     }
 }
 
 
-interface ITabAttrs extends IGenericAttrs {
+interface Sattrs extends IGenericAttrs {
+    btn?: "primary" | "success" | "warning" | "error" | "disabled" | "normal";
     title: string;
 }
 
-export class Tab extends Component<ITabAttrs> {
+export class Tab extends Component<Sattrs> {
 
-    
-        view(vnode) {
-            return <div class="Tab">
-                {vnode.children}
-            </div>
-        }
-    };
 
-    // tipos de butoes
-interface Gbtn extends IGenericAttrs {
-    btn?: "primary" | "success" | "warning" | "error" | "disabled" | "normal";
-}
+    view(vnode) {
+        return <div class="Tab">
+            {vnode.children}
+        </div>
+    }
+};
 
-export class GraphicsButton extends Component<Gbtn>{
+// tipos de butoes
+
+
+export class GraphicsButton extends Component<Sattrs>{
     view(vnode: m.Vnode<Gbtn>) {
         let extraclass = vnode.attrs.btn;
         return <button type="button" class={`nes-btn is-${extraclass}`}>{vnode.children}</button>

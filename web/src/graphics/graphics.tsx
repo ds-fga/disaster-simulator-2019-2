@@ -20,10 +20,10 @@ export class Graphics {
         return <Window id="GraphicsWindow">
             <VScroll class="Graphics VScroll">
                 <GraphicTabs>
-                    <Tab title="Clima"><Clima></Clima></Tab>
-                    <Tab title="Economia"><Economia></Economia></Tab>
-                    <Tab title="Politica"><Politica></Politica></Tab>
-                    <Tab title="Energia"><Energia></Energia></Tab>
+                    <Tab title="Clima" btn="warning"><Clima></Clima></Tab>
+                    <Tab title="Economia" btn="warning"><Economia></Economia></Tab>
+                    <Tab title="Politica" btn="warning"><Politica></Politica></Tab>
+                    <Tab title="Energia" btn="warning"><Energia></Energia></Tab>
                 </GraphicTabs>
                 
             </VScroll>
