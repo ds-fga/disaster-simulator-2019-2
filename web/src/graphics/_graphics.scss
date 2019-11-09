@@ -1,3 +1,36 @@
 .Graphics {
+    .Tab-head{
+        background: none;
+        text-align: center;
+        display: flex;
+
+    }
+    .buttons{
+    text-align: center;
+    };
+
+    .Tabs-Content.Clima{
+        background: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6b61522a-55f9-4c21-9404-d8184c248d25/datylb6-1dc40979-86d3-45f5-b9d1-aa58ece84c8a.jpg/v1/fill/w_1024,h_768,q_75,strp/madoka_kaname_by_sishenfan_datylb6-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzY4IiwicGF0aCI6IlwvZlwvNmI2MTUyMmEtNTVmOS00YzIxLTk0MDQtZDgxODRjMjQ4ZDI1XC9kYXR5bGI2LTFkYzQwOTc5LTg2ZDMtNDVmNS1iOWQxLWFhNThlY2U4NGM4YS5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.V6tNTT7yzFUSUwix-VMb3vOr4jdGVIln8waBLobRsN0");
+        background-size: 100%;
+    };
+    .Tabs-Content.Economia{
+        background: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6b61522a-55f9-4c21-9404-d8184c248d25/datylb6-1dc40979-86d3-45f5-b9d1-aa58ece84c8a.jpg/v1/fill/w_1024,h_768,q_75,strp/madoka_kaname_by_sishenfan_datylb6-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzY4IiwicGF0aCI6IlwvZlwvNmI2MTUyMmEtNTVmOS00YzIxLTk0MDQtZDgxODRjMjQ4ZDI1XC9kYXR5bGI2LTFkYzQwOTc5LTg2ZDMtNDVmNS1iOWQxLWFhNThlY2U4NGM4YS5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.V6tNTT7yzFUSUwix-VMb3vOr4jdGVIln8waBLobRsN0");
+        background-size: 100%;
+    };
+    .Tabs-Content.Politica{
+        background: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6b61522a-55f9-4c21-9404-d8184c248d25/d9oje03-cc4404a4-fb44-44fe-963c-8e0d11683b6a.jpg/v1/fill/w_1024,h_703,q_75,strp/kimi_no_gin_no_niwa_by_sishenfan_d9oje03-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzAzIiwicGF0aCI6IlwvZlwvNmI2MTUyMmEtNTVmOS00YzIxLTk0MDQtZDgxODRjMjQ4ZDI1XC9kOW9qZTAzLWNjNDQwNGE0LWZiNDQtNDRmZS05NjNjLThlMGQxMTY4M2I2YS5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.afjvD77F9pq-TTmJZPodAFLlhsEC1_2PIdnfABkEpNI");
+        background-size: 100%;
+    };
+    .Tabs-Content.Energia{
+        background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9IZ7qHIb4E5thfUryZV54MNvEVxygxOmhiITtoF8CElqnIVXk");
+        background-size: 100%;
+    };
+    
+
+}
+#GraphicsWindow{
+        background: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a89173c8-93ce-4a91-a0c9-1e04cd1e5fdc/dc25eoc-ecb20f07-dcf0-4b1a-9a6c-5f4de1e75580.jpg/v1/fill/w_1192,h_670,q_70,strp/_black_hole__by_era_7_dc25eoc-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTQ0MCIsInBhdGgiOiJcL2ZcL2E4OTE3M2M4LTkzY2UtNGE5MS1hMGM5LTFlMDRjZDFlNWZkY1wvZGMyNWVvYy1lY2IyMGYwNy1kY2YwLTRiMWEtOWE2Yy01ZjRkZTFlNzU1ODAuanBnIiwid2lkdGgiOiI8PTI1NjAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.ziLpNTL8Fdkt8OgqDetnupqo7tKSx-ID2grtDa-FiUQ");
+        background-position: center center;
+        background-size: 100%;
     
 }
