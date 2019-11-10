@@ -1,4 +1,3 @@
-
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, Chart, VScroll, Component } from '../ui';
 import './_graphics.scss';
@@ -20,6 +19,7 @@ export class Graphics {
         return <Window id="GraphicsWindow">
             <VScroll class="Graphics VScroll">
                 <GraphicTabs>
+                    <Tab title="Tela Principal" btn="warning"><Tela></Tela></Tab>
                     <Tab title="Clima" btn="warning"><Clima></Clima></Tab>
                     <Tab title="Economia" btn="warning"><Economia></Economia></Tab>
                     <Tab title="Politica" btn="warning"><Politica></Politica></Tab>
@@ -39,30 +39,42 @@ let pydata = {
             Co2: [20, 5, 30, 2, 20, 10],
             h2o: [25, 10, 3, 2, 5, 100],
             CH4: [1, 100, 88, 21, 45, 110],
-            Teste: [4, 9, 16, 25, 36]
+            CFC: [4, 9, 16, 25, 36]
         }
     },
     economia: {
         labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
         data:
         {
-            Valor1: [20, 5, 30, 2, 20]
+            Dólar: [20, 5, 30, 2, 20]
         }
     },
     politica: {
         labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
         data: {
-            Valor1: [20, 5, 30, 2, 20]
+            Trump: [20, 5, 30, 2, 20],
+            Bolsonaro: [30,13,10,34,33],
+            Lula: [12,22,25,26,33],
         }
     },
     energia: {
         labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
         data: {
-            valor1: [20,5,6,4,8]
+            Renováveis: [20,5,6,4,8],
+            NãoRenováveis: [10,5,7,13,14],
         }
     },
 };
 
+class Tela{
+    view(){
+       return <div> 
+            <br /> 
+           <h1><center> <font size="5px"> <font color="red"> Aqui o caos pode ser contemplado</font></font></center> </h1>
+         <h2><font color="white"> Nunca é demais lembrar o peso e o significado destes problemas, uma vez que a percepção das dificuldades representa uma abertura para a melhoria dos níveis de motivação departamental.</font></h2>
+  </div> 
+    }
+}
 
 class Clima {
     view() {
@@ -72,14 +84,14 @@ class Clima {
                 <Chart type="line" data={data1} options={data1.options} height="75" />
                 <div class="Graphics buttons">
                     <GraphicsButton btn="primary">Botao1</GraphicsButton>
-                    <GraphicsButton btn="normal">Botao1</GraphicsButton>
-                    <GraphicsButton btn="warning">Botao1</GraphicsButton>
-                    <GraphicsButton btn="warning">Botao1</GraphicsButton>
+                    <GraphicsButton btn="normal">Botao2</GraphicsButton>
+                    <GraphicsButton btn="warning">Botao3</GraphicsButton>
 
                 </div></div>
 
         }
     }
+   
 
 class Economia {
     view() {
@@ -89,8 +101,8 @@ class Economia {
                 <Chart type="line" data={data1} options={data1.options} height="75" />
                 <div class="Graphics buttons">
                     <GraphicsButton btn="primary">Botao1</GraphicsButton>
-                    <GraphicsButton btn="normal">Botao1</GraphicsButton>
-                    <GraphicsButton btn="warning">Botao1</GraphicsButton>
+                    <GraphicsButton btn="normal">Botao2</GraphicsButton>
+                    <GraphicsButton btn="warning">Botao3</GraphicsButton>
                 </div></div>
         }
     }
@@ -102,8 +114,8 @@ class Politica {
             return <div><Chart type="line" data={data1} options={data1.options} height="75" />
                 <div class="Graphics buttons">
                     <GraphicsButton btn="primary">Botao1</GraphicsButton>
-                    <GraphicsButton btn="normal">Botao1</GraphicsButton>
-                    <GraphicsButton btn="warning">Botao1</GraphicsButton>
+                    <GraphicsButton btn="normal">Botao2</GraphicsButton>
+                    <GraphicsButton btn="warning">Botao3</GraphicsButton>
                 </div></div>
         }
     }
@@ -117,8 +129,8 @@ class Energia {
                 <Chart type="line" data={data1} options={data1.options} height="75" />
                 <div class="Graphics buttons">
                     <GraphicsButton btn="primary">Botao1</GraphicsButton>
-                    <GraphicsButton btn="normal">Botao1</GraphicsButton>
-                    <GraphicsButton btn="warning">Botao1</GraphicsButton>
+                    <GraphicsButton btn="normal">Botao2</GraphicsButton>
+                    <GraphicsButton btn="warning">Botao3</GraphicsButton>
                 </div></div>
         }
     }
