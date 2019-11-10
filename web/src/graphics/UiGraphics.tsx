@@ -39,7 +39,7 @@ export class GraphicTabs extends Elem {
                 btn = i == selected ? "primary" : "warning";
                 return <div class={cls}
                     onclick={() => {self.selected = i; }}>
-                    <GraphicsButton btn={btn}>{e.attrs.title}</GraphicsButton>
+                    <GraphicsButton btn={btn} onclick={e.attrs.onclick || ""}>{e.attrs.title}</GraphicsButton>
                 </div>
             });
     return <div class="Graphics Tab-head">{titles}</div>;
@@ -74,7 +74,8 @@ export class Tab extends Component<Sattrs> {
 
 
 export class GraphicsButton extends Component<Sattrs>{
-    view(vnode: m.Vnode<Gbtn>) {
-        let extraclass = vnode.attrs.btn;
-        return <button type="button" class={`nes-btn is-${extraclass}`}>{vnode.children}</button>
+   view(vnode: m.Vnode<Sattrs>) {
+        let extraclass = vnode.attrs.btn || "normal";
+        let fonclick = vnode.attrs.onclick || ""
+        return <button type="button" class={`nes-btn is-${extraclass}`} onclick={fonclick}>{vnode.children}</button>
     }
