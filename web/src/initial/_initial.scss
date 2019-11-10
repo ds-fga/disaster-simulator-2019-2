@@ -1,43 +1,44 @@
 .Initial {
-    background: #555
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 15% 70% 15%;
+    grid-template-rows: 15% 65% 20%;
+    grid-template-areas: "header header status"
+                        "leftd main rightd"
+                        ". footer ."
 }
-.initial-icon-bar {
-    width: 100%;
-    background-color: #555;
+/**Segue abaixo modificações do header*/
+.header{
+    grid-area: header;
+}
+
+/**Segue abaixo modificações do status*/
+.status{
+    grid-area: status;
+}
+
+/**Segue abaixo modificações da leftDashboard*/
+.leftDash{
+    grid-area: leftd;
+}
+
+/**Segue abaixo modificações da rightDashboard*/
+.rightDash{
+    grid-area: rightd;
+}
+
+/**Segue abaixo modificações da main*/
+.main{
+    grid-area: main;
+}
+
+/**Segue abaixo modificações do footer*/
+.footer{
+    grid-area: footer;
     overflow: auto;
-  }
-  
-.initial-icon-bar a {
-    float: left;
-    width: 100%;
-    text-align: center;
-    padding: 12px 0;
-    transition: all 0.3s ease;
-    color: white;
-    font-size: 10px;
-    margin: 5px 50px;
 }
-  
-.initial-icon-bar a:hover {
-    background-color: #000;
-}
-  
-.initial-active {
-    background-color: #4CAF50;
-}
-
-.inline {
+.inline{
     display: inline-block;
-}
- 
-.mr-5 {
-    margin-right: 6px
-}
-
-.align-left {
-    text-align: left !important;
-}
-
-.container-center {
-    
 }
