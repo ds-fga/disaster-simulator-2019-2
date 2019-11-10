@@ -26,7 +26,7 @@ export class Graphics {
             <VScroll class="Graphics VScroll">
                 <span class="Graphics back-Button"><GraphicsButton btn="error" onclick="">Voltar</GraphicsButton></span>
                 <GraphicTabs>
-                    <Tab title="Tela Principal" btn="warning" background={this.background.Telainicial}><Tela></Tela></Tab>
+                    <Tab title="Tela Principal" btn="error" background={this.background.Telainicial}><Tela></Tela></Tab>
                     <Tab title="Clima" btn="warning" background={this.background.Clima}><Clima></Clima></Tab>
                     <Tab title="Economia" btn="warning" background={this.background.Economia}><Economia></Economia></Tab>
                     <Tab title="Politica" btn="warning" background={this.background.Politica}><Politica></Politica></Tab>
@@ -90,7 +90,7 @@ class Clima {
             return <div>
                 <Chart type="line" data={data1} options={data1.options} height="75" />
                 <div class="Graphics buttons">
-                    <GraphicsButton btn="primary">Botao1</GraphicsButton>
+                    <GraphicsButton btn="primary" onclick={()=>{window.alert("teste")}}>Botao1</GraphicsButton>
                     <GraphicsButton btn="normal">Botao2</GraphicsButton>
                     <GraphicsButton btn="warning">Botao3</GraphicsButton>
 
