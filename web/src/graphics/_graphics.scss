@@ -1,36 +1,26 @@
 .Graphics {
+    .Tabs-tab{
+        background: none;
+    }
     .Tab-head{
         background: none;
         text-align: center;
         display: flex;
-
+        margin: 1rem;
     }
     .buttons{
     text-align: center;
     };
-
-    .Tabs-Content.Clima{
-        background: url("https://wallpapertag.com/wallpaper/full/0/6/0/380558-free-madoka-magica-wallpaper-1920x1080-ipad-pro.jpg");
-        background-size: 100%;
-    };
-    .Tabs-Content.Economia{
-        background: url("https://images4.alphacoders.com/296/thumb-1920-296026.jpg");
-        background-size: 100%;
-    };
-    .Tabs-Content.Politica{
-        background: url("https://images6.alphacoders.com/993/thumb-1920-993435.jpg");
-        background-size: 100%;
-    };
-    .Tabs-Content.Energia{
-        background: url("http://pds22.egloos.com/pds/201207/17/88/b0040388_5005599932d5b.jpg");
-        background-size: 100%;
-    };
-    
+    .back-Button{
+        float: right;
+        padding: 1.5rem 1.5rem;
+    }
 
 }
 #GraphicsWindow{
-        background: url("https://blog-imgs-30-origin.fc2.com/t/a/k/take0000/mahousyoujomadokamagika057.jpg");
+        background: black;
         background-position: center center;
         background-size: 100%;
-    
+        transition-delay: 1s;
+
 }
