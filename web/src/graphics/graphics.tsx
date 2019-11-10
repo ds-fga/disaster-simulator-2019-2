@@ -7,10 +7,16 @@ import { GraphicsButton, GraphicTabs} from './UiGraphics.tsx';
  */
 export class Graphics {
     /**Tabs e como se fosse uma lista de tabs, dai tem que colocar cada Tab dentro de Tabs */
-    constructor(){
-        
-        
-    }  
+    background: object;
+    constructor() {
+        this.background = {
+            "Telainicial": "https://blog-imgs-30-origin.fc2.com/t/a/k/take0000/mahousyoujomadokamagika057.jpg",
+            "Clima": "https://wallpapertag.com/wallpaper/full/0/6/0/380558-free-madoka-magica-wallpaper-1920x1080-ipad-pro.jpg",
+            "Economia": "https://images4.alphacoders.com/296/thumb-1920-296026.jpg",
+            "Politica": "https://images6.alphacoders.com/993/thumb-1920-993435.jpg",
+            "Energia": "http://pds22.egloos.com/pds/201207/17/88/b0040388_5005599932d5b.jpg",
+        }
+    }
     view() {
         function mudabackground() {
             let a = window.document.querySelector("#GraphicsWindow");
@@ -18,14 +24,15 @@ export class Graphics {
         }
         return <Window id="GraphicsWindow">
             <VScroll class="Graphics VScroll">
+                <span class="Graphics back-Button"><GraphicsButton btn="error" onclick="">Voltar</GraphicsButton></span>
                 <GraphicTabs>
-                    <Tab title="Tela Principal" btn="warning"><Tela></Tela></Tab>
-                    <Tab title="Clima" btn="warning"><Clima></Clima></Tab>
-                    <Tab title="Economia" btn="warning"><Economia></Economia></Tab>
-                    <Tab title="Politica" btn="warning"><Politica></Politica></Tab>
-                    <Tab title="Energia" btn="warning"><Energia></Energia></Tab>
+                    <Tab title="Tela Principal" btn="warning" background={this.background.Telainicial}><Tela></Tela></Tab>
+                    <Tab title="Clima" btn="warning" background={this.background.Clima}><Clima></Clima></Tab>
+                    <Tab title="Economia" btn="warning" background={this.background.Economia}><Economia></Economia></Tab>
+                    <Tab title="Politica" btn="warning" background={this.background.Politica}><Politica></Politica></Tab>
+                    <Tab title="Energia" btn="warning" background={this.background.Energia}><Energia></Energia></Tab>
                 </GraphicTabs>
-                
+
             </VScroll>
         </Window>
     }
