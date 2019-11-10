@@ -1,6 +1,15 @@
 import m = require('mithril');
 import {Window, Tab, Tabs, Btn, Sidebar} from '../ui';
-
+import frask from '../../img/icones_tela_inicial/frasco.png';
+import politic from '../../img/icones_tela_inicial/politic.png';
+import money from '../../img/icones_tela_inicial/money.png';
+import earth from '../../img/icones_tela_inicial/earth.png';
+import graphic from '../../img/icones_tela_inicial/graphic.png';
+import people from '../../img/icones_tela_inicial/people.png';
+import reptle from '../../img/icones_tela_inicial/reptle.png';
+import settings from '../../img/icones_tela_inicial/settings.png';
+import conspirancy from '../../img/icones_tela_inicial/conspirancy.png';
+import big_earth from '../../img/icones_tela_inicial/big-earth.png';
 
 var React = {
     createElement: m
@@ -10,52 +19,36 @@ var React = {
  * E o icone respectivo
  */
 let leftMenuItens = {
-    "nome": ["teste 1", "teste 2"],
-    "caminho": ["teste.html", "teste2.html"],
-    "icone": ["icon icon-link", "icon icon-link"],
+    "nome": ["Temperatura", "Política", "Conspiração","Economia"],
+    "caminho": ["teste.html", "teste2.html", "teste2.html", "teste.html"],
+    "icone": [frask, politic, conspirancy, money],
 }
 
 let barMenuItens = {
-    "nome": ["teste 1", "teste 2", "teste 3", "teste 4"],
-    "caminho": ["teste.html", "teste2.html", "teste3.html", "teste4.html"],
-    "icone": ["icon icon-link", "icon icon-link", "icon icon-link", "icon icon-link"],
+    "nome": ["teste 1", "teste 2", "teste 3"],
+    "caminho": ["teste.html", "teste2.html", "teste3.html"],
+    "icone": ["icon icon-link", "icon icon-link", "icon icon-link"],
 }
 let rightMenuItens = {
-    "nome": ["teste 1", "teste 2"],
-    "caminho": ["teste.html", "teste2.html"],
-    "icone": ["icon icon-link", "icon icon-link"],
+    "nome": ["Gráfico", "Terra", "Conspiração", "População", "Configuraçoẽs"],
+    "caminho": ["teste.html", "teste2.html", "teste2.html", "teste.html", "teste2.html", "teste2.html"],
+    "icone": [graphic, earth, reptle, people, settings],
 }
 
 /** A parte a seguir é o listamento de cada botão
  * Para cada Dashboard
  */
 
+
+
 function elementsColumn(itens) {
-    var list = [];
+    var list = [];  
     for(let i = 0; i < itens.nome.length; i++) {
-        list.push(m('li', {class: 'menu-item'}, [
+        list.push(m('li', {class: 'menu-item inline'}, [
             m('a', {href: itens.caminho[i]}, [
-                m('i', {class: itens.icone[i]})
+                m('img', {class: 'mr-5', src: itens.icone[i]})
             ], itens.nome[i])
         ]))
-    }
-    return list;
-}
-
-function elementsLine(itens){
-    var list = [];
-    for(let i = 0; itens.nome.length; i++){
-        if(!i){
-            list.push(m('a', {class: 'initial-active', href: itens.caminho[i]}, [
-                m('i', {href: itens.icone[i]})
-            ], itens.nome[i]))
-        }
-        else{
-
-            list.push(m('a', {href: itens.caminho[i]}, [
-                m('i', {href: itens.icone[i]})
-            ], itens.nome[i]))
-        }
     }
     return list;
 }
@@ -66,7 +59,7 @@ function elementsLine(itens){
 
 function leftDashboard() {
     return m('div', {class: 'column col-2 text-center'}, [
-        m('ul', {class: 'menu'}, [
+        m('ul', {class: 'menu align-left nes-container is-dark with-title'}, [
             m('li', {class: 'divider'}),
             elementsColumn(leftMenuItens)
         ])
@@ -79,7 +72,7 @@ function leftDashboard() {
 
 function rightDashboard() {
     return m('div', {class: 'column col-2 text-center'}, [
-        m('ul', {class: 'menu'}, [
+        m('ul', {class: 'menu align-left nes-container is-dark with-title'}, [
             m('li', {class: 'divider'}),
             elementsColumn(rightMenuItens)
         ])
@@ -102,15 +95,16 @@ function barDashboard() {
 
 function main() {
     return m('div', {class: 'col-8'}, [
-        m('div', {class: 'card'}, [
-            m('div', {class: 'card-image'}, [
-                m('img', {class: '', src: ''})
+        m('div', {class: 'card nes-container is-dark with-title'}, [
+            m('div', {class: 'card-header title'}, [
+                m('div', {class: 'card-title h5'}, 'Disaster Simulation'),
+                m('div', {class: 'card-subtitle text-gray'}, 'Projeto da disciplina de Desenvolvimento de Software')
             ]),
-            m('div', {class: 'card-header'}, [
-                m('div', {class: 'card-title h5'}, 'Título do Card'),
-                m('div', {class: 'card-subtitle text-gray'}, 'Subtitulo')
-            ]),
-            m('div', {class: 'card-body'}, 'Corpo do card'),
+            m('div', {class: 'card-body'},[
+                m('div', {style: {'text-align': 'center'}}, [
+                    m('img', {src: big_earth})
+                ]),
+            ] ,'Corpo do card'),
             m('div', {class: 'card-footer'}, [
                 barDashboard()
             ])
@@ -127,7 +121,7 @@ function join() {
         rightDashboard(),
     ]
 
-    return <div class="columns">{join}</div>;
+    return <div class="columns nes-container is-dark with-title">{join}</div>;
 }
 
 var app = document.querySelector('#menu-lateral');
