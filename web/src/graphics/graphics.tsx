@@ -18,10 +18,6 @@ export class Graphics {
         }
     }
     view() {
-        function mudabackground() {
-            let a = window.document.querySelector("#GraphicsWindow");
-            window.alert(a)
-        }
         return <Window id="GraphicsWindow">
             <VScroll class="Graphics VScroll">
                 <span class="Graphics back-Button"><GraphicsButton btn="error" onclick="">Voltar</GraphicsButton></span>
@@ -98,7 +94,7 @@ class Clima {
 
         }
     }
-
+}
 class Economia {
     view() {
         {
@@ -112,7 +108,7 @@ class Economia {
                 </div></div>
         }
     }
-
+}
 class Politica {
     view() {
         {
@@ -125,7 +121,7 @@ class Politica {
                 </div></div>
         }
     }
-
+}
 class Energia {
 
     view() {
@@ -140,7 +136,7 @@ class Energia {
                 </div></div>
         }
     }
-
+}
 // configuraçoes dos graficos
 function graphicData(data) {
 
