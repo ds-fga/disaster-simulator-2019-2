@@ -28,6 +28,13 @@ export class GraphicTabs extends Elem {
             {this.viewContent(vnode)}
         </div>
     }
+    changeBackground(vnode) {
+        let graphicswindow = window.document.querySelector("#GraphicsWindow");
+        let background = vnode.attrs.background || "";
+        if (background != "")
+            graphicswindow.style.background = `url(${vnode.attrs.background})`;
+    }
+
 
     viewTabs(vnode) {
         let selected = this.selected,
@@ -46,7 +53,7 @@ export class GraphicTabs extends Elem {
     }
 
     viewContent(vnode) {
-
+        this.changeBackground(vnode.children[this.selected]);
         let extraclass = vnode.children[this.selected].attrs.title || ""
         return <div class={`Graphics Tabs-Content ${extraclass}`}>
             {vnode.children[this.selected]}
@@ -58,6 +65,7 @@ export class GraphicTabs extends Elem {
 interface Sattrs extends IGenericAttrs {
     btn?: "primary" | "success" | "warning" | "error" | "disabled" | "normal";
     title: string;
+    background?: string;
 }
 
 export class Tab extends Component<Sattrs> {
