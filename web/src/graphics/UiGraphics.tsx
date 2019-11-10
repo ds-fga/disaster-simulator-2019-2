@@ -35,15 +35,14 @@ export class GraphicTabs extends Elem {
             graphicswindow.style.background = `url(${vnode.attrs.background})`;
     }
 
-
     viewTabs(vnode) {
         let selected = this.selected,
             self = this,
             titles = vnode.children.map((e, i) => {
                 let cls = "Graphics Tabs-tab";
                 cls += i == selected ? " is-selected" : "";
-                let btn = "Warning";
-                btn = i == selected ? "primary" : "warning";
+                let btn = e.attrs.btn || "warning";
+                btn = i == selected ? "primary" : btn;
                 return <div class={cls}
                     onclick={() => {self.selected = i; }}>
                     <GraphicsButton btn={btn} onclick={e.attrs.onclick || ""}>{e.attrs.title}</GraphicsButton>
@@ -51,7 +50,7 @@ export class GraphicTabs extends Elem {
             });
     return <div class="Graphics Tab-head">{titles}</div>;
     }
-
+    
     viewContent(vnode) {
         this.changeBackground(vnode.children[this.selected]);
         let extraclass = vnode.children[this.selected].attrs.title || ""
@@ -85,5 +84,5 @@ export class GraphicsButton extends Component<Sattrs>{
    view(vnode: m.Vnode<Sattrs>) {
         let extraclass = vnode.attrs.btn || "normal";
         let fonclick = vnode.attrs.onclick || ""
-        return <button type="button" class={`nes-btn is-${extraclass}`} onclick={fonclick}>{vnode.children}</button>
+        return <button type="button" class={`Graphics nes-btn is-${extraclass}`} onclick={fonclick}>{vnode.children}</button>
     }
