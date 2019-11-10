@@ -1,8 +1,20 @@
+import m = require('mithril');
+import {Window, Tab, Tabs, Btn, Sidebar} from '../ui';
+import frask from '../../img/icones_tela_inicial/frasco.png';
+import politic from '../../img/icones_tela_inicial/politic.png';
+import money from '../../img/icones_tela_inicial/money.png';
+import earth from '../../img/icones_tela_inicial/earth.png';
+import graphic from '../../img/icones_tela_inicial/graphic.png';
+import people from '../../img/icones_tela_inicial/people.png';
+import reptle from '../../img/icones_tela_inicial/reptle.png';
+import settings from '../../img/icones_tela_inicial/settings.png';
+import conspirancy from '../../img/icones_tela_inicial/conspirancy.png';
+import big_earth from '../../img/icones_tela_inicial/big-earth.png';
 
+var React = {
     createElement: m
 };
 
-<<<<<<< master
 /** A parte a seguir do código server para documentar o nome de cada botão,
  * O redirecionamento feito após clica-lo
  * E o icone respectivo
@@ -133,7 +145,7 @@ function join() {
         footer(),
     ]
     return <section class="Initial nes-container is-dark">{join}</section>;
-=======
+
 var React = {
     createElement: m
 };
@@ -237,7 +249,7 @@ function join() {
 
     return <div class="columns">{join}</div>;
 
-}
+
 
 var app = document.querySelector('#menu-lateral');
 
@@ -253,5 +265,7 @@ export class Initial {
     }
 <<<<<<< master
 }*/
+
+
 
 
