@@ -145,7 +145,6 @@ function join() {
         footer(),
     ]
     return <section class="Initial nes-container is-dark">{join}</section>;
-
 var React = {
     createElement: m
 };
@@ -263,9 +262,4 @@ export class Initial {
     view () {
         return <Window>{leftDashboard()}</Window>;
     }
-<<<<<<< master
 }*/
-
-
-
-
