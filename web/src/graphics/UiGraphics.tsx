@@ -29,7 +29,7 @@ export class GraphicTabs extends Elem {
         </div>
     }
     changeBackground(vnode) {
-        let graphicswindow = window.document.querySelector("#GraphicsWindow");
+        let graphicswindow = window.document.querySelector(".Graphics.vscroll");
         let background = vnode.attrs.background || "";
         if (background != "")
             graphicswindow.style.background = `url(${vnode.attrs.background})`;
@@ -37,6 +37,7 @@ export class GraphicTabs extends Elem {
             graphicswindow.style.backgroundRepeat = "no-repeat";
             graphicswindow.style.backgroundAttachment = "fixed";
             graphicswindow.style.backgroundPosition = "center top"
+            graphicswindow.style.transition = "1s";
     }
 
     viewTabs(vnode) {
