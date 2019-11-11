@@ -2,6 +2,8 @@ import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, Chart, VScroll, Component } from '../ui';
 import './_graphics.scss';
 import { GraphicsButton, GraphicTabs} from './UiGraphics.tsx';
+import '../model';
+import { model } from '../model';
 /**
  * Componente para janela com informações e gráficos sobre o mundo.
  */
@@ -21,7 +23,7 @@ export class Graphics {
         return <Window>
             <VScroll class="Graphics vscroll" >
                 <div class="Graphics overlay">
-                <span class="Graphics back-Button"><GraphicsButton btn="error" onclick="">Voltar</GraphicsButton></span>
+                <span class="Graphics back-Button"><GraphicsButton btn="error" onclick={()=> {model.window = null}}>Voltar</GraphicsButton></span>
                 <GraphicTabs>
                     <Tab title="Tela Principal" btn="error" background={this.background.Telainicial}><Tela></Tela></Tab>
                     <Tab title="Clima" btn="warning" background={this.background.Clima}><Clima></Clima></Tab>
