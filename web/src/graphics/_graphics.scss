@@ -4,16 +4,18 @@
         float: left;
         border: none;
         transition: 0.3s;
+        
     }
     .Tab-head{
         overflow: hidden;
-        background: none;
         margin: 1rem;
         margin-left: 5rem;
+        background: none;
     }
     .Tabs-Content{
         margin-left: 5rem;
         margin-right: 5rem;
+        background:none;
     }
     .buttons{
     text-align: center;
@@ -21,10 +23,19 @@
     };
     .back-Button{
         float: right;
-        padding: 1.5rem 1.5rem;
-        margin-right: 5rem;
+        margin: 1.5rem;
     }
     .nes-btn{
         margin: 0.5rem;
+    }
+    .overlay{
+        background-color:rgba(0, 0, 0, 0.6);
+        margin-right: 5rem;
+        margin-left: 5rem;
+        border-radius: 2.5rem;
+        box-shadow: 0.5rem 0.5rem 0.5rem rgba(49, 48, 48, 0.6);
+        padding: 1rem;
+        margin-top: 2rem;
+        padding-bottom: 2rem;
     }
 }

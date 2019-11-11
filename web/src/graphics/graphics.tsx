@@ -19,7 +19,8 @@ export class Graphics {
     }
     view() {
         return <Window>
-            <VScroll class="Graphics vscroll">
+            <VScroll class="Graphics vscroll" >
+                <div class="Graphics overlay">
                 <span class="Graphics back-Button"><GraphicsButton btn="error" onclick="">Voltar</GraphicsButton></span>
                 <GraphicTabs>
                     <Tab title="Tela Principal" btn="error" background={this.background.Telainicial}><Tela></Tela></Tab>
@@ -28,7 +29,7 @@ export class Graphics {
                     <Tab title="Politica" btn="warning" background={this.background.Politica}><Politica></Politica></Tab>
                     <Tab title="Energia" btn="warning" background={this.background.Energia}><Energia></Energia></Tab>
                 </GraphicTabs>
-
+                </div>
             </VScroll>
         </Window>
     }
