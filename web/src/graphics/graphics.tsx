@@ -18,8 +18,8 @@ export class Graphics {
         }
     }
     view() {
-        return <Window id="GraphicsWindow">
-            <VScroll class="Graphics VScroll">
+        return <Window>
+            <VScroll class="Graphics vscroll">
                 <span class="Graphics back-Button"><GraphicsButton btn="error" onclick="">Voltar</GraphicsButton></span>
                 <GraphicTabs>
                     <Tab title="Tela Principal" btn="error" background={this.background.Telainicial}><Tela></Tela></Tab>
