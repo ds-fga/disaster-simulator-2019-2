@@ -63,7 +63,71 @@ export class Science {
                     spec: "Permite pesquisa avançada em biotecnologia",
                     type_tech: "biológico",
                     status: "1"
-                }
+                },
+                {
+                    title: "Conhecimento de energias renováveis",
+                    price: "50",
+                    type: "is-error",
+                    spec: "Estudos necessários para fazer meios de transporte serem menos agressivos ambientalmente.",
+                    type_tech: "transporte",
+                    status: "0"
+                },
+                {
+                    title: "Carro movido a motor de hidrogênio",
+                    price: "100",
+                    type: "is-error",
+                    spec: "DELiberação do motor movido a hidrogênio a preços acessíveis para a população, reduzindo a produção de CO2.SCRIÇÃO",
+                    type_tech: "transporte",
+                    status: "1"
+                },
+                {
+                    title: "NOME",
+                    price: "",
+                    type: "is-error",
+                    spec: "DESCRIÇÃO",
+                    type_tech: "tipo",
+                    status: ""
+                },
+                {
+                    title: "Conhecimentos sobre o fluxo energético",
+                    price: "50",
+                    type: "is-primary",
+                    spec: "Estudos necessários para promover o uso energético mais eficiente e menos poluente.",
+                    type_tech: "energético",
+                    status: "0"
+                },
+                {
+                    title: "Usinas eólicas",
+                    price: "100",
+                    type: "is-primary",
+                    spec: "Instalação de usinas eólicas para maior produção energética.",
+                    type_tech: "energético",
+                    status: "1"
+                },
+                {
+                    title: "NOME",
+                    price: "",
+                    type: "is-primary",
+                    spec: "DESCRIÇÃO",
+                    type_tech: "energético",
+                    status: "3"
+                },
+                {
+                    title: "Conhecimentos industriais",
+                    price: "50",
+                    type: "is-success",
+                    spec: "Estudos necessários ara promover uma produção industrial ambientalmente melhor.",
+                    type_tech: "industrial",
+                    status: "0"
+                },
+                {
+                    title: "Menos produção de lixo ",
+                    price: "100",
+                    type: "is-success",
+                    spec: "Produção industrial mais eficiente, fazendo com que a produção de lixo seja menor e ambientalmente favorável.",
+                    type_tech: "industrial",
+                    status: "1"
+                },
             ],
 
             techsFilter: {},
