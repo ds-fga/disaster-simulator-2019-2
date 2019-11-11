@@ -14,20 +14,22 @@ import big_earth from '../../img/icones_tela_inicial/big-earth.png';
 var React = {
     createElement: m
 };
+
 /** A parte a seguir do código server para documentar o nome de cada botão,
  * O redirecionamento feito após clica-lo
  * E o icone respectivo
  */
-let leftMenuItens = {
+
+ let leftMenuItens = {
     "nome": ["Temperatura", "Política", "Conspiração","Economia"],
     "caminho": ["teste.html", "teste2.html", "teste2.html", "teste.html"],
     "icone": [frask, politic, conspirancy, money],
 }
 
 let barMenuItens = {
-    "nome": ["teste 1", "teste 2", "teste 3", "teste 4"],
-    "caminho": ["teste.html", "teste2.html", "teste3.html", "teste4.html"],
-    "icone": ["icon icon-link", "icon icon-link", "icon icon-link", "icon icon-link"],
+    "nome": ["teste 1", "teste 2", "teste 3"],
+    "caminho": ["teste.html", "teste2.html", "teste3.html"],
+    "icone": ["icon icon-link", "icon icon-link", "icon icon-link"],
 }
 let rightMenuItens = {
     "nome": ["Gráfico", "Terra", "Conspiração", "População", "Configuraçoẽs"],
@@ -35,34 +37,72 @@ let rightMenuItens = {
     "icone": [graphic, earth, reptle, people, settings],
 }
 
-/** A parte a seguir é o listamento de cada botão
+/**A parte a seguir é para auxiliar
+ * O listamento de cada botão
  * Para cada Dashboard
  */
 
-
-
-function elementsColumn(itens) {
+function elementsColumn(itens, classli) {
     var list = [];  
     for(let i = 0; i < itens.nome.length; i++) {
-        list.push(m('li', {class: 'menu-item inline'}, [
-            m('a', {href: itens.caminho[i]}, [
+        list.push(m('li', {class: classli}, [
+            m('a', {href: itens.caminho[i], class: 'btn tooltip', 'data-tooltip':itens.nome[i]}, [
                 m('img', {class: 'mr-5', src: itens.icone[i]})
-            ], itens.nome[i])
+            ])
         ]))
     }
     return list;
 }
 
-/** A parte a seguir é sobre a coluna da esquerda
+/** A parte a seguir é sobre o cabeçalho do jogo
+ * Será apresentado o título do jogo
+*/
+
+function header(){
+    return m('div', {class: 'header'}, [
+        m('div', {class: 'nes-container is-rounded is-dark with-title'}, [
+            m('p', {class: 'title'}, 'Disaster Simulation'),
+            m('p', {class: 'text-gray'}, 'Projeto da disciplina de Desenvolvimento de Software')
+        ])
+    ])
+}
+
+/**A parte a seguir é sobre o status
+ * Deve apresentado aqui o status do jogo
+ * Ano, Variação de Temperatura, Dinheiro e Quantidade de pessoas
+*/
+
+function status(){
+    return m('div', {class: 'status nes-container is-rounded is-dark with-title'},[
+        m('p', {class: 'title'}, 'Aqui fica o Status!')
+    ])
+}
+
+/**A parte a seguir é sobre a coluna da esquerda
  * E chama seus respectivos itens
 */
 
 function leftDashboard() {
-    return m('div', {class: 'column col-2 text-center'}, [
-        m('ul', {class: 'menu align-left'}, [
+    return m('div', {class: 'leftDash'}, [
+        m('ul', {class: 'menu align-left nes-container is-rounded is-dark with title'}, [
+            'Ações',
             m('li', {class: 'divider'}),
-            elementsColumn(leftMenuItens)
+            elementsColumn(leftMenuItens, 'menu nes-container is-dark')
         ])
+    ])
+}
+
+/** A parte a seguir é a main do projeto
+ * A parte onde ficará globo
+ */
+
+function main() {
+    return m('div', {class: 'main'}, [
+        'Corpo da Main',
+        m('div', {style: {'text-align': 'center',
+                            'text-content': 'center'}}, [
+            m('img', {src: big_earth})
+        ]),
     ])
 }
 
@@ -71,44 +111,25 @@ function leftDashboard() {
 */
 
 function rightDashboard() {
-    return m('div', {class: 'column col-2 text-center'}, [
-        m('ul', {class: 'menu align-left'}, [
+    return m('div', {class: 'rightDash'}, [
+        m('ul', {class: 'menu align-right nes-container is-rounded is-dark with title'}, [
+            'Informações',
             m('li', {class: 'divider'}),
-            elementsColumn(rightMenuItens)
+            elementsColumn(rightMenuItens, 'menu nes-container is-dark')
         ])
     ])
 }
 
-/** A parte a seguir é sobre a coluna da direita
- * E chama seus respectivos itens
+/**A parte a seguir é sobre o rodapé do jogo
+ * Nele, terá 3 barras, em uma delas conterá
+ * O status pessoais do jogador
+ * Outra apresentará Notícias
+ * E na ultima apresentará os créditos do jogo
 */
 
-function barDashboard() {
-    return m('div', {class: 'initial-icon-bar'}, [
-        elementsColumn(barMenuItens)
-    ])
-}
-
-/** A parte a seguir é a main do projeto
- * A parte onde ficará globo e a barra
- */
-
-function main() {
-    return m('div', {class: 'col-8'}, [
-        m('div', {class: 'card'}, [
-            m('div', {class: 'card-header'}, [
-                m('div', {class: 'card-title h5'}, 'Disaster Simulation'),
-                m('div', {class: 'card-subtitle text-gray'}, 'Projeto da disciplina de Desenvolvimento de Software')
-            ]),
-            m('div', {class: 'card-body'},[
-                m('div', {style: {'text-align': 'center'}}, [
-                    m('img', {src: big_earth})
-                ]),
-            ] ,'Corpo do card'),
-            m('div', {class: 'card-footer'}, [
-                barDashboard()
-            ])
-        ])
+function footer(){
+    return m('div', {class: 'footer nes-container is-rounded is-dark with title'}, [
+        elementsColumn(barMenuItens, 'menu inline nes-container is-dark')
     ])
 }
 
@@ -116,12 +137,14 @@ function main() {
 
 function join() {
     var join = [
+        header(),
+        status(),
         leftDashboard(),
         main(),
         rightDashboard(),
+        footer(),
     ]
-
-    return <div class="columns">{join}</div>;
+    return <section class="Initial nes-container is-dark">{join}</section>;
 }
 
 var app = document.querySelector('#menu-lateral');
