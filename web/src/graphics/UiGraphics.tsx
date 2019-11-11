@@ -33,7 +33,10 @@ export class GraphicTabs extends Elem {
         let background = vnode.attrs.background || "";
         if (background != "")
             graphicswindow.style.background = `url(${vnode.attrs.background})`;
-            graphicswindow.style.backgroundSize = "100%"
+            graphicswindow.style.backgroundSize = "100rem";
+            graphicswindow.style.backgroundRepeat = "no-repeat";
+            graphicswindow.style.backgroundAttachment = "fixed";
+            graphicswindow.style.backgroundPosition = "center top"
     }
 
     viewTabs(vnode) {
