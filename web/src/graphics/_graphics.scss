@@ -1,11 +1,13 @@
 .Graphics {
     .Tabs-tab{
         background: none;
+        float: left;
+        border: none;
+        transition: 0.3s;
     }
     .Tab-head{
+        overflow: hidden;
         background: none;
-        text-align: center;
-        display: flex;
         margin: 1rem;
         margin-left: 5rem;
     }
