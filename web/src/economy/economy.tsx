@@ -14,14 +14,14 @@ export class Economy {
                             <div style="flex-grow: 1">
                                 <h1>Lucro</h1>
                                 <ExpandirCard title="Título ">
-                                    <DescricaoDoItem/>
+                                    <DescricaoDoItem color="red" src={exampleImg}/>
                                 </ExpandirCard>
                             </div>
 
                             <div style="flex-grow: 1">
                                 <h1>Prejuizo</h1>
                                 <ExpandirCard title="teste ">
-                                    <DescricaoDoItem/>
+                                    <DescricaoDoItem color="red" desc="teste"/>
                                 </ExpandirCard>
                             </div>
                         </div>
@@ -44,21 +44,25 @@ export class Economy {
 
 export class DescricaoDoItem {
     view (vnode) {
-        var attribute; //dependendo do attribute (0 ou 1) ele fica verde ou vermelho
         var color; //aplicar no texto com class={color}
 
-        attribute == 0 ? color = "Economy-bad-color" : color = "Economy-good-color";
+        //dependendo do attribute (0 ou 1) ele fica verde ou vermelho
+        vnode.attrs.color === "red" ? color = "Economy-bad-color" : color = "Economy-good-color";
 
         return <div>
             <div class="flex-container">
+
                 <div style="justify-content: flex-start">
-                    <img src={exampleImg}></img>
+                    <img src={vnode.attrs.src}></img>
                 </div>
+
                 <div style="flex-grow: 1">
-                    <p>alguma descrição boa</p>
+                    <h3>Descrição:</h3>
+                    <p>{vnode.attrs.desc}</p>
+                    
                 </div>
                 <div style="justify-content: flex-end">
-                    <p>Atributos: </p>
+                    <h3>Atributos:</h3>
                     <p class={color}>Coisa boa</p>
                     <p class={color}>Coisa ruim</p>
                 </div>
