@@ -141,11 +141,10 @@ class Energia {
     }
 }
 // configuraçoes dos graficos
-function graphicData(data) {
-
+function graphicData(generalData, specificData) {
     let graphicdata = {
         // eixo x
-        labels: data.labels,
+        labels: generalData.labels,
         //dados
         datasets: [],
         //configuracoes do grafico
@@ -186,19 +185,29 @@ function graphicData(data) {
         }
 
     }
+    if (specificData != undefined) {
+        for (var i in generalData.data) {
+            if (i == specificData) {
+                graphicdata.datasets.push({
+                    label: i,
+                    data: generalData.data[i],
+                    backgroundColor: generalData.backgroundColor,
+                    borderColor: generalData.borderColor,
+                    borderWidth: 5
+                })
+            }
 
-    for (var i in data.data) {
-        graphicdata.datasets.push({
-            label: i,
-            data: data.data[i],
-            backgroundColor: [
-                'rgba(255, 0, 0, 0.1)',
-            ],
-            borderColor: [
-                'hsl(0, 100%, 30%)',
-            ],
-            borderWidth: 5
-        })
+        }
+    } else {
+        for (var i in generalData.data) {
+            graphicdata.datasets.push({
+                label: i,
+                data: generalData.data[i],
+                backgroundColor: generalData.backgroundColor,
+                borderColor: generalData.borderColor,
+                borderWidth: 5
+            })
+        }
     }
     return graphicdata;
 }
