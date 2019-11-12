@@ -92,7 +92,7 @@ class Tela{
 class Clima {
  x: number;
     constructor() {
-        this.x = 0
+        this.selected = 0
     }
     view() {
         {   
