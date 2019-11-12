@@ -383,6 +383,7 @@ function graphicData(data, labels) {
             legend: {
                 labels: {
                     fontSize: 20,
+                    fontColor: 'white',
                 }
             },
             scales: {
