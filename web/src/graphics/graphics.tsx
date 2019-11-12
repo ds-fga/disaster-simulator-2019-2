@@ -83,20 +83,37 @@ class Tela{
 }
 
 class Clima {
+ x: number;
+    constructor() {
+        this.x = 0
+    }
     view() {
         {
-            let data1 = graphicData(pydata.clima);
-            return <div>
-                <Chart type="line" data={data1} options={data1.options} height="75" />
-                <div class="Graphics buttons">
-                    <GraphicsButton btn="primary" onclick={()=>{window.alert("teste")}}>Botao1</GraphicsButton>
-                    <GraphicsButton btn="normal">Botao2</GraphicsButton>
-                    <GraphicsButton btn="warning">Botao3</GraphicsButton>
+            let data1 = graphicData(pydata.clima, "Co2");
+            let data2 = graphicData(pydata.economia);
+            if (this.x == 0) {
+                return <div> <Chart type="line" data={data1} options={data1.options} height="75" />
+                    <div class="Graphics buttons">
+                        <div onclick={() => { this.x = 1 }}>
+                            <GraphicsButton btn="primary">Botao1</GraphicsButton>
 
-                </div></div>
+                        </div><div onclick={() => { this.x = 0 }}>
+                            <GraphicsButton btn="normal">Botao2</GraphicsButton>
+                        </div></div>
+                </div>
+            } else if (this.x == 1) {
+                return <div><Chart type="line" data={data2} options={data2.options} height="75" />
+                    <div onclick={() => { this.x = 1 }}>
+                        <GraphicsButton btn="primary">Botao1</GraphicsButton>
+                    </div>
+                    <div onclick={() => { this.x = 0 }}>
 
+                        <GraphicsButton btn="normal">Botao2</GraphicsButton>
+                    </div></div>
+
+
+            }
         }
-    }
 }
 class Economia {
     view() {
