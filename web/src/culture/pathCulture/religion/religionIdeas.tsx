@@ -2,8 +2,8 @@ import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, Elem } from '../../../ui';
 
 
-export class NegociosPapa {
-    view() {
+export const NegociosPapa = {
+    view: () => {
         let money = 1000;
         return (
             <div class="nes-container is-rounded">
@@ -16,7 +16,7 @@ export class NegociosPapa {
                             : <button type="button" id='botao' class="nes-btn is-success">Outro</button>
                         }
                         &nbsp;
-                    <button type="button" class="nes-btn is-error" onclick={function nClicar() {
+                <button type="button" class="nes-btn is-error" onclick={function nClicar() {
                         }}>Não comprar!</button>
                     </div>
                 </div></p>

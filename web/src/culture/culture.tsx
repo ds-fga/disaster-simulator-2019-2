@@ -9,17 +9,14 @@ import { ContainersVisãoGeral } from './pathCulture/visaoGeral/visaoGeral';
 import { ContainerReligiao } from './pathCulture/religion/religion';
 import { NegociosPapa, CreateReligion } from './pathCulture/religion/religionIdeas';
 
-import { ContainerArt } from './pathCulture/art/art';
-import {} from './pathCulture/art/artIdeas';
-
 import { ContainerEducation } from './pathCulture/education/education';
 import {} from './pathCulture/education/educationIdeas';
 
 import { ContainerNews } from './pathCulture/news/news';
 import {} from './pathCulture/news/newsIdeas';
 
-import { ContainerSports } from './pathCulture/sports/sports';
-import {} from './pathCulture/sports/sportsIdeas';
+import { ContainerEntertainment } from './pathCulture/entertainment/entertainment';
+import {} from './pathCulture/entertainment/entertainmentIdeas';
 
 /**
  * Objetos para interação: (se necessário, n esquecer de importar)
@@ -82,18 +79,12 @@ export class Culture {
                             <ContainerEducation />
                         </VScroll>
                     </Tab>
-                    <Tab title={<button type="button" class="nes-btn is-warning">Esportes</button>}>
+                    <Tab title={<button type="button" class="nes-btn is-warning">Entretenimento</button>}>
                         <VScroll>
                             <br />
-                            <ContainerSports />
+                            <ContainerEntertainment />
                         </VScroll>
 
-                    </Tab>
-                    <Tab title={<button type="button" class="nes-btn is-warning">Arte</button>}>
-                        <VScroll>
-                            <br />
-                            <ContainerArt />
-                        </VScroll>
                     </Tab>
                 </Tabs>
             </Window >

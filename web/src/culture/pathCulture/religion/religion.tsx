@@ -8,13 +8,7 @@ export class ContainerReligiao {
     view() {
         return (
             <div>
-                <div class="nes-container is-rounded">
-                    <div class="nes-field">
-                        <label htmlFor="name_field">PROCURAR ITEM PARA COMPRAR:</label>
-                        <SearchBar/>
-                    </div>
-                </div>
-                <br />
+                {NegociosPapa()}
                 <NegociosPapa />
                 <br />
                 <CreateReligion />
