@@ -1,5 +1,7 @@
 // UTILITIDADES
-.VScroll { overflow-y: auto; }
+.VScroll { overflow-y: auto; 
+    height: 33rem;
+}
 
 
 // COMPONENTES
@@ -87,7 +89,7 @@
         background: darken($color-light, 10%);
     }
     &-tab {
-        padding: 0.5rem 1.5rem;
+        padding: 0.5rem 1rem;
     }
     &-tab.is-selected {
         background: $color-light;
