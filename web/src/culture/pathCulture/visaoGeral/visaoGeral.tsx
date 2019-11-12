@@ -2,7 +2,7 @@ import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, Elem, VScroll } from '../../../../src/ui';
 import SearchBar from '../../components/searchbar';
 
-import { NegociosPapa, CreateReligion } from '../religion/religionIdeas';
+import { CreateReligion, NegociosPapa } from '../religion/religionIdeas';
 
 
 export class ContainersVisãoGeral {
@@ -16,7 +16,7 @@ export class ContainersVisãoGeral {
                     </div>
                 </div>
                 <br />
-                <NegociosPapa />
+                <NegociosPapa/>
                 <br />
                 <CreateReligion />
             </div>
