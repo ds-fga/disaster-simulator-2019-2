@@ -196,6 +196,7 @@ function graphicData(generalData, specificData) {
             legend: {
                 labels: {
                     fontSize: 20,
+                    fontColor: 'white',
                 }
             },
             scales: {
