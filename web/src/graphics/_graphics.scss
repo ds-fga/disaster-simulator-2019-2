@@ -1,36 +1,41 @@
 .Graphics {
-    .Tab-head{
+    .Tabs-tab{
         background: none;
-        text-align: center;
-        display: flex;
-
+        float: left;
+        border: none;
+        transition: 0.3s;
+        
+    }
+    .Tab-head{
+        overflow: hidden;
+        margin: 1rem;
+        margin-left: 5rem;
+        background: none;
+    }
+    .Tabs-Content{
+        margin-left: 5rem;
+        margin-right: 5rem;
+        background:none;
     }
     .buttons{
     text-align: center;
+    place-items: inherit;
     };
-
-    .Tabs-Content.Clima{
-        background: url("https://wallpapertag.com/wallpaper/full/0/6/0/380558-free-madoka-magica-wallpaper-1920x1080-ipad-pro.jpg");
-        background-size: 100%;
-    };
-    .Tabs-Content.Economia{
-        background: url("https://images4.alphacoders.com/296/thumb-1920-296026.jpg");
-        background-size: 100%;
-    };
-    .Tabs-Content.Politica{
-        background: url("https://images6.alphacoders.com/993/thumb-1920-993435.jpg");
-        background-size: 100%;
-    };
-    .Tabs-Content.Energia{
-        background: url("http://pds22.egloos.com/pds/201207/17/88/b0040388_5005599932d5b.jpg");
-        background-size: 100%;
-    };
-    
-
-}
-#GraphicsWindow{
-        background: url("https://blog-imgs-30-origin.fc2.com/t/a/k/take0000/mahousyoujomadokamagika057.jpg");
-        background-position: center center;
-        background-size: 100%;
-    
+    .back-Button{
+        float: right;
+        margin: 1.5rem;
+    }
+    .nes-btn{
+        margin: 0.5rem;
+    }
+    .overlay{
+        background-color:rgba(0, 0, 0, 0.6);
+        margin-right: 5rem;
+        margin-left: 5rem;
+        border-radius: 2.5rem;
+        box-shadow: 0.5rem 0.5rem 0.5rem rgba(49, 48, 48, 0.6);
+        padding: 1rem;
+        margin-top: 2rem;
+        padding-bottom: 2rem;
+    }
 }
