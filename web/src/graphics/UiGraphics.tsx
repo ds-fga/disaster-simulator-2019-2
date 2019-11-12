@@ -28,6 +28,17 @@ export class GraphicTabs extends Elem {
             {this.viewContent(vnode)}
         </div>
     }
+    changeBackground(vnode) {
+        let graphicswindow = window.document.querySelector(".Graphics.vscroll");
+        let background = vnode.attrs.background || "";
+        if (background != "")
+            graphicswindow.style.background = `url(${vnode.attrs.background})`;
+            graphicswindow.style.backgroundSize = "100%";
+            graphicswindow.style.backgroundRepeat = "no-repeat";
+            graphicswindow.style.backgroundAttachment = "fixed";
+            graphicswindow.style.backgroundPosition = "center top"
+            graphicswindow.style.transition = "0.5s";
+    }
 
     viewTabs(vnode) {
         let selected = this.selected,
@@ -35,18 +46,18 @@ export class GraphicTabs extends Elem {
             titles = vnode.children.map((e, i) => {
                 let cls = "Graphics Tabs-tab";
                 cls += i == selected ? " is-selected" : "";
-                let btn = "Warning";
-                btn = i == selected ? "primary" : "warning";
+                let btn = e.attrs.btn || "warning";
+                btn = i == selected ? "primary" : btn;
                 return <div class={cls}
                     onclick={() => {self.selected = i; }}>
-                    <GraphicsButton btn={btn}>{e.attrs.title}</GraphicsButton>
+                    <GraphicsButton btn={btn} onclick={e.attrs.onclick || ""}>{e.attrs.title}</GraphicsButton>
                 </div>
             });
     return <div class="Graphics Tab-head">{titles}</div>;
     }
-
+    
     viewContent(vnode) {
-
+        this.changeBackground(vnode.children[this.selected]);
         let extraclass = vnode.children[this.selected].attrs.title || ""
         return <div class={`Graphics Tabs-Content ${extraclass}`}>
             {vnode.children[this.selected]}
@@ -58,6 +69,7 @@ export class GraphicTabs extends Elem {
 interface Sattrs extends IGenericAttrs {
     btn?: "primary" | "success" | "warning" | "error" | "disabled" | "normal";
     title: string;
+    background?: string;
 }
 
 export class Tab extends Component<Sattrs> {
@@ -74,7 +86,8 @@ export class Tab extends Component<Sattrs> {
 
 
 export class GraphicsButton extends Component<Sattrs>{
-    view(vnode: m.Vnode<Gbtn>) {
-        let extraclass = vnode.attrs.btn;
-        return <button type="button" class={`nes-btn is-${extraclass}`}>{vnode.children}</button>
+   view(vnode: m.Vnode<Sattrs>) {
+        let extraclass = vnode.attrs.btn || "normal";
+        let fonclick = vnode.attrs.onclick || ""
+        return <button type="button" class={`Graphics nes-btn is-${extraclass}`} onclick={fonclick}>{vnode.children}</button>
     }
