@@ -37,7 +37,6 @@ export class Graphics {
     }
 }
 
-// dados do grafico
 let pydata = {
     clima: {
         labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
@@ -45,33 +44,41 @@ let pydata = {
             Co2: [20, 5, 30, 2, 20, 10],
             h2o: [25, 10, 3, 2, 5, 100],
             CH4: [1, 100, 88, 21, 45, 110],
-            CFC: [4, 9, 16, 25, 36]
-        }
-    },
+            CFC: [4, 9, 16, 25, 36],
+        },
+        backgroundColor: ['rgba(255,0,0,0.4)'],
+        borderColor: ['rgba(255,0,0,0.9) '],
+    }
+    ,
     economia: {
         labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
         data:
         {
-            Dólar: [20, 5, 30, 2, 20]
-        }
+            Dólar: [20, 5, 30, 2, 20],
+        },
+        backgroundColor: ['rgba(255,0,0,0.4)'],
+        borderColor: ['rgba(255,0,0,0.9) '],
     },
     politica: {
         labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
         data: {
             Trump: [20, 5, 30, 2, 20],
-            Bolsonaro: [30,13,10,34,33],
-            Lula: [12,22,25,26,33],
-        }
+            Bolsonaro: [30, 13, 10, 34, 33],
+            Lula: [12, 22, 25, 26, 33],
+        },
+        backgroundColor: ['rgba(255,0,0,0.4)'],
+        borderColor: ['rgba(255,0,0,0.9) '],
     },
     energia: {
         labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
         data: {
-            Renováveis: [20,5,6,4,8],
-            NãoRenováveis: [10,5,7,13,14],
-        }
+            Renováveis: [20, 5, 6, 4, 8],
+            NãoRenováveis: [10, 5, 7, 13, 14],
+        },
+        backgroundColor: ['rgba(255,0,0,0.4)'],
+        borderColor: ['rgba(255,0,0,0.9) '],
     },
 };
-
 class Tela{
     view(){
        return <div> 
