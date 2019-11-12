@@ -13,29 +13,32 @@ export class Economy {
                 <Sidebar title="Economia" points="4"/>
                 <Tabs>
                     <Tab title="Ações">
-
                         <div class="flex-container">
-                            <div>
-                                <ExpandirCard title="teste">
+                            <div style="flex-grow: 1">
+                                <p>Lucro</p>
+                                <ExpandirCard title="teste ">
                                     <h1>aaaaaaa</h1>
                                 </ExpandirCard>
                             </div>
-                            <div>
-                                <ExpandirCard title="teste2">
+                            <div style="flex-grow: 1">
+                                <p>Prejuizo</p>
+                                <ExpandirCard title="teste2 ">
                                     <h1>aaaaaaa</h1>
                                 </ExpandirCard>
                             </div>
                         </div>
 
                     </Tab>
+
                     <Tab title="Mercado">
-                        
                     </Tab>
+
                     <Tab title="Inventário">
-                        
+                    </Tab>
+
+                    <Tab title="?">
                     </Tab>
                 </Tabs>
-                
             </Window>
         </div>
     }
@@ -59,17 +62,19 @@ export class ExpandirCard {
         }
 
         return <VScroll class="EconomyCard">
-            <div class="EconomyCard-title">
-                {vnode.attrs.title}
-                <button type="button" class={buttonOn} onclick={() => {this.expand = !this.expand}}>
-                    <span>&lt;</span>
-                </button>
-                <hr></hr>
+            <div class="nes-container with-title is-rounded">   
+                <div class="EconomyCard-title">
+                    {vnode.attrs.title}
+                    <button type="button" class={buttonOn} onclick={() => {this.expand = !this.expand}}>
+                        <span>&lt;</span>
+                    </button>
+                    <hr></hr>
+                </div>
+            
+                <div class="EconomyCard-content">
+                    {content}
+                </div> 
             </div>
-        
-            <div class="EconomyCard-content">
-                {content}
-            </div>  
         </VScroll>
     }
 }
@@ -77,5 +82,5 @@ export class ExpandirCard {
 //criar um div na window pq só le um filho
 //vscroll rolamento
 //vnode.attrs pegar algum atributo passado
-//hr é a linha
+//hr é a linha -----------
 //constructor uma variável é criada localmente
