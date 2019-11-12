@@ -95,28 +95,38 @@ class Clima {
         this.x = 0
     }
     view() {
-        {
-            let data1 = graphicData(pydata.clima, "Co2");
-            let data2 = graphicData(pydata.economia);
-            if (this.x == 0) {
-                return <div> <Chart type="line" data={data1} options={data1.options} height="75" />
-                    <div class="Graphics buttons">
-                        <div onclick={() => { this.x = 1 }}>
-                            <GraphicsButton btn="primary">Botao1</GraphicsButton>
-
-                        </div><div onclick={() => { this.x = 0 }}>
-                            <GraphicsButton btn="normal">Botao2</GraphicsButton>
-                        </div></div>
-                </div>
-            } else if (this.x == 1) {
-                return <div><Chart type="line" data={data2} options={data2.options} height="75" />
-                    <div onclick={() => { this.x = 1 }}>
-                        <GraphicsButton btn="primary">Botao1</GraphicsButton>
-                    </div>
-                    <div onclick={() => { this.x = 0 }}>
-
-                        <GraphicsButton btn="normal">Botao2</GraphicsButton>
-                    </div></div>
+        {   
+         let data = [];
+             let data1 = graphicData(pydata.clima);
+             for(var ii in pydata.clima.data){
+                
+                data.push(ii)
+           }
+             let buttons = data.map((e, i) => {
+                return <button type="button" class="Graphics nes-btn is-primary" onclick={() => {this.selected = i}}>{e}</button>  
+            })
+            if(this.selected == -1){
+                let data2 = graphicData(pydata.clima);
+                let graph= <Chart type="line" data={data2} options={data2.options} height="75" />
+            }else{
+            
+            
+            let graph = data.map((e, i) => {
+                if(this.selected == i){
+                    let data2 = graphicData(pydata.clima, e);
+                    return <Chart type="line" data={data2} options={data2.options} height="75" />
+                }
+            })
+        }
+        
+    
+                return <div> {graph}
+                
+                <div class="Graphics buttons">
+                <button type="button" class="Graphics nes-btn is-primary" onclick={() => {this.selected = -1}}>Global</button>
+                
+                {buttons}
+                </div></div>
 
 
             }
