@@ -20,7 +20,7 @@ export class Graphics {
         }
     }
     view() {
-        return <Window>
+        return <Window id="GraphicsWindow">
             <VScroll class="Graphics vscroll" >
                 <div class="Graphics overlay">
                 <span class="Graphics back-Button"><GraphicsButton btn="error" onclick={()=> {model.window = null}}>Voltar</GraphicsButton></span>
