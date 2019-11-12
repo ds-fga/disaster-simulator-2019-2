@@ -90,12 +90,13 @@ class Tela{
 }
 
 class Clima {
- x: number;
+ selected: number;
     constructor() {
-        this.selected = 0
+        this.selected = -1
     }
+   
     view() {
-        {   
+        {  
          let data = [];
              let data1 = graphicData(pydata.clima);
              for(var ii in pydata.clima.data){
@@ -127,9 +128,8 @@ class Clima {
                 
                 {buttons}
                 </div></div>
-
-
-            }
+            
+            }    
         }
 }
 class Economia {
