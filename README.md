@@ -25,4 +25,4 @@
 > ## Testando mudanças locais
 > - Inicie o servidor
 > - Faças as mudanças nos arquivos /web/src/economy.tsx ou /web/src/economy.scss
-> - Agora ja dentro da sua página coloque no url /?start=economy
+> - Agora ja dentro da sua página coloque no url /?start=Economy

@@ -1,29 +1,27 @@
 import m from 'mithril';
 import {Window, Tab, Tabs, Btn, Sidebar, VScroll} from '../ui';
-//import exampleImg from './teste.jpg";
+import exampleImg from '../../src/economy/teste.jpg';
 //colocar imagem. exampleImg nome <img src={exampleImg}></img>
 
-/**
- * Componente para janela de economia.
- */
 export class Economy {
     view () {
         return <div>
             <Window>
-                <Sidebar title="Economia" points="4"/>
+                <Sidebar title="Economia" points="4" src={exampleImg}/>
                 <Tabs>
                     <Tab title="Ações">
                         <div class="flex-container">
                             <div style="flex-grow: 1">
-                                <p>Lucro</p>
-                                <ExpandirCard title="teste ">
-                                    <h1>aaaaaaa</h1>
+                                <h1>Lucro</h1>
+                                <ExpandirCard title="Título ">
+                                    <DescricaoDoItem/>
                                 </ExpandirCard>
                             </div>
+
                             <div style="flex-grow: 1">
-                                <p>Prejuizo</p>
-                                <ExpandirCard title="teste2 ">
-                                    <h1>aaaaaaa</h1>
+                                <h1>Prejuizo</h1>
+                                <ExpandirCard title="teste ">
+                                    <DescricaoDoItem/>
                                 </ExpandirCard>
                             </div>
                         </div>
@@ -40,6 +38,31 @@ export class Economy {
                     </Tab>
                 </Tabs>
             </Window>
+        </div>
+    }
+}
+
+export class DescricaoDoItem {
+    view (vnode) {
+        var attribute; //dependendo do attribute (0 ou 1) ele fica verde ou vermelho
+        var color; //aplicar no texto com class={color}
+
+        attribute == 0 ? color = "Economy-bad-color" : color = "Economy-good-color";
+
+        return <div>
+            <div class="flex-container">
+                <div style="justify-content: flex-start">
+                    <img src={exampleImg}></img>
+                </div>
+                <div style="flex-grow: 1">
+                    <p>alguma descrição boa</p>
+                </div>
+                <div style="justify-content: flex-end">
+                    <p>Atributos: </p>
+                    <p class={color}>Coisa boa</p>
+                    <p class={color}>Coisa ruim</p>
+                </div>
+            </div>
         </div>
     }
 }
