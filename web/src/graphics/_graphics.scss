@@ -38,6 +38,15 @@
         margin-top: 2rem;
         padding-bottom: 2rem;
     }
+    .audio{
+        opacity:0;
+        position:absolute;
+    }
+    .audiobutton{
+       opacity:0;
+       position:absolute; 
+    }
+    
 }
 #GraphicsWindow{
     background: black;
