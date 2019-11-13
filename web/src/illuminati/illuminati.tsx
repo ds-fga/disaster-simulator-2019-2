@@ -121,7 +121,6 @@ export class Illuminati {
                 </Tab>
             </Tabs>
         </Window>
-
     }
 }
 
