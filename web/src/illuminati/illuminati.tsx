@@ -2,7 +2,7 @@ import m from 'mithril';
 
 import { Window, Tab, Tabs, Btn, Sidebar, Component } from '../ui';
 
-import terminatorImg from '../../img/events/unnamed.jpg';
+import terminatorImg from '../../src/illuminati/imagens/piramide.jpg';
 import rainhaImg from '../../src/illuminati/imagens/rainha.jpg';
 import alGoreImg from '../../src/illuminati/imagens/al gore.jpg';
 import billImg from '../../src/illuminati/imagens/bill.jpg';
@@ -22,17 +22,6 @@ let event = {
 
 }
 
-var img = new Image();
-var div = document.getElementById('x');
- 
- 
-img.onload = function() {
- 
-  div.innerHTML += '<img src="'+img.src+'" />'; 
- 
-};
- 
-img.src = 'imagens/rainha.jpg';
 
 let illuminatiList = [
     {
@@ -111,7 +100,7 @@ export class Illuminati {
             <Sidebar src={event.img} title="Conselho Illuminati"/>
             <Tabs>
                 <Tab title="Ficha">
-                  <Tabs>{illuminatiList.map((e) => renderIlluminattiTab(e))}</Tabs>
+                  <Tabs vertical={true}>{illuminatiList.map((e) => renderIlluminattiTab(e))}</Tabs>
                 </Tab>
                 <Tab title="Seguidores">
 
@@ -121,14 +110,18 @@ export class Illuminati {
                 </Tab>
             </Tabs>
         </Window>
+
     }
 }
 
 function renderIlluminattiTab(x) {
-    return <Tab title={x.name}>{x.description}
-    <ul>
-        <li>{x.introduction}</li>
-    </ul>
+    return <Tab title={x.name}>
+        <div class="IlluminatiSheet">
+            {x.description}
+            <ul>
+                <li>{x.introduction}</li>
+            </ul>
+        </div>
     </Tab>
     
 }
