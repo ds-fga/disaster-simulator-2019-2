@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { Window, Tab, Tabs, Btn, Sidebar, Chart, VScroll, Component } from '../ui';
+import { Window, Tabs, Btn, Sidebar, Chart, VScroll} from '../ui';
 import { MithrilTsxComponent as Component } from 'mithril-tsx-component';
 
 
@@ -67,12 +67,13 @@ export class GraphicTabs extends Elem {
 
 
 interface Sattrs extends IGenericAttrs {
-    btn?: "primary" | "success" | "warning" | "error" | "disabled" | "normal";
-    title: string;
     background?: string;
+    btn?: "primary" | "success" | "warning" | "error" | "disabled" | "normal";
+    title?: string;
+    
 }
 
-export class Tab extends Component<Sattrs> {
+export class GraphicTab extends Component<Sattrs> {
 
 
     view(vnode) {
@@ -80,10 +81,7 @@ export class Tab extends Component<Sattrs> {
             {vnode.children}
         </div>
     }
-};
-
-// tipos de butoes
-
+}
 
 export class GraphicsButton extends Component<Sattrs>{
    view(vnode: m.Vnode<Sattrs>) {
@@ -91,3 +89,4 @@ export class GraphicsButton extends Component<Sattrs>{
         let fonclick = vnode.attrs.onclick || ""
         return <button type="button" class={`Graphics nes-btn is-${extraclass}`} onclick={fonclick}>{vnode.children}</button>
     }
+}
