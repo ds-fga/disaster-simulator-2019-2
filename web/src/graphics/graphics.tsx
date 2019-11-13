@@ -59,7 +59,7 @@ export class Graphics {
 // essa e a variavel que guarda os dados dos graficos
 let pydata = {
     clima: {
-        labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
+       labels: ['2000', '2005', '2010', '2015', '2020'],
         data: {
             "Co2": [20, 5, 30, 2, 20, 10],
             "Temperatura Atmosférica": [25, 10, 3, 2, 5, 100],
@@ -71,7 +71,7 @@ let pydata = {
     }
     ,
     Economia: {
-        labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
+        labels: ['2000', '2005', '2010', '2015', '2020'],
         data:
         {
             "Pib": [20, 5, 30, 2, 20],
@@ -80,7 +80,7 @@ let pydata = {
         borderColor: ['rgba(233, 235, 141, 1)'],
     },
     Populacao: {
-        labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
+        labels: ['2000', '2005', '2010', '2015', '2020'],
         data: {
             Feliz: [20, 5, 30, 2, 20],
             Indiferente: [30, 13, 10, 34, 33],
@@ -91,7 +91,7 @@ let pydata = {
         borderColor: ['rgb(255, 255, 255)'],
     },
     Energia: {
-        labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
+       labels: ['2000', '2005', '2010', '2015', '2020'],
         data: {
             Renováveis: [20, 5, 6, 4, 8],
             "Não Renováveis": [10, 5, 7, 13, 14],
