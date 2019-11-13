@@ -3,6 +3,7 @@
     &__sidebar {
         display: flex;
         flex-direction: column-reverse;
+        box-shadow: none;
 
         &-btn {
             width: 100%;
@@ -12,6 +13,7 @@
 
     &__tabs{
         padding: 0.2rem;
+        background-color: red;
     }
 
 }
@@ -20,24 +22,68 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow-x: auto;
 }
 
 .tech-btn {
     display: flex;
     justify-content: space-between;
-    width: 15rem;
-    margin-top: .75rem;
-    height: 2.75rem;
+    width: 20rem;
+    margin-bottom: .75rem;
+    height: 3rem;
 
     & > * {
         margin: auto 0;
     }
 }
 
+.unTech{
+    opacity: .6;
+}
+
 .science__search-bar{
     width: 20rem;
 
+    margin-bottom: .75rem;
+
     &--component {
         width: 100%;
+    }
+}
+
+.scienceHead{
+    display: flex;
+}
+
+.scienceTabs{
+    padding: .2rem;
+}
+
+.techlist{
+    overflow-y: auto;
+    height: 25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.listcontent{
+    height: 25rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 45rem;
+}
+
+.industry {
+    background-color: #333333;
+    color: #fff;
+    &::after {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        bottom: -4px;
+        left: -4px;
+        content: "";
+        box-shadow: #212121 -4px -4px inset;
     }
 }

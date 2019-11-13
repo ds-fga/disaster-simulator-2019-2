@@ -1,6 +1,6 @@
 import m from 'mithril';
-import {Window, Tab, Tabs, Btn, Sidebar, VScroll} from '../ui';
-
+import {Window, Btn, Sidebar} from '../ui';
+import {Tabs, Tab} from './components/ScienceTab.component';
 import TechInfo from './components/TechInfo.component';
 import Tech from './components/Tech.component';
 import TechList from './components/TechList.component';
@@ -73,6 +73,7 @@ export class Science {
                     spec: "Biofiltros formados por microalgas aumentam a absorção de CO2 da atmosfera em um nível 100 vezes mais alto que as árvores, podendo melhorar a qualidade de vida na Terra.",
                     type_tech: "biológico",
                     status: "0"
+<<<<<<< Updated upstream
                 },
                 {
                     title: "Árvores geneticamente modificadas",
@@ -181,6 +182,9 @@ export class Science {
                     type_tech: "industrial",
                     status: "0"
                 },
+=======
+                }
+>>>>>>> Stashed changes
             ],
 
             techsFilter: {},
@@ -206,7 +210,7 @@ export class Science {
     view () {
 
         const { techs, searchbox, currentTech, techsFilter } = this.estado;
-        const filteredtechs = techs.filter(tech => tech.title.toLowerCase().includes(searchbox.toLowerCase()) && tech.status == "0" )
+        const filteredtechs = techs.filter(tech => tech.title.toLowerCase().includes(searchbox.toLowerCase()) && tech.status !== "1" )
 
         return <Window class="science">
 
@@ -221,7 +225,7 @@ export class Science {
                             <SearchBar placeholder="Buscar ciência" changeHandler={e => {
                                 this.estado.searchbox = e.target.value}}/>
                             {filteredtechs.map(tech => (
-                                <Tech title={tech.title} money={tech.price} type={tech.type || ""} changeHandler={e => {
+                                <Tech title={tech.title} status={tech.status} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
                                 }}/>
@@ -229,28 +233,28 @@ export class Science {
                         </TechList>    
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-warning Science__btn">Nuclear</button>}>
-                      {(techsFilter['nuclear'] || []).map((tech) => (
+                    {(techsFilter['nuclear'] || []).map((tech) => (
                         <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                             this.estado.currentTechSpec = tech.spec;
                             this.estado.currentTech = tech.title;
                         }}/>
-                      ))}
+                    ))}
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-success Science__btn">Biológico</button>}>
-                      {(techsFilter['biológico'] || []).map((tech) => (
+                    {(techsFilter['biológico'] || []).map((tech) => (
                         <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                             this.estado.currentTechSpec = tech.spec;
                             this.estado.currentTech = tech.title;
                         }}/>
-                      ))}
+                    ))}
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-primary Science__btn">Energético</button>}>
-                      {(techsFilter['energético'] || []).map((tech) => (
+                    {(techsFilter['energético'] || []).map((tech) => (
                         <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                             this.estado.currentTechSpec = tech.spec;
                             this.estado.currentTech = tech.title;
                         }}/>
-                      ))}
+                    ))}
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-error Science__btn">Transporte</button>}>
                     {(techsFilter['transporte'] || []).map((tech) => (
@@ -258,7 +262,15 @@ export class Science {
                             this.estado.currentTechSpec = tech.spec;
                             this.estado.currentTech = tech.title;
                         }}/>
-                      ))}
+                    ))}
+                    </Tab>
+                    <Tab class="science__tabs" title={<button class="nes-btn industry Science__btn">Indústria</button>}>
+                        {(techsFilter['indústria'] || []).map((tech) => (
+                            <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
+                                this.estado.currentTechSpec = tech.spec;
+                                this.estado.currentTech = tech.title;
+                            }}/>
+                        ))}
                     </Tab>
                 </Tabs>
 
