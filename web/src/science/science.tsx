@@ -73,7 +73,6 @@ export class Science {
                     spec: "Biofiltros formados por microalgas aumentam a absorção de CO2 da atmosfera em um nível 100 vezes mais alto que as árvores, podendo melhorar a qualidade de vida na Terra.",
                     type_tech: "biológico",
                     status: "0"
-<<<<<<< Updated upstream
                 },
                 {
                     title: "Árvores geneticamente modificadas",
@@ -182,9 +181,6 @@ export class Science {
                     type_tech: "industrial",
                     status: "0"
                 },
-=======
-                }
->>>>>>> Stashed changes
             ],
 
             techsFilter: {},
