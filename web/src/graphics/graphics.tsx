@@ -1,9 +1,8 @@
-import m from 'mithril';
-import { Window, Tab, Tabs, Btn, Sidebar, Chart, VScroll, Component } from '../ui';
-import './_graphics.scss';
-import { GraphicsButton, GraphicTabs, GraphicTab, Gerargraficos } from './UiGraphics';
-import '../model';
-import { model } from '../model';
+import telaback from './src/telaback.jpg';
+import climaback from './src/climaback.jpg';
+import economiaback from './src/economiaback.jpg';
+import populacaoback from './src/populacaoback.jpg';
+import energiaback from './src/energiaback.jpg';
 
 /* essa eh a classe principal que vai mostrar todo o conteudo que vai mostrar na tela
 classe seria coisas como <div> <span> <audio> <ul> <li> que podem ser personalizadas a gosto
@@ -16,11 +15,11 @@ export class Graphics {
     constructor() {
         // para referencia a variaveis, usamos o prefixo "this"
         this.background = {
-            "Telainicial": "https://blog-imgs-30-origin.fc2.com/t/a/k/take0000/mahousyoujomadokamagika057.jpg",
-            "Clima": "https://wallpapertag.com/wallpaper/full/0/6/0/380558-free-madoka-magica-wallpaper-1920x1080-ipad-pro.jpg",
-            "Economia": "https://images4.alphacoders.com/296/thumb-1920-296026.jpg",
-            "Populacao": "https://images6.alphacoders.com/993/thumb-1920-993435.jpg",
-            "Energia": "http://pds22.egloos.com/pds/201207/17/88/b0040388_5005599932d5b.jpg",
+            "Telainicial": telaback,
+            "Clima": climaback,
+            "Economia": economiaback,
+            "Populacao": populacaoback,
+            "Energia": energiaback,
         }
     }
     // a funcao this e a funcao principal que retorna o conteudo da classe
