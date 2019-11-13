@@ -2,19 +2,19 @@ import m from 'mithril';
 
 import { Window, Tab, Tabs, Btn, Sidebar, Component } from '../ui';
 
-import terminatorImg from '../../src/illuminati/imagens/piramide.jpg';
-import rainhaImg from '../../src/illuminati/imagens/rainha.jpg';
-import alGoreImg from '../../src/illuminati/imagens/al gore.jpg';
-import billImg from '../../src/illuminati/imagens/bill.jpg';
-import jeffImg from '../../src/illuminati/imagens/jeff.jpg';
-import joesleyImg from '../../src/illuminati/imagens/joesley.jpg';
-import michaelImg from '../../src/illuminati/imagens/michael.jpg';
-import obamaImg from '../../src/illuminati/imagens/obama.jpg';
-import xiImg from '../../src/illuminati/imagens/xi.jpg';
-import papaImg from '../../src/illuminati/imagens/papa.jpg';
-import silvioImg from '../../src/illuminati/imagens/silvio.jpg';
-import optimusImg from '../../src/illuminati/imagens/optimus.jpg';
-import putinImg from '../../src/illuminati/imagens/putin.jpg';
+import terminatorImg from '../../src/illuminati/piramide.jpg';
+import rainhaImg from '../../src/illuminati/rainha.jpg';
+import alGoreImg from '../../src/illuminati/al gore.jpg';
+import billImg from '../../src/illuminati/bill.jpg';
+import jeffImg from '../../src/illuminati/jeff.jpg';
+import joesleyImg from '../../src/illuminati/joesley.jpg';
+import michaelImg from '../../src/illuminati/michael.jpg';
+import obamaImg from '../../src/illuminati/obama.jpg';
+import xiImg from '../../src/illuminati/xi.jpg';
+import papaImg from '../../src/illuminati/papa.jpg';
+import silvioImg from '../../src/illuminati/silvio.jpg';
+import optimusImg from '../../src/illuminati/optimus.jpg';
+import putinImg from '../../src/illuminati/putin.jpg';
 
 let event = {
 
