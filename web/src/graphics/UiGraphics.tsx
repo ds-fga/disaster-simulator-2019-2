@@ -90,3 +90,127 @@ export class GraphicsButton extends Component<Sattrs>{
         return <button type="button" class={`Graphics nes-btn is-${extraclass}`} onclick={fonclick}>{vnode.children}</button>
     }
 }
+interface Teste{
+    dados?: object;
+    title: string;
+    background?: string;
+    exemplo?: object;
+}
+export class Gerargraficos extends Component<Teste>{
+     
+	selected: number;
+    constructor() {
+        super()
+        this.selected = -1
+    }
+
+    view(vnode: m.Vnode<Teste>){
+    {
+            let data = [];
+            let buttons
+            let graph
+            let  graphdata = vnode.attrs.dados
+            for (var ii in graphdata.data) {
+                data.push(ii)
+            }
+
+            buttons = data.map((e, i) => {
+                return <button type="button" class="Graphics nes-btn is-primary" onclick={() => { this.selected = i }}>{e}</button>
+            })
+
+            if (this.selected == -1) {
+                let data1 = graphicData(graphdata, undefined);
+                // para criar um grafico usamos a classe "chart" abaixo
+                graph = <Chart type="line" data={data1} options={data1.options} height={75} />
+            } else {
+                graph = data.map((e, i) => {
+                    if (this.selected == i) {
+                        let data1 = graphicData(graphdata, e);
+                        return <Chart type="line" data={data1} options={data1.options} height={75} />
+                    }
+                })
+            }
+
+            return <div> {graph}
+                <div class="Graphics audiobutton"><audio autoplay="true" src="http://soundbible.com/grab.php?id=1280&type=mp3" preload="auto" controls></audio></div>
+                <div class="Graphics buttons">
+                    <button type="button" class="Graphics nes-btn is-primary" onclick={() => { this.selected = -1 }}>Global</button>
+                    {buttons}
+                </div>
+            </div>
+
+        }
+    }
+}
+// essa a funçao que gera ordena os dados do grafico para depois inserir da classe "chart"
+function graphicData(generalData, specificData) {
+    let graphicdata = {
+        // eixo x
+        labels: generalData.labels,
+        //dados
+        datasets: [],
+        //configuracoes do grafico
+        options: {
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    top: 10,
+                    bottom: 0
+                }
+            },
+            // legendas
+            legend: {
+                labels: {
+                    fontSize: 20,
+                    fontColor: 'white',
+                }
+            },
+            scales: {
+                // eixo y
+                yAxes: [{
+                    ticks: {
+                        fontSize: 25,
+                        fontColor: 'white',
+                    }
+                }],
+                // eixo x
+                xAxes: [{
+                    ticks: {
+                        fontSize: 25,
+                        fontColor: 'white',
+
+                    }
+                }]
+            },
+
+        }
+
+    }
+
+    if (specificData != undefined) {
+        for (var i in generalData.data) {
+            if (i == specificData) {
+                graphicdata.datasets.push({
+                    label: i,
+                    data: generalData.data[i],
+                    backgroundColor: generalData.backgroundColor,
+                    borderColor: generalData.borderColor,
+                    borderWidth: 5
+                })
+            }
+
+        }
+    } else {
+        for (var i in generalData.data) {
+            graphicdata.datasets.push({
+                label: i,
+                data: generalData.data[i],
+                backgroundColor: generalData.backgroundColor,
+                borderColor: generalData.borderColor,
+                borderWidth: 5
+            })
+        }
+    }
+    return graphicdata;
+}
