@@ -46,7 +46,7 @@ export class Graphics {
                         <GraphicTab title="Tela Principal" btn="error" background={this.background.Telainicial}><Tela></Tela></GraphicTab>
                         <GraphicTab title="Clima" btn="warning" background={this.background.Clima}><Clima></Clima></GraphicTab>
                         <GraphicTab title="Economia" btn="warning" background={this.background.Economia}><Economia></Economia></GraphicTab>
-                        <GraphicTab title="Politica" btn="warning" background={this.background.populacao}><População></População></GraphicTab>
+                        <GraphicTab title="População" btn="warning" background={this.background.Populacao}><População></População></GraphicTab>
                         <GraphicTab title="Energia" btn="warning" background={this.background.Energia}><Energia></Energia></GraphicTab>
                     </GraphicTabs>
                 </div>
