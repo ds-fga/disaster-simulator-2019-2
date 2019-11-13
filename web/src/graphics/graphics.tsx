@@ -2,7 +2,7 @@
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, Chart, VScroll, Component } from '../ui';
 import './_graphics.scss';
-import { GraphicsButton, GraphicTabs } from './UiGraphics';
+import { GraphicsButton, GraphicTabs, GraphicTab } from './UiGraphics';
 import '../model';
 import { model } from '../model';
 
@@ -42,11 +42,11 @@ export class Graphics {
                         <GraphicsButton btn="error" onclick={() => { model.window = null }}>Voltar</GraphicsButton>
                     </span>
                     <GraphicTabs>
-                        <Tab title="Tela Principal" btn="error" background={this.background.Telainicial}><Tela></Tela></Tab>
-                        <Tab title="Clima" btn="warning" background={this.background.Clima}><Clima></Clima></Tab>
-                        <Tab title="Economia" btn="warning" background={this.background.Economia}><Economia></Economia></Tab>
-                        <Tab title="Politica" btn="warning" background={this.background.Politica}><Politica></Politica></Tab>
-                        <Tab title="Energia" btn="warning" background={this.background.Energia}><Energia></Energia></Tab>
+                        <GraphicTab title="Tela Principal" btn="error" background={this.background.Telainicial}><Tela></Tela></GraphicTab>
+                        <GraphicTab title="Clima" btn="warning" background={this.background.Clima}><Clima></Clima></GraphicTab>
+                        <GraphicTab title="Economia" btn="warning" background={this.background.Economia}><Economia></Economia></GraphicTab>
+                        <GraphicTab title="Politica" btn="warning" background={this.background.Politica}><Politica></Politica></GraphicTab>
+                        <GraphicTab title="Energia" btn="warning" background={this.background.Energia}><Energia></Energia></GraphicTab>
                     </GraphicTabs>
                 </div>
             </VScroll>
