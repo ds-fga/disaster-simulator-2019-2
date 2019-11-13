@@ -16,7 +16,8 @@ export class Science {
     constructor(){
         this.estado = {
             techs: [
-                {
+                {   
+                    // NUCLEAR ----------------------------
                     title: "Conhecimento atômico",
                     price: "50",
                     type: "is-warning",
@@ -30,17 +31,26 @@ export class Science {
                     type: "is-warning",
                     spec: "Criação de polos de usinas nucleares para produzirem mais energia com um imacto ambiental menor.",
                     type_tech: "nuclear",
-                    status: "1"
+                    status: "0"
                 },
                 {
-                    title: "Nuclear 3",
+                    title: "Geradores nucleares",
                     price: "150",
                     type: "is-warning",
-                    spec: "Permite pesquisa avançada em energia nuclear",
+                    spec: "Diminui a demanda energética de combustíveis fósseis em 40% da população ao produzir um novo gerador de energia elétrica pessoal com elementos radioativos.",
                     type_tech: "nuclear",
-                    status: "1"
+                    status: "0"
                 },
                 {
+                    title: "Comida irradiada",
+                    price: "200",
+                    type: "is-warning",
+                    spec: "Produção de alimentos com o uso de irradiação na agricultura a fim de prevenir a proliferação de pragas, diminuindo o uso de agrotóxicos que liberam gases estufa.",
+                    type_tech: "nuclear",
+                    status: "0"
+                },
+                {
+                    // BIOLÓGICO ---------------------
                     title: "Conhecimento molecular",
                     price: "50",
                     type: "is-success",
@@ -49,22 +59,31 @@ export class Science {
                     status: "0"
                 },
                 {
-                    title: "Biofiltro de algas",
+                    title: "Aumentar o reflorestamento",
                     price: "100",
+                    type: "is-success",
+                    spec: "Aumenta a plantação de árvores no planeta Terra, fazendo com que o sequestro de carbono (CO2) aumente em 25%.",
+                    type_tech: "biológico",
+                    status: "0"
+                },
+                {
+                    title: "Biofiltro de algas",
+                    price: "150",
                     type: "is-success",
                     spec: "Biofiltros formados por microalgas aumentam a absorção de CO2 da atmosfera em um nível 100 vezes mais alto que as árvores, podendo melhorar a qualidade de vida na Terra.",
                     type_tech: "biológico",
-                    status: "1"
+                    status: "0"
                 },
                 {
-                    title: "Biológico 3",
-                    price: "150",
+                    title: "Árvores geneticamente modificadas",
+                    price: "200",
                     type: "is-success",
-                    spec: "Permite pesquisa avançada em biotecnologia",
+                    spec: "Elaboração, em laboratório, de árvores com DNA modificado para terem um rendimento fotossintetizante mais alto que o normal, aumentando a absorção de CO2 na atmosfera.",
                     type_tech: "biológico",
-                    status: "1"
+                    status: "0"
                 },
                 {
+                    // TRANSPORTE --------------------
                     title: "Conhecimento de energias renováveis",
                     price: "50",
                     type: "is-error",
@@ -76,19 +95,28 @@ export class Science {
                     title: "Carro movido a motor de hidrogênio",
                     price: "100",
                     type: "is-error",
-                    spec: "DELiberação do motor movido a hidrogênio a preços acessíveis para a população, reduzindo a produção de CO2.SCRIÇÃO",
+                    spec: "Liberação do motor movido a hidrogênio a preços acessíveis para a população, reduzindo a produção de CO2.",
                     type_tech: "transporte",
-                    status: "1"
+                    status: "0"
                 },
                 {
-                    title: "NOME",
-                    price: "",
+                    title: "Uberdrone",
+                    price: "150",
                     type: "is-error",
-                    spec: "DESCRIÇÃO",
-                    type_tech: "tipo",
-                    status: ""
+                    spec: "Criação do app Uberdrone que permite com que cidadãos realizem corridas econômicas e mais rápidas, diminuindo o uso de carros para a locomoção.",
+                    type_tech: "transporte",
+                    status: "0"
                 },
                 {
+                    title: "Aerobus",
+                    price: "200",
+                    type: "is-error",
+                    spec: "Ônibus voadores são desenvolvidos como alternativa para o transporte público. Como possui preço acessível, permitiu o o transporte mais rápido e eficiente entre os locais para a população, diminuindo em massa o uso de ônibus terrestres.",
+                    type_tech: "transporte",
+                    status: "0"
+                },
+                {
+                    // ENERGÉTICO ---------------------
                     title: "Conhecimentos sobre o fluxo energético",
                     price: "50",
                     type: "is-primary",
@@ -102,17 +130,26 @@ export class Science {
                     type: "is-primary",
                     spec: "Instalação de usinas eólicas para maior produção energética.",
                     type_tech: "energético",
-                    status: "1"
+                    status: "0"
                 },
                 {
-                    title: "NOME",
-                    price: "",
+                    title: "Giroplacas",
+                    price: "150",
                     type: "is-primary",
-                    spec: "DESCRIÇÃO",
+                    spec: "Desenvolvimento de placas solares autônomas que giram sua direção para o sol, de forma a garantir que os raios solares ao longo do dia sejam absorvidos pelas placas solares.",
                     type_tech: "energético",
-                    status: "3"
+                    status: "0"
                 },
                 {
+                    title: "Fazendas de armazenamento de energia",
+                    price: "150",
+                    type: "is-primary",
+                    spec: "Armazenamento da produção energética excedente para evitar demanda desigual ao longo do dia.",
+                    type_tech: "energético",
+                    status: "0"
+                },
+                {
+                    // INDUSTRIAL -----------------------
                     title: "Conhecimentos industriais",
                     price: "50",
                     type: "is-success",
@@ -121,12 +158,28 @@ export class Science {
                     status: "0"
                 },
                 {
-                    title: "Menos produção de lixo ",
+                    title: "Menos produção de lixo",
                     price: "100",
                     type: "is-success",
                     spec: "Produção industrial mais eficiente, fazendo com que a produção de lixo seja menor e ambientalmente favorável.",
                     type_tech: "industrial",
-                    status: "1"
+                    status: "0"
+                },
+                {
+                    title: "Eficiência industrial",
+                    price: "150",
+                    type: "is-success",
+                    spec: "Aumento da eficiência da produção industrial, fazendo com que menos energia seja gasta para produzir os produtos.",
+                    type_tech: "industrial",
+                    status: "0"
+                },
+                {
+                    title: "Catalisadores inerentes",
+                    price: "150",
+                    type: "is-success",
+                    spec: "Veículos utilitários terão catalisadores acoplados de forma obrigatória e gratuita para diminuir a emissão dos gases estufa.",
+                    type_tech: "industrial",
+                    status: "0"
                 },
             ],
 
