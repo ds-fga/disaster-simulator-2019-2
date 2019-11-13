@@ -13,11 +13,11 @@ let event = {
 let illuminatiList = [
     {
         name: "Al Gore",
-        description: "Al",
+        description: <img src="illuminati/imagens/imagens/al gore.jpg" alt= "Imagem Al Gore"/>,
     },
     {
         name: "Rainha Elizabeth II",
-        description: "Rainha",
+        description: <img src="illuminati/imagens/imagens/rainha.jpg" alt= "Imagem Rainha"/>,
     },
     {
         name: "Bill Gates",
