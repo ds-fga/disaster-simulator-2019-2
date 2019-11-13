@@ -19,7 +19,7 @@
         color: $color-light;
         
         padding: 0.5rem;
-        
+        text-align: center;
         font-size: 1.2rem;
         font-weight: bold;
     }
@@ -97,6 +97,16 @@
     &-content {
         overflow-y: auto;
         height: 100%;
+    }
+}
+
+
+.Tabs.is-vertical {
+    display: flex;
+
+    .Tabs-head {
+        max-width: 18rem;
+        flex-direction: column;
     }
 }
 
