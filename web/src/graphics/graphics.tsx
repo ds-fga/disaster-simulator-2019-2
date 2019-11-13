@@ -1,8 +1,7 @@
-
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, Chart, VScroll, Component } from '../ui';
 import './_graphics.scss';
-import { GraphicsButton, GraphicTabs, GraphicTab } from './UiGraphics';
+import { GraphicsButton, GraphicTabs, GraphicTab, Gerargraficos } from './UiGraphics';
 import '../model';
 import { model } from '../model';
 
@@ -71,7 +70,7 @@ let pydata = {
         borderColor: ['rgba(214, 66, 153, 1)'],
     }
     ,
-    economia: {
+    Economia: {
         labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
         data:
         {
@@ -80,7 +79,7 @@ let pydata = {
         backgroundColor: ['rgba(233, 235, 141, 0.4)'],
         borderColor: ['rgba(233, 235, 141, 1)'],
     },
-    politica: {
+    Populacao: {
         labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
         data: {
             Feliz: [20, 5, 30, 2, 20],
@@ -91,7 +90,7 @@ let pydata = {
         backgroundColor: ['rgba(25, 106, 228, 0.4)'],
         borderColor: ['rgb(255, 255, 255)'],
     },
-    energia: {
+    Energia: {
         labels: ['x1', 'x2', 'x3', 'x4', 'x5'],
         data: {
             Renováveis: [20, 5, 6, 4, 8],
@@ -115,167 +114,52 @@ class Tela {
     o conteudo eh formado por um grafico global mais diversos botoes que direcionam para graficos especificos
     */
 class Clima {
-    selected: number;
-    constructor() {
-        this.selected = -1
-    }
-
-    view() {
-        {
-            let data = [];
-            let buttons
-            let graph
-            let graphdata = pydata.clima
-            for (var ii in graphdata.data) {
-                data.push(ii)
-            }
-
-            buttons = data.map((e, i) => {
-                return <button type="button" class="Graphics nes-btn is-primary" onclick={() => { this.selected = i }}>{e}</button>
-            })
-
-            if (this.selected == -1) {
-                let data1 = graphicData(graphdata, undefined);
-                // para criar um grafico usamos a classe "chart" abaixo
-                graph = <Chart type="line" data={data1} options={data1.options} height={75} />
-            } else {
-                graph = data.map((e, i) => {
-                    if (this.selected == i) {
-                        let data1 = graphicData(pydata.clima, e);
-                        return <Chart type="line" data={data1} options={data1.options} height={75} />
-                    }
-                })
-            }
-
-            return <div> {graph}
-                <div class="Graphics audiobutton"><audio autoplay="true" src="http://soundbible.com/grab.php?id=1280&type=mp3" preload="auto" controls></audio></div>
-                <div class="Graphics buttons">
-                    <button type="button" class="Graphics nes-btn is-primary" onclick={() => { this.selected = -1 }}>Global</button>
-                    {buttons}
-                </div>
+    view (){
+        { return <div>
+            <div class= "Gerargraficos">
+                <Gerargraficos dados= {pydata.clima}></Gerargraficos>
             </div>
+        </div>
 
-        }
     }
+}
+   
 }
 // eessas abaixos semelhante a classe acima
 // mas ainda falta colar o sistema de botoes e graficos aqui
 // estamos melhorando a de cima pra depois colar ela aqui
 class Economia {
-    view() {
-        {
-            let data1 = graphicData(pydata.economia);
-            return <div>
-                <div class="Graphics audiobutton"><audio  autoplay="true"  src="http://soundbible.com/grab.php?id=1280&type=mp3" preload="auto" controls></audio></div>
-                <Chart type="line" data={data1} options={data1.options} height="75" />
-                <div class="Graphics buttons">
-                    <GraphicsButton btn="primary">Botao1</GraphicsButton>
-                    <GraphicsButton btn="normal">Botao2</GraphicsButton>
-                    <GraphicsButton btn="warning">Botao3</GraphicsButton>
-                </div></div>
-        }
+    view (){
+        { return <div>
+            <div class= "Gerargraficos">
+                <Gerargraficos dados= {pydata.Economia}></Gerargraficos>
+            </div>
+        </div>
+
     }
+}
+   
 }
 class População {
-    view() {
-        {
-            let data1 = graphicData(pydata.politica);
-            return <div><div class="Graphics audiobutton"><audio  autoplay="true"  src="http://soundbible.com/grab.php?id=1280&type=mp3" preload="auto" controls></audio></div>
-                <Chart type="line" data={data1} options={data1.options} height="75" />
-                <div class="Graphics buttons">
-                    <GraphicsButton btn="primary">Botao1</GraphicsButton>
-                    <GraphicsButton btn="normal">Botao2</GraphicsButton>
-                    <GraphicsButton btn="warning">Botao3</GraphicsButton>
-                </div></div>
-        }
+    view (){
+        { return <div>
+            <div class= "Gerargraficos">
+                <Gerargraficos dados= {pydata.Populacao}></Gerargraficos>
+            </div>
+        </div>
+
     }
+}
+   
 }
 class Energia {
-    view() {
-        {
-            let data1 = graphicData(pydata.energia);
-            return <div><div class="Graphics audiobutton"><audio  autoplay="true"  src="http://soundbible.com/grab.php?id=1280&type=mp3" preload="auto" controls></audio></div>
-                <Chart type="line" data={data1} options={data1.options} height="75" />
-                <div class="Graphics buttons">
-                    <GraphicsButton btn="primary">Botao1</GraphicsButton>
-                    <GraphicsButton btn="normal">Botao2</GraphicsButton>
-                    <GraphicsButton btn="warning">Botao3</GraphicsButton>
-                </div></div>
-        }
+    view (){
+        { return <div>
+            <div class= "Gerargraficos">
+                <Gerargraficos dados= {pydata.Energia}></Gerargraficos>
+            </div>
+        </div>
+
     }
 }
-
-
-// essa a funçao que gera ordena os dados do grafico para depois inserir da classe "chart"
-function graphicData(generalData, specificData) {
-    let graphicdata = {
-        // eixo x
-        labels: generalData.labels,
-        //dados
-        datasets: [],
-        //configuracoes do grafico
-        options: {
-            layout: {
-                padding: {
-                    left: 0,
-                    right: 0,
-                    top: 10,
-                    bottom: 0
-                }
-            },
-            // legendas
-            legend: {
-                labels: {
-                    fontSize: 20,
-                    fontColor: 'white',
-                }
-            },
-            scales: {
-                // eixo y
-                yAxes: [{
-                    ticks: {
-                        fontSize: 25,
-                        fontColor: 'white',
-                    }
-                }],
-                // eixo x
-                xAxes: [{
-                    ticks: {
-                        fontSize: 25,
-                        fontColor: 'white',
-
-                    }
-                }]
-            },
-
-        }
-
-    }
-
-    if (specificData != undefined) {
-        for (var i in generalData.data) {
-            if (i == specificData) {
-                graphicdata.datasets.push({
-                    label: i,
-                    data: generalData.data[i],
-                    backgroundColor: generalData.backgroundColor,
-                    borderColor: generalData.borderColor,
-                    borderWidth: 5
-                })
-            }
-
-        }
-    } else {
-        for (var i in generalData.data) {
-            graphicdata.datasets.push({
-                label: i,
-                data: generalData.data[i],
-                backgroundColor: generalData.backgroundColor,
-                borderColor: generalData.borderColor,
-                borderWidth: 5
-            })
-        }
-    }
-    return graphicdata;
 }
-
