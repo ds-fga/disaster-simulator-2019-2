@@ -1,3 +1,9 @@
+import m from 'mithril';
+import { Window, Tab, Tabs, Btn, Sidebar, Chart, VScroll, Component } from '../ui';
+import './_graphics.scss';
+import { GraphicsButton, GraphicTabs, GraphicTab, Gerargraficos } from './UiGraphics';
+import '../model';
+import { model } from '../model';
 import telaback from './src/telaback.jpg';
 import climaback from './src/climaback.jpg';
 import economiaback from './src/economiaback.jpg';
