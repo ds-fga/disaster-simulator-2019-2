@@ -22,6 +22,7 @@ export class Tabs extends Component<IGenericAttrs> {
             {this.viewContent(vnode)}
         </div>
     }
+
     changeBackground(vnode) {
         let tabview = document.querySelector(".scienceContent") as HTMLElement;
         if(tabview !== null){
@@ -75,10 +76,8 @@ export class Tab extends Component<Sattrs> {
     }
 
     view(vnode) {
-        return <VScroll>
-            <div class="Tab scienceTab">
+        return <div class="Tab scienceTab">
                 {vnode.children}
             </div>
-        </VScroll>
     }
 };
