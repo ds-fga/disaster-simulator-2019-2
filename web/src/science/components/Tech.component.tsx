@@ -21,8 +21,8 @@ class Tech extends Component {
         }
 
         return <button onclick={vnode.attrs.changeHandler} class={`nes-btn tech-btn ${vnode.attrs.type} ${isDisabled}`}>
-            <p>{vnode.attrs.title}</p>
-            <p>R${`${vnode.attrs.money}`}</p>
+            <div class="TechText"><p class="TechTitle">{vnode.attrs.title}</p>
+            <p>R${`${vnode.attrs.money}`}</p></div>
         </button>
     }
 }

@@ -1,6 +1,6 @@
 import m from 'mithril';
-import {Window, Btn, Sidebar} from '../ui';
-import {Tabs, Tab} from './components/ScienceTab.component';
+import { Window, Sidebar } from '../ui';
+import { Tabs, Tab } from './components/ScienceTab.component';
 import TechInfo from './components/TechInfo.component';
 import Tech from './components/Tech.component';
 import TechList from './components/TechList.component';
@@ -220,12 +220,12 @@ export class Science {
                         <TechList>
                             <SearchBar placeholder="Buscar ciência" changeHandler={e => {
                                 this.estado.searchbox = e.target.value}}/>
-                            {filteredtechs.map(tech => (
+                            <div class="listcontent">{filteredtechs.map(tech => (
                                 <Tech title={tech.title} status={tech.status} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
                                 }}/>
-                            ))}
+                            ))}</div>
                         </TechList>    
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-warning Science__btn">Nuclear</button>}>

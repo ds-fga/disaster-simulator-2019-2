@@ -26,15 +26,25 @@
 }
 
 .tech-btn {
-    display: flex;
-    justify-content: space-between;
+    
     width: 20rem;
     margin-bottom: .75rem;
     height: 3rem;
+    margin-right: .75rem;
+}
 
+.TechText{
+    display: flex;
+    justify-content: space-between;
     & > * {
-        margin: auto 0;
+        margin: 0;
     }
+}
+
+.TechTitle{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .unTech{
