@@ -1,4 +1,5 @@
 import m = require('mithril');
+import {model} from '../model'
 import {Window, Tab, Tabs, Btn, Sidebar} from '../ui';
 import frask from '../../img/icones_tela_inicial/frasco.png';
 import politic from '../../img/icones_tela_inicial/politic.png';
@@ -10,6 +11,8 @@ import reptle from '../../img/icones_tela_inicial/reptle.png';
 import settings from '../../img/icones_tela_inicial/settings.png';
 import conspirancy from '../../img/icones_tela_inicial/conspirancy.png';
 import big_earth from '../../img/icones_tela_inicial/big-earth.png';
+import bg_earth_pixels from '../../img/icones_tela_inicial/bg-earth-pixels.jpeg';
+import bg_earth_normal from '../../img/icones_tela_inicial/bg-earth-normal.jpg';
 
 var React = {
     createElement: m
@@ -22,15 +25,10 @@ var React = {
 
  let leftMenuItens = {
     "nome": ["Temperatura", "Política", "Conspiração","Economia"],
-    "caminho": ["teste.html", "teste2.html", "teste2.html", "teste.html"],
+    "caminho": ["Graphics", "teste2.html", "teste2.html", "teste.html"],
     "icone": [frask, politic, conspirancy, money],
 }
 
-let barMenuItens = {
-    "nome": ["teste 1", "teste 2", "teste 3"],
-    "caminho": ["teste.html", "teste2.html", "teste3.html"],
-    "icone": ["icon icon-link", "icon icon-link", "icon icon-link"],
-}
 let rightMenuItens = {
     "nome": ["Gráfico", "Terra", "Conspiração", "População", "Configuraçoẽs"],
     "caminho": ["teste.html", "teste2.html", "teste2.html", "teste.html", "teste2.html", "teste2.html"],
@@ -40,15 +38,23 @@ let rightMenuItens = {
 /**A parte a seguir é para auxiliar
  * O listamento de cada botão
  * Para cada Dashboard
+ * 
+ * <a href="#" class="nes-badge">
+  <span class="is-dark">NES.css</span>
+</a>
+
  */
 
 function elementsColumn(itens, classli) {
     var list = [];  
     for(let i = 0; i < itens.nome.length; i++) {
         list.push(m('li', {class: classli}, [
-            m('a', {href: itens.caminho[i]}, [
-                m('img', {class: 'mr-5', src: itens.icone[i]})
-            ], itens.nome[i])
+            m('a', {href: '#', onclick: () => { model.window = itens.caminho[i]}, class: 'nes-badge is-icon'}, [
+                m('span', {class: 'is-warning exception'},[
+                    m('img', {class: 'is-small',src: itens.icone[i]})
+                ]),
+                m('span', {class: 'is-primary extend-right'}, 'Teste'),
+            ])
         ]))
     }
     return list;
@@ -60,9 +66,8 @@ function elementsColumn(itens, classli) {
 
 function header(){
     return m('div', {class: 'header'}, [
-        m('div', {class: 'nes-container is-rounded is-dark with-title'}, [
-            m('p', {class: 'title'}, 'Disaster Simulation'),
-            m('p', {class: 'text-gray'}, 'Projeto da disciplina de Desenvolvimento de Software')
+        m('div', {class: 'nes-container is-rounded is-dark'}, [
+            m('p', {class: 'title'}, 'Disaster Simulation')
         ])
     ])
 }
@@ -73,8 +78,23 @@ function header(){
 */
 
 function status(){
-    return m('div', {class: 'status nes-container is-rounded is-dark with-title'},[
-        m('p', {class: 'title'}, 'Aqui fica o Status!')
+    return m('div', {class: 'status nes-container is-rounded is-dark is-centered icon-list'},[
+        m('div', {class: 'row columns margin-b'}, [
+            m('div', {class: 'column col-6'}, [
+                m('i', {class: 'nes-icon is-small heart down-left'})
+            ]),
+            m('div', {class: 'column col-6'}, [
+                m('i', {class: 'nes-icon is-small like down-right'})
+            ]),
+        ]),
+        m('div', {class: 'row columns'}, [
+            m('div', {class: 'column col-6'}, [
+                m('i', {class: 'nes-icon trophy is-small up-left'})
+            ]),
+            m('div', {class: 'column col-6'}, [
+                m('i', {class: 'nes-icon coin is-small up-right'})
+            ]),
+        ]),
     ])
 }
 
@@ -83,11 +103,11 @@ function status(){
 */
 
 function leftDashboard() {
-    return m('div', {class: 'leftDash'}, [
-        m('ul', {class: 'menu align-left nes-container is-rounded is-dark with title'}, [
+    return m('div', {class: 'leftDash '}, [
+        m('ul', {class: 'menu nes-container is-rounded is-dark'}, [
             'Ações',
             m('li', {class: 'divider'}),
-            elementsColumn(leftMenuItens, 'menu nes-container is-dark')
+            elementsColumn(leftMenuItens, 'dashboard-menu')
         ])
     ])
 }
@@ -98,10 +118,8 @@ function leftDashboard() {
 
 function main() {
     return m('div', {class: 'main'}, [
-        'Corpo da Main',
-        m('div', {style: {'text-align': 'center',
-                            'text-content': 'center'}}, [
-            m('img', {src: big_earth})
+        m('div', {style: {'text-align': 'center','text-content': 'center'}}, [
+            
         ]),
     ])
 }
@@ -112,10 +130,10 @@ function main() {
 
 function rightDashboard() {
     return m('div', {class: 'rightDash'}, [
-        m('ul', {class: 'menu align-right nes-container is-rounded is-dark with title'}, [
+        m('ul', {class: 'menu nes-container is-rounded is-dark'}, [
             'Informações',
             m('li', {class: 'divider'}),
-            elementsColumn(rightMenuItens, 'menu nes-container is-dark')
+            elementsColumn(rightMenuItens, '')
         ])
     ])
 }
@@ -128,11 +146,30 @@ function rightDashboard() {
 */
 
 function footer(){
-    return m('div', {class: 'footer nes-container is-rounded is-dark with title'}, [
-        elementsColumn(barMenuItens, 'menu inline nes-container is-dark')
+    return m('div', {class: 'footer nes-container is-rounded is-dark is-centered'}, [
+        persona_status(),
+        news(),
+        credits(),
     ])
 }
 
+function persona_status(){
+    return m('div',{class: 'persona-status'}, [
+        'Stats'
+    ])
+}
+
+function news(){
+    return m('div', {class: 'news',},[
+        'News'
+    ])
+}
+
+function credits(){
+    return m('div', {class: 'credits'},[
+        'Credits'
+    ])
+}
 /** A parte a seguir inicia e ordena a tela */
 
 function join() {
@@ -144,19 +181,18 @@ function join() {
         rightDashboard(),
         footer(),
     ]
-    return <section class="Initial nes-container is-dark">{join}</section>;
+    return m('section', {class: 'Initial', style: {background: 'URL('+bg_earth_pixels+') 80% 40%'}}, [
+        join
+    ]);
 }
 
-var app = document.querySelector('#menu-lateral');
 
 
-m.mount(app, {
-    view: () => join()
-});
-    
-/*
+var app = document.querySelector('#app');
+
+
 export class Initial {
     view () {
-        return <Window>{leftDashboard()}</Window>;
+        return <Window>{join()}</Window>;
     }
-}*/
+}
