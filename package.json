@@ -14,7 +14,7 @@
     "chart.js": "^2.8.0",
     "mithril": "^2.0.4",
     "mithril-tsx-component": "^3.0.1",
-    "parcel": "^1.12.3",
+    "parcel": "^1.12.4",
     "prismjs": "^1.17.1",
     "sass": "^1.22.12"
   },
