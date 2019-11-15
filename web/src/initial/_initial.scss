@@ -1,4 +1,5 @@
 .Initial {
+
     width: 100%;
     height: 100%;
     padding: 0;
@@ -10,11 +11,23 @@
     grid-template-areas: "header header status"
                         "leftd main rightd"
                         ". footer .";
+
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 15% 70% 15%;
+    grid-template-rows: 15% 65% 20%;
+    grid-template-areas: "header header status"
+                        "leftd main rightd"
+                        ". footer ."
+
 }
 /**Segue abaixo modificações do header*/
 .header{
     grid-area: header;
 }
+
 /**Segue abaixo modificações do status*/
 .status{
     width: 250px;
@@ -30,10 +43,22 @@
 /**Segue abaixo modificações da leftDashboard*/
 .leftDash{
     grid-area: leftd; 
+
+
+/**Segue abaixo modificações do status*/
+.status{
+    grid-area: status;
+}
+
+/**Segue abaixo modificações da leftDashboard*/
+.leftDash{
+    grid-area: leftd;
+
 }
 
 /**Segue abaixo modificações da rightDashboard*/
 .rightDash{
+
     margin-left: 100%;
     grid-area: rightd;
 }
@@ -54,6 +79,11 @@
     margin: 20px 0;
 }
 
+
+    grid-area: rightd;
+}
+
+
 /**Segue abaixo modificações da main*/
 .main{
     grid-area: main;
@@ -63,6 +93,7 @@
 .footer{
     grid-area: footer;
     overflow: auto;
+
     text-align: center;
     margin-left: 100px !important;
 }
@@ -158,4 +189,9 @@
     100% {
         transform: translate(-150px, 60px);
     }
+
+}
+.inline{
+    display: inline-block;
+
 }
