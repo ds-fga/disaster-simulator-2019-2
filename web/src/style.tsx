@@ -3,8 +3,8 @@ import { Window, Code, Sidebar, VScroll } from './ui';
 import terminatorImg from '../img/events/terminator.jpg';
 
 let show = {
-    titles: false,
-    sidebar: false,
+    titles: true,
+    sidebar: true,
 };
 
 /**
