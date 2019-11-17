@@ -1,0 +1,55 @@
+{
+    "lucro": [
+        {
+            "title": "Test sdse ",
+            "description": "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
+            "preco": "1",
+            "attrs": [
+                {
+                    "name": "attr1",
+                    "color": "color: red",
+                    "points": 1
+                },
+                {
+                    "name": "attr2",
+                    "color": "color: green",
+                    "points": -1
+                }
+            ]
+        },
+        {
+            "title": "Test sdse ",
+            "description": "dsjfoisdjfo si jfosij fosi jfoisdj foisj dfois jdofisodjf osi jfos",
+            "attrs": [
+                {
+                    "name": "attr1",
+                    "color": "color: red",
+                    "points": 1
+                },
+                {
+                    "name": "attr2",
+                    "color": "color: green",
+                    "points": -1
+                }
+            ]
+        }
+    ],
+    "prejuizo": [
+        {
+            "title": "Test sdse ",
+            "description": "dsjfoisdjfo si jfosij fosi  foisj dfois jdofisodjf osi jfos",
+            "attrs": [
+                {
+                    "name": "attr1",
+                    "color": "color: red",
+                    "points": 1
+                },
+                {
+                    "name": "attr2",
+                    "color": "color: green",
+                    "points": -1
+                }
+            ]
+        }
+    ]
+}
