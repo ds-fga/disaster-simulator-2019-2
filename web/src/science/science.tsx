@@ -38,15 +38,22 @@ export class Science {
       this.estado.techsFilter = newTechsFilter;
     }
 
+    voltar(){
+        var element = document.getElementById("scienceWindow");
+        var style = element.style;
+        element.classList.add("turnOff");
+        window.setTimeout(function(){element.parentNode.removeChild(element)}, 500);
+    }
+
     view () {
 
         const { techs, searchbox, currentTech, techsFilter } = this.estado;
         const filteredtechs = techs.filter(tech => tech.title.toLowerCase().includes(searchbox.toLowerCase()) && tech.status !== "1" )
 
-        return <Window class="science">
+        return <Window id="scienceWindow" class="crt science">
 
             <Sidebar class="science__sidebar" title={
-                <button class="nes-btn science__sidebar-btn">Voltar</button>
+                <button class="nes-btn science__sidebar-btn" onclick={this.voltar}>Voltar</button>
             }/>
 
             <div class="scienceContent">
@@ -96,7 +103,7 @@ export class Science {
                     ))}
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn industry Science__btn">Indústria</button>}>
-                        {(techsFilter['indústria'] || []).map((tech) => (
+                        {(techsFilter['industrial'] || []).map((tech) => (
                             <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                 this.estado.currentTechSpec = tech.spec;
                                 this.estado.currentTech = tech.title;

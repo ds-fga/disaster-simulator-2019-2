@@ -7,6 +7,8 @@ class TechInfo{
         var title = vnode.attrs.title;
         var techDisplay;
         var titleDisplay;
+        var effect1 = vnode.attrs.effect1;
+        var effect2 = vnode.attrs.effect2;
 
         if (spec !== ""){
             techDisplay = spec;

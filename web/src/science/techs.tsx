@@ -1,3 +1,18 @@
+/* TEMPLATE DE TECNOLOGIA
+
+{
+    title: *Nome*,
+    price: *Preço por enquanto*,
+    type: *O estilo da tecnologia {Seguindo a mesma ordem da type_tech} dentre (is-warning, is-success, is-primary, is-error, industry)*,
+    spec: *Descrição por extenso da tecnologia*,
+    type_tech: *O típo de tecnologia, dentre (Nuclear, Biológico, Energético, Transporte, Indústria)*,
+    status: *A tecnologia é disponível logo de começo? Se sim, 0, se não, 1*,
+    progress: *Algum número qualquer entre 0 e 100, por enquanto não é importante*,
+    effect1: *Primeiro efeito da tecnologia*,
+    effect2: *Segundo efeito da tecnologia*,
+},
+*/
+
 const techsDB = [
     {   
         // NUCLEAR ----------------------------
@@ -39,7 +54,8 @@ const techsDB = [
         type: "is-success",
         spec: "Estudos necessários para entender melhor o funcionamento da microbiologia e como promover mudanças ambientalmente favoráveis.",
         type_tech: "biológico",
-        status: "0"
+        status: "0",
+        effect1: "Viabiliza a pesquisa de tecnologias biológicas."
     },
     {
         title: "Aumentar o reflorestamento",
@@ -135,7 +151,7 @@ const techsDB = [
         // INDUSTRIAL -----------------------
         title: "Conhecimentos industriais",
         price: "50",
-        type: "is-success",
+        type: "industry",
         spec: "Estudos necessários ara promover uma produção industrial ambientalmente melhor.",
         type_tech: "industrial",
         status: "0"
@@ -143,7 +159,7 @@ const techsDB = [
     {
         title: "Menos produção de lixo",
         price: "100",
-        type: "is-success",
+        type: "industry",
         spec: "Produção industrial mais eficiente, fazendo com que a produção de lixo seja menor e ambientalmente favorável.",
         type_tech: "industrial",
         status: "0"
@@ -151,7 +167,7 @@ const techsDB = [
     {
         title: "Eficiência industrial",
         price: "150",
-        type: "is-success",
+        type: "industry",
         spec: "Aumento da eficiência da produção industrial, fazendo com que menos energia seja gasta para produzir os produtos.",
         type_tech: "industrial",
         status: "0"
@@ -159,7 +175,7 @@ const techsDB = [
     {
         title: "Catalisadores inerentes",
         price: "150",
-        type: "is-success",
+        type: "industry",
         spec: "Veículos utilitários terão catalisadores acoplados de forma obrigatória e gratuita para diminuir a emissão dos gases estufa.",
         type_tech: "industrial",
         status: "0"
