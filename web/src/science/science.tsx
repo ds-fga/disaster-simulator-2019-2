@@ -39,7 +39,6 @@ export class Science {
     }
 
     voltar(){
-        console.log("aaaa");
         var element = document.getElementById("scienceWindow");
         var style = element.style;
         style.animation = "textShadow 1.6s infinite, turn-off 0.55s cubic-bezier(0.755, 0.050, 0.855, 0.060)";
