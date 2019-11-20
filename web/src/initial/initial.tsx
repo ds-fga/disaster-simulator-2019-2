@@ -47,10 +47,6 @@ let rightMenuItens = {
  * <a href="#" class="nes-badge">
   <span class="is-dark">NES.css</span>
 </a>
-<<<<<<< HEAD
-=======
-
->>>>>>> 995e057ff9b2b70e2748bb273b248ea7402f4d1b
  */
 function popUp(caminho) {
 return <Initial>{window.open(`?start=${caminho}`, 'popup', "width=1200px, height=500px, top=100%, left=100%")}</Initial>
@@ -168,7 +164,7 @@ function footer(){
         m('p', 'asasas asasasas asasas sasasasa')
     ])
 }
-
+https://github.com/ds-fga/ds.git
 /** A parte a seguir inicia e ordena a tela */
 
 function join() {
