@@ -1,3 +1,161 @@
 .Initial {
-    
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-gap: 0px 10px;
+    grid-template-columns: 5% 74% 5%;
+    grid-template-rows: 20% 60% 20%;
+    grid-template-areas: "header header status"
+                        "leftd main rightd"
+                        ". footer .";
+}
+/**Segue abaixo modificações do header*/
+.header{
+    grid-area: header;
+}
+/**Segue abaixo modificações do status*/
+.status{
+    width: 250px;
+    height: 100px;
+    text-align: center;
+    grid-area: status;
+}
+
+.margin-b{
+    margin-bottom: 20px;
+}
+
+/**Segue abaixo modificações da leftDashboard*/
+.leftDash{
+    grid-area: leftd;
+}
+
+/**Segue abaixo modificações da rightDashboard*/
+.rightDash{
+    margin-left: 100%;
+    grid-area: rightd;
+}
+
+
+//Formatações usadas em left e right Dash
+.leftDash ul, li, .rightDash ul, li {
+    text-align: center;
+    grid-area: leftd;
+}
+
+.leftDash span, .rightDash span{
+    margin-left: -50%;
+    margin: 1px;
+}
+
+.leftDash a, .rightDash a{
+    margin: 20px 0;
+}
+
+/**Segue abaixo modificações da main*/
+.main{
+    grid-area: main;
+}
+
+/**Segue abaixo modificações do footer*/
+.footer{
+    grid-area: footer;
+    overflow: auto;
+    text-align: center;
+    margin-left: 100px !important;
+}
+
+.inline{
+    display: inline-block;
+}
+
+.leftDash .exception {
+    margin-left: -20px;
+}
+
+.exception {
+    margin: auto !important;
+    padding: auto !important;
+    margin-right: 0px !important;
+}
+
+.animation {
+    animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotateZ(0deg) rotateX(180deg);
+        margin-left: 0px;
+        margin-top: 0px;
+    }
+
+    25% {
+        margin-left: 80px;
+        margin-top: 0px;
+    }
+
+    50% {
+        margin-left: 80px;
+        margin-top: 30px;
+    }
+
+    75% {
+        margin-left: 0px;
+        margin-top: 30px;
+    }
+
+    100% {
+        margin-left: 0px;
+        margin-top: 0px;
+        transform: rotateZ(360deg);
+    }
+}
+
+.header p {
+    animation: slidein 10s linear infinite;
+}
+
+@keyframes slidein {
+    0% {
+        margin-left: 0px;
+        color: red;
+    }
+
+    25% {
+        margin-left: 70%;
+        color: blue;
+    }
+
+    50% {
+        margin-right: 0px;
+        color: yellow;
+    }
+
+    75% {
+        margin-right: 50%;
+        color: green;
+    }
+}
+
+.status .down-left {
+    animation: down-left linear 2s infinite;
+}
+
+@keyframes down-left {
+    100% {
+        transform: translate(150px, 60px);
+    }
+}
+
+.status .down-right {
+    animation: down-right linear 2s infinite;
+}
+
+@keyframes down-right {
+    100% {
+        transform: translate(-150px, 60px);
+    }
 }
