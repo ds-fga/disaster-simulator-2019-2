@@ -13,6 +13,8 @@
         flex-direction: column-reverse;
         box-shadow: none;
 
+        @include rounded-corners();
+
         &-btn {
             width: 100%;
             align-content: center;
@@ -23,7 +25,6 @@
 
     &__tabs{
         padding: 0.2rem;
-        background-color: red;
     }
 }
 
@@ -161,6 +162,9 @@
 }
 
 .scienceInfo {
+
+    width: 95%;
+    margin: 0 auto 0;
 
     overflow-y: auto;
     max-height: 25rem;

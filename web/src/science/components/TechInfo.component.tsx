@@ -18,7 +18,7 @@ class TechInfo{
             titleDisplay = "Nenhuma tecnologia selecionada";
         }
 
-        return <div class="nes-container with-title is-rounded scienceInfo">
+        return <div style="margin-right: auto; margin-left: auto;" class="nes-container with-title is-rounded scienceInfo">
             <p class="title nes-container is-rounded">Info</p>
             <h2>{`${titleDisplay}`}</h2>
             {techDisplay}
