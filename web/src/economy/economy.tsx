@@ -1,6 +1,6 @@
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, VScroll } from '../ui';
-import exampleImg from './teste.jpg';
+import exampleImg from '../economy/idosa.jpg';
 //colocar imagem. exampleImg nome <img src={exampleImg}></img>
 
 let data = {
@@ -19,6 +19,7 @@ let data = {
             title: "Test sdse ",
             //img: exampleImg,
             description: "dsjfoisdjfo si jfosij fosi jfoisdj foisj dfois jdofisodjf osi jfos",
+            preco: "30",
             attrs: [
                 { name: "attr1", color: 'color: red', points: 1 },
                 { name: "attr2", color: 'color: green', points: -1 },
@@ -30,6 +31,7 @@ let data = {
             title: "Test sdse ",
             //img: exampleImg,
             description: "dsjfoisdjfo si jfosij fosi  foisj dfois jdofisodjf osi jfos",
+            preco: "-12",
             attrs: [
                 { name: "attr1", color: 'color: red', points: 1 },
                 { name: "attr2", color: 'color: green', points: -1 },
@@ -39,18 +41,10 @@ let data = {
 };
 
 
-function createCard({ title, description, attrs, preco }) {
-    function viewAttr({ name, color, points }) {
+function createCard ({ title, description, attrs, preco }) {
+    function viewAttr ({ name, color, points }) {
         return <tr style={color}><td>{name}</td> <td>{points}</td></tr>
     }
-
-    var teste = true;
-    var claseSei = "Economy-botao-direita";
-
-    if (!teste) {
-        claseSei += "Economy-botao-escondido";
-    }
-    //var pontos = 2;
 
     return <ExpandirCard title={title}>
         <p>{description}</p>
@@ -61,14 +55,10 @@ function createCard({ title, description, attrs, preco }) {
             <tbody>
                 {attrs.map(viewAttr)}
                 <tr><h3><th>Preço</th></h3></tr>
-                <tr><td>{preco}</td></tr>
+                <tr><td><h2>{preco}</h2></td></tr>
             </tbody>
         </table>
-        <div class={claseSei}>
-            <button class="nes-btn" onclick={() => { teste = !teste }}>
-                <span>Comprar</span>
-            </button>
-        </div>
+        <ButaoBrabo/>
     </ExpandirCard>
 }
 
@@ -93,9 +83,6 @@ export class Economy {
                     </Tab>
 
                     <Tab title="Mercado">
-                        <div>
-                            <testeBotao />
-                        </div>
                     </Tab>
 
                     <Tab title="Inventário">
@@ -105,21 +92,6 @@ export class Economy {
                     </Tab>
                 </Tabs>
             </Window>
-        </div>
-    }
-}
-
-export class testeBotao {
-    constructor(vnode) {
-        this.pontos = 0;
-    }
-
-    view() {
-        return <div>
-            <p>Teste {pontos}</p>
-            <button type="button" onclick={() => { this.pontos += 1 }}>
-                <span>teste</span>
-            </button>
         </div>
     }
 }
@@ -143,7 +115,7 @@ export class ExpandirCard {
             content = "";
         }
 
-        return <VScroll class="EconomyCard">
+        return <div class="EconomyCard">
             <div class="nes-container with-title is-rounded">
                 <div class="EconomyCard-title">
                     {vnode.attrs.title}
@@ -157,7 +129,27 @@ export class ExpandirCard {
                     {content}
                 </div>
             </div>
-        </VScroll>
+        </div>
+    }
+}
+
+export class ButaoBrabo {
+    butaoOn: boolean;
+
+    constructor (vnode) {
+        this.butaoOn = true;
+    }
+
+    view (vnode) {
+        if (this.butaoOn === false) {
+            return ;
+        }
+
+        return <div class="Economy-right-button">
+            <button class="nes-btn" onclick={() => {this.butaoOn = !this.butaoOn}}>
+                <span>Comprar</span>
+            </button>
+        </div>
     }
 }
 
@@ -166,8 +158,3 @@ export class ExpandirCard {
 //vnode.attrs pegar algum atributo passado
 //hr é a linha -----------
 //constructor uma variável é criada localmente
-
-
-// <div class="Economy-botao-direita">
-//             <button class="nes-btn">Comprar</button>
-//         </div>
