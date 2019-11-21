@@ -52,7 +52,7 @@ export class GraphicTabs extends Elem {
             {vnode.children[this.selected]}
         </div>
     }
-    
+
     changeBackground(vnode) {
         let graphicswindow = window.document.querySelector(".Graphics.vscroll");
         let background = vnode.attrs.background || "";
@@ -101,8 +101,8 @@ export class Gerargraficos extends Component<Gattrs>{
     }
 
     view(vnode: m.Vnode<Gattrs>) {
-        {   
-            let corbotao='warning'
+        {
+            let corbotao = 'warning'
             let data = [];
             let graph
             let graphdata = vnode.attrs.dados;
@@ -110,16 +110,16 @@ export class Gerargraficos extends Component<Gattrs>{
             for (let ii in graphdata.data) {
                 data.push(ii)
             }
-            let buttons = data.map((e, i) => { 
-                corbotao='warning'
-                if(this.selected==i){
+            let buttons = data.map((e, i) => {
+                corbotao = 'warning'
+                if (this.selected == i) {
                     corbotao = 'primary'
                 }
                 return <button type="button" class={`Graphics nes-btn is-${corbotao}`} onclick={() => { this.selected = i }}>{e}</button>
             })
-            corbotao='warning'
+            corbotao = 'warning'
             if (this.selected != -1) {
-                corbotao='warning'
+                corbotao = 'warning'
                 graph = data.map((e, i) => {
                     if (this.selected == i) {
                         let data1 = this.graphicData(graphdata, e);
@@ -127,23 +127,23 @@ export class Gerargraficos extends Component<Gattrs>{
                     }
                 })
             }
-            if(globalbotao == 'true'){
-            let gbutton = <button type="button" class={`Graphics nes-btn is-${corbotao}`} onclick={() => { this.selected = -1 }}>Global</button>
-            
-            if (this.selected == -1) {
-                corbotao='primary'
-                gbutton = <button type="button" class={`Graphics nes-btn is-${corbotao}`} onclick={() => { this.selected = -1 }}>Global</button>
-                let data1 = this.graphicData(graphdata, undefined);
-                graph = <GraphicsChart type="line" data={data1} options={data1.options} />
-            } 
-            }else{
-            if (this.selected == -1) {
-                corbotao='primary'
-                let data1 = this.graphicData(graphdata, undefined);
-                graph = <GraphicsChart type="line" data={data1} options={data1.options} />
-            } 
-            
-        }
+            if (globalbotao == 'true') {
+                let gbutton = <button type="button" class={`Graphics nes-btn is-${corbotao}`} onclick={() => { this.selected = -1 }}>Global</button>
+
+                if (this.selected == -1) {
+                    corbotao = 'primary'
+                    gbutton = <button type="button" class={`Graphics nes-btn is-${corbotao}`} onclick={() => { this.selected = -1 }}>Global</button>
+                    let data1 = this.graphicData(graphdata, undefined);
+                    graph = <GraphicsChart type="line" data={data1} options={data1.options} />
+                }
+            } else {
+                if (this.selected == -1) {
+                    corbotao = 'primary'
+                    let data1 = this.graphicData(graphdata, undefined);
+                    graph = <GraphicsChart type="line" data={data1} options={data1.options} />
+                }
+
+            }
             return <div> {graph}
                 <div class="Graphics buttons">
                     {gbutton}
@@ -281,23 +281,23 @@ export class BackButton extends Component<Backattrs> {
         let linkpagina = []
         let color: string;
         let corbotao = false;
-        let buttons = "";
+        let buttons;
         for (let ii in pages) {
             paginas.push(ii);
             linkpagina.push(pages[ii])
         }
-        if (this.hidebutton == "show") {
-            buttons = paginas.map((e, i) => {
-                if (e !== "Intro" && e !== "Style" && e !== vnode.attrs.exception) {
-                    color = corbotao == false ? "warning" : "primary";
-                    corbotao = !corbotao;
-                    return <div>
-                        <GraphicsButton btn={color} onclick={() => { model.window = linkpagina[i] }}>{this.nomepagina[i]}</GraphicsButton>
-                        <br />
-                    </div>
-                }
-            })
-        }
+        //if (this.hidebutton == "show") {
+        buttons = paginas.map((e, i) => {
+            if (e !== "Intro" && e !== "Style" && e !== vnode.attrs.exception) {
+                color = corbotao == false ? "warning" : "primary";
+                corbotao = !corbotao;
+                return <div>
+                    <GraphicsButton btn={color} onclick={() => { model.window = linkpagina[i] }}>{this.nomepagina[i]}</GraphicsButton>
+                    <br />
+                </div>
+            }
+        })
+        //}
         return <span class="Graphics back-Button" onmouseenter={() => { this.hidebutton = "show"; this.btn = "primary" }}
             onmouseleave={() => { this.hidebutton = "hide"; this.btn = "warning" }} >
             <button type="button" class={`Graphics nes-btn is-${this.btn}`} onclick={() => { window.close() }}>Fechar</button>

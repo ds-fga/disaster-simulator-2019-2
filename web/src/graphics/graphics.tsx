@@ -7,7 +7,7 @@ import climaback from './src/climaback.jpg';
 import economiaback from './src/economiaback.jpg';
 import populacaoback from './src/populacaoback.jpg';
 import energiaback from './src/energiaback.jpg';
-
+import madokamusic from './src/madokamusic.mp3'
 /* essa eh a classe principal que vai mostrar todo o conteudo que vai mostrar na tela
 classe seria coisas como <div> <span> <audio> <ul> <li> que podem ser personalizadas a gosto
 nesse caso a pagina inicial estaria requisitando nossa pagina usando <Graphics></Graphics>*/
@@ -54,9 +54,9 @@ export class Graphics {
         </Window>
     }
 }
+
+
 // algumas dessas classes acima nao estao nesse documento, elas podem ser encontradas no UiGraphics.tsx
-
-
 // essa eh a variavel que guarda os dados dos graficos
 let pydata = {
     clima: {
@@ -69,7 +69,7 @@ let pydata = {
         },
         backgroundColor: {
             "CO2": "rgba(214, 66, 153, 0.4)",
-            "Temperatura Atmosférica":  "rgba(157, 60, 150, 0.4)",
+            "Temperatura Atmosférica": "rgba(157, 60, 150, 0.4)",
             "Temperatura Oceânica": "rgba(150, 70, 150, 0.4)",
             "Dano Climático": "rgba(100, 20, 153, 0.4)",
         },
@@ -80,7 +80,7 @@ let pydata = {
             "Dano Climático": "rgba(100, 20, 153, 1)",
         }
     },
-     Economia: {
+    Economia: {
         labels: ['2000', '2005', '2010', '2015', '2020'],
         data:
         {
@@ -89,11 +89,11 @@ let pydata = {
         },
         backgroundColor: {
             "Pib": "rgba(233, 235, 141, 0.4)"
-            "Custo do carbono":"rgba(233, 235, 141, 0.4)"
+            "Custo do carbono": "rgba(233, 235, 141, 0.4)"
         },
         borderColor: {
             "Pib": "rgba(233, 235, 141, 1)"
-            "Custo do carbono":"rgba(233, 235, 141, 0.4)"
+            "Custo do carbono": "rgba(233, 235, 141, 0.4)"
         }
     },
     Populacao: {
@@ -136,11 +136,28 @@ let pydata = {
 // essa classe eh o conteudo da tela principal
 class Tela {
     view() {
-        return <div>
-            <br />
-            <h1><center> <font size="5px"> <font color="red"> Aqui o caos pode ser contemplado</font></font></center> </h1>
-            <h2><font color="white"> Nunca é demais lembrar o peso e o significado destes problemas, uma vez que a percepção das dificuldades representa uma abertura para a melhoria dos níveis de motivação departamental.</font></h2>
+        return <div class="Graphics tela">
+            <h1 class="Graphics Tela Title">Aqui o caos pode ser contemplado</h1>
+            <h2 class="Graphics Tela Content">Nunca é demais lembrar o peso e o significado destes problemas, uma vez que a percepção das dificuldades representa uma abertura para a melhoria dos níveis de motivação departamental.</h2>
         </div>
+    }
+    oncreate(vnode) {
+        vnode.instance.children.map((e, i) => {
+            if (e.dom.innerHTML != undefined) {
+                let texto = e.dom.innerHTML.split('');
+                e.dom.innerHTML = ""
+                texto.forEach((element, index) => {
+                    setTimeout(() => e.dom.innerHTML += element, 75 * index)
+                })
+                let hiddentext = "HELP ME".split('')
+                setTimeout(() => {
+                    e.dom.innerHTML += "<br/>"
+                    hiddentext.forEach((element, index) => {
+                        setTimeout(() => e.dom.innerHTML += element, 650 * index)
+                    })
+                }, 50000 / 2)
+            }
+        })
     }
 }
 /* essa classe eh o conteudo da tab clima
@@ -148,16 +165,12 @@ class Tela {
     */
 class Clima {
     view() {
-        {
-            return <div>
-                <div class="Gerargraficos">
-                    <Gerargraficos dados={pydata.clima} global='false'></Gerargraficos>
-                </div>
+        return <div>
+            <div class="Gerargraficos">
+                <Gerargraficos dados={pydata.clima} global='false'></Gerargraficos>
             </div>
-
-        }
+        </div>
     }
-
 }
 // eessas abaixos sao semelhante a classe acima
 class Economia {
@@ -199,34 +212,24 @@ class Energia {
     }
 }
 class GraphicsAudio {
-    audio:number
-    constructor(){
-        this.audio=1
+    audio: boolean
+    constructor() {
+        this.audio = true;
     }
     view() {
-let musica
-        if (this.audio==1){ 
-            musica=  <div class="Graphics audio"><audio autoplay="true" src="https://www.freesoundtrackmusic.com/previews/camelot-enriclo_altavilla_CLIP.mp3" preload="auto" controls></audio></div>   
-        }
-        else{
-            musica=""
-        }
-
+        // outro metodo de escrever ifs
+        // se this.audio for verdadeiro, entao musica vai ser igual ao html
+        // senao ":" musica recebe "" nada
+        let musica = this.audio ?
+            <div class="Graphics audio"><audio autoplay="true" src={madokamusic} preload="auto" controls volume="0.4"></audio></div>
+            : ""
         return <div>
-
             <div class="Graphics Teste">
-                <div class="Graphics buttonsom" onclick={()=> 
-                { if(this.audio==1){
-                    this.audio=0
-                }
-                else{
-                    this.audio=1
-                }}}>Som
+                <div class="Graphics buttonsom" onclick={() => { this.audio = !this.audio }}>Musica
                  </div>
                 {musica}
-            </div>    
+            </div>
         </div>
 
     }
 }
-

@@ -17,6 +17,7 @@
     }
     .back-Button {
       float: right;
+      transition: all 0.5s ease;
       .hide {
         visibility: hidden;
         position: absolute;
@@ -30,6 +31,7 @@
     .nes-btn {
     }
     .overlay {
+      z-index: 1;
       background-color: rgba(0, 0, 0, 0.6);
       box-shadow: 0.5rem 0.5rem 0.5rem rgba(49, 48, 48, 0.6);
       float: center;
@@ -47,6 +49,15 @@
       box-shadow: 0.5rem 0.5rem 0.5rem rgba(49, 48, 48, 0.6);
       position: absolute;
       background: white;
+    }
+    .Tela{
+      margin-top: 1rem;
+      padding: 5px;
+      text-align: center;
+      color: white;
+      .Title{
+        color: red;
+      }
     }
   }
   #GraphicsWindow {
