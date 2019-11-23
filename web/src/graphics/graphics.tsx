@@ -138,7 +138,10 @@ class Tela {
     view() {
         return <div class="Graphics tela">
             <h1 class="Graphics Tela Title">Aqui o caos pode ser contemplado</h1>
-            <h2 class="Graphics Tela Content">Nunca é demais lembrar o peso e o significado destes problemas, uma vez que a percepção das dificuldades representa uma abertura para a melhoria dos níveis de motivação departamental.</h2>
+              <h2 class="Graphics Tela Content">Nunca é demais lembrar o peso e o significado destes problemas, 
+            uma vez que a percepção das dificuldades representa uma abertura para a 
+            melhoria dos níveis de motivação departamental. 
+            </h2>
         </div>
     }
     oncreate(vnode) {
@@ -173,12 +176,13 @@ class Clima {
             <div class="Gerargraficos">
                 <Gerargraficos dados={pydata.clima} global='false'></Gerargraficos>
             </div>
-            <Leftinfo personagem={"madoka"}>
-                - Você já sentiu que não existem motivos reais para você estar vivo?
-                    Eu não quero dizer no sentido de suicídio. Só quero dizer como nada que fazemos é especial.
-                 Só estar na escola ou trabalhar em algum emprego para alguma companhia.
-                  É como se você fosse completamente substituível e o mundo não sentiria falta se você sumisse.
-                   Isso me fez querer mudar o mundo após eu me graduar. Mas quanto mais velha eu fico, mais eu percebo que é uma forma imatura de se pensar."
+             <Leftinfo personagem={"madoka"}>
+                <h4 class="Graphics Madoka">
+                - Você já sentiu que não existem motivos reais para você estar vivo?<br />
+                    Eu não quero dizer no sentido de suicídio. Só quero dizer como nada que fazemos é especial.<br />
+                 Só estar na escola ou trabalhar em algum emprego para alguma companhia.<br />
+                  É como se você fosse completamente substituível e o mundo não sentiria falta se você sumisse.<br />
+                   Isso me fez querer mudar o mundo após eu me graduar. Mas quanto mais velha eu fico, mais eu percebo que é uma forma imatura de se pensar."<br /> </h4>
             </Leftinfo>
         </div>
     }
@@ -191,6 +195,18 @@ class Economia {
                 <div class="Gerargraficos">
                     <Gerargraficos dados={pydata.Economia} global='false'></Gerargraficos>
                 </div>
+                <Leftinfo personagem={"homura"}>
+                <h4 class="Graphics Homura">    
+                Já perdi a fome<br /> 
+                A  vontade de viver<br/> 
+                Já perdi o mundo<br /> 
+                E um motivo pra morrer<br /> 
+                Não é a tristeza que me mata.<br /> 
+                Nem a alegria que me faz viver. <br />
+                É apenas um vazio... <br />
+                que me deixa assim. <br />
+                Longe de todos e até de mim.</h4>
+            </Leftinfo>
             </div>
 
         }
@@ -204,6 +220,18 @@ class População {
                 <div class="Gerargraficos">
                     <Gerargraficos dados={pydata.Populacao} global='true'></Gerargraficos>
                 </div>
+                 <Leftinfo personagem={"miki"}>
+                <h4 class="Graphics miki">    
+                  -Estou enlouquecendo,<br />
+                  Estou perdendo as estribeiras<br />
+                  Não sei quais vão ser as consequências<br />
+                  Só sei, que serei punida, por minha mente suicida.<br />
+                  Cansei de ser julgada,<br />
+                  Eu quero ser compreendida<br />
+                  Não aguento mais tanta dor,mas já que não conheço o amor<br />
+                  só cultivarei a dor.<br />
+                  </h4>
+            </Leftinfo>
             </div>
 
         }
@@ -216,7 +244,16 @@ class Energia {
             return <div>
                 <div class="Gerargraficos">
                     <Gerargraficos dados={pydata.Energia} global='true'></Gerargraficos>
-                </div>
+                </div
+                    <Leftinfo personagem={"tomoe"}>
+                <h4 class="Graphics tomoe">    
+                <h3> Você sabia??</h3>
+                Que se você se alimentar saudavelmente<br />
+                Dormir bem, praticar exercícios regularmente<br />
+                Não consumir álcool,tabaco ou drogas ilícitas<br />
+                E sempre beber bastante água <br />
+                Você vai morrer do mesmo jeito? <br /> </h4>
+            </Leftinfo>
             </div>
 
         }
