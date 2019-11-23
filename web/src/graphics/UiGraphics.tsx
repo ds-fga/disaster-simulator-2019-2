@@ -337,7 +337,6 @@ let firsttime = {
 // Caixa de informação
 interface AttrsInfo extends IGenericAttrs {
     personagem?: "MADOKA" | "HOMURA" | "TOMOE" | "MIKI";
-    texto?: string;
 }
 
 export class Leftinfo extends Component<AttrsInfo>{
@@ -362,12 +361,11 @@ export class Leftinfo extends Component<AttrsInfo>{
     }
     view(vnode: m.Vnode<AttrsInfo>) {
         let person = vnode.attrs.personagem.toUpperCase();
-        let text = vnode.attrs.texto;
         return <div class="Graphics Leftinfo" onmouseenter={() => this.open = true} onmouseleave={() => this.open = false}>
             <div class="Graphics nes-container with-title is-centered Lefttext">
                 <p class="title">{this.titles[person]}</p>
                 <img src={this.personagens[person]} class="Graphics Leftimage"></img>
-                <p>{text}</p>
+                <p>""</p>
             </div>
         </div >
     }
@@ -376,6 +374,8 @@ export class Leftinfo extends Component<AttrsInfo>{
         vnode.dom.style.transform = `translateX(${x})`
     }
     oncreate(vnode: m.Vnode<AttrsInfo>) {
+        console.log(vnode)
+
         let firsttimee = firsttime[vnode.attrs.personagem.toUpperCase()]
         let tempoescrita = -2000;
         if (firsttimee) {
@@ -383,8 +383,10 @@ export class Leftinfo extends Component<AttrsInfo>{
                 vnode.dom.style.transform = "translateX(-15%)"
             }, 1000)
             // escrita do texto
-            let textorigin = vnode.dom.children[0].children[2]
-            let text = textorigin.innerHTML.split('');
+            let textorigin = vnode.dom.children[0].children[2];
+            let text = vnode.children[0].split('');
+            console.log(text)
+            console.log(textorigin)
             //limpa texto
             textorigin.innerHTML = "";
             //adiciona texto
