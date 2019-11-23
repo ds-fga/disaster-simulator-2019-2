@@ -1,13 +1,14 @@
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, Chart, VScroll, Component } from '../ui';
 import './_graphics.scss';
-import { GraphicsButton, GraphicTabs, GraphicTab, Gerargraficos, BackButton } from './UiGraphics';
+import { GraphicsButton, GraphicTabs, GraphicTab, Gerargraficos, BackButton, Leftinfo } from './UiGraphics';
 import telaback from './src/telaback.jpg';
 import climaback from './src/climaback.jpg';
 import economiaback from './src/economiaback.jpg';
 import populacaoback from './src/populacaoback.jpg';
 import energiaback from './src/energiaback.jpg';
 import madokamusic from './src/madokamusic.mp3'
+
 /* essa eh a classe principal que vai mostrar todo o conteudo que vai mostrar na tela
 classe seria coisas como <div> <span> <audio> <ul> <li> que podem ser personalizadas a gosto
 nesse caso a pagina inicial estaria requisitando nossa pagina usando <Graphics></Graphics>*/
@@ -54,7 +55,6 @@ export class Graphics {
         </Window>
     }
 }
-
 
 // algumas dessas classes acima nao estao nesse documento, elas podem ser encontradas no UiGraphics.tsx
 // essa eh a variavel que guarda os dados dos graficos
@@ -164,11 +164,16 @@ class Tela {
     o conteudo eh formado por um grafico global mais diversos botoes que direcionam para graficos especificos
     */
 class Clima {
+    infotext: string;
+    constructor(){
+        this.infotext= "- Você já sentiu que não existem motivos reais para você estar vivo? Eu não quero dizer no sentido de suicídio. Só quero dizer como nada que fazemos é especial. Só estar na escola ou trabalhar em algum emprego para alguma companhia. É como se você fosse completamente substituível e o mundo não sentiria falta se você sumisse. Isso me fez querer mudar o mundo após eu me graduar. Mas quanto mais velha eu fico, mais eu percebo que é uma forma imatura de se pensar."
+    }
     view() {
         return <div>
             <div class="Gerargraficos">
                 <Gerargraficos dados={pydata.clima} global='false'></Gerargraficos>
             </div>
+            <Leftinfo personagem={"madoka"} texto={this.infotext} />
         </div>
     }
 }

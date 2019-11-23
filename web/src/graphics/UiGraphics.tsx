@@ -3,6 +3,10 @@ import { MithrilTsxComponent as Component } from 'mithril-tsx-component';
 import { model } from '../model'
 import { pages } from '../main'
 import ChartJS = require('chart.js');
+import madokagif from './src/madokagifs.gif'
+import mikigif from './src/mikigif.gif'
+import homuragif from './src/homuragif.gif'
+import tomoegif from './src/tomoegif.gif'
 
 interface IGenericAttrs {
     class?: string | string[];
@@ -10,7 +14,7 @@ interface IGenericAttrs {
     onclick?: Function;
 }
 
-}
+// TABS
 export abstract class Elem extends Component<Object> {
     // Classe abstrata
 }
@@ -80,7 +84,7 @@ export class GraphicTab extends Component<Sattrs> {
         </div>
     }
 }
-
+// BUTOES
 export class GraphicsButton extends Component<Sattrs>{
     view(vnode: m.Vnode<Sattrs>) {
         let extraclass = vnode.attrs.btn || "normal";
@@ -92,6 +96,35 @@ interface Gattrs {
     dados?: object;
     global?: string;
 }
+
+// Classe dos graficos
+interface IChartAttrs extends IGenericAttrs {
+    type: string;
+    data: object;
+    options: object;
+}
+// GERA GRAFICO
+export class GraphicsChart extends Component<IChartAttrs> {
+    chart: any;
+
+    oncreate(vnode: m.Vnode<IChartAttrs>) {
+        let { type, data, options } = vnode.attrs,
+            canvas = document.createElement('CANVAS'),
+            dom: HTMLElement = vnode.dom;
+        dom.appendChild(canvas);
+        this.chart = new ChartJS(canvas, { type: type, data: data, options: options });
+    }
+
+    view(vnode: m.Vnode<IChartAttrs>) {
+        let attrs = { ...vnode.attrs };
+        ["type", "data", "options"].map(x => { delete attrs[x] });
+        return <div class="Graphics chart-container">
+            <div class="Chart" {...attrs}></div>
+        </div >
+    }
+}
+
+// CONTEUDO DAS TABS COM OS GRAFICOS
 export class Gerargraficos extends Component<Gattrs>{
 
     selected: number;
@@ -231,33 +264,6 @@ export class Gerargraficos extends Component<Gattrs>{
     }
 }
 
-// Classe dos graficos
-interface IChartAttrs extends IGenericAttrs {
-    type: string;
-    data: object;
-    options: object;
-}
-
-export class GraphicsChart extends Component<IChartAttrs> {
-    chart: any;
-
-    oncreate(vnode: m.Vnode<IChartAttrs>) {
-        let { type, data, options } = vnode.attrs,
-            canvas = document.createElement('CANVAS'),
-            dom: HTMLElement = vnode.dom;
-        dom.appendChild(canvas);
-        this.chart = new ChartJS(canvas, { type: type, data: data, options: options });
-    }
-
-    view(vnode: m.Vnode<IChartAttrs>) {
-        let attrs = { ...vnode.attrs };
-        ["type", "data", "options"].map(x => { delete attrs[x] });
-        return <div class="Graphics chart-container">
-            <div class="Chart" {...attrs}></div>
-        </div >
-    }
-}
-
 
 // botao voltar
 interface Backattrs {
@@ -268,9 +274,10 @@ export class BackButton extends Component<Backattrs> {
     hidebutton: string;
     btn: string;
     nomepagina
+    open: boolean;
     constructor() {
         super()
-        this.hidebutton = "hide";
+        this.open = false;
         this.btn = "warning";
         this.nomepagina = ["Inicio", "Introdução", "Eventos", "Estilo",
             "Ciência", "Política", "Economia", "Conspiração", "Cultura", "Gráficos",
@@ -281,7 +288,7 @@ export class BackButton extends Component<Backattrs> {
         let linkpagina = []
         let color: string;
         let corbotao = false;
-        let buttons;
+        let buttons: HTMLElement
         for (let ii in pages) {
             paginas.push(ii);
             linkpagina.push(pages[ii])
@@ -298,12 +305,99 @@ export class BackButton extends Component<Backattrs> {
             }
         })
         //}
-        return <span class="Graphics back-Button" onmouseenter={() => { this.hidebutton = "show"; this.btn = "primary" }}
-            onmouseleave={() => { this.hidebutton = "hide"; this.btn = "warning" }} >
+        return <div class="Graphics back-Button" onmouseenter={() => { this.open = true; this.btn = "primary" }}
+            onmouseleave={() => { this.open = false; this.btn = "warning" }} >
             <button type="button" class={`Graphics nes-btn is-${this.btn}`} onclick={() => { window.close() }}>Fechar</button>
-            <div class={`Graphics back-Button ${this.hidebutton}`}>
+            <div class={`Graphics back-Button show`}>
                 {buttons}
             </div>
-        </span>
+        </div>
+    }
+    onupdate(vnode) {
+        let y = this.open ? "0%" : "-100%";
+        let visibility = this.open ? "visible" : "hidden";
+        let opacity = this.open ? "100%" : "0"
+        vnode.dom.children[1].style.visibility = visibility;
+        vnode.dom.children[1].style.transform = `translateY(${y})`
+        vnode.dom.children[1].style.opacity = opacity;
+    }
+    oncreate(vnode) {
+        vnode.dom.children[1].style.visibility = "hidden";
+        vnode.dom.children[1].style.transform = "translateY(-100%)"
+        vnode.dom.children[1].style.opacity = "0";
+        vnode.dom.children[1].style.transition = "all 0.5s ease";
+    }
+}
+let firsttime = {
+    MADOKA: true,
+    HOMURA: true,
+    TOMOE: true,
+    MIKI: true
+}
+// Caixa de informação
+interface AttrsInfo extends IGenericAttrs {
+    personagem?: "MADOKA" | "HOMURA" | "TOMOE" | "MIKI";
+    texto?: string;
+}
+
+export class Leftinfo extends Component<AttrsInfo>{
+    open: boolean
+    personagens: object;
+    titles: object
+    constructor() {
+        super()
+        this.open = false;
+        this.personagens = {
+            MADOKA: madokagif,
+            HOMURA: homuragif,
+            TOMOE: tomoegif,
+            MIKI: mikigif
+        }
+        this.titles = {
+            MADOKA: "Madoka Kaname",
+            HOMURA: "Homura Akemi",
+            TOMOE: "Mami Tomoe",
+            MIKI: "Sayaka Miki"
+        }
+    }
+    view(vnode: m.Vnode<AttrsInfo>) {
+        let person = vnode.attrs.personagem.toUpperCase();
+        let text = vnode.attrs.texto;
+        return <div class="Graphics Leftinfo" onmouseenter={() => this.open = true} onmouseleave={() => this.open = false}>
+            <div class="Graphics nes-container with-title is-centered Lefttext">
+                <p class="title">{this.titles[person]}</p>
+                <img src={this.personagens[person]} class="Graphics Leftimage"></img>
+                <p>{text}</p>
+            </div>
+        </div >
+    }
+    onupdate(vnode) {
+        let x = this.open ? "-15%" : "-105%";
+        vnode.dom.style.transform = `translateX(${x})`
+    }
+    oncreate(vnode: m.Vnode<AttrsInfo>) {
+        let firsttimee = firsttime[vnode.attrs.personagem.toUpperCase()]
+        let tempoescrita = -2000;
+        if (firsttimee) {
+            setTimeout(() => {
+                vnode.dom.style.transform = "translateX(-15%)"
+            }, 1000)
+            // escrita do texto
+            let textorigin = vnode.dom.children[0].children[2]
+            let text = textorigin.innerHTML.split('');
+            //limpa texto
+            textorigin.innerHTML = "";
+            //adiciona texto
+            text.map((element, index) => {
+                setTimeout(() => textorigin.innerHTML += element, index * 75)
+                tempoescrita = index * 75;
+            });
+        }
+        firsttime[vnode.attrs.personagem.toUpperCase()] = false;
+        // fecha a caixa de informação
+        setTimeout(() => {
+            vnode.dom.style.transform = "translateX(-105%)"
+        }, tempoescrita + 2000)
+
     }
 }
