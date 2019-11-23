@@ -7,6 +7,7 @@ import madokagif from './src/madokagifs.gif'
 import mikigif from './src/mikigif.gif'
 import homuragif from './src/homuragif.gif'
 import tomoegif from './src/tomoegif.gif'
+import demoingif from './src/demoin.gif'
 
 interface IGenericAttrs {
     class?: string | string[];
