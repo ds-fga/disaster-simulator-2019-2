@@ -365,7 +365,7 @@ export class Leftinfo extends Component<AttrsInfo>{
             <div class="Graphics nes-container with-title is-centered Lefttext">
                 <p class="title">{this.titles[person]}</p>
                 <img src={this.personagens[person]} class="Graphics Leftimage"></img>
-                <p>""</p>
+                <p>{vnode.children}</p>
             </div>
         </div >
     }

@@ -142,6 +142,7 @@ class Tela {
         </div>
     }
     oncreate(vnode) {
+        console.log(vnode)
         vnode.instance.children.map((e, i) => {
             if (e.dom.innerHTML != undefined) {
                 let texto = e.dom.innerHTML.split('');
@@ -174,7 +175,7 @@ class Clima {
             </div>
             <Leftinfo personagem={"madoka"}>
                 - Você já sentiu que não existem motivos reais para você estar vivo?
-                Eu não quero dizer no sentido de suicídio. Só quero dizer como nada que fazemos é especial.
+                    Eu não quero dizer no sentido de suicídio. Só quero dizer como nada que fazemos é especial.
                  Só estar na escola ou trabalhar em algum emprego para alguma companhia.
                   É como se você fosse completamente substituível e o mundo não sentiria falta se você sumisse.
                    Isso me fez querer mudar o mundo após eu me graduar. Mas quanto mais velha eu fico, mais eu percebo que é uma forma imatura de se pensar."
