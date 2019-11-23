@@ -150,16 +150,18 @@ class Tela {
             if (e.dom.innerHTML != undefined) {
                 let texto = e.dom.innerHTML.split('');
                 e.dom.innerHTML = ""
-                texto.forEach((element, index) => {
-                    setTimeout(() => e.dom.innerHTML += element, 75 * index)
-                })
-                let hiddentext = "HELP ME".split('')
-                setTimeout(() => {
-                    e.dom.innerHTML += "<br/>"
-                    hiddentext.forEach((element, index) => {
-                        setTimeout(() => e.dom.innerHTML += element, 650 * index)
-                    })
-                }, 50000 / 2)
+                setTimeout(()=>{
+                        texto.forEach((element, index) => {
+                            setTimeout(() => e.dom.innerHTML += element, 75 * index)
+                        })
+                    let hiddentext = "HELP ME".split('')
+                        setTimeout(() => {
+                            e.dom.innerHTML += "<br/>"
+                            hiddentext.forEach((element, index) => {
+                                setTimeout(() => e.dom.innerHTML += element, 650 * index)
+                            })
+                        }, 50000 / 2)
+                }, 500);
             }
         })
     }
@@ -177,12 +179,12 @@ class Clima {
                 <Gerargraficos dados={pydata.clima} global='false'></Gerargraficos>
             </div>
              <Leftinfo personagem={"madoka"}>
-                <h4 class="Graphics Madoka">
-                - Você já sentiu que não existem motivos reais para você estar vivo?<br />
-                    Eu não quero dizer no sentido de suicídio. Só quero dizer como nada que fazemos é especial.<br />
-                 Só estar na escola ou trabalhar em algum emprego para alguma companhia.<br />
-                  É como se você fosse completamente substituível e o mundo não sentiria falta se você sumisse.<br />
-                   Isso me fez querer mudar o mundo após eu me graduar. Mas quanto mais velha eu fico, mais eu percebo que é uma forma imatura de se pensar."<br /> </h4>
+                Você já sentiu que não existem motivos reais para você estar vivo?
+                Eu não quero dizer no sentido de suicídio. Só quero dizer como nada que fazemos é especial.
+                Só estar na escola ou trabalhar em algum emprego para alguma companhia.
+                É como se você fosse completamente substituível e o mundo não sentiria falta se você sumisse.
+                Isso me fez querer mudar o mundo após eu me graduar. Mas quanto mais velha eu fico,
+                mais eu percebo que é uma forma imatura de se pensar.
             </Leftinfo>
         </div>
     }
@@ -195,17 +197,16 @@ class Economia {
                 <div class="Gerargraficos">
                     <Gerargraficos dados={pydata.Economia} global='false'></Gerargraficos>
                 </div>
-                <Leftinfo personagem={"homura"}>
-                <h4 class="Graphics Homura">    
-                Já perdi a fome<br /> 
-                A  vontade de viver<br/> 
-                Já perdi o mundo<br /> 
-                E um motivo pra morrer<br /> 
-                Não é a tristeza que me mata.<br /> 
-                Nem a alegria que me faz viver. <br />
-                É apenas um vazio... <br />
-                que me deixa assim. <br />
-                Longe de todos e até de mim.</h4>
+                <Leftinfo personagem={"homura"}>   
+                Já perdi a fome
+                A  vontade de viver
+                Já perdi o mundo
+                E um motivo pra morrer
+                Não é a tristeza que me mata.
+                Nem a alegria que me faz viver. 
+                É apenas um vazio... 
+                que me deixa assim. 
+                Longe de todos e até de mim.
             </Leftinfo>
             </div>
 
@@ -221,16 +222,15 @@ class População {
                     <Gerargraficos dados={pydata.Populacao} global='true'></Gerargraficos>
                 </div>
                  <Leftinfo personagem={"miki"}>
-                <h4 class="Graphics miki">    
-                  -Estou enlouquecendo,<br />
-                  Estou perdendo as estribeiras<br />
-                  Não sei quais vão ser as consequências<br />
-                  Só sei, que serei punida, por minha mente suicida.<br />
-                  Cansei de ser julgada,<br />
-                  Eu quero ser compreendida<br />
-                  Não aguento mais tanta dor,mas já que não conheço o amor<br />
-                  só cultivarei a dor.<br />
-                  </h4>
+                  Estou enlouquecendo,
+                  Estou perdendo as estribeiras
+                  Não sei quais vão ser as consequências
+                  Só sei, que serei punida, por minha mente suicida.
+                  Cansei de ser julgada,
+                  Eu quero ser compreendida
+                  Não aguento mais tanta dor,mas já que não conheço o amor
+                  só cultivarei a dor.
+                  
             </Leftinfo>
             </div>
 
@@ -244,15 +244,14 @@ class Energia {
             return <div>
                 <div class="Gerargraficos">
                     <Gerargraficos dados={pydata.Energia} global='true'></Gerargraficos>
-                </div
-                    <Leftinfo personagem={"tomoe"}>
-                <h4 class="Graphics tomoe">    
-                <h3> Você sabia??</h3>
-                Que se você se alimentar saudavelmente<br />
-                Dormir bem, praticar exercícios regularmente<br />
-                Não consumir álcool,tabaco ou drogas ilícitas<br />
-                E sempre beber bastante água <br />
-                Você vai morrer do mesmo jeito? <br /> </h4>
+                </div>
+                <Leftinfo personagem={"tomoe"}>  
+                Você sabia??
+                Que se você se alimentar saudavelmente
+                Dormir bem, praticar exercícios regularmente
+                Não consumir álcool,tabaco ou drogas ilícitas
+                E sempre beber bastante água
+                Você vai morrer do mesmo jeito?
             </Leftinfo>
             </div>
 

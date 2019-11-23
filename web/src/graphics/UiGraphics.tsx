@@ -375,7 +375,6 @@ export class Leftinfo extends Component<AttrsInfo>{
         vnode.dom.style.transform = `translateX(${x})`
     }
     oncreate(vnode: m.Vnode<AttrsInfo>) {
-        console.log(vnode)
 
         let firsttimee = firsttime[vnode.attrs.personagem.toUpperCase()]
         let tempoescrita = -2000;
@@ -386,8 +385,6 @@ export class Leftinfo extends Component<AttrsInfo>{
             // escrita do texto
             let textorigin = vnode.dom.children[0].children[2];
             let text = vnode.children[0].split('');
-            console.log(text)
-            console.log(textorigin)
             //limpa texto
             textorigin.innerHTML = "";
             //adiciona texto
