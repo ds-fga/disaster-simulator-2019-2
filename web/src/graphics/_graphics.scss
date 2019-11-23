@@ -82,6 +82,21 @@
       color: red;
     }
   }
+  .Madoka{
+    color:desaturate($color: #f50799, $amount: 0);
+    text-align: center;
+  }
+  .Homura{
+    color:black;
+    text-align:left;
+  }
+  .miki{
+    color:blue;
+  }
+  .tomoe{
+    color:desaturate($color: #d8c410, $amount: 0);
+    text-align: right;
+  }
 }
 #GraphicsWindow {
   background: black;
