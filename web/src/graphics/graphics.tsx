@@ -146,22 +146,26 @@ class Tela {
     }
     oncreate(vnode) {
         console.log(vnode)
+        let backuptext = []
         vnode.instance.children.map((e, i) => {
             if (e.dom.innerHTML != undefined) {
                 let texto = e.dom.innerHTML.split('');
-                e.dom.innerHTML = ""
+                    e.dom.innerHTML = ""
+                let tempoescrita = backuptext.length == 0? 500 : (backuptext[backuptext.length-1].length + 10)*75
+                    backuptext.push(texto)
                 setTimeout(()=>{
-                        texto.forEach((element, index) => {
-                            setTimeout(() => e.dom.innerHTML += element, 75 * index)
-                        })
-                    let hiddentext = "HELP ME".split('')
-                        setTimeout(() => {
-                            e.dom.innerHTML += "<br/>"
-                            hiddentext.forEach((element, index) => {
-                                setTimeout(() => e.dom.innerHTML += element, 650 * index)
+                            texto.forEach((element, index) => {
+                                setTimeout(() => e.dom.innerHTML += element, 75 * index)
                             })
-                        }, 50000 / 2)
-                }, 500);
+                        let hiddentext = "HELP".split('')
+                            setTimeout(() => {
+                                e.dom.innerHTML += "<br/>"
+                                hiddentext.forEach((element, index) => {
+                                    setTimeout(() => e.dom.innerHTML += element, 650 * index)
+                                })
+                            }, 50000 / 1)
+                }, tempoescrita)
+                
             }
         })
     }
