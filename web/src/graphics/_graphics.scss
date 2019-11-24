@@ -4,12 +4,12 @@
     padding: 10px;
     float: left;
     position: absolute;
-    background-color: rgba(216, 36, 36, 0.7);
+    background-color: rgba(0, 0, 0, 0.2);
     width: 50%;
     height: auto;
     z-index: 10;
     border-radius: 0px 5px 5px 0;
-    transition: all 1s ease;
+    transform: translateX(-105%)
   }
   .Lefttext{
     margin: 15px;
@@ -82,21 +82,6 @@
     .Title {
       color: red;
     }
-  }
-  .Madoka{
-    color:desaturate($color: #f50799, $amount: 0);
-    text-align: center;
-  }
-  .Homura{
-    color:black;
-    text-align:left;
-  }
-  .miki{
-    color:blue;
-  }
-  .tomoe{
-    color:desaturate($color: #d8c410, $amount: 0);
-    text-align: right;
   }
 }
 #GraphicsWindow {

@@ -157,7 +157,7 @@ class Tela {
                             texto.forEach((element, index) => {
                                 setTimeout(() => e.dom.innerHTML += element, 75 * index)
                             })
-                        let hiddentext = "HELP".split('')
+                            let hiddentext = "HELP".split('')
                             setTimeout(() => {
                                 e.dom.innerHTML += "<br/>"
                                 hiddentext.forEach((element, index) => {

@@ -344,6 +344,7 @@ export class Leftinfo extends Component<AttrsInfo>{
     open: boolean
     personagens: object;
     titles: object
+    background: object
     constructor() {
         super()
         this.open = false;
@@ -358,6 +359,12 @@ export class Leftinfo extends Component<AttrsInfo>{
             HOMURA: "Homura Akemi",
             TOMOE: "Mami Tomoe",
             MIKI: "Sayaka Miki"
+        }
+        this.background = {
+            MADOKA: "rgba(172, 30, 85, 0.6)",
+            HOMURA: "rgba(131, 158, 34, 0.6)",
+            TOMOE: "rgba(173, 98, 36, 0.6)",
+            MIKI: "rgba(32, 23, 156, 0.6)"
         }
     }
     view(vnode: m.Vnode<AttrsInfo>) {
@@ -375,7 +382,12 @@ export class Leftinfo extends Component<AttrsInfo>{
         vnode.dom.style.transform = `translateX(${x})`
     }
     oncreate(vnode: m.Vnode<AttrsInfo>) {
-
+        console.log(vnode)
+        vnode.dom.style.color = this.background[vnode.attrs.personagem.toUpperCase()]
+        vnode.dom.style.textShadow = "1px 1px 1px rgba(0, 0, 0, 0.5)";
+        vnode.dom.style.transition = "all 1s ease";
+        vnode.dom.style.backgroundColor = this.background[vnode.attrs.personagem.toUpperCase()]
+        
         let firsttimee = firsttime[vnode.attrs.personagem.toUpperCase()]
         let tempoescrita = -2000;
         if (firsttimee) {
