@@ -12,6 +12,7 @@ import techsDB from './techs';
  */
 export class Science {
 
+    effectEnabled: boolean;
     estado: object;
 
     constructor(){
@@ -22,20 +23,24 @@ export class Science {
             currentArea: "",
             currentTech: "",
             searchbox: "",
-            currentTechSpec: ""
-
-        }
+            currentTechSpec: "",
+        };
+        this.effectEnabled = true;
     }
 
     oninit () {
+        console.log("eu quero morreeeeeeer");
+        console.log("Isso não é uma piada");
+        console.log("É um pedido de socorro");
         const newTechsFilter = {};
-      this.estado.techs.forEach((tech) => {
-        if (!(tech.type_tech in newTechsFilter)) {
-          newTechsFilter[tech.type_tech] = [];
-        }
-        newTechsFilter[tech.type_tech].push(tech);
-      });
-      this.estado.techsFilter = newTechsFilter;
+        this.estado.techs.forEach((tech) => {
+            if (!(tech.type_tech in newTechsFilter)) {
+            newTechsFilter[tech.type_tech] = [];
+            }
+            newTechsFilter[tech.type_tech].push(tech);
+        });
+        this.estado.techsFilter = newTechsFilter;
+        var element = document.getElementById("scienceWindow");
     }
 
     voltar(){
@@ -45,15 +50,50 @@ export class Science {
         window.setTimeout(function(){element.parentNode.removeChild(element)}, 550);
     }
 
+    toggleEffect(){
+        const element = document.getElementById("scienceWindow");
+        const techs = document.querySelectorAll(".tech-btn") as HTMLCollectionOf<HTMLElement>;
+        const tabs = document.querySelectorAll(".Science__btn") as HTMLCollectionOf<HTMLElement>;
+        if (this.effectEnabled){
+            element.classList.remove("crt");
+            element.style.animation = "";
+            for(let i = 0; i < techs.length; i++){
+                techs[i].style = "";
+            }
+            for(let i = 0; i < tabs.length; i++){
+                tabs[i].style = "";
+            }
+        }else {
+            element.classList.add("crt");
+            element.style.animation = "textShadow 1.6s infinite";
+            for(let i = 0; i < techs.length; i++){
+                techs[i].style.animation = "textShadow 1.6s infinite";
+            }
+            for(let i = 0; i < tabs.length; i++){
+                tabs[i].style.animation = "textShadow 1.6s infinite";
+            }
+        }
+        this.effectEnabled = !this.effectEnabled;
+    }
+
+    oncreate(){
+        const element = document.getElementById("scienceWindow");
+        element.classList.add("crt");
+    }
+
     view () {
 
-        const { techs, searchbox, currentTech, techsFilter } = this.estado;
+        const { techs, searchbox, currentTech, techsFilter} = this.estado;
         const filteredtechs = techs.filter(tech => tech.title.toLowerCase().includes(searchbox.toLowerCase()) && tech.status !== "1" )
+        const element = document.getElementById("scienceWindow");
 
         return <Window id="scienceWindow" class="science">
 
             <Sidebar class="science__sidebar" title={
-                <button class="nes-btn science__sidebar-btn" onclick={this.voltar}>{"<"} Voltar</button>
+                <div class="science__sidebar-btns">
+                    <button class="nes-btn science__sidebar-btn" onclick={this.voltar}>{"<"} Voltar</button>
+                    <button class="nes-btn science__sidebar-btn" onclick={this.toggleEffect}>Efeitos</button>
+                </div>
             }/>
 
             <div class="scienceContent">
