@@ -2,26 +2,31 @@ import m from 'mithril';
 
 import { Window, Tab, Tabs, Btn, Sidebar, Component } from '../ui';
 
-import terminatorImg from '../../src/illuminati/piramide.jpg';
-import rainhaImg from '../../src/illuminati/rainha.jpg';
-import alGoreImg from '../../src/illuminati/al gore.jpg';
-import billImg from '../../src/illuminati/bill.jpg';
-import jeffImg from '../../src/illuminati/jeff.jpg';
-import joesleyImg from '../../src/illuminati/joesley.jpg';
-import michaelImg from '../../src/illuminati/michael.jpg';
-import obamaImg from '../../src/illuminati/obama.jpg';
-import xiImg from '../../src/illuminati/xi.jpg';
-import papaImg from '../../src/illuminati/papa.jpg';
-import silvioImg from '../../src/illuminati/silvio.jpg';
-import optimusImg from '../../src/illuminati/optimus.jpg';
-import putinImg from '../../src/illuminati/putin.jpg';
-import rainhaJson from '../../src/illuminati/rainha.json'; 
-import alGoreJson from '../../src/illuminati/alGore.json';
-import billJson from '../../src/illuminati/bill.json';
-import jeffJson from '../../src/illuminati/jeff.json';
-import putinJson from '../../src/illuminati/putin.json';
-import xiJson from '../../src/illuminati/xi.json';
-
+import terminatorImg from './piramide.jpg';
+import rainhaImg from './rainha.jpg';
+import alGoreImg from './al gore.jpg';
+import billImg from './bill.jpg';
+import jeffImg from './jeff.jpg';
+import joesleyImg from './joesley.jpg';
+import michaelImg from './michael.jpg';
+import obamaImg from './obama.jpg';
+import xiImg from './xi.jpg';
+import papaImg from './papa.jpg';
+import silvioImg from './silvio.jpg';
+import optimusImg from './optimus.jpg';
+import putinImg from './putin.jpg';
+import rainhaJson from './rainha.json'; 
+import alGoreJson from './alGore.json';
+import billJson from './bill.json';
+import jeffJson from './jeff.json';
+import putinJson from './putin.json';
+import xiJson from './xi.json';
+import joesleyJson from './joesley.json';
+import michaelJson from './michael.json';
+import obamaJson from './obama.json';
+import papaJson from './papa.json';
+import silvioJson from './silvio.json';
+import optimusJson from './optimus.json';
 
 
 let event = {
@@ -72,37 +77,37 @@ let illuminatiList = [
         name: "Michael Jackson",
         description: <img src={michaelImg} width="250" height="290" alt= "Imagem Michael"/>,
         introduction: "Cultura",
-        information: alGoreJson,
+        information: michaelJson,
     },
     {
         name: "Papa Francisco",
         description: <img src={papaImg} width="250" height="290" alt= "Imagem Papa"/>,
         introduction: "Religião",
-        information: alGoreJson,
+        information: papaJson,
     },
     {
         name: "Silvio Santos",
         description: <img src={silvioImg} width="250" height="290" alt= "Imagem Silvio"/>,
         introduction: "Mídia/Informação",
-        information: alGoreJson,
+        information: silvioJson,
     },
     {
         name: "Obama",
         description: <img src={obamaImg} width="250" height="290" alt= "Imagem Obama"/>,
         introduction: "Saúde",
-        information: alGoreJson,
+        information: obamaJson,
     },
     {
         name: "Optimus Prime",
         description: <img src={optimusImg} width="250" height="290" alt= "Imagem Optimus"/>,
         introduction: "Transporte",
-        information: alGoreJson,
+        information: optimusJson,
     },
     {
         name: "Joesley",
         description: <img src={joesleyImg} width="250" height="290" alt= "Imagem Joesley"/>,
         introduction: "Agropecuária",
-        information:alGoreJson,
+        information: joesleyJson,
     },
 ]
 
