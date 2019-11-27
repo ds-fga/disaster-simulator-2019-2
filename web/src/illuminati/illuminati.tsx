@@ -41,72 +41,84 @@ let illuminatiList = [
         description: <img src={alGoreImg} width="250" height="290" alt= "Imagem Al Gore"/>,
         introduction: "Ambiente",
         information: alGoreJson,
+        taxa: "50% alinhamento",
     },
     {
         name: "Rainha Elizabeth II",
         description: <img src={rainhaImg} width="250" height="290" alt= "Imagem Rainha"/>,
         introduction: "Politica",
         information: rainhaJson,
+        taxa: "50% alinhamento",
     },
     {
         name: "Bill Gates",
         description: <img src={billImg} width="250" height="290" alt= "Imagem Bill Gates"/>,
         introduction: "Tecnologia",
         information: billJson,
+        taxa: "50% alinhamento",
     },
     {
         name: "Jeff Bezos",
         description: <img src={jeffImg} width="250" height="290" alt= "Imagem Jeff"/>,
         introduction: "Comércio",
         information: jeffJson,
+        taxa: "50% alinhamento",
     },
     {
         name: "Putin",
         description: <img src={putinImg} width="250" height="290" alt= "Imagem Putin"/>,
         introduction: "Guerra",
         information: putinJson,
+        taxa: "50% alinhamento",
     },
     {
         name: "Xi Jinping",
         description: <img src={xiImg} width="250" height="290" alt= "Imagem Xi"/>,
         introduction: "Indústria",
         information: xiJson,
+        taxa: "50% alinhamento",
     },
     {
         name: "Michael Jackson",
         description: <img src={michaelImg} width="250" height="290" alt= "Imagem Michael"/>,
         introduction: "Cultura",
         information: michaelJson,
+        taxa: "50% alinhamento",
     },
     {
         name: "Papa Francisco",
         description: <img src={papaImg} width="250" height="290" alt= "Imagem Papa"/>,
         introduction: "Religião",
         information: papaJson,
+        taxa: "50% alinhamento",
     },
     {
         name: "Silvio Santos",
         description: <img src={silvioImg} width="250" height="290" alt= "Imagem Silvio"/>,
         introduction: "Mídia/Informação",
         information: silvioJson,
+        taxa: "50% alinhamento",
     },
     {
         name: "Obama",
         description: <img src={obamaImg} width="250" height="290" alt= "Imagem Obama"/>,
         introduction: "Saúde",
         information: obamaJson,
+        taxa: "50% alinhamento",
     },
     {
         name: "Optimus Prime",
         description: <img src={optimusImg} width="250" height="290" alt= "Imagem Optimus"/>,
         introduction: "Transporte",
         information: optimusJson,
+        taxa: "50% alinhamento",
     },
     {
         name: "Joesley",
         description: <img src={joesleyImg} width="250" height="290" alt= "Imagem Joesley"/>,
         introduction: "Agropecuária",
         information: joesleyJson,
+        taxa: "50% alinhamento",
     },
 ]
 
@@ -139,12 +151,13 @@ export class Illuminati {
 function renderIlluminattiTab(x) {
     return <Tab title={x.name}>
         <div class="IlluminatiSheet">
-        <ul class = "illiminati_side">
+        <ul class = "illuminati_side">
                 
-                <Sidebar title = {x.introduction}></Sidebar>
+        <Sidebar class="description" title = {x.introduction}></Sidebar>
+        <Sidebar class="taxa" title = {x.taxa}></Sidebar>
             </ul>
             <u1 class = "IlluminatiImage"> {x.description}</u1>
-
+            
         </div>
         <div class = "IlluminatInformation">
             <h2>Informações</h2>
@@ -160,7 +173,6 @@ function renderIlluminattiTab(x) {
                     <dd>Mecanica: {x.information.habilidades.mecanica}</dd>
                     <dd>Direção: {x.information.habilidades.direcao}</dd>
             </dl>
-
 
         </div>
     </Tab>
