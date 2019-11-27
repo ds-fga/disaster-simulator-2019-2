@@ -1,5 +1,5 @@
 {
-    "nome": "Jeffrey Preston Bezos",
+    "nome": "Jeff Bezos",
     "idade": "51",
     "poder": "Riqueza", 
     "atributos": {
@@ -8,8 +8,8 @@
         "influencia": 26,
     },
     "habilidades": {
-        "politica": 10,
-        "mecanica": 15, 
-        "direcao": 36,
-    }
+        "a": "",
+        "b": "",
+        "c": "",
+      }
 }

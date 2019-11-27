@@ -1,15 +1,14 @@
 {
     "nome": "Michael Joseph Jackson",
     "idade": "61",
-    "poder": "Política", 
     "atributos": {
         "forca": 5,
         "inteligencia": 15,
         "influencia": 20,
     },
     "habilidades": {
-        "politica": 20,
-        "mecanica": 15, 
-        "direcao": 16,
+        "a": "Gingado",
+        "b": "Canto",
+        "c": "Mudança de Cor",
+      }
     }
-}

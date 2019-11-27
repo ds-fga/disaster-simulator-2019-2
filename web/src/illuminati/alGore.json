@@ -1,5 +1,5 @@
 {
-    "nome": "Albert Arnold Gore Jr.",
+    "nome": "Al Gore",
     "idade": "71",
     "poder": "Política", 
     "atributos": {
@@ -8,8 +8,8 @@
         "influencia": 22,
     },
     "habilidades": {
-        "politica": 35,
-        "mecanica": 18, 
-        "direcao": 9,
-    }
+        "a": "",
+        "b": "",
+        "c": "",
+      }
 }

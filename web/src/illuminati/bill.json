@@ -1,5 +1,5 @@
 {
-    "nome": "William Henry Gates III",
+    "nome": "Bill Gates",
     "idade": "64",
     "poder": "Tecnologia", 
     "atributos": {
@@ -8,8 +8,8 @@
         "influencia": 22,
     },
     "habilidades": {
-        "politica": 8,
-        "mecanica": 26, 
-        "direcao": 32,
-    }
+        "a": "",
+        "b": "",
+        "c": "",
+      }
 }

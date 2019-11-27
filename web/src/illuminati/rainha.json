@@ -1,5 +1,5 @@
 {
-    "nome": "Elizabeth Alexandra Mary Windsor",
+    "nome": "Elizabeth II",
     "idade": "Infinity",
     "poder": "Política", 
     "atributos": {
@@ -8,8 +8,8 @@
         "influencia": 20,
     },
     "habilidades": {
-        "politica": 20,
-        "mecanica": 15, 
-        "direcao": 16,
-    }
+        "a": "",
+        "b": "",
+        "c": "",
+      }
 }
