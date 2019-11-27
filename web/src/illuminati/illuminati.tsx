@@ -2,31 +2,21 @@ import m from 'mithril';
 
 import { Window, Tab, Tabs, Btn, Sidebar, Component } from '../ui';
 
-import terminatorImg from './piramide.jpg';
-import rainhaImg from './rainha.jpg';
-import alGoreImg from './al gore.jpg';
-import billImg from './bill.jpg';
-import jeffImg from './jeff.jpg';
-import joesleyImg from './joesley.jpg';
-import michaelImg from './michael.jpg';
-import obamaImg from './obama.jpg';
-import xiImg from './xi.jpg';
-import papaImg from './papa.jpg';
-import silvioImg from './silvio.jpg';
-import optimusImg from './optimus.jpg';
-import putinImg from './putin.jpg';
-import rainhaJson from './rainha.json'; 
-import alGoreJson from './alGore.json';
-import billJson from './bill.json';
-import jeffJson from './jeff.json';
-import putinJson from './putin.json';
-import xiJson from './xi.json';
-import joesleyJson from './joesley.json';
-import michaelJson from './michael.json';
-import obamaJson from './obama.json';
-import papaJson from './papa.json';
-import silvioJson from './silvio.json';
-import optimusJson from './optimus.json';
+import terminatorImg from '../../src/illuminati/piramide.jpg';
+import rainhaImg from '../../src/illuminati/rainha.jpg';
+import alGoreImg from '../../src/illuminati/al gore.jpg';
+import billImg from '../../src/illuminati/bill.jpg';
+import jeffImg from '../../src/illuminati/jeff.jpg';
+import joesleyImg from '../../src/illuminati/joesley.jpg';
+import michaelImg from '../../src/illuminati/michael.jpg';
+import obamaImg from '../../src/illuminati/obama.jpg';
+import xiImg from '../../src/illuminati/xi.jpg';
+import papaImg from '../../src/illuminati/papa.jpg';
+import silvioImg from '../../src/illuminati/silvio.jpg';
+import optimusImg from '../../src/illuminati/optimus.jpg';
+import putinImg from '../../src/illuminati/putin.jpg';
+import rainhainfoJS from '../../src/illuminati/RainhaInfo.json'; 
+import algoreinfoJS from '../../src/illuminati/AlGoreInfo.json'; 
 
 
 let event = {
@@ -41,73 +31,73 @@ let illuminatiList = [
         name: "Al Gore",
         description: <img src={alGoreImg} width="250" height="290" alt= "Imagem Al Gore"/>,
         introduction: "Ambiente",
-        information: alGoreJson,
+        information: algoreinfoJS,
     },
     {
         name: "Rainha Elizabeth II",
         description: <img src={rainhaImg} width="250" height="290" alt= "Imagem Rainha"/>,
         introduction: "Politica",
-        information: rainhaJson,
+        information: rainhainfoJS,
     },
     {
         name: "Bill Gates",
         description: <img src={billImg} width="250" height="290" alt= "Imagem Bill Gates"/>,
         introduction: "Tecnologia",
-        information: billJson,
+        information: algoreinfoJS,
     },
     {
         name: "Jeff Bezos",
         description: <img src={jeffImg} width="250" height="290" alt= "Imagem Jeff"/>,
         introduction: "Comércio",
-        information: jeffJson,
+        information: algoreinfoJS,
     },
     {
         name: "Putin",
         description: <img src={putinImg} width="250" height="290" alt= "Imagem Putin"/>,
         introduction: "Guerra",
-        information: putinJson,
+        information: algoreinfoJS,
     },
     {
         name: "Xi Jinping",
         description: <img src={xiImg} width="250" height="290" alt= "Imagem Xi"/>,
         introduction: "Indústria",
-        information: xiJson,
+        information: algoreinfoJS,
     },
     {
         name: "Michael Jackson",
         description: <img src={michaelImg} width="250" height="290" alt= "Imagem Michael"/>,
         introduction: "Cultura",
-        information: michaelJson,
+        information: algoreinfoJS,
     },
     {
         name: "Papa Francisco",
         description: <img src={papaImg} width="250" height="290" alt= "Imagem Papa"/>,
         introduction: "Religião",
-        information: papaJson,
+        information: algoreinfoJS,
     },
     {
         name: "Silvio Santos",
         description: <img src={silvioImg} width="250" height="290" alt= "Imagem Silvio"/>,
         introduction: "Mídia/Informação",
-        information: silvioJson,
+        information: algoreinfoJS,
     },
     {
         name: "Obama",
         description: <img src={obamaImg} width="250" height="290" alt= "Imagem Obama"/>,
         introduction: "Saúde",
-        information: obamaJson,
+        information: algoreinfoJS,
     },
     {
         name: "Optimus Prime",
         description: <img src={optimusImg} width="250" height="290" alt= "Imagem Optimus"/>,
         introduction: "Transporte",
-        information: optimusJson,
+        information: algoreinfoJS,
     },
     {
         name: "Joesley",
         description: <img src={joesleyImg} width="250" height="290" alt= "Imagem Joesley"/>,
         introduction: "Agropecuária",
-        information: joesleyJson,
+        information:algoreinfoJS,
     },
 ]
 
@@ -140,12 +130,14 @@ export class Illuminati {
 function renderIlluminattiTab(x) {
     return <Tab title={x.name}>
         <div class="IlluminatiSheet">
-            {x.description}
-            <ul>
-                <li>{x.introduction}</li>
+        <ul class = "illiminati_side">
+                
+                <Sidebar title = {x.introduction}></Sidebar>
             </ul>
+            <u1 class = "IlluminatiImage"> {x.description}</u1>
+
         </div>
-        <div>
+        <div class = "IlluminatInformation">
             <h2>Informações</h2>
             <dl>
                 <dt>Nome</dt><dd>{x.information.nome}</dd>
