@@ -90,7 +90,7 @@ let illuminatiList = [
         name: "Obama",
         description: <img src={obamaImg} width="250" height="290" alt= "Imagem Obama"/>,
         introduction: "Saúde",
-        information: algoreinfoJS,
+        information: alGoreJson,
     },
     {
         name: "Optimus Prime",
