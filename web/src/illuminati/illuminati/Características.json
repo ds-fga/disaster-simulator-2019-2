@@ -1,0 +1,16 @@
+{
+    "nome": "Elizabeth II",
+    "imagem": "/img/rainha.jpg",
+    "idade": "Infinity",
+    "poder": "Política", 
+    "atributos": {
+        "forca": 5,
+        "inteligencia": 15,
+        "influencia": 20,
+    },
+    "habilidades": {
+        "politica": 20,
+        "mecanica": 15, 
+        "direcao": 16,
+    }
+}
