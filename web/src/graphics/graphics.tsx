@@ -8,6 +8,7 @@ import economiaback from './src/economiaback.jpg';
 import populacaoback from './src/populacaoback.jpg';
 import energiaback from './src/energiaback.jpg';
 import madokamusic from './src/madokamusic.mp3'
+import demoingif from './src/demoin.gif';
 
 /* essa eh a classe principal que vai mostrar todo o conteudo que vai mostrar na tela
 classe seria coisas como <div> <span> <audio> <ul> <li> que podem ser personalizadas a gosto
@@ -142,10 +143,20 @@ class Tela {
             uma vez que a percepção das dificuldades representa uma abertura para a 
             melhoria dos níveis de motivação departamental. 
             </h2>
+            <img src= {demoingif}    height={173} ></img> 
         </div>
     }
+    
     oncreate(vnode) {
-        console.log(vnode)
+        let demonio = vnode.dom.children[2]
+        demonio.style.transform = "translate(-800px, -50px)"
+        demonio.style.opacity = "0";
+        setTimeout(()=>{
+            demonio.style.transition = "all 10s ease"
+            demonio.style.transform = "translate(0%)"
+            demonio.style.opacity = "100%";
+    },1000)
+        
         let backuptext = []
         vnode.instance.children.map((e, i) => {
             if (e.dom.innerHTML != undefined) {
