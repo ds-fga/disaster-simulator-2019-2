@@ -69,6 +69,13 @@ let rightMenuItens = {
  * <a href="#" class="nes-badge">
   <span class="is-dark">NES.css</span>
 </a>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> Adicionando as coisas certas totalmente implementando
+>>>>>>> ff7efdb801d07797fddafd07436707b5c7d65428
  */
 function popUp(caminho) {
 return <Initial>{window.open(`?start=${caminho}`, 'popup', "width=1200px, height=500px, top=100%, left=100%")}</Initial>
