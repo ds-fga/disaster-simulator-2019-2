@@ -202,12 +202,12 @@ class Economia {
                     <Gerargraficos dados={pydata.Economia} global='false'></Gerargraficos>
                 </div>
                 <Leftinfo personagem={"homura"}>   
-                Já perdi a fome
-                A  vontade de viver
-                Já perdi o mundo
-                E um motivo pra morrer
-                Não é a tristeza que me mata.
-                Nem a alegria que me faz viver. 
+              Já perdi a fome,
+                a vontade de viver.
+                Já perdi o mundo,
+                e um motivo pra morrer.
+                Não é a tristeza que me mata,
+                nem a alegria que me faz viver. 
                 É apenas um vazio... 
                 que me deixa assim. 
                 Longe de todos e até de mim.
@@ -226,13 +226,13 @@ class População {
                     <Gerargraficos dados={pydata.Populacao} global='true'></Gerargraficos>
                 </div>
                  <Leftinfo personagem={"miki"}>
-                  Estou enlouquecendo,
-                  Estou perdendo as estribeiras
-                  Não sei quais vão ser as consequências
-                  Só sei, que serei punida, por minha mente suicida.
+                Estou enlouquecendo,
+                  Estou perdendo as estribeiras,
+                  não sei quais vão ser as consequências,
+                  só sei, que serei punida, por minha mente suicida.
                   Cansei de ser julgada,
-                  Eu quero ser compreendida
-                  Não aguento mais tanta dor,mas já que não conheço o amor
+                  eu quero ser compreendida,
+                  não aguento mais tanta dor,mas já que não conheço o amor,
                   só cultivarei a dor.
                   
             </Leftinfo>
@@ -250,11 +250,11 @@ class Energia {
                     <Gerargraficos dados={pydata.Energia} global='true'></Gerargraficos>
                 </div>
                 <Leftinfo personagem={"tomoe"}>  
-                Você sabia??
-                Que se você se alimentar saudavelmente
-                Dormir bem, praticar exercícios regularmente
-                Não consumir álcool,tabaco ou drogas ilícitas
-                E sempre beber bastante água
+            Você sabia??
+                Que se você se alimentar saudavelmente.
+                Dormir bem, praticar exercícios regularmente.
+                Não consumir álcool,tabaco ou drogas ilícitas.
+                E sempre beber bastante água.
                 Você vai morrer do mesmo jeito?
             </Leftinfo>
             </div>
