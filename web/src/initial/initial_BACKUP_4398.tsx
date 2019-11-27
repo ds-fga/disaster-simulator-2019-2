@@ -1,25 +1,6 @@
 import m = require('mithril');
 import {model} from '../model'
 import {Window, Tab, Tabs, Btn, Sidebar} from '../ui';
-
-
-// Componentes
-import { Intro } from '../intro/intro';
-import { Event } from '../event/event';
-import { Style } from '../style';
-
-import { Science } from '../science/science';
-import { Politics } from '../politics/politics';
-import { Economy } from '../economy/economy';
-import { Conspiracy } from '../conspiracy/conspiracy';
-import { Culture } from '../culture/culture';
-
-import { Graphics } from '../graphics/graphics';
-import { Illuminati } from '../illuminati/illuminati';
-import { Population } from '../population/population';
-
-
-
 import frask from '../../img/icones_tela_inicial/frasco.png';
 import politic from '../../img/icones_tela_inicial/politic.png';
 import money from '../../img/icones_tela_inicial/money.png';
@@ -45,15 +26,12 @@ var React = {
  let leftMenuItens = {
     "nome": ["Ciência", "Política", "Conspiração","Economia"],
     "caminho": ["Science", "Politics", "Conspiracy", "Economy"],
-    "tag": [Science, Politics, Conspiracy, Economy, Intro, Event, Style, Culture, Graphics, Illuminati, Population, 
-,    ]
     "icone": [frask, politic, conspirancy, money],
 }
 
 let barMenuItens = {
     "nome": ["teste 1", "teste 2", "teste 3"],
     "caminho": ["teste.html", "teste2.html", "teste3.html"],
-    "tag": [],
     "icone": ["icon icon-link", "icon icon-link", "icon icon-link"],
 }
 let rightMenuItens = {
@@ -69,6 +47,16 @@ let rightMenuItens = {
  * <a href="#" class="nes-badge">
   <span class="is-dark">NES.css</span>
 </a>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 995e057ff9b2b70e2748bb273b248ea7402f4d1b
+=======
+
+=======
+>>>>>>> Adicionando as coisas certas totalmente implementando
+>>>>>>> Adicionando os arquivos corretos
  */
 function popUp(caminho) {
 return <Initial>{window.open(`?start=${caminho}`, 'popup', "width=1200px, height=500px, top=100%, left=100%")}</Initial>
@@ -78,7 +66,7 @@ function elementsColumn(itens, lado) {
     var list = [];  
     for(let i = 0; i < itens.nome.length; i++) {
         list.push(m('li', {style: 'margin: 20px 0px'}, [
-            m('a', {href: '#', onclick: () => { model.window = itens.tag[i]}}, [
+            m('a', {href: '#', onclick: () => popUp(itens.caminho[i])}, [
                 m('span', {class: 'is-primary extend-right btn tooltip ' + lado, 'data-tooltip': itens.nome[i] }, [m('img', {class: 'is-small',src: itens.icone[i]}),]),
             ])
         ]))
@@ -187,8 +175,8 @@ function footer(){
     ])
 }
 
-
 /** A parte a seguir inicia e ordena a tela */
+
 function join() {
     var join = [
         header(),
