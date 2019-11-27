@@ -33,6 +33,8 @@ let event = {
 
     img: terminatorImg,
 
+}
+
 let illuminatiList = [
     {
         name: "Al Gore",
