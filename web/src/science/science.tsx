@@ -20,6 +20,7 @@ interface TechAttrs {
     price: string;
     spec: string;
     type_tech?: string;
+    prog?: number;
 }
 
 export class Science {
@@ -32,6 +33,7 @@ export class Science {
         currentTech: string;
         searchbox: string;
         currentTechSpec: string;
+        currentTechProg?: number;
     };
 
     constructor(){
@@ -122,6 +124,7 @@ export class Science {
                                 <Tech title={tech.title} status={tech.status} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}</div>
                         </TechList>    
@@ -132,6 +135,7 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}
                         </TechList>
@@ -142,6 +146,7 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}
                         </TechList>
@@ -152,6 +157,7 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}
                         </TechList>
@@ -162,6 +168,7 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}
                         </TechList>
@@ -172,13 +179,23 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}
                         </TechList>
                     </Tab>
                 </Tabs>
 
-                <TechInfo title={this.estado.currentTech} spec={this.estado.currentTechSpec}/>
+                <TechInfo progress={this.estado.currentTechProg}
+                    minus={e => {
+                        console.log(this.estado.currentTechProg);
+                        this.estado.currentTechProg -= 5;
+                    }} add={e =>{
+                        console.log(this.estado.currentTechProg);
+                        this.estado.currentTechProg += 5;
+                    }} title={this.estado.currentTech}
+                    spec={this.estado.currentTechSpec}
+                />
             </div>
             
         </Window>

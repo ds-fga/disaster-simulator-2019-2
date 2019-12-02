@@ -1,6 +1,21 @@
 import m from 'mithril';
+import {MithrilTsxComponent as Component} from 'mithril-tsx-component'
 
-class TechInfo{
+interface InfoAttrs {
+
+}
+
+class TechInfo extends Component<InfoAttrs>{
+    constructor(){
+        super();
+    }
+
+    progress(prog) {
+        if (prog >= 0 && prog <= 100) {
+            return(<progress class="nes-progress is-success" value={prog} max="100"/>)
+        }
+    }
+    
     view(vnode) {
 
         var spec = vnode.attrs.spec;
@@ -22,6 +37,9 @@ class TechInfo{
             <p class="title nes-container is-rounded">Info</p>
             <h2>{`${titleDisplay}`}</h2>
             {techDisplay}
+            {this.progress(vnode.attrs.progress)}
+            <button type="button" onclick={vnode.attrs.add} class="nes-btn is-success">Aumenta progresso</button>
+            <button type="button" onclick={vnode.attrs.minus} class="nes-btn is-error">Diminui progresso</button>
         </div>
     }
 }
