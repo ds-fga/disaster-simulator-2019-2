@@ -1,4 +1,5 @@
 from flask import Flask, escape, request, jsonify
+from . import science
 from . import simulation
 app = Flask(__name__)
 
@@ -54,3 +55,19 @@ def get_var(name):
 def get_series(name):
     data = simulation.get_series(name)
     return jsonify({'name': name, 'data': data})
+
+
+@app.route('/api/series/<name>/')
+def get_series(name):
+    data = simulation.get_series(name)
+    return jsonify({'name': name, 'data': data})
+
+
+@app.route('/science/list-techs/')
+def list_techs():
+    return jsonify(sciece.list_techs())
+
+
+@app.route('/science/buy/<id>/')
+def buy_tech(id):
+    return jsonify(sciece.buy_techs())

@@ -13,12 +13,11 @@ import techsDB from './techs';
 export class Science {
 
     effectEnabled: boolean;
-    estado: object;
+    estado: any;
 
-    constructor(){
+    constructor() {
         this.estado = {
-            techs: techsDB,
-
+            techs: [],
             techsFilter: {},
             currentArea: "",
             currentTech: "",
@@ -26,16 +25,20 @@ export class Science {
             currentTechSpec: "",
         };
         this.effectEnabled = true;
+        
+        m.request({ url: "http://localhost:5000/science/list-techs/" }).then(
+            (x) => { this.estado.techs = x }
+        )
     }
 
-    oninit () {
+    oninit() {
         console.log("eu quero morreeeeeeer");
         console.log("Isso não é uma piada");
         console.log("É um pedido de socorro");
         const newTechsFilter = {};
         this.estado.techs.forEach((tech) => {
             if (!(tech.type_tech in newTechsFilter)) {
-            newTechsFilter[tech.type_tech] = [];
+                newTechsFilter[tech.type_tech] = [];
             }
             newTechsFilter[tech.type_tech].push(tech);
         });
@@ -43,48 +46,48 @@ export class Science {
         var element = document.getElementById("scienceWindow");
     }
 
-    voltar(){
+    voltar() {
         var element = document.getElementById("scienceWindow");
         var style = element.style;
         style.animation = "textShadow 1.6s infinite, turn-off 0.55s cubic-bezier(0.755, 0.050, 0.855, 0.060)";
-        window.setTimeout(function(){element.parentNode.removeChild(element)}, 550);
+        window.setTimeout(function () { element.parentNode.removeChild(element) }, 550);
     }
 
-    toggleEffect(){
+    toggleEffect() {
         const element = document.getElementById("scienceWindow");
         const techs = document.querySelectorAll(".tech-btn") as HTMLCollectionOf<HTMLElement>;
         const tabs = document.querySelectorAll(".Science__btn") as HTMLCollectionOf<HTMLElement>;
-        if (this.effectEnabled){
+        if (this.effectEnabled) {
             element.classList.remove("crt");
             element.style.animation = "";
-            for(let i = 0; i < techs.length; i++){
+            for (let i = 0; i < techs.length; i++) {
                 techs[i].style = "";
             }
-            for(let i = 0; i < tabs.length; i++){
+            for (let i = 0; i < tabs.length; i++) {
                 tabs[i].style = "";
             }
-        }else {
+        } else {
             element.classList.add("crt");
             element.style.animation = "textShadow 1.6s infinite";
-            for(let i = 0; i < techs.length; i++){
+            for (let i = 0; i < techs.length; i++) {
                 techs[i].style.animation = "textShadow 1.6s infinite";
             }
-            for(let i = 0; i < tabs.length; i++){
+            for (let i = 0; i < tabs.length; i++) {
                 tabs[i].style.animation = "textShadow 1.6s infinite";
             }
         }
         this.effectEnabled = !this.effectEnabled;
     }
 
-    oncreate(){
+    oncreate() {
         const element = document.getElementById("scienceWindow");
         element.classList.add("crt");
     }
 
-    view () {
+    view() {
 
-        const { techs, searchbox, currentTech, techsFilter} = this.estado;
-        const filteredtechs = techs.filter(tech => tech.title.toLowerCase().includes(searchbox.toLowerCase()) && tech.status !== "1" )
+        const { techs, searchbox, currentTech, techsFilter } = this.estado;
+        const filteredtechs = techs.filter(tech => tech.title.toLowerCase().includes(searchbox.toLowerCase()) && tech.status !== "1")
         const element = document.getElementById("scienceWindow");
 
         return <Window id="scienceWindow" class="science">
@@ -94,21 +97,22 @@ export class Science {
                     <button class="nes-btn science__sidebar-btn" onclick={this.voltar}>{"<"} Voltar</button>
                     <button class="nes-btn science__sidebar-btn" onclick={this.toggleEffect}>Efeitos</button>
                 </div>
-            }/>
+            } />
 
             <div class="scienceContent">
                 <Tabs>
                     <Tab class="science__tabs" title={<button class="nes-btn Science__btn">Visão Geral</button>}>
                         <TechList title="Tecnologias disponíveis">
                             <SearchBar placeholder="Buscar ciência" changeHandler={e => {
-                                this.estado.searchbox = e.target.value}}/>
+                                this.estado.searchbox = e.target.value
+                            }} />
                             <div class="listcontent">{filteredtechs.map(tech => (
                                 <Tech title={tech.title} status={tech.status} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
-                                }}/>
+                                }} />
                             ))}</div>
-                        </TechList>    
+                        </TechList>
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-warning Science__btn">Nuclear</button>}>
                         <TechList title="Nuclear">
@@ -116,7 +120,7 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
-                                }}/>
+                                }} />
                             ))}
                         </TechList>
                     </Tab>
@@ -126,7 +130,7 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
-                                }}/>
+                                }} />
                             ))}
                         </TechList>
                     </Tab>
@@ -136,7 +140,7 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
-                                }}/>
+                                }} />
                             ))}
                         </TechList>
                     </Tab>
@@ -146,7 +150,7 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
-                                }}/>
+                                }} />
                             ))}
                         </TechList>
                     </Tab>
@@ -156,15 +160,15 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
-                                }}/>
+                                }} />
                             ))}
                         </TechList>
                     </Tab>
                 </Tabs>
 
-                <TechInfo title={this.estado.currentTech} spec={this.estado.currentTechSpec}/>
+                <TechInfo title={this.estado.currentTech} spec={this.estado.currentTechSpec} />
             </div>
-            
+
         </Window>
     }
 }
