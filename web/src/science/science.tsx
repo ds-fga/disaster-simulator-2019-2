@@ -94,11 +94,6 @@ export class Science {
         this.effectEnabled = !this.effectEnabled;
     }
 
-    oncreate(){
-        const element = document.getElementById("scienceWindow");
-        element.classList.add("crt");
-    }
-
     view () {
 
         const { techs, searchbox, currentTech, techsFilter} = this.estado;
@@ -108,10 +103,7 @@ export class Science {
         return <Window id="scienceWindow" class="science">
 
             <Sidebar class="science__sidebar" title={
-                <div class="science__sidebar-btns">
-                    <button class="nes-btn science__sidebar-btn" onclick={this.voltar}>{"<"} Voltar</button>
-                    <button class="nes-btn science__sidebar-btn" onclick={this.toggleEffect}>Efeitos</button>
-                </div>
+                <button class="nes-btn science__sidebar-btn" onclick={this.voltar}>Voltar</button>
             }/>
 
             <div class="scienceContent">

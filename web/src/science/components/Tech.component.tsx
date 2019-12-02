@@ -33,7 +33,7 @@ class Tech extends Component<TechAttrs> {
             isDisabled = "";
         }
 
-        return <button style={{animation: "textShadow 1.6s infinite"}} onclick={vnode.attrs.changeHandler} class={`nes-btn tech-btn ${vnode.attrs.type} ${isDisabled}`}>
+        return <button onclick={vnode.attrs.changeHandler} class={`nes-btn tech-btn ${vnode.attrs.type} ${isDisabled}`}>
             <div class="TechText"><p class="TechTitle">{vnode.attrs.title}</p>
             <p>R${`${vnode.attrs.money}`}</p></div>
         </button>
