@@ -256,7 +256,7 @@ export class Science {
                     <dialog class="nes-dialog is-dark is-rounded" id="dialog-dark-rounded">
                       <form method="dialog">
                         <p class="title">{`Deseja comprar ${currentTech}`}</p>
-                        <p>Alert: this is a dialog.</p>
+                        <p></p>
                         <menu class="dialog-menu">
                           <button class="nes-btn">Cancel</button>
                           <button class="nes-btn is-primary">Confirm</button>

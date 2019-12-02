@@ -23,7 +23,7 @@ class TechInfo{
             <h2>{`${titleDisplay}`}</h2>
             {techDisplay}
             {vnode.children}
-        </div>)
+        </div>
     }
 }
 
