@@ -5,6 +5,7 @@ import TechInfo from './components/TechInfo.component';
 import Tech from './components/Tech.component';
 import TechList from './components/TechList.component';
 import SearchBar from './components/SearchBar.component';
+import TechButton from './components/TechButton.component';
 
 /**
  * Componente para janela com árvore tecnológica e de desenvolvimento científico.
@@ -17,6 +18,7 @@ export class Science {
         this.estado = {
             techs: [
                 {
+                    id: 1,
                     title: "Conhecimento atômico",
                     price: "50",
                     type: "is-warning",
@@ -25,6 +27,7 @@ export class Science {
                     status: "0"
                 },
                 {
+                    id: 2,
                     title: "Usinas nucleares",
                     price: "100",
                     type: "is-warning",
@@ -33,6 +36,7 @@ export class Science {
                     status: "1"
                 },
                 {
+                    id: 3,
                     title: "Nuclear 3",
                     price: "150",
                     type: "is-warning",
@@ -41,6 +45,7 @@ export class Science {
                     status: "1"
                 },
                 {
+                    id: 4,
                     title: "Conhecimento molecular",
                     price: "50",
                     type: "is-success",
@@ -49,6 +54,7 @@ export class Science {
                     status: "0"
                 },
                 {
+                    id: 5,
                     title: "Biofiltro de algas",
                     price: "100",
                     type: "is-success",
@@ -57,6 +63,7 @@ export class Science {
                     status: "1"
                 },
                 {
+                    id: 6,
                     title: "Biológico 3",
                     price: "150",
                     type: "is-success",
@@ -65,6 +72,7 @@ export class Science {
                     status: "1"
                 },
                 {
+                    id: 7,
                     title: "Conhecimento de energias renováveis",
                     price: "50",
                     type: "is-error",
@@ -73,6 +81,7 @@ export class Science {
                     status: "0"
                 },
                 {
+                    id: 8,
                     title: "Carro movido a motor de hidrogênio",
                     price: "100",
                     type: "is-error",
@@ -81,6 +90,7 @@ export class Science {
                     status: "1"
                 },
                 {
+                    id: 0,
                     title: "NOME",
                     price: "",
                     type: "is-error",
@@ -89,6 +99,7 @@ export class Science {
                     status: ""
                 },
                 {
+                  id: 9,
                     title: "Conhecimentos sobre o fluxo energético",
                     price: "50",
                     type: "is-primary",
@@ -97,6 +108,7 @@ export class Science {
                     status: "0"
                 },
                 {
+                  id: 10,
                     title: "Usinas eólicas",
                     price: "100",
                     type: "is-primary",
@@ -105,6 +117,7 @@ export class Science {
                     status: "1"
                 },
                 {
+                    id: 11,
                     title: "NOME",
                     price: "",
                     type: "is-primary",
@@ -113,6 +126,7 @@ export class Science {
                     status: "3"
                 },
                 {
+                    id: 12,
                     title: "Conhecimentos industriais",
                     price: "50",
                     type: "is-success",
@@ -121,6 +135,7 @@ export class Science {
                     status: "0"
                 },
                 {
+                  id: 13,
                     title: "Menos produção de lixo ",
                     price: "100",
                     type: "is-success",
@@ -140,7 +155,7 @@ export class Science {
     }
 
     oninit () {
-        const newTechsFilter = {};
+      const newTechsFilter = {};
       this.estado.techs.forEach((tech) => {
         if (!(tech.type_tech in newTechsFilter)) {
           newTechsFilter[tech.type_tech] = [];
@@ -208,8 +223,21 @@ export class Science {
                       ))}
                     </Tab>
                 </Tabs>
-
-                <TechInfo title={this.estado.currentTech} spec={this.estado.currentTechSpec}/>
+                <TechInfo title={this.estado.currentTech} spec={this.estado.currentTechSpec}>
+                  <div style="float: right">
+                    <TechButton onclick={() => document.getElementById('dialog-dark-rounded').showModal()}>Comprar</TechButton>
+                    <dialog class="nes-dialog is-dark is-rounded" id="dialog-dark-rounded">
+                      <form method="dialog">
+                        <p class="title">{`Deseja comprar ${currentTech}`}</p>
+                        <p>Alert: this is a dialog.</p>
+                        <menu class="dialog-menu">
+                          <button class="nes-btn">Cancel</button>
+                          <button class="nes-btn is-primary">Confirm</button>
+                        </menu>
+                      </form>
+                    </dialog>
+                  </div>
+                </TechInfo>  
             </div>
             
         </Window>

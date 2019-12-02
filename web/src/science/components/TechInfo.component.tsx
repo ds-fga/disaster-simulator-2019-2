@@ -1,8 +1,8 @@
 import m from 'mithril';
 
+
 class TechInfo{
     view(vnode) {
-
         var spec = vnode.attrs.spec;
         var title = vnode.attrs.title;
         var techDisplay;
@@ -16,11 +16,12 @@ class TechInfo{
             titleDisplay = "Nenhuma tecnologia selecionada";
         }
 
-        return <div class="nes-container with-title is-rounded">
+        return (<div class="nes-container with-title is-rounded">
             <p class="title nes-container is-rounded">Info</p>
             <h2>{`${titleDisplay}`}</h2>
             {techDisplay}
-        </div>
+            {vnode.children}
+        </div>)
     }
 }
 
