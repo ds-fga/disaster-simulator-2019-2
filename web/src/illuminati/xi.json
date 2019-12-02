@@ -1,0 +1,15 @@
+{
+    "nome": "Xi Jinping",
+    "idade": "66",
+    "poder": "Politica", 
+    "atributos": {
+        "forca": 15,
+        "inteligencia": 16,
+        "influencia": 13,
+    },
+    "habilidades": {
+        "a": "",
+        "b": "",
+        "c": "",
+      }
+}

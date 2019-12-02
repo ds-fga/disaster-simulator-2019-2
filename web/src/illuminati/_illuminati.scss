@@ -1,3 +1,56 @@
 .Illuminati {
+  
+}
+
+.description{
+    float: right;
+    width: 420px;
+    margin-right: 10px; 
+}
+.taxa{
+    float: right;
+    width: 440px;
+    margin-top: 345px;
+    margin-right: -348px;
+}
+.IlluminatiImage{
+    float: right;
+    margin-top: 48px;
+    margin-right: -300px;
+}
+.IlluminatInformation{
+    width: 750px;
+    margin-left: 30px;
+    padding: 10px;
+    border-width: 10px;
+    background-color: rgb(194, 136, 10,0.5);
+    box-shadow: 2px 0 1.5rem rgba(48,55,66,.5),
+                0 0 4px 0px rgba(48,55,66,.75);
+}
+.Tabs {
+    height: 100%;
+    width: 100%;
     
+    &-head {
+        display: flex;
+        background:rgb(194, 136, 10,0.5);
+    }
+    &-tab {
+        padding: 0.5rem 1rem;
+    }
+    &-tab.is-selected {
+        background:rgb(194, 136, 10);
+        color: white;
+    }
+    &-content {
+        overflow-y: auto;
+        height: 100%;
+    }
+}
+
+.Sidebar {
+    
+    &-title {
+        background:rgb(194, 136, 10);
+}
 }

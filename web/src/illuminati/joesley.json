@@ -1,0 +1,14 @@
+{
+    "nome": "Joesley Mendonça Batista",
+    "idade": "47",
+    "atributos": {
+        "forca": 5,
+        "inteligencia": 15,
+        "influencia": 20,
+    },
+    "habilidades": {
+        "a": "Agricultura",
+        "b": "Empreendorismo",
+        "c": "Corrupção",
+      }
+}

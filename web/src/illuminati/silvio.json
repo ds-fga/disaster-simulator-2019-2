@@ -1,0 +1,14 @@
+{
+    "nome": "Senor Abravanel",
+    "idade": "88",
+    "atributos": {
+        "forca": 5,
+        "inteligencia": 15,
+        "influencia": 20,
+    },
+    "habilidades": {
+        "a": "Carisma",
+        "b": "Caridade",
+        "c": "Aeromodelismo",
+      }
+}

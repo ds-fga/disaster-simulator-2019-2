@@ -1,0 +1,15 @@
+{
+    "nome": "Vladimir Putin",
+    "idade": "67",
+    "poder": "Politica", 
+    "atributos": {
+        "forca": 3,
+        "inteligencia": 20,
+        "influencia": 32,
+    },
+    "habilidades": {
+        "a": "",
+        "b": "",
+        "c": "",
+      }
+}

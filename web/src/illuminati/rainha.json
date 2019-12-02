@@ -1,0 +1,15 @@
+{
+    "nome": "Elizabeth II",
+    "idade": "Infinity",
+    "poder": "Política", 
+    "atributos": {
+        "forca": 5,
+        "inteligencia": 15,
+        "influencia": 20,
+    },
+    "habilidades": {
+        "a": "",
+        "b": "",
+        "c": "",
+      }
+}
