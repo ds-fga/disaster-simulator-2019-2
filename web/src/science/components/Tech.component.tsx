@@ -12,9 +12,17 @@ class Tech extends Component {
     }
 
     view(vnode){
-        return <button onclick={vnode.attrs.changeHandler} class={`nes-btn tech-btn ${vnode.attrs.type}`}>
-            <p>{vnode.attrs.title}</p>
-            <p>R${`${vnode.attrs.money}`}</p>
+
+        var isDisabled;
+        if (vnode.attrs.status === "2"){
+            isDisabled = " unTech";
+        }else{
+            isDisabled = "";
+        }
+
+        return <button onclick={vnode.attrs.changeHandler} class={`nes-btn tech-btn ${vnode.attrs.type} ${isDisabled}`} data-tilt>
+            <div class="TechText"><p class="TechTitle">{vnode.attrs.title}</p>
+            <p>R${`${vnode.attrs.money}`}</p></div>
         </button>
     }
 }
