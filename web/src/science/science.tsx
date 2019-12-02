@@ -25,7 +25,7 @@ export class Science {
                     type: "is-warning",
                     spec: "Estudos necessários para entender melhor o funcionamento das partículas atômicas e subatômicas e como promover mudanças ambientalmente favoráveis.",
                     type_tech: "nuclear",
-                    status: "0"
+                    status: "0",
                 },
                 {
                     id: 2,
@@ -146,13 +146,12 @@ export class Science {
                 },
             ],
             techs: techsDB,
-
             techsFilter: {},
             currentArea: "",
             currentTech: "",
             searchbox: "",
-            currentTechSpec: ""
-
+            currentTechSpec: "",
+            currentTechListInfo: [],
         }
     }
 
@@ -178,7 +177,6 @@ export class Science {
 
         const { techs, searchbox, currentTech, techsFilter } = this.estado;
         const filteredtechs = techs.filter(tech => tech.title.toLowerCase().includes(searchbox.toLowerCase()) && tech.status !== "1" )
-
         return <Window id="scienceWindow" class="science">
 
             <Sidebar class="science__sidebar" title={
@@ -195,6 +193,7 @@ export class Science {
                                 <Tech title={tech.title} status={tech.status} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechListInfo = (tech.listInfo || []);
                                 }}/>
                             ))}</div>
                         </TechList>    
@@ -205,6 +204,7 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechListInfo = (tech.listInfo || []);
                                 }}/>
                             ))}
                         </TechList>
@@ -215,6 +215,7 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechListInfo = (tech.listInfo || []);
                                 }}/>
                             ))}
                         </TechList>
@@ -225,6 +226,7 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechListInfo = (tech.listInfo || []);
                                 }}/>
                             ))}
                         </TechList>
@@ -235,6 +237,7 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechListInfo = (tech.listInfo || []);
                                 }}/>
                             ))}
                         </TechList>
@@ -245,12 +248,13 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechListInfo = (tech.listInfo || []);
                                 }}/>
                             ))}
                         </TechList>
                     </Tab>
                 </Tabs>
-                <TechInfo title={this.estado.currentTech} spec={this.estado.currentTechSpec}>
+                <TechInfo title={this.estado.currentTech} spec={this.estado.currentTechSpec} listInfo={this.estado.currentTechListInfo}>
                   <div style="float: right">
                     <TechButton onclick={() => document.getElementById('dialog-dark-rounded').showModal()}>Comprar</TechButton>
                     <dialog class="nes-dialog is-dark is-rounded" id="dialog-dark-rounded">

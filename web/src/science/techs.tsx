@@ -21,7 +21,15 @@ const techsDB = [
         type: "is-warning",
         spec: "Estudos necessários para entender melhor o funcionamento das partículas atômicas e subatômicas e como promover mudanças ambientalmente favoráveis.",
         type_tech: "nuclear",
-        status: "0"
+        status: "0",
+        listInfo: [
+          {
+            teste: 'ok 1'
+          },
+          {
+            teste: 'ok 2'
+          }
+        ]
     },
     {
         title: "Usinas nucleares",
