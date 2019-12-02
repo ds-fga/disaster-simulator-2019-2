@@ -7,58 +7,162 @@ let data = {
     lucro: [
         {
             title: "Test sdse ",
-            //img: exampleImg,
-            description: "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
-            preco: "1",
+            description: "dsjfoisdjfo si fasasfasfafs jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             attrs: [
-                { name: "attr1", color: 'color: red', points: 1 },
-                { name: "attr2", color: 'color: green', points: -1 },
-            ]
+                { name: "População", color: 'color: red', points: "-39%" },
+                { name: "Economia", color: 'color: green', points: "+R$3000,00" },
+            ],
+            compraDeItem: [
+                {btnAberto: true, preco: "1"}
+            ],
         },
         {
             title: "Test sdse ",
-            //img: exampleImg,
-            description: "dsjfoisdjfo si jfosij fosi jfoisdj foisj dfois jdofisodjf osi jfos",
-            preco: "30",
+            description: "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             attrs: [
-                { name: "attr1", color: 'color: red', points: 1 },
-                { name: "attr2", color: 'color: green', points: -1 },
-            ]
+                { name: "Ciência", color: 'color: red', points: "-20%" },
+                { name: "Política", color: 'color: red', points: "-5%" },
+                { name: "Economia", color: 'color: green', points: "+R$5000,00"}
+            ],
+            compraDeItem: [
+                {btnAberto: true, preco: "3"}
+            ],
         }
     ],
     prejuizo: [
         {
             title: "Test sdse ",
-            //img: exampleImg,
-            description: "dsjfoisdjfo si jfosij fosi  foisj dfois jdofisodjf osi jfos",
-            preco: "-12",
+            description: "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             attrs: [
-                { name: "attr1", color: 'color: red', points: 1 },
-                { name: "attr2", color: 'color: green', points: -1 },
-            ]
+                { name: "attr1", color: 'color: red', points: "" },
+                { name: "attr2", color: 'color: green', points: "" },
+            ],
+            compraDeItem: [
+                {btnAberto: true, preco: "1"}
+            ],
+        },
+    ],
+    investimentos: [
+        {
+            title: "Test sdse ",
+            description: "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
+            attrs: "aumenta sei la",
+            compraDeItem: [
+                {btnAberto: true, preco: "R$3000,00"}
+            ],
         }
     ],
-};
+    luxos: [
+        {
+            title: "Test sdse ",
+            //img: [
+            //    {imagem: exampleImg, on: true}
+            //],
+            description: "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
+            attrs: "aumenta sei la",
+            compraDeItem: [
+                {btnAberto: true, preco: "R$500,00"}
+            ],
+        },
+    ]
+}
 
-
-function createCard ({ title, description, attrs, preco }) {
+function createCard ({ title, description, attrs, compraDeItem }) {
     function viewAttr ({ name, color, points }) {
         return <tr style={color}><td>{name}</td> <td>{points}</td></tr>
+    }
+
+    function createBotao ({ btnAberto, preco }) {
+        var points = 1;     //exportar do python
+        function buying () {
+            if (points >= preco) {
+                points -= points;
+                btnAberto = !btnAberto;     //alterar no json
+            }
+            else {
+                return alert("ERROR: não há pontos suficiente. Tente novamente na rodada seguinte.");       //tentar mudar para o nes-css
+            }
+        }
+
+        if (btnAberto) {
+            return <div> 
+                <tr><h2>{preco}</h2></tr>
+                <div>
+                    <div class="Economy-right-button">
+                        <button class="nes-btn" onclick={buying}>
+                            <span>Comprar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+        else {
+            return <div>
+                <tr><h2>{preco}</h2></tr>
+            </div>
+        }
     }
 
     return <ExpandirCard title={title}>
         <p>{description}</p>
         <table>
             <thead>
-                <tr><h3><th>Nome</th> <th>Pontos</th></h3></tr>
+                <tr><h3><th>Atributos</th></h3></tr>
+                {attrs.map(viewAttr)}
             </thead>
             <tbody>
-                {attrs.map(viewAttr)}
                 <tr><h3><th>Preço</th></h3></tr>
-                <tr><td><h2>{preco}</h2></td></tr>
+                {compraDeItem.map(createBotao)}
             </tbody>
         </table>
-        <ButaoBrabo/>
+        
+    </ExpandirCard>
+}
+
+function createCardSimple ({ title, description, attrs, compraDeItem }) {
+    function createBotao ({ btnAberto, preco }) {
+        var points = 1;     //exportar do python
+        function buying () {
+            if (points >= preco) {
+                points -= points;
+                btnAberto = !btnAberto;     //alterar no json
+            }
+            else {
+                return alert("ERROR: dinheiro insuficiente. Tente novamente mais tarde.");       //tentar mudar para o nes-css
+            }
+        }
+
+        if (btnAberto) {
+            return <div> 
+                <tr><h2>{preco}</h2></tr>
+                <div>
+                    <div class="Economy-right-button">
+                        <button class="nes-btn" onclick={buying}>
+                            <span>Comprar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+        else {
+            return <div>
+                <tr><h2>{preco}</h2></tr>
+            </div>
+        }
+    }
+
+    return <ExpandirCard title={title}>
+        <p>{description}</p>
+        <table>
+            <thead>
+                <tr><h3><th>Atributos adicionais</th></h3></tr>
+                <p>{attrs}</p>
+            </thead>
+            <tbody>
+                <tr><h3><th>Preço</th></h3></tr>
+                {compraDeItem.map(createBotao)}
+            </tbody>
+        </table>
     </ExpandirCard>
 }
 
@@ -74,7 +178,6 @@ export class Economy {
                                 <h1>Lucro</h1>
                                 {data.lucro.map(createCard)}
                             </div>
-
                             <div style="flex-grow: 1">
                                 <h1>Prejuizo</h1>
                                 {data.prejuizo.map(createCard)}
@@ -83,6 +186,16 @@ export class Economy {
                     </Tab>
 
                     <Tab title="Mercado">
+                    <div class="flex-container">
+                            <div style="flex-grow: 1">
+                                <h1>Invesitmentos</h1>
+                                {data.investimentos.map(createCardSimple)}
+                            </div>
+                            <div style="flex-grow: 1">
+                                <h1>Luxos</h1>
+                                {data.luxos.map(createCardSimple)}
+                            </div>
+                        </div>
                     </Tab>
 
                     <Tab title="Inventário">
@@ -133,7 +246,7 @@ export class ExpandirCard {
     }
 }
 
-export class ButaoBrabo {
+export class BotaoReserva {
     butaoOn: boolean;
 
     constructor (vnode) {
