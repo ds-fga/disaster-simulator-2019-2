@@ -103,9 +103,7 @@ export class Science {
         return <Window id="scienceWindow" class="science">
 
             <Sidebar class="science__sidebar" title={
-                <div class="science__sidebar-btns">
-                    <button class="nes-btn science__sidebar-btn" onclick={this.voltar}>Voltar</button>
-                </div>
+                <button class="nes-btn science__sidebar-btn" onclick={this.voltar}>Voltar</button>
             }/>
 
             <div class="scienceContent">
