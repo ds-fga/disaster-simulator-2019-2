@@ -21,7 +21,7 @@
         }
 
         &-btn {
-            width: 50%;
+            width: 92%;
             align-content: center;
             z-index: 1;
             text-shadow: inherit;
@@ -162,6 +162,10 @@
         left: -4px;
         content: "";
         box-shadow: #333333 -4px -4px inset;
+    }
+
+    &:hover{
+        background-color: #333;
     }
 }
 

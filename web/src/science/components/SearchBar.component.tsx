@@ -1,7 +1,16 @@
 import m from 'mithril';
 import {MithrilTsxComponent as Component} from 'mithril-tsx-component';
 
-class SearchBar extends Component{
+interface sbox {
+    placeholder: string;
+    changeHandler: Function;
+}
+
+class SearchBar extends Component<sbox>{
+    constructor(props){
+        super();
+    }
+    
     view(vnode){
         return<div class="science__search-bar">
             <input

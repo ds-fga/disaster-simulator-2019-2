@@ -10,10 +10,31 @@ import techsDB from './techs';
 /**
  * Componente para janela com árvore tecnológica e de desenvolvimento científico.
  */
+
+interface TechAttrs {
+    title: string;
+    money?: string;
+    myClass?: string | string[];
+    status: string;
+    type: string;
+    price: string;
+    spec: string;
+    type_tech?: string;
+    prog?: number;
+}
+
 export class Science {
 
     effectEnabled: boolean;
-    estado: any;
+    estado: {
+        techs: Array<TechAttrs>;
+        techsFilter: Object;
+        currentArea: string;
+        currentTech: string;
+        searchbox: string;
+        currentTechSpec: string;
+        currentTechProg?: number;
+    };
 
     constructor() {
         this.estado = {
@@ -32,9 +53,7 @@ export class Science {
     }
 
     oninit() {
-        console.log("eu quero morreeeeeeer");
-        console.log("Isso não é uma piada");
-        console.log("É um pedido de socorro");
+        
         const newTechsFilter = {};
         this.estado.techs.forEach((tech) => {
             if (!(tech.type_tech in newTechsFilter)) {
@@ -55,9 +74,9 @@ export class Science {
 
     toggleEffect() {
         const element = document.getElementById("scienceWindow");
-        const techs = document.querySelectorAll(".tech-btn") as HTMLCollectionOf<HTMLElement>;
-        const tabs = document.querySelectorAll(".Science__btn") as HTMLCollectionOf<HTMLElement>;
-        if (this.effectEnabled) {
+        const techs = document.querySelectorAll(".tech-btn");
+        const tabs = document.querySelectorAll(".Science__btn");
+        if (this.effectEnabled){
             element.classList.remove("crt");
             element.style.animation = "";
             for (let i = 0; i < techs.length; i++) {
@@ -79,12 +98,7 @@ export class Science {
         this.effectEnabled = !this.effectEnabled;
     }
 
-    oncreate() {
-        const element = document.getElementById("scienceWindow");
-        element.classList.add("crt");
-    }
-
-    view() {
+    view () {
 
         const { techs, searchbox, currentTech, techsFilter } = this.estado;
         const filteredtechs = techs.filter(tech => tech.title.toLowerCase().includes(searchbox.toLowerCase()) && tech.status !== "1")
@@ -93,11 +107,8 @@ export class Science {
         return <Window id="scienceWindow" class="science">
 
             <Sidebar class="science__sidebar" title={
-                <div class="science__sidebar-btns">
-                    <button class="nes-btn science__sidebar-btn" onclick={this.voltar}>{"<"} Voltar</button>
-                    <button class="nes-btn science__sidebar-btn" onclick={this.toggleEffect}>Efeitos</button>
-                </div>
-            } />
+                <button class="nes-btn science__sidebar-btn" onclick={this.voltar}>Voltar</button>
+            }/>
 
             <div class="scienceContent">
                 <Tabs>
@@ -110,7 +121,8 @@ export class Science {
                                 <Tech title={tech.title} status={tech.status} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
-                                }} />
+                                    this.estado.currentTechProg = tech.prog;
+                                }}/>
                             ))}</div>
                         </TechList>
                     </Tab>
@@ -120,7 +132,8 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
-                                }} />
+                                    this.estado.currentTechProg = tech.prog;
+                                }}/>
                             ))}
                         </TechList>
                     </Tab>
@@ -130,7 +143,8 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
-                                }} />
+                                    this.estado.currentTechProg = tech.prog;
+                                }}/>
                             ))}
                         </TechList>
                     </Tab>
@@ -140,7 +154,8 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
-                                }} />
+                                    this.estado.currentTechProg = tech.prog;
+                                }}/>
                             ))}
                         </TechList>
                     </Tab>
@@ -150,7 +165,8 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
-                                }} />
+                                    this.estado.currentTechProg = tech.prog;
+                                }}/>
                             ))}
                         </TechList>
                     </Tab>
@@ -160,13 +176,23 @@ export class Science {
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
-                                }} />
+                                    this.estado.currentTechProg = tech.prog;
+                                }}/>
                             ))}
                         </TechList>
                     </Tab>
                 </Tabs>
 
-                <TechInfo title={this.estado.currentTech} spec={this.estado.currentTechSpec} />
+                <TechInfo progress={this.estado.currentTechProg}
+                    minus={e => {
+                        console.log(this.estado.currentTechProg);
+                        this.estado.currentTechProg -= 5;
+                    }} add={e =>{
+                        console.log(this.estado.currentTechProg);
+                        this.estado.currentTechProg += 5;
+                    }} title={this.estado.currentTech}
+                    spec={this.estado.currentTechSpec}
+                />
             </div>
 
         </Window>
