@@ -34,11 +34,14 @@ let event = {
     img: terminatorImg,
 
 }
+function funcao
 
 let illuminatiList = [
     {
         name: "Al Gore",
-        description: <img src={alGoreImg} width="250" height="290" alt= "Imagem Al Gore"/>,
+        imgUrl: alGoreImg,
+        imgAlt: "Imagem Al Gore", 
+        sauroUrl: billImg,
         introduction: "Ambiente",
         information: alGoreJson,
         taxa: "50% alinhamento",
@@ -133,8 +136,8 @@ export class Illuminati {
         return <Window> 
             <Sidebar src={event.img} title="Conselho Illuminati"/>
             <Tabs>
-                <Tab title="Ficha">
-                  <Tabs vertical={true}>{illuminatiList.map((e) => renderIlluminattiTab(e))}</Tabs>
+                <Tab title="Ficha"> 
+                  <Tabs vertical={true} reverse={true}>{illuminatiList.map((e) => renderIlluminattiTab(e))}</Tabs>
                 </Tab>
                 <Tab title="Seguidores">
 
@@ -151,12 +154,14 @@ export class Illuminati {
 function renderIlluminattiTab(x) {
     return <Tab title={x.name}>
         <div class="IlluminatiSheet">
-        <ul class = "illuminati_side">
-                
-        <Sidebar class="description" title = {x.introduction}></Sidebar>
-        <Sidebar class="taxa" title = {x.taxa}></Sidebar>
-            </ul>
-            <u1 class = "IlluminatiImage"> {x.description}</u1>
+        <div class = "illuminati_side">
+            <Sidebar class="description" title = {x.introduction}></Sidebar>
+            <Sidebar class="taxa" title = {x.taxa}></Sidebar>
+        </div>
+        <div classs="IlluminatiImage">
+            <img src={x.sauroUrl} width="250" height="290" alt={x.imgAlt}/>
+            <img class="topImg" src={x.imgUrl} width="250" height="290" alt={x.imgAlt}/>
+        </div>
             
         </div>
         <div class = "IlluminatInformation">
