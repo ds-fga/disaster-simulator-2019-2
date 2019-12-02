@@ -163,6 +163,10 @@
         content: "";
         box-shadow: #333333 -4px -4px inset;
     }
+
+    &:hover{
+        background-color: #333;
+    }
 }
 
 .scienceInfo {

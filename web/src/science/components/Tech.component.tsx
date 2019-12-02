@@ -2,17 +2,20 @@ import m from 'mithril';
 import { MithrilTsxComponent as Component } from 'mithril-tsx-component';
 
 
-class Tech extends Component {
+interface TechAttrs {
     title: string;
     money: string;
-    myClass: string;
+    myClass?: string | string[];
+}
+
+class Tech extends Component<TechAttrs> {
 
     constructor(vnode){
         super();
     }
 
     toggle(){
-        const elements = document.querySelectorAll(".tech-btn") as Array ;
+        const elements = document.querySelectorAll(".tech-btn") as Array<HTMLElement>;
         elements.map(
             element => {
                 element.style.animation = "";

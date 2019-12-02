@@ -10,10 +10,29 @@ import techsDB from './techs';
 /**
  * Componente para janela com árvore tecnológica e de desenvolvimento científico.
  */
+
+interface TechAttrs {
+    title: string;
+    money?: string;
+    myClass?: string | string[];
+    status: string;
+    type: string;
+    price: string;
+    spec: string;
+    type_tech?: string;
+}
+
 export class Science {
 
     effectEnabled: boolean;
-    estado: object;
+    estado: {
+        techs: Array<TechAttrs>;
+        techsFilter: Object;
+        currentArea: string;
+        currentTech: string;
+        searchbox: string;
+        currentTechSpec: string;
+    };
 
     constructor(){
         this.estado = {
@@ -29,9 +48,6 @@ export class Science {
     }
 
     oninit () {
-        console.log("eu quero morreeeeeeer");
-        console.log("Isso não é uma piada");
-        console.log("É um pedido de socorro");
         const newTechsFilter = {};
         this.estado.techs.forEach((tech) => {
             if (!(tech.type_tech in newTechsFilter)) {
@@ -52,8 +68,8 @@ export class Science {
 
     toggleEffect(){
         const element = document.getElementById("scienceWindow");
-        const techs = document.querySelectorAll(".tech-btn") as HTMLCollectionOf<HTMLElement>;
-        const tabs = document.querySelectorAll(".Science__btn") as HTMLCollectionOf<HTMLElement>;
+        const techs = document.querySelectorAll(".tech-btn");
+        const tabs = document.querySelectorAll(".Science__btn");
         if (this.effectEnabled){
             element.classList.remove("crt");
             element.style.animation = "";
