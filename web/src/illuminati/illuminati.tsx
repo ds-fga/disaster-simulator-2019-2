@@ -15,18 +15,18 @@ import papaImg from './imagens/papa.jpg';
 import silvioImg from './imagens/silvio.jpg';
 import optimusImg from './imagens/optimus.jpg';
 import putinImg from './imagens/putin.jpg';
-import rainhaJson from './rainha.json'; 
-import alGoreJson from './alGore.json';
-import billJson from './bill.json';
-import jeffJson from './jeff.json';
-import putinJson from './putin.json';
-import xiJson from './xi.json';
-import joesleyJson from './joesley.json';
-import michaelJson from './michael.json';
-import obamaJson from './obama.json';
-import papaJson from './papa.json';
-import silvioJson from './silvio.json';
-import optimusJson from './optimus.json';
+import rainhaJson from './arquivos_json/rainha.json'; 
+import alGoreJson from './arquivos_json/alGore.json';
+import billJson from './arquivos_json/bill.json';
+import jeffJson from './arquivos_json/jeff.json';
+import putinJson from './arquivos_json/putin.json';
+import xiJson from './arquivos_json/xi.json';
+import joesleyJson from './arquivos_json/joesley.json';
+import michaelJson from './arquivos_json/michael.json';
+import obamaJson from './arquivos_json/obama.json';
+import papaJson from './arquivos_json/papa.json';
+import silvioJson from './arquivos_json/silvio.json';
+import optimusJson from './arquivos_json/optimus.json';
 
 
 let event = {
