@@ -1,22 +1,22 @@
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, VScroll } from '../ui';
-import { MithrilTsxComponent as Component } from 'mithril-tsx-component';
 import sidebarImage from '../economy/idosa.jpg';
 import testImage from '../economy/testando.jpg';
-import data = require("./economy.json");
-
+import dataEconomy from '../economy/economyData.json';
+//colocar imagem. exampleImg nome <img src={exampleImg}></img>
 
 function createCard ({ title, description, attrs, compraDeItem }) {
+    var points = 1;     //exportar do python
+
     function viewAttr ({ name, color, points }) {
         return <tr style={color}><td>{name}</td> <td>{points}</td></tr>
     }
 
     function createBotao ({ btnAberto, preco }) {
-        var points = 1;     //exportar do python
         function buying () {
             if (points >= preco) {
                 points -= preco;
-                btnAberto = !btnAberto;     //alterar no json
+                dataEconomy.compraDeItem[btnAberto] = false;     //alterar no json
             }
             else {
                 return alert("ERROR: não há pontos suficiente. Tente novamente na rodada seguinte.");       //tentar mudar para o nes-css
@@ -27,11 +27,9 @@ function createCard ({ title, description, attrs, compraDeItem }) {
             return <div> 
                 <tr><h2>{preco}</h2></tr>
                 <div>
-                    <div>
-                        <button class="nes-btn" onclick={buying}>
-                            <span>Comprar</span>
-                        </button>
-                    </div>
+                    <button class="nes-btn" onclick={buying}>
+                        <span>Comprar</span>
+                    </button>
                 </div>
             </div>
         }
@@ -52,7 +50,7 @@ function createCard ({ title, description, attrs, compraDeItem }) {
             </thead>
             <tbody>
                 <tr><h3><th>Preço</th></h3></tr>
-                {(compraDeItem || []).map(createBotao)}
+                {compraDeItem.map(createBotao)}
             </tbody>
         </table>
         
@@ -76,11 +74,9 @@ function createCardSimple ({ title, description, attrs, compraDeItem }) {
             return <div> 
                 <tr><h2>{preco}</h2></tr>
                 <div>
-                    <div>
-                        <button class="nes-btn" onclick={buying}>
-                            <span>Comprar</span>
-                        </button>
-                    </div>
+                    <button class="nes-btn" onclick={buying}>
+                        <span>Comprar</span>
+                    </button>
                 </div>
             </div>
         }
@@ -118,17 +114,18 @@ function createCardImage ({ title, description, imagemReferencia, compraDeItem }
             else if (points < preco && titleBtn === "Comprar"){
                 return alert("ERROR: dinheiro insuficiente. Tente novamente mais tarde.");       //tentar mudar para o nes-css
             }
+            else if (titleBtn === "Vender"){
+                return alert("Ao vender esse item, irá lhe recomensar metade do seu preço");
+            }
         }
 
         if (btnAberto) {
             return <div> 
                 <tr><h2>R${preco},00</h2></tr>
                 <div>
-                    <div>
-                        <button class="nes-btn" onclick={buying}>
-                            <span>{titleBtn}</span>
-                        </button>
-                    </div>
+                    <button class="nes-btn" onclick={buying}>
+                        <span>{titleBtn}</span>
+                    </button>
                 </div>
             </div>
         }
@@ -160,17 +157,17 @@ export class Economy {
     view() {
         return <div>
             <Window>
-                <Sidebar title="Economia" points="4" src={sidebarImage} back={true} />
+                <Sidebar title="Economia" points="4" src={sidebarImage} />
                 <Tabs>
                     <Tab title="Ações">
                         <div class="flex-container">
                             <div style="flex-grow: 1">
                                 <h1>Lucro</h1>
-                                {data.lucro.map(createCard)}
+                                {dataEconomy.lucro.map(createCard)}
                             </div>
                             <div style="flex-grow: 1">
                                 <h1>Prejuizo</h1>
-                                {data.prejuizo.map(createCard)}
+                                {dataEconomy.prejuizo.map(createCard)}
                             </div>
                         </div>
                     </Tab>
@@ -179,11 +176,11 @@ export class Economy {
                         <div class="flex-container">
                             <div style="flex-grow: 1">
                                 <h1>Investimentos</h1>
-                                {data.investimentos.map(createCardSimple)}
+                                {dataEconomy.investimentos.map(createCardSimple)}
                             </div>
                             <div style="flex-grow: 1">
                                 <h1>Luxos</h1>
-                                {data.luxos.map(createCardImage)}
+                                {dataEconomy.luxos.map(createCardImage)}
                             </div>
                         </div>
                     </Tab>
@@ -191,10 +188,13 @@ export class Economy {
                     <Tab title="Inventário">
                         <div class="flex-container">
                             <div style="flex-grow: 1">
-                                <h1>Invesitmentos Comprados</h1>
-                                {data.inventario.map(createCardImage)}
+                                <h1>Luxos Comprados</h1>
+                                {dataEconomy.inventario.map(createCardImage)}
                             </div>
                         </div>
+                    </Tab>
+
+                    <Tab title="?">
                     </Tab>
                 </Tabs>
             </Window>
@@ -202,17 +202,10 @@ export class Economy {
     }
 }
 
-
-interface ICardAttrs {
-    title?: string;
-}
-
-
-export class ExpandirCard extends Component<ICardAttrs> {
+export class ExpandirCard {
     expand: boolean;
 
     constructor(vnode) {
-        super();
         this.expand = false;
     }
 
