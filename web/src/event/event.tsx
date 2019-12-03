@@ -1,70 +1,75 @@
-import m from 'mithril';
-import { Window, Tab, Tabs, Btn, Sidebar, Component } from '../ui';
-import terminatorImg from '../../img/events/terminator.jpg';
+import {Sidebar, Window} from '../ui';
+import m = require("mithril");
 
-let event = {
-    img: terminatorImg,
-}
 
 /**
  * Componente para janela de evento.
  */
 export class Event {
+    event: any;
+
+    constructor(vnode) {
+        this.event = null;
+
+        if (vnode.attrs.event !== undefined) {
+            this.event = vnode.attrs.event;
+        } else if (vnode.attrs.href !== undefined) {
+            m.request({url: vnode.attrs.href}).then(x => {
+                this.event = x
+            })
+        } else {
+            m.request({url: "http://localhost:5000/event/random/"}).then(x => {
+                alert(x);
+                this.event = x
+            })
+        }
+    }
+
     view() {
-        var lst = [1, 2, 3, 5, 12, 54, 6, 2134, 4],
-            lstHtml = <ul>{lst.map(x => m('li', x))}</ul>;
+        let ev = this.event || defaultEvent;
+
         return <Window>
-            <Sidebar src={event.img} title="Importante!"/>
-            <Tabs>
-                <Tab title="Tab 1">
-                    {lstHtml}                   
-                </Tab>
-                <Tab title="Tab 2">
-                    Tab 2 content
-                </Tab>
-                <Tab title="Tab 3">
-                    Tab 3 content
-                </Tab>
-            </Tabs>
+            <Sidebar src={ev.img} title="Importante!"/>
+
+            <div class="Event">
+                <div class="Event-content">
+                    <div class="Event-description">
+                        <h2>{ev.title}</h2>
+                        <blockquote>{ev.quote}</blockquote>
+                        <p>{ev.description}</p>
+                    </div>
+                    <div class="Event-question"><h3>{ev.question || "O que você deseja fazer?"}</h3></div>
+                    <div class="Event-choiceList">{ev.options.map(viewOption)}</div>
+                </div>
+            </div>
         </Window>
     }
 }
 
-let ev = (
-    <div class="Event" style="display: block">
-        <div class="Event-content">
-            <div class="Event-image"></div>
-            <div class="Event-description">
-                <h2>Exterminador do Futuro</h2>
-                <blockquote>Hasta la vista, baby!</blockquote>
-                <p>Um guerreiro foi enviado do Futuro para salvar o planeta.</p>
-            </div>
-            <div class="Event-question"><h3>O que você deseja fazer?</h3></div>
-            <div class="Event-choiceList">
-                <div class="Event-choice">
-                    <h4>Eliminar um Illuminati à sua escolha</h4>
-                    <dl>
-                        <dd>Chance de sucesso</dd><dd>70%</dd>
-                        <dd>Fracasso</dd>
-                        <dd>
-                            <ul>
-                                <li>Illuminati aumenta seu poder em 5%</li>
-                                <li>Você perde 10% de poder</li>
-                            </ul>
-                        </dd>
-                    </dl>
-                    <button class="nes-btn is-primary">Não se faz um omelete sem quebrar uns ovos</button>
-                </div>
+function viewOption(opt) {
+    let failureList = (opt.failure || ["Sem efeitos"]).map(x => <li>{x}</li>),
+        successList = (opt.success || []).map(x => <li>{x}</li>);
+    failureList = failureList ? <ul>{failureList}</ul> : "";
+    successList = successList ? <ul>{successList}</ul> : "";
 
-                <div class="Event-choice">
-                    <h4>Adotá-o como segurança privado</h4>
-                    <dl><dd>Chance de sucesso</dd><dd>70%</dd></dl>
-                    <ul>
-                        <li>Aumenta o seu poder em 5%</li>
-                    </ul>
-                    <button class="nes-btn is-primary">Vamos jogar tranquilo e na defensiva</button>
-                </div>
-            </div>
-        </div>
+    return <div class="Event-choice">
+        <h4>{opt.description}</h4>
+        <dl>
+            <dd>Chance de sucesso</dd>
+            <dd>{opt.successRate}%{successList}</dd>
+            <dt>Fracasso</dt>
+            <dd>{failureList}</dd>
+        </dl>
+        <button class="nes-btn is-primary">{opt.action}</button>
     </div>
-);
+}
+
+let defaultEvent = {
+    "id": "loading",
+    "img": '/img/events/loading.jpg',
+    "title": "Carregando...",
+    "quote": null,
+    "question": null,
+    "description": "...",
+    "options": []
+};
