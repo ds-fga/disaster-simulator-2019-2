@@ -63,16 +63,16 @@ export class Tabs extends Component<IGenericAttrs> {
 
 
 interface Sattrs extends IGenericAttrs {
-    title: Element;
+    title: string;
     background?: string;
 }
 
 export class Tab extends Component<Sattrs> {
-    title: Element;
+    title: string;
 
     constructor(vnode) {
         super();
-        this.title = vnode.attrs.title;
+        this.title = vnode.attrs.title || 'Tab';
     }
 
     view(vnode) {
