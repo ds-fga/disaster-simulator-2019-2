@@ -5,3 +5,4 @@ dist/
 game-save.json__pycache__
 .idea
 game.json
+__pycache__

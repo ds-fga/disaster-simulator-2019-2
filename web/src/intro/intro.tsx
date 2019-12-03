@@ -45,7 +45,6 @@ export class Intro {
     }
 
     toggleCredits() {
-        console.log('yey!')
         this.showCredits = !this.showCredits;
     }
 
