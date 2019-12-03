@@ -1,3 +1,44 @@
 .Economy {
     
 }
+
+.EconomyCard {
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 0.7rem;
+    box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 1);
+}
+
+.Economy-button {
+    transform: rotate(-90deg);
+}
+
+.EconomyCard-title {
+    font-size: 1.2rem;
+}
+
+.Economy-button-on {
+    transform: rotate(90deg);
+}
+
+.flex-container {
+    display: flex;
+    align-items: stretch;
+}
+
+.flex-container > div {
+    margin: 10px;
+    padding: 20px;
+}
+
+.EconomyCard-title {
+    text-align: center;
+}
+
+.Economy-right-button {
+    text-align: right;
+}
+
+.EconomyDesc-Image {
+    padding: 20px;
+}
