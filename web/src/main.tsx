@@ -19,7 +19,7 @@ import { Illuminati } from './illuminati/illuminati';
 import { Population } from './population/population';
 
 
-let pages = {
+export let pages = {
     Initial: Initial,
     Intro: Intro,
     Event: Event,

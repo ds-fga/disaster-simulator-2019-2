@@ -2,7 +2,7 @@ import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, VScroll } from '../ui';
 import sidebarImage from '../economy/idosa.jpg';
 import testImage from '../economy/testando.jpg';
-import dataEconomy from '../economy/economy.json';
+import dataEconomy from '../economy/economyData.json';
 //colocar imagem. exampleImg nome <img src={exampleImg}></img>
 
 function createCard ({ title, description, attrs, compraDeItem }) {

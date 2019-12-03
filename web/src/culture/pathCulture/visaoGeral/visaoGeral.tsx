@@ -3,22 +3,23 @@ import { Window, Tab, Tabs, Btn, Sidebar, Elem, VScroll } from '../../../../src/
 import SearchBar from '../../components/searchbar';
 
 import { CreateReligion, NegociosPapa } from '../religion/religionIdeas';
+import { Kino, Tate, Worldcup } from '../entertainment/entertainmentIdeas';
 
 
 export class ContainersVisãoGeral {
     view() {
         return (
             <div>
-                <div class="nes-container is-rounded">
-                    <div class="nes-field">
-                        <label htmlFor="name_field">PROCURAR ITEM PARA COMPRAR:</label>
-                        <SearchBar />
-                    </div>
-                </div>
                 <br />
                 <NegociosPapa/>
                 <br />
                 <CreateReligion />
+                <br/>
+                <Kino/>
+                <br/>
+                <Tate/>
+                <br/>
+                <Worldcup/>
             </div>
         );
     }

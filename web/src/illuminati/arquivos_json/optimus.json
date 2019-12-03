@@ -1,0 +1,14 @@
+{
+    "nome": "Optimus Prime",
+    "idade": "???",
+    "atributos": {
+        "forca": 5,
+        "inteligencia": 15,
+        "influencia": 20,
+    },
+    "habilidades": {
+        "a": "Liderança",
+        "b": "Luta",
+        "c": "Mudança de Forma",
+      }
+}

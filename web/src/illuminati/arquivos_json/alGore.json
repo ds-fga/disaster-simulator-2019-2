@@ -1,0 +1,15 @@
+{
+    "nome": "Al Gore",
+    "idade": "71",
+    "poder": "Política", 
+    "atributos": {
+        "forca": 7,
+        "inteligencia": 12,
+        "influencia": 22,
+    },
+    "habilidades": {
+        "a": "Nobelista",
+        "b": "Argumentador",
+        "c": "Americano",
+      }
+}
