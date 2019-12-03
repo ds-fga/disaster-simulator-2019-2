@@ -1,91 +1,22 @@
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, VScroll } from '../ui';
 import sidebarImage from '../economy/idosa.jpg';
-import testImage from '../economy/testando.jpg'
+import testImage from '../economy/testando.jpg';
+import dataEconomy from '../economy/economy.json';
 //colocar imagem. exampleImg nome <img src={exampleImg}></img>
 
-let data = {
-    lucro: [
-        {
-            title: "Test sdse ",
-            description: "dsjfoisdjfo si fasasfasfafs jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
-            attrs: [
-                { name: "População", color: 'color: red', points: "-39%" },
-                { name: "Economia", color: 'color: green', points: "+R$3000,00" },
-            ],
-            compraDeItem: [
-                {btnAberto: true, preco: "1"}
-            ],
-        },
-        {
-            title: "Test sdse ",
-            description: "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
-            attrs: [
-                { name: "Ciência", color: 'color: red', points: "-20%" },
-                { name: "Política", color: 'color: red', points: "-5%" },
-                { name: "Economia", color: 'color: green', points: "+R$5000,00"}
-            ],
-            compraDeItem: [
-                {btnAberto: true, preco: "3"}
-            ],
-        }
-    ],
-    prejuizo: [
-        {
-            title: "Test sdse ",
-            description: "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
-            attrs: [
-                { name: "attr1", color: 'color: red', points: "?" },
-                { name: "attr2", color: 'color: green', points: "?" },
-            ],
-            compraDeItem: [
-                {btnAberto: true, preco: "1"}
-            ],
-        },
-    ],
-    investimentos: [
-        {
-            title: "Test sdse ",
-            description: "dsjfoisdjfo sasfasfasfi jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
-            attrs: "aumenta sei la",
-            compraDeItem: [
-                {btnAberto: true, preco: "R$3000,00"}
-            ],
-        }
-    ],
-    luxos: [
-        {
-            title: "Test sdse ",
-            description: "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
-            imagemReferencia: testImage,
-            compraDeItem: [
-                {btnAberto: true, preco: 3000, titleBtn: "Comprar"}
-            ],
-        },
-    ],
-    inventario: [
-        {
-            title: "Test sdse ",
-            description: "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
-            imagemReferencia: testImage,
-            compraDeItem: [
-                {btnAberto: true, preco: 1500, titleBtn: "Vender"}
-            ],
-        },
-    ],
-}
-
 function createCard ({ title, description, attrs, compraDeItem }) {
+    var points = 1;     //exportar do python
+
     function viewAttr ({ name, color, points }) {
         return <tr style={color}><td>{name}</td> <td>{points}</td></tr>
     }
 
     function createBotao ({ btnAberto, preco }) {
-        var points = 1;     //exportar do python
         function buying () {
             if (points >= preco) {
                 points -= preco;
-                btnAberto = !btnAberto;     //alterar no json
+                dataEconomy.compraDeItem[btnAberto] = false;     //alterar no json
             }
             else {
                 return alert("ERROR: não há pontos suficiente. Tente novamente na rodada seguinte.");       //tentar mudar para o nes-css
@@ -96,11 +27,9 @@ function createCard ({ title, description, attrs, compraDeItem }) {
             return <div> 
                 <tr><h2>{preco}</h2></tr>
                 <div>
-                    <div>
-                        <button class="nes-btn" onclick={buying}>
-                            <span>Comprar</span>
-                        </button>
-                    </div>
+                    <button class="nes-btn" onclick={buying}>
+                        <span>Comprar</span>
+                    </button>
                 </div>
             </div>
         }
@@ -145,11 +74,9 @@ function createCardSimple ({ title, description, attrs, compraDeItem }) {
             return <div> 
                 <tr><h2>{preco}</h2></tr>
                 <div>
-                    <div>
-                        <button class="nes-btn" onclick={buying}>
-                            <span>Comprar</span>
-                        </button>
-                    </div>
+                    <button class="nes-btn" onclick={buying}>
+                        <span>Comprar</span>
+                    </button>
                 </div>
             </div>
         }
@@ -187,17 +114,18 @@ function createCardImage ({ title, description, imagemReferencia, compraDeItem }
             else if (points < preco && titleBtn === "Comprar"){
                 return alert("ERROR: dinheiro insuficiente. Tente novamente mais tarde.");       //tentar mudar para o nes-css
             }
+            else if (titleBtn === "Vender"){
+                return alert("Ao vender esse item, irá lhe recomensar metade do seu preço");
+            }
         }
 
         if (btnAberto) {
             return <div> 
                 <tr><h2>R${preco},00</h2></tr>
                 <div>
-                    <div>
-                        <button class="nes-btn" onclick={buying}>
-                            <span>{titleBtn}</span>
-                        </button>
-                    </div>
+                    <button class="nes-btn" onclick={buying}>
+                        <span>{titleBtn}</span>
+                    </button>
                 </div>
             </div>
         }
@@ -235,11 +163,11 @@ export class Economy {
                         <div class="flex-container">
                             <div style="flex-grow: 1">
                                 <h1>Lucro</h1>
-                                {data.lucro.map(createCard)}
+                                {dataEconomy.lucro.map(createCard)}
                             </div>
                             <div style="flex-grow: 1">
                                 <h1>Prejuizo</h1>
-                                {data.prejuizo.map(createCard)}
+                                {dataEconomy.prejuizo.map(createCard)}
                             </div>
                         </div>
                     </Tab>
@@ -248,11 +176,11 @@ export class Economy {
                         <div class="flex-container">
                             <div style="flex-grow: 1">
                                 <h1>Investimentos</h1>
-                                {data.investimentos.map(createCardSimple)}
+                                {dataEconomy.investimentos.map(createCardSimple)}
                             </div>
                             <div style="flex-grow: 1">
                                 <h1>Luxos</h1>
-                                {data.luxos.map(createCardImage)}
+                                {dataEconomy.luxos.map(createCardImage)}
                             </div>
                         </div>
                     </Tab>
@@ -260,8 +188,8 @@ export class Economy {
                     <Tab title="Inventário">
                         <div class="flex-container">
                             <div style="flex-grow: 1">
-                                <h1>Invesitmentos Comprados</h1>
-                                {data.inventario.map(createCardImage)}
+                                <h1>Luxos Comprados</h1>
+                                {dataEconomy.inventario.map(createCardImage)}
                             </div>
                         </div>
                     </Tab>
