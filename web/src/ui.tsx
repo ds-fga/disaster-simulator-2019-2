@@ -2,9 +2,7 @@ import m = require('mithril');
 import Prism = require('prismjs');
 import ChartJS = require('chart.js');
 import { classes } from './utils';
-import { model } from './model';
 import { MithrilTsxComponent as Component } from 'mithril-tsx-component';
-import { type } from 'os';
 export { MithrilTsxComponent as Component } from 'mithril-tsx-component';
 
 
@@ -36,8 +34,19 @@ interface IBtnAttrs extends IGenericAttrs {
  */
 export class Btn extends Component<IBtnAttrs> {
     view(vnode: m.Vnode<IBtnAttrs>) {
-        let extraClasses = vnode.attrs.btn;
-        return <button class={`nes-btn is-${extraClasses}`}>{vnode.children}</button>
+        let classes = ['nes-btn'];
+        if (vnode.attrs.class) {
+            this.asClasses(vnode.attrs.class).map(x => classes.push(x));
+        }
+        if (vnode.attrs.btn) {
+            classes.push("is-" + vnode.attrs.btn);
+        }
+        vnode.attrs.class = classes.join(" ");
+        return <button {...vnode.attrs}>{vnode.children}</button>
+    }
+
+    private asClasses(xs: string | string[]): string[] {
+        return (typeof xs === "string")? [xs]: xs;
     }
 }
 
