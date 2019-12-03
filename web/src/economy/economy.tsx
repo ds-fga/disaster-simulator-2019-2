@@ -1,6 +1,7 @@
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, VScroll } from '../ui';
-import exampleImg from '../economy/idosa.jpg';
+import sidebarImage from '../economy/idosa.jpg';
+import testImage from '../economy/testando.jpg'
 //colocar imagem. exampleImg nome <img src={exampleImg}></img>
 
 let data = {
@@ -34,8 +35,8 @@ let data = {
             title: "Test sdse ",
             description: "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             attrs: [
-                { name: "attr1", color: 'color: red', points: "" },
-                { name: "attr2", color: 'color: green', points: "" },
+                { name: "attr1", color: 'color: red', points: "?" },
+                { name: "attr2", color: 'color: green', points: "?" },
             ],
             compraDeItem: [
                 {btnAberto: true, preco: "1"}
@@ -45,7 +46,7 @@ let data = {
     investimentos: [
         {
             title: "Test sdse ",
-            description: "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
+            description: "dsjfoisdjfo sasfasfasfi jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             attrs: "aumenta sei la",
             compraDeItem: [
                 {btnAberto: true, preco: "R$3000,00"}
@@ -55,16 +56,23 @@ let data = {
     luxos: [
         {
             title: "Test sdse ",
-            //img: [
-            //    {imagem: exampleImg, on: true}
-            //],
             description: "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
-            attrs: "aumenta sei la",
+            imagemReferencia: testImage,
             compraDeItem: [
-                {btnAberto: true, preco: "R$500,00"}
+                {btnAberto: true, preco: 3000, titleBtn: "Comprar"}
             ],
         },
-    ]
+    ],
+    inventario: [
+        {
+            title: "Test sdse ",
+            description: "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
+            imagemReferencia: testImage,
+            compraDeItem: [
+                {btnAberto: true, preco: 1500, titleBtn: "Vender"}
+            ],
+        },
+    ],
 }
 
 function createCard ({ title, description, attrs, compraDeItem }) {
@@ -76,7 +84,7 @@ function createCard ({ title, description, attrs, compraDeItem }) {
         var points = 1;     //exportar do python
         function buying () {
             if (points >= preco) {
-                points -= points;
+                points -= preco;
                 btnAberto = !btnAberto;     //alterar no json
             }
             else {
@@ -88,7 +96,7 @@ function createCard ({ title, description, attrs, compraDeItem }) {
             return <div> 
                 <tr><h2>{preco}</h2></tr>
                 <div>
-                    <div class="Economy-right-button">
+                    <div>
                         <button class="nes-btn" onclick={buying}>
                             <span>Comprar</span>
                         </button>
@@ -104,6 +112,7 @@ function createCard ({ title, description, attrs, compraDeItem }) {
     }
 
     return <ExpandirCard title={title}>
+        <h2>Descrição</h2>
         <p>{description}</p>
         <table>
             <thead>
@@ -136,7 +145,7 @@ function createCardSimple ({ title, description, attrs, compraDeItem }) {
             return <div> 
                 <tr><h2>{preco}</h2></tr>
                 <div>
-                    <div class="Economy-right-button">
+                    <div>
                         <button class="nes-btn" onclick={buying}>
                             <span>Comprar</span>
                         </button>
@@ -152,6 +161,7 @@ function createCardSimple ({ title, description, attrs, compraDeItem }) {
     }
 
     return <ExpandirCard title={title}>
+        <h2>Descrição</h2>
         <p>{description}</p>
         <table>
             <thead>
@@ -166,11 +176,60 @@ function createCardSimple ({ title, description, attrs, compraDeItem }) {
     </ExpandirCard>
 }
 
+function createCardImage ({ title, description, imagemReferencia, compraDeItem }) {
+    function createBotao ({ btnAberto, preco, titleBtn }) {
+        var points = 1;     //exportar do python
+        function buying () {
+            if (points >= preco) {
+                points -= points;
+                btnAberto = !btnAberto;     //alterar no json
+            }
+            else if (points < preco && titleBtn === "Comprar"){
+                return alert("ERROR: dinheiro insuficiente. Tente novamente mais tarde.");       //tentar mudar para o nes-css
+            }
+        }
+
+        if (btnAberto) {
+            return <div> 
+                <tr><h2>R${preco},00</h2></tr>
+                <div>
+                    <div>
+                        <button class="nes-btn" onclick={buying}>
+                            <span>{titleBtn}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+        else {
+            return <div>
+                <tr><h2>R${preco},00</h2></tr>
+            </div>
+        }
+    }
+
+    return <ExpandirCard title={title}>
+        <table>
+            <thead>
+                <td class="EconomyDesc-Image">
+                    <img src={imagemReferencia}></img>
+                </td>
+                <td>
+                    <h2>Descrição</h2>
+                    <p>{description}</p>
+                </td>
+                    <tr><h3><th>Preço</th></h3></tr>
+                    {compraDeItem.map(createBotao)}
+            </thead>
+        </table>
+    </ExpandirCard>
+}
+
 export class Economy {
     view() {
         return <div>
             <Window>
-                <Sidebar title="Economia" points="4" src={exampleImg} />
+                <Sidebar title="Economia" points="4" src={sidebarImage} />
                 <Tabs>
                     <Tab title="Ações">
                         <div class="flex-container">
@@ -186,19 +245,25 @@ export class Economy {
                     </Tab>
 
                     <Tab title="Mercado">
-                    <div class="flex-container">
+                        <div class="flex-container">
                             <div style="flex-grow: 1">
-                                <h1>Invesitmentos</h1>
+                                <h1>Investimentos</h1>
                                 {data.investimentos.map(createCardSimple)}
                             </div>
                             <div style="flex-grow: 1">
                                 <h1>Luxos</h1>
-                                {data.luxos.map(createCardSimple)}
+                                {data.luxos.map(createCardImage)}
                             </div>
                         </div>
                     </Tab>
 
                     <Tab title="Inventário">
+                        <div class="flex-container">
+                            <div style="flex-grow: 1">
+                                <h1>Invesitmentos Comprados</h1>
+                                {data.inventario.map(createCardImage)}
+                            </div>
+                        </div>
                     </Tab>
 
                     <Tab title="?">
@@ -242,26 +307,6 @@ export class ExpandirCard {
                     {content}
                 </div>
             </div>
-        </div>
-    }
-}
-
-export class BotaoReserva {
-    butaoOn: boolean;
-
-    constructor (vnode) {
-        this.butaoOn = true;
-    }
-
-    view (vnode) {
-        if (this.butaoOn === false) {
-            return ;
-        }
-
-        return <div class="Economy-right-button">
-            <button class="nes-btn" onclick={() => {this.butaoOn = !this.butaoOn}}>
-                <span>Comprar</span>
-            </button>
         </div>
     }
 }
