@@ -2,6 +2,7 @@ import m = require('mithril');
 import Prism = require('prismjs');
 import ChartJS = require('chart.js');
 import { classes } from './utils';
+import { model } from './model';
 import { MithrilTsxComponent as Component } from 'mithril-tsx-component';
 export { MithrilTsxComponent as Component } from 'mithril-tsx-component';
 
@@ -76,7 +77,7 @@ export class Sidebar extends Component<ISidebarAttrs> {
                     pointsElem = <div class="Sidebar-points">+{points}</div>
                 }
                 return <div class="Sidebar-footer">
-                    <div class="Sidebar-back">
+                    <div class="Sidebar-back" onclick={() => model.menu()}>
                         <button>{"<"}</button>
                         <span>Voltar</span>
                     </div>
@@ -84,7 +85,7 @@ export class Sidebar extends Component<ISidebarAttrs> {
                 </div>
             }
             return null;
-        }
+        };
 
         let attrs = vnode.attrs,
             title = attrs.title,

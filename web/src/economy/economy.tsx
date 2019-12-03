@@ -229,7 +229,7 @@ export class Economy {
     view() {
         return <div>
             <Window>
-                <Sidebar title="Economia" points="4" src={sidebarImage} />
+                <Sidebar title="Economia" points="4" src={sidebarImage} back={true} />
                 <Tabs>
                     <Tab title="Ações">
                         <div class="flex-container">
