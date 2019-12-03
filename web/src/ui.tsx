@@ -108,6 +108,8 @@ export class Sidebar extends Component<ISidebarAttrs> {
 
 interface ITabAttrs extends IGenericAttrs {
     title: string;
+    horizontal?: boolean;
+    reverse?: boolean;
 }
 
 export class Tabs extends Elem {
@@ -119,9 +121,10 @@ export class Tabs extends Elem {
     }
 
     view(vnode) {
-        return <div class="Tabs">
-            {this.viewTabs(vnode)}
-            {this.viewContent(vnode)}
+        let [a, b] = [this.viewTabs(vnode), this.viewContent(vnode)];
+        let cls = vnode.attrs.reverse? " is-vertical": "";
+        return <div class={"Tabs" + cls}>
+            {vnode.attrs.reverse? [b, a]: [a, b]}
         </div>
     }
 

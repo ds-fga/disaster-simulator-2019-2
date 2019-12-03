@@ -1,79 +1,10 @@
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, VScroll } from '../ui';
+import { MithrilTsxComponent as Component } from 'mithril-tsx-component';
 import sidebarImage from '../economy/idosa.jpg';
-import testImage from '../economy/testando.jpg'
-//colocar imagem. exampleImg nome <img src={exampleImg}></img>
+import testImage from '../economy/testando.jpg';
+import data = require("./economy.json");
 
-let data = {
-    lucro: [
-        {
-            title: "Test sdse ",
-            description: "dsjfoisdjfo si fasasfasfafs jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
-            attrs: [
-                { name: "População", color: 'color: red', points: "-39%" },
-                { name: "Economia", color: 'color: green', points: "+R$3000,00" },
-            ],
-            compraDeItem: [
-                {btnAberto: true, preco: "1"}
-            ],
-        },
-        {
-            title: "Test sdse ",
-            description: "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
-            attrs: [
-                { name: "Ciência", color: 'color: red', points: "-20%" },
-                { name: "Política", color: 'color: red', points: "-5%" },
-                { name: "Economia", color: 'color: green', points: "+R$5000,00"}
-            ],
-            compraDeItem: [
-                {btnAberto: true, preco: "3"}
-            ],
-        }
-    ],
-    prejuizo: [
-        {
-            title: "Test sdse ",
-            description: "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
-            attrs: [
-                { name: "attr1", color: 'color: red', points: "?" },
-                { name: "attr2", color: 'color: green', points: "?" },
-            ],
-            compraDeItem: [
-                {btnAberto: true, preco: "1"}
-            ],
-        },
-    ],
-    investimentos: [
-        {
-            title: "Test sdse ",
-            description: "dsjfoisdjfo sasfasfasfi jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
-            attrs: "aumenta sei la",
-            compraDeItem: [
-                {btnAberto: true, preco: "R$3000,00"}
-            ],
-        }
-    ],
-    luxos: [
-        {
-            title: "Test sdse ",
-            description: "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
-            imagemReferencia: testImage,
-            compraDeItem: [
-                {btnAberto: true, preco: 3000, titleBtn: "Comprar"}
-            ],
-        },
-    ],
-    inventario: [
-        {
-            title: "Test sdse ",
-            description: "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
-            imagemReferencia: testImage,
-            compraDeItem: [
-                {btnAberto: true, preco: 1500, titleBtn: "Vender"}
-            ],
-        },
-    ],
-}
 
 function createCard ({ title, description, attrs, compraDeItem }) {
     function viewAttr ({ name, color, points }) {
@@ -121,7 +52,7 @@ function createCard ({ title, description, attrs, compraDeItem }) {
             </thead>
             <tbody>
                 <tr><h3><th>Preço</th></h3></tr>
-                {compraDeItem.map(createBotao)}
+                {(compraDeItem || []).map(createBotao)}
             </tbody>
         </table>
         
@@ -265,19 +196,23 @@ export class Economy {
                             </div>
                         </div>
                     </Tab>
-
-                    <Tab title="?">
-                    </Tab>
                 </Tabs>
             </Window>
         </div>
     }
 }
 
-export class ExpandirCard {
+
+interface ICardAttrs {
+    title?: string;
+}
+
+
+export class ExpandirCard extends Component<ICardAttrs> {
     expand: boolean;
 
     constructor(vnode) {
+        super();
         this.expand = false;
     }
 

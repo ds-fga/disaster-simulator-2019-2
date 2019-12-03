@@ -160,7 +160,7 @@ export class Illuminati {
     view() {
         //     
         return <Window> 
-            <Sidebar src={event.img} title="Conselho Illuminati"/>
+            <Sidebar src={event.img} title="Conselho Illuminati" back={true}/>
             <Tabs>
                 
                 <Tab title="Ficha"> 

@@ -1,6 +1,7 @@
 {
     "lucro": [
         {
+            "id": "lucro-1",
             "title": "Test sdse ",
             "description": "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             "preco": "1",
@@ -18,6 +19,7 @@
             ]
         },
         {
+            "id": "lucro-2",
             "title": "Test sdse ",
             "description": "dsjfoisdjfo si jfosij fosi jfoisdj foisj dfois jdofisodjf osi jfos",
             "attrs": [
@@ -34,8 +36,10 @@
             ]
         }
     ],
+    
     "prejuizo": [
         {
+            "id": "prejuizo-1",
             "title": "Test sdse ",
             "description": "dsjfoisdjfo si jfosij fosi  foisj dfois jdofisodjf osi jfos",
             "attrs": [
@@ -51,5 +55,17 @@
                 }
             ]
         }
+    ],
+    
+    "investimentos": [
+
+    ],
+    
+    "luxos": [
+
+    ],
+
+    "inventario": [
+        
     ]
 }
