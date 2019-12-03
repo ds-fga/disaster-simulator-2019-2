@@ -202,7 +202,7 @@ export class Chart extends Component<IChartAttrs> {
     oncreate(vnode: m.Vnode<IChartAttrs>) {
         let {type, data, options} = vnode.attrs,
             canvas = document.createElement('CANVAS'),
-            dom: HTMLElement = vnode.dom;
+            dom: HTMLElement = vnode['dom'];
         canvas.setAttribute('width', (vnode.attrs.width || 190).toString());
         canvas.setAttribute('height', (vnode.attrs.height || 90).toString());
         dom.appendChild(canvas);

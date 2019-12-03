@@ -1,7 +1,6 @@
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, Component } from '../ui';
 import terminatorImg from '../../img/events/terminator.jpg';
-import { Culture, CultureTabs } from '../culture/culture';
 
 let event = {
     img: terminatorImg,
@@ -12,12 +11,13 @@ let event = {
  */
 export class Event {
     view() {
+        var lst = [1, 2, 3, 5, 12, 54, 6, 2134, 4],
+            lstHtml = <ul>{lst.map(x => m('li', x))}</ul>;
         return <Window>
             <Sidebar src={event.img} title="Importante!"/>
             <Tabs>
                 <Tab title="Tab 1">
-                    Tab 1 content
-
+                    {lstHtml}                   
                 </Tab>
                 <Tab title="Tab 2">
                     Tab 2 content
@@ -68,4 +68,3 @@ let ev = (
         </div>
     </div>
 );
-
