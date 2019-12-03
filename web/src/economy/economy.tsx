@@ -5,18 +5,21 @@ import testImage from '../economy/testando.jpg';
 import dataEconomy from '../economy/economyData.json';
 //colocar imagem. exampleImg nome <img src={exampleImg}></img>
 
-function createCard ({ title, description, attrs, compraDeItem }) {
-    var points = 1;     //exportar do python
+let dinheiro = 4500;
 
+function createCard ({ title, description, attrs, compraDeItem }) {
     function viewAttr ({ name, color, points }) {
         return <tr style={color}><td>{name}</td> <td>{points}</td></tr>
     }
 
-    function createBotao ({ btnAberto, preco }) {
+    function createBotao (btn) {
+        let points = 1;     //pegar do PYTHON
+        let {preco, btnAberto} = btn;
+
         function buying () {
             if (points >= preco) {
                 points -= preco;
-                dataEconomy.compraDeItem[btnAberto] = false;     //alterar no json
+                btn.btnAberto = false;
             }
             else {
                 return alert("ERROR: não há pontos suficiente. Tente novamente na rodada seguinte.");       //tentar mudar para o nes-css
@@ -58,12 +61,13 @@ function createCard ({ title, description, attrs, compraDeItem }) {
 }
 
 function createCardSimple ({ title, description, attrs, compraDeItem }) {
-    function createBotao ({ btnAberto, preco }) {
-        var points = 1;     //exportar do python
+    function createBotao (btn) {
+        let {preco, btnAberto} = btn;
+
         function buying () {
-            if (points >= preco) {
-                points -= points;
-                btnAberto = !btnAberto;     //alterar no json
+            if (dinheiro >= preco) {
+                dinheiro -= preco;
+                btn.btnAberto = false;
             }
             else {
                 return alert("ERROR: dinheiro insuficiente. Tente novamente mais tarde.");       //tentar mudar para o nes-css
@@ -72,7 +76,7 @@ function createCardSimple ({ title, description, attrs, compraDeItem }) {
 
         if (btnAberto) {
             return <div> 
-                <tr><h2>{preco}</h2></tr>
+                <tr><h2>R${preco},00</h2></tr>
                 <div>
                     <button class="nes-btn" onclick={buying}>
                         <span>Comprar</span>
@@ -82,7 +86,7 @@ function createCardSimple ({ title, description, attrs, compraDeItem }) {
         }
         else {
             return <div>
-                <tr><h2>{preco}</h2></tr>
+                <tr><h2>R${preco},00</h2></tr>
             </div>
         }
     }
@@ -104,17 +108,19 @@ function createCardSimple ({ title, description, attrs, compraDeItem }) {
 }
 
 function createCardImage ({ title, description, imagemReferencia, compraDeItem }) {
-    function createBotao ({ btnAberto, preco, titleBtn }) {
-        var points = 1;     //exportar do python
+    function createBotao (btn) {
+        let {preco, btnAberto, titleBtn} = btn;
+
         function buying () {
-            if (points >= preco) {
-                points -= points;
-                btnAberto = !btnAberto;     //alterar no json
+            if (dinheiro >= preco && titleBtn === "Comprar") {
+                dinheiro -= preco;
+                btn.btnAberto = false;
             }
-            else if (points < preco && titleBtn === "Comprar"){
+            else if (dinheiro < preco && titleBtn === "Comprar"){
                 return alert("ERROR: dinheiro insuficiente. Tente novamente mais tarde.");       //tentar mudar para o nes-css
             }
             else if (titleBtn === "Vender"){
+                dinheiro += preco/2;
                 return alert("Ao vender esse item, irá lhe recomensar metade do seu preço");
             }
         }
@@ -159,7 +165,7 @@ export class Economy {
             <Window>
                 <Sidebar title="Economia" points="4" src={sidebarImage} />
                 <Tabs>
-                    <Tab title="Ações">
+                    <Tab title={<button class="nes-btn">Ações</button>}>
                         <div class="flex-container">
                             <div style="flex-grow: 1">
                                 <h1>Lucro</h1>
@@ -172,7 +178,7 @@ export class Economy {
                         </div>
                     </Tab>
 
-                    <Tab title="Mercado">
+                    <Tab title={<button class="nes-btn">Mercado</button>}>
                         <div class="flex-container">
                             <div style="flex-grow: 1">
                                 <h1>Investimentos</h1>
@@ -185,7 +191,7 @@ export class Economy {
                         </div>
                     </Tab>
 
-                    <Tab title="Inventário">
+                    <Tab title={<button class="nes-btn">Inventário</button>}>
                         <div class="flex-container">
                             <div style="flex-grow: 1">
                                 <h1>Luxos Comprados</h1>
@@ -194,7 +200,7 @@ export class Economy {
                         </div>
                     </Tab>
 
-                    <Tab title="?">
+                    <Tab title={<button class="nes-btn">?</button>}>
                     </Tab>
                 </Tabs>
             </Window>

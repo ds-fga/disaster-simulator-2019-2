@@ -8,7 +8,7 @@
                 { "name": "Economia", "color": "color: green", "points": "+R$3000,00" }
             ],
             "compraDeItem": [
-                {"btnAberto": true, "preco": "1"}
+                {"btnAberto": true, "preco": 5}
             ]
         }
     ],
@@ -21,7 +21,7 @@
                 { "name": "attr2", "color": "color: green", "points": "?" }
             ],
             "compraDeItem": [
-                {"btnAberto": true, "preco": "1"}
+                {"btnAberto": true, "preco": 1}
             ]
         }
     ],
@@ -31,7 +31,7 @@
             "description": "dsjfoisdjfo sasfasfasfi jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             "attrs": "aumenta sei la",
             "compraDeItem": [
-                {"btnAberto": true, "preco": "R$3000,00"}
+                {"btnAberto": true, "preco": 3000}
             ]
         }
     ],
@@ -51,7 +51,7 @@
             "description": "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             "imagemReferencia": "testImage",
             "compraDeItem": [
-                {"btnAberto": true, "preco": 1500, "titleBtn": "Vender"}
+                {"btnAberto": true, "preco": 3000, "titleBtn": "Vender"}
             ]
         }
     ]
