@@ -48,104 +48,108 @@ let illuminatiList = [
     },
     {
         name: "Rainha Elizabeth II",
-        imgUrl: rainhaImg,
-        imgAlt: "Imagem Rainha",
-        sauroUrl: billImg,
+        description: <img src={rainhaImg} width="250" height="290" alt= "Imagem Rainha"/>,
         introduction: "Politica",
         information: rainhaJson,
         taxa: "50% alinhamento",
     },
     {
         name: "Bill Gates",
-        imgUrl: billImg,
-        imgAlt: "Imagem Bill Gates",
-        sauroUrl: alGoreImg,
+        description: <img src={billImg} width="250" height="290" alt= "Imagem Bill Gates"/>,
         introduction: "Tecnologia",
         information: billJson,
         taxa: "50% alinhamento",
     },
     {
         name: "Jeff Bezos",
-        imgUrl: jeffImg,
-        imgAlt: "Imagem Jeff",
-        sauroUrl: rainhaImg,
+        description: <img src={jeffImg} width="250" height="290" alt= "Imagem Jeff"/>,
         introduction: "Comércio",
         information: jeffJson,
         taxa: "50% alinhamento",
     },
     {
         name: "Putin",
-        imgUrl: putinImg,
-        imgAlt: "Imagem Putin",
-        sauroUrl: michaelImg,
+        description: <img src={putinImg} width="250" height="290" alt= "Imagem Putin"/>,
         introduction: "Guerra",
         information: putinJson,
         taxa: "50% alinhamento",
     },
     {
         name: "Xi Jinping",
-        imgUrl: xiImg,
-        imgAlt: "Imagem Xi",
-        sauroUrl: papaImg,
+        description: <img src={xiImg} width="250" height="290" alt= "Imagem Xi"/>,
         introduction: "Indústria",
         information: xiJson,
         taxa: "50% alinhamento",
     },
     {
         name: "Michael Jackson",
-        imgUrl: michaelImg,
-        imgAlt: "Imagem Michael",
-        sauroUrl: xiImg,
+        description: <img src={michaelImg} width="250" height="290" alt= "Imagem Michael"/>,
         introduction: "Cultura",
         information: michaelJson,
         taxa: "50% alinhamento",
     },
     {
         name: "Papa Francisco",
-        imgUrl: papaImg,
-        imgAlt: "Imagem Papa",
-        sauroUrl: silvioImg,
+        description: <img src={papaImg} width="250" height="290" alt= "Imagem Papa"/>,
         introduction: "Religião",
         information: papaJson,
         taxa: "50% alinhamento",
     },
     {
         name: "Silvio Santos",
-        imgUrl: silvioImg,
-        imgAlt: "Imagem Silvio",
-        sauroUrl: obamaImg,
+        description: <img src={silvioImg} width="250" height="290" alt= "Imagem Silvio"/>,
         introduction: "Mídia/Informação",
         information: silvioJson,
         taxa: "50% alinhamento",
     },
     {
         name: "Obama",
-        imgUrl: obamaImg,
-        imgAlt: "Imagem Obama",
-        sauroUrl: joesleyImg,
+        description: <img src={obamaImg} width="250" height="290" alt= "Imagem Obama"/>,
         introduction: "Saúde",
         information: obamaJson,
         taxa: "50% alinhamento",
     },
     {
         name: "Optimus Prime",
-        imgUrl: optimusImg,
-        imgAlt: "Imagem Optimus",
-        sauroUrl: obamaImg,
+        description: <img src={optimusImg} width="250" height="290" alt= "Imagem Optimus"/>,
         introduction: "Transporte",
         information: optimusJson,
         taxa: "50% alinhamento",
     },
     {
         name: "Joesley",
-        imgUrl: joesleyImg,
-        imgAlt: "Imagem Joesley",
-        sauroUrl: xiImg,
+        description: <img src={joesleyImg} width="250" height="290" alt= "Imagem Joesley"/>,
         introduction: "Agropecuária",
         information: joesleyJson,
         taxa: "50% alinhamento",
     },
 ]
+
+function Graph(){
+var data = [
+    {
+        value: 300,
+        color:"#F7464A",
+        highlight: "#FF5A5E",
+        label: "Red"
+    },
+    {
+        value: 50,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "Green"
+    },
+    {
+        value: 100,
+        color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Yellow"
+    }
+];
+
+var ctx = document.getElementById("myChart").getContext("2d");
+new Chart(ctx).Pie(data);
+}
 
 /**
  * Componente que mostra janela do conselho Illuminati.
@@ -158,16 +162,18 @@ export class Illuminati {
         return <Window> 
             <Sidebar src={event.img} title="Conselho Illuminati"/>
             <Tabs>
+                
                 <Tab title="Ficha"> 
                   <Tabs vertical={true} reverse={true}>{illuminatiList.map((e) => renderIlluminattiTab(e))}</Tabs>
                 </Tab>
-                <Tab title="Seguidores">
-
-                 Grafico de distribuicao dos seguidores
-                 Ideia: graficos de "pizza" para idnicar a quantidade de seguidores para cada seguidor
                 
+                <Tab title="Seguidores">
+                    
+             
                 </Tab>
+               
             </Tabs>
+
         </Window>
 
     }
