@@ -40,7 +40,7 @@
 
 
 //Formatações usadas em left e right Dash
-.leftDash ul, li, .rightDash ul, li {
+.leftDash ul > li, .rightDash ul > li {
     text-align: center;
     grid-area: leftd;
 }
