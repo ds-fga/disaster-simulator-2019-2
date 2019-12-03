@@ -1,0 +1,15 @@
+{
+    "nome": "Jeff Bezos",
+    "idade": "51",
+    "poder": "Riqueza", 
+    "atributos": {
+        "forca": 7,
+        "inteligencia": 18,
+        "influencia": 26,
+    },
+    "habilidades": {
+        "a": "Comerciante Chefe",
+        "b": "Amazoniano",
+        "c": "Ricasso",
+      }
+}

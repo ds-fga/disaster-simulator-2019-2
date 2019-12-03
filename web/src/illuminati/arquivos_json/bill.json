@@ -1,0 +1,15 @@
+{
+    "nome": "Bill Gates",
+    "idade": "64",
+    "poder": "Tecnologia", 
+    "atributos": {
+        "forca": 9,
+        "inteligencia": 20,
+        "influencia": 22,
+    },
+    "habilidades": {
+        "a": "Criativo",
+        "b": "Inovador",
+        "c": "Empreendedor",
+      }
+}
