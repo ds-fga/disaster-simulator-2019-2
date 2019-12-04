@@ -18,7 +18,7 @@ data = {
         'spec': "Estudos necessários para entender melhor o funcionamento das partículas atômicas e subatômicas e como promover mudanças ambientalmente favoráveis.",
         'type_tech': "nuclear",
         'status': 'available',
-        'prog': 5
+        'prog': 0
     },
     'Usinas nucleares': {
         'title': "Usinas nucleares",

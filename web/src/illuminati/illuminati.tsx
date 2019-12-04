@@ -2,31 +2,31 @@ import m from 'mithril';
 
 import { Window, Tab, Tabs, Btn, Sidebar, Component } from '../ui';
 
-import terminatorImg from './piramide.jpg';
-import rainhaImg from './rainha.jpg';
-import alGoreImg from './al gore.jpg';
-import billImg from './bill.jpg';
-import jeffImg from './jeff.jpg';
-import joesleyImg from './joesley.jpg';
-import michaelImg from './michael.jpg';
-import obamaImg from './obama.jpg';
-import xiImg from './xi.jpg';
-import papaImg from './papa.jpg';
-import silvioImg from './silvio.jpg';
-import optimusImg from './optimus.jpg';
-import putinImg from './putin.jpg';
-import rainhaJson from './rainha.json'; 
-import alGoreJson from './alGore.json';
-import billJson from './bill.json';
-import jeffJson from './jeff.json';
-import putinJson from './putin.json';
-import xiJson from './xi.json';
-import joesleyJson from './joesley.json';
-import michaelJson from './michael.json';
-import obamaJson from './obama.json';
-import papaJson from './papa.json';
-import silvioJson from './silvio.json';
-import optimusJson from './optimus.json';
+import terminatorImg from './imagens/piramide.jpg';
+import rainhaImg from './imagens/rainha.jpg';
+import alGoreImg from './imagens/al gore.jpg';
+import billImg from './imagens/bill.jpg';
+import jeffImg from './imagens/jeff.jpg';
+import joesleyImg from './imagens/joesley.jpg';
+import michaelImg from './imagens/michael.jpg';
+import obamaImg from './imagens/obama.jpg';
+import xiImg from './imagens/xi.jpg';
+import papaImg from './imagens/papa.jpg';
+import silvioImg from './imagens/silvio.jpg';
+import optimusImg from './imagens/optimus.jpg';
+import putinImg from './imagens/putin.jpg';
+import rainhaJson from './arquivos_json/rainha.json'; 
+import alGoreJson from './arquivos_json/alGore.json';
+import billJson from './arquivos_json/bill.json';
+import jeffJson from './arquivos_json/jeff.json';
+import putinJson from './arquivos_json/putin.json';
+import xiJson from './arquivos_json/xi.json';
+import joesleyJson from './arquivos_json/joesley.json';
+import michaelJson from './arquivos_json/michael.json';
+import obamaJson from './arquivos_json/obama.json';
+import papaJson from './arquivos_json/papa.json';
+import silvioJson from './arquivos_json/silvio.json';
+import optimusJson from './arquivos_json/optimus.json';
 
 
 let event = {
@@ -34,11 +34,14 @@ let event = {
     img: terminatorImg,
 
 }
+function funcao
 
 let illuminatiList = [
     {
         name: "Al Gore",
-        description: <img src={alGoreImg} width="250" height="290" alt= "Imagem Al Gore"/>,
+        imgUrl: alGoreImg,
+        imgAlt: "Imagem Al Gore", 
+        sauroUrl: billImg,
         introduction: "Ambiente",
         information: alGoreJson,
         taxa: "50% alinhamento",
@@ -122,6 +125,32 @@ let illuminatiList = [
     },
 ]
 
+function Graph(){
+var data = [
+    {
+        value: 300,
+        color:"#F7464A",
+        highlight: "#FF5A5E",
+        label: "Red"
+    },
+    {
+        value: 50,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "Green"
+    },
+    {
+        value: 100,
+        color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Yellow"
+    }
+];
+
+var ctx = document.getElementById("myChart").getContext("2d");
+new Chart(ctx).Pie(data);
+}
+
 /**
  * Componente que mostra janela do conselho Illuminati.
  */
@@ -131,18 +160,20 @@ export class Illuminati {
     view() {
         //     
         return <Window> 
-            <Sidebar src={event.img} title="Conselho Illuminati"/>
+            <Sidebar src={event.img} title="Conselho Illuminati" back={true}/>
             <Tabs>
-                <Tab title="Ficha">
-                  <Tabs vertical={true}>{illuminatiList.map((e) => renderIlluminattiTab(e))}</Tabs>
-                </Tab>
-                <Tab title="Seguidores">
-
-                 Grafico de distribuicao dos seguidores
-                 Ideia: graficos de "pizza" para idnicar a quantidade de seguidores para cada seguidor
                 
+                <Tab title="Ficha"> 
+                  <Tabs vertical={true} reverse={true}>{illuminatiList.map((e) => renderIlluminattiTab(e))}</Tabs>
                 </Tab>
+                
+                <Tab title="Seguidores">
+                    
+             
+                </Tab>
+               
             </Tabs>
+
         </Window>
 
     }
@@ -151,12 +182,14 @@ export class Illuminati {
 function renderIlluminattiTab(x) {
     return <Tab title={x.name}>
         <div class="IlluminatiSheet">
-        <ul class = "illuminati_side">
-                
-        <Sidebar class="description" title = {x.introduction}></Sidebar>
-        <Sidebar class="taxa" title = {x.taxa}></Sidebar>
-            </ul>
-            <u1 class = "IlluminatiImage"> {x.description}</u1>
+        <div class = "illuminati_side">
+            <Sidebar class="description" title = {x.introduction}></Sidebar>
+            <Sidebar class="taxa" title = {x.taxa}></Sidebar>
+        </div>
+        <div class="IlluminatiImage">
+            <img src={x.sauroUrl} width="250" height="290" alt={x.imgAlt}/>
+            <img class="topImg" src={x.imgUrl} width="250" height="290" alt={x.imgAlt}/>
+        </div>
             
         </div>
         <div class = "IlluminatInformation">

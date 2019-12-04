@@ -1,11 +1,11 @@
 import math
 
-
 # =============================================================================
 # Índices de cada variável da simulação
 # =============================================================================
 _idx0 = -1
 _start = []
+
 
 def value(x):
     """Retorna idx, valor para o argumento dado. Incrementa o índice 
@@ -15,8 +15,9 @@ def value(x):
     _start.append(x)
     return _idx0
 
+
 # Tempo de simulação (anos)
-TIME = value(2015) 
+TIME = value(2015)
 
 # Anomalia da temperatura atmosférica e dos oceanos (K)
 T_ATM = value(0.8)
@@ -46,7 +47,7 @@ LABOR_FORCE = value(258 / 327)
 
 # Participação da força produtiva/parcela da população economicamente ativa
 # que está de fato empregada
-LABOR_PARTICIPATION = value(163 / 258) 
+LABOR_PARTICIPATION = value(163 / 258)
 
 # Produtividade que relaciona trabalho, capital com produção/PIB
 # Valor escolhido para fornecer o PIB de 2015 com os valores iniciais
@@ -81,7 +82,7 @@ CLIMATE_LOSS = value(0.0)
 
 # Emissões de gás carbônico (GtC / ano)
 EMISSIONS = value(9.45)
-    
+
 # Intensidade de carbono da economia. Pode reduzir com o desenvolvimento
 # de tecnologias ecologicamente corretas. (GtC / tri U$)
 CARBON_INTENSITY = value(9.45 / 105)  # 0.09 GtC/ tri U$
@@ -94,6 +95,8 @@ CARBON_BACKSTOP_PRICE = value(2.01)
 
 # Inicializamos com o estado inicial
 data = [_start]
+var_names = sorted((v, k) for k, v in globals().items() if k.isupper())
+var_names = [k for _, k in var_names]
 
 
 # =============================================================================
@@ -109,11 +112,11 @@ c_deep_eq = 1720
 # Dividimos por 5 porque o DICE utiliza um passo de 5 anos
 a = 0.12 / 5
 c = 0.07 / 5
-a, b, c, d =  a, a * c_atm_eq / c_ocean_eq, c, c * c_ocean_eq / c_deep_eq
+a, b, c, d = a, a * c_atm_eq / c_ocean_eq, c, c * c_ocean_eq / c_deep_eq
 phi = [
-    [-a,      b,  0],
-    [ a, -b - c,  d],
-    [ 0,      c, -d],
+    [-a, b, 0],
+    [a, -b - c, d],
+    [0, c, -d],
 ]
 
 # Parâmetros da função de danos
@@ -138,7 +141,7 @@ def step(dt=1):
     now = data[-1]
     new = now.copy()
     new[TIME] = now[TIME] + dt
-    
+
     # Variáveis da simulação
     t_atm = now[T_ATM]
     t_ocean = now[T_OCEAN]
@@ -161,30 +164,35 @@ def step(dt=1):
     damage = damage_coeff * t_atm ** damage_exp
     abatement_cost = abate_coeff * abatement ** abate_exp
     loss = 1 - (1 - damage) * (1 - abatement_cost)
-    
+
     # Variáveis derivadas
-    labor = now[LABOR_FORCE] * now[LABOR_INTENSITY] * now[LABOR_PARTICIPATION] * population
+    labor = now[LABOR_FORCE] * now[LABOR_INTENSITY] * now[
+        LABOR_PARTICIPATION] * population
     production = now[PRODUCTIVITY] * capital ** alpha * labor ** (1 - alpha)
     emissions = now[CARBON_INTENSITY] * (1 - abatement) * production
-    
+
     rf_atm = rf_coeff * math.log(c_atm / c_atm_eq)
-    
+
     # Ambiente
-    new[C_ATM]   = c_atm   + dt * (phi[0][0] * c_atm + phi[0][1] * c_ocean + phi[0][2] * c_deep) + emissions * dt
-    new[C_OCEAN] = c_ocean + dt * (phi[1][0] * c_atm + phi[1][1] * c_ocean + phi[1][2] * c_deep) 
-    new[C_DEEP]  = c_deep  + dt * (phi[2][0] * c_atm + phi[2][1] * c_ocean + phi[2][2] * c_deep) 
-    
-    new[T_ATM]   = t_atm   - dt * c1 * (t_atm - t_ocean) + sensitivity * rf_atm + c3 * t_atm
-    new[T_OCEAN] = t_ocean - dt * c2 * (t_ocean - t_atm) 
-    
+    new[C_ATM] = c_atm + dt * (phi[0][0] * c_atm + phi[0][1] * c_ocean + phi[0][
+        2] * c_deep) + emissions * dt
+    new[C_OCEAN] = c_ocean + dt * (
+                phi[1][0] * c_atm + phi[1][1] * c_ocean + phi[1][2] * c_deep)
+    new[C_DEEP] = c_deep + dt * (
+                phi[2][0] * c_atm + phi[2][1] * c_ocean + phi[2][2] * c_deep)
+
+    new[T_ATM] = t_atm - dt * c1 * (t_atm - t_ocean) + sensitivity * rf_atm + c3 * t_atm
+    new[T_OCEAN] = t_ocean - dt * c2 * (t_ocean - t_atm)
+
     new[EMISSIONS] = emissions
     new[CLIMATE_LOSS] = loss
 
     # Economia
-    new[CAPITAL] = capital + dt * (1 - loss) * savings_rate * production - capital_decay * capital
+    new[CAPITAL] = capital + dt * (
+            1 - loss) * savings_rate * production - capital_decay * capital
     new[POPULATION] = population + dt * population * population_growth
     new[PRODUCTION] = production
-    
+
     # Salva resultado
     data.append(new)
     return new
@@ -220,8 +228,16 @@ def get_var(name):
     >>> get_var('C_ATM')
     851
     """
-    idx = globals()[name.upper()] 
-    return data[-1][idx]    
+    idx = globals()[name.upper()]
+    return data[-1][idx]
+
+
+def get_vars():
+    """
+    Retorna dicionário com todas as variáveis de simulação.
+    """
+    names = map(str.lower, var_names)
+    return dict(zip(names, data[-1]))
 
 
 def set_var(name, value):
@@ -230,25 +246,51 @@ def set_var(name, value):
 
     >>> set_var('C_ATM', 1000)
     """
-    idx = globals()[name.upper()] 
+    idx = globals()[name.upper()]
     data[-1][idx] = value
 
 
 def get_series(name):
-    idx = globals()[name.upper()] 
+    """
+    Retorna série de valores para variável.
+    """
+    idx = globals()[name.upper()]
     return [st[idx] for st in data]
 
 
 def multiply_var(name, value):
+    """
+    Multiplica variável por valor.
+    """
     new = get_var(name) * value
     set_var(name, new)
     return new
 
 
 def add_var(name, value):
+    """
+    Soma variável com valor.
+    """
     new = get_var(name) + value
     set_var(name, new)
     return new
+
+
+def get_game_state():
+    """
+    Retorna estado completo do jogo.
+    """
+    return {'data': data}
+
+
+def set_game_state(state):
+    """
+    Recupera simulação a partir do estado fornecido.
+    """
+    global data
+
+    data[:] = state['data']
+
 
 def plot(name):
     """
@@ -258,5 +300,4 @@ def plot(name):
 
     time = get_series('time')
     value = get_series(name)
-    print(value)
     plt.plot(time, value, label=name)

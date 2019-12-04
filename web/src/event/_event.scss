@@ -1,16 +1,7 @@
 $event-img-margin: 350px;
 
-.Event2 {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    
+.Event {
     h1, h2, h3, h4 {
-        font-family: Pixel;
         color: $primary-color;
         background: linear-gradient(to right, $code-color, $primary-color);
         -webkit-background-clip: text;
@@ -56,15 +47,13 @@ $event-img-margin: 350px;
         color: black;
         height: 100vh;
         margin: 0;
-        padding-left: $event-img-margin;
-        position: relative;
         z-index: 1000;
     }
     &-description {
-        //background: url('../img/bg/interlaced.png');
+        background: url('../img/bg/interlaced.png');
         background-clip: border-box;
         padding: 1.5rem;
-        min-height: 25%;
+        min-height: 35vh;
 
         *:last-child {
             margin-bottom: 0;
@@ -85,6 +74,7 @@ $event-img-margin: 350px;
         @extend .column, .col-6;
         padding: 0.75rem 1.5rem;
         transition: transform, box-shadow, border-radius 200ms;
+        min-height: 45vh;
         position: relative;
 
         &:hover {
@@ -103,6 +93,10 @@ $event-img-margin: 350px;
             top: 40px;
             width: 4px;
             height: 30vh;
+        }
+        button {
+            position: absolute;
+            bottom: 1rem !important;
         }
     }
 }
