@@ -1,4 +1,5 @@
 import Papaimg from '../../assets/Papa.jpg';
+import Religião from '../../assets/CreateReligion.jpg'
 
 export class NegociosPapa {
     view() {
@@ -37,7 +38,6 @@ export class NegociosPapa {
 
 export class CreateReligion {
     view() {
-        let money = 1000;
         return (
             <div class="nes-container is-rounded">
                 <p><div class="nes-container is-rounded is-dark">
@@ -50,7 +50,14 @@ export class CreateReligion {
                 </div></p>
                 <dialog class="nes-dialog is-rounded" id="CreateReligion">
                     <form method="dialog">
-                        <p class="title"></p>
+                        <h1>Criar uma religião</h1>
+                        <img src={Religião} width="400" height="200" />
+                        <p />
+                        <p class="title">Desde os primordios, as crenças religiosas fizeram parte da cultura de uma sociedade. <br />
+                            Poderiamos criar uma religião que nos beneficie fazendo os crentes acreditarem que existe uma grupo<br/>
+                            maior e que nossas ações melhoram o mundo.
+                        </p>
+                        <p>Gostaria de criar uma religião?</p>
                         <menu class="dialog-menu">
                             <button class="nes-btn is-success">Confirmar</button>
                             <button class="nes-btn is-error">Cancelar</button>

@@ -1,9 +1,6 @@
-import m from 'mithril';
-import { Window, Tab, Tabs, Btn, Sidebar, Elem, VScroll } from '../../../../src/ui';
-import SearchBar from '../../components/searchbar';
-
 import { CreateReligion, NegociosPapa } from '../religion/religionIdeas';
 import { Kino, Tate, Worldcup } from '../entertainment/entertainmentIdeas';
+import { Unb, Mit } from '../education/educationIdeas';
 
 
 export class ContainersVisãoGeral {
@@ -11,15 +8,19 @@ export class ContainersVisãoGeral {
         return (
             <div>
                 <br />
-                <NegociosPapa/>
+                <NegociosPapa />
                 <br />
                 <CreateReligion />
+                <br />
+                <Kino />
+                <br />
+                <Tate />
+                <br />
+                <Worldcup />
+                <br />
+                <Unb />
                 <br/>
-                <Kino/>
-                <br/>
-                <Tate/>
-                <br/>
-                <Worldcup/>
+                <Mit />
             </div>
         );
     }

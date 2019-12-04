@@ -22,18 +22,11 @@ let img = {
 
 export class Culture {
 
-    voltar() {
-        var element = document.getElementById("cultureWindow");
-        var style = element.style;
-        style.animation = "textShadow 1.6s infinite, turn-off 0.55s cubic-bezier(0.755, 0.050, 0.855, 0.060)";
-        window.setTimeout(function () { element.parentNode.removeChild(element) }, 550);
-    }
-
     view() {
 
         return (
             <Window id='cultureWindow'>
-                <Sidebar src={img.icon} class="culture_sidebar" title={<button class="nes-btn culture_sidebar-btn" onclick={this.voltar} >
+                <Sidebar src={img.icon} class="culture_sidebar" title={<button class="nes-btn culture_sidebar-btn" onclick={() => model.menu()} >
                     &nbsp;&nbsp;Voltar &nbsp;
                </button>} />
                 <Tabs>
