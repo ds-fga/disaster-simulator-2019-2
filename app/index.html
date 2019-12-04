@@ -1,0 +1,67 @@
+<html>
+<link href="https://unpkg.com/nes.css@2.2.1/css/nes.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+    body { padding: 5vw; }
+    h1 { color: red; margin-bottom: 2rem; }
+    h3 { margin: 2rem 0 0.5rem 1rem; }
+    h3::before {
+        content: "# ";
+        color: red;
+    }
+    p { margin-left: 2rem; }
+    dl { margin-left: 4rem; }
+    .nes-container { margin: 3rem 0 !important; }
+</style>
+
+<body>
+<h1>API do Disaster simulator</h1>
+
+<div class="nes-container with-title is-rounded">
+    <h2 class="title">Controle do jogo</h2>
+
+    <h3><a href="/game/step/">/game/step/</a></h3>
+    <p>Avança a simulação por um passo.</p>
+
+    <h3><a href="/game/step/10">/game/step/{n}/</a></h3>
+    <p>Avança a simulação por n passos. n é um número inteiro positivo.</p>
+
+    <h3><a href="/game/state/">/game/state/</a></h3>
+    <p>JSON com o estado completo da simulação no estado atual.</p>
+
+    <h3><a href="/game/save/game.json">/game/save/{arquivo}</a></h3>
+    <p>Força salvar o jogo no arquivo dado.</p>
+
+    <h3><a href="/game/load/game.json">/game/load/{arquivo}</a></h3>
+    <p>Carrega estado do jogo a partir do arquivo fornecido. Arquivo
+        encontra-se no servidor.</p>
+</div>
+
+
+<div class="nes-container with-title is-rounded">
+    <h2 class="title">Valores da simulação</h2>
+
+    <h3><a href="/value/state">/value/state</a></h3>
+    <p>Retorna um objeto com todas variáveis da simulação</p>
+
+    <h3><a href="/value/population">/value/{nome}</a></h3>
+    <p>Retorna o valor da variável nome no instante atual. Nome pode ser um
+        dos valores abaixo:</p>
+    <dl>
+        <dt>population</dt>
+        <dd>População total do planeta (milhões)</dd>
+    </dl>
+
+    <h3><a href="/series/population/">/series/{nome}</a></h3>
+    <p>Retorna a série de valores com a variável nome durante toda a evolução
+        da simulação. O nome da variável segue o mesmo padrão do end-point
+        /value/{nome}</p>
+</div>
+
+<div class="nes-container with-title is-rounded">
+    <h2 class="title">Elementos específicos de jogo</h2>
+    <h3><a href="/event/random/">/event/random/</a></h3>
+    <p>Retorna um evento aleatório dentro da simulação.</p>
+</div>
+</body>
+</html>

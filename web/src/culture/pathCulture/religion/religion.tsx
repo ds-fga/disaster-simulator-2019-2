@@ -8,7 +8,6 @@ export class ContainerReligiao {
     view() {
         return (
             <div>
-                {NegociosPapa()}
                 <NegociosPapa />
                 <br />
                 <CreateReligion />

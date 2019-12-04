@@ -1,11 +1,42 @@
 import math
+from collections import namedtuple
+from copy import deepcopy
+from . import illuminati 
 
+# =============================================================================
+# Tipos auxiliares
+# =============================================================================
+Happiness = namedtuple('Happiness', ['happy', 'neutral', 'unhappy', 'revolted'])
+
+
+def population_happiness(satisfaction, revolt):
+    """
+    Retorna a distribuição de felicidade em função do nível de satisfação
+    e do de revolta.
+    """
+    ok = math.exp(-satisfaction * math.log(2))
+    bad = 1 - ok
+    happy = ok * ok
+    neutral = ok - happy
+    unhappy = bad * math.exp(-revolt * math.log(2))
+    revolted = bad - unhappy
+    return Happiness(happy, neutral, unhappy, revolted)
+
+
+def production_adjustment(happiness):
+    """
+    Fator de produtividade adicional no trabalho dependendo do nível de
+    felicidade.
+    """
+    happy, neutral, unhappy, revolted = happiness
+    return happy * 1.25 + neutral + unhappy * 0.75 + revolted * 0.25
 
 # =============================================================================
 # Índices de cada variável da simulação
 # =============================================================================
 _idx0 = -1
 _start = []
+
 
 def value(x):
     """Retorna idx, valor para o argumento dado. Incrementa o índice 
@@ -15,8 +46,9 @@ def value(x):
     _start.append(x)
     return _idx0
 
+
 # Tempo de simulação (anos)
-TIME = value(2015) 
+TIME = value(2015)
 
 # Anomalia da temperatura atmosférica e dos oceanos (K)
 T_ATM = value(0.8)
@@ -46,12 +78,12 @@ LABOR_FORCE = value(258 / 327)
 
 # Participação da força produtiva/parcela da população economicamente ativa
 # que está de fato empregada
-LABOR_PARTICIPATION = value(163 / 258) 
+LABOR_PARTICIPATION = value(163 / 258)
 
 # Produtividade que relaciona trabalho, capital com produção/PIB
 # Valor escolhido para fornecer o PIB de 2015 com os valores iniciais
 # de trabalho e capital
-PRODUCTIVITY = value(0.180)
+PRODUCTIVITY = value(0.180 / 0.9207582478842019)
 
 # Total em bens de capital (Trilhões de U$)
 CAPITAL = value(223)
@@ -81,7 +113,7 @@ CLIMATE_LOSS = value(0.0)
 
 # Emissões de gás carbônico (GtC / ano)
 EMISSIONS = value(9.45)
-    
+
 # Intensidade de carbono da economia. Pode reduzir com o desenvolvimento
 # de tecnologias ecologicamente corretas. (GtC / tri U$)
 CARBON_INTENSITY = value(9.45 / 105)  # 0.09 GtC/ tri U$
@@ -92,8 +124,60 @@ CARBON_INTENSITY = value(9.45 / 105)  # 0.09 GtC/ tri U$
 # U$ 550 / tCO2 = tri U$ 0.550 / GtCO2 = tri U$ 2.01 / GtC
 CARBON_BACKSTOP_PRICE = value(2.01)
 
+# Nível de satisfação da população. É um número de (0, oo) onde em oo a 
+# população fica inteiramente feliz, e 0 inteiramente descontente. 
+# Um valor de 1.0 representa uma população com 50% das pessoas contentes
+# (felizes ou neutras).
+SATISFACTION = value(1.0)
+
+# Nível de revolta da população. Contabiliza, entre os descontentes, o
+# quão engajados estão em tentar sabotar e destruir o sistema atual. 
+# Também é medido de (0, oo), com REVOLT=1 representando o caso em que
+# metade da população descontente tramando algum tipo de sabotagem.
+#
+# Se mais de 1/3 da população total estiver revoltada, entra em um estado
+# de guerra civil.  
+REVOLT = value(0.1)
+
+# Distribuição de felicidade derivada de SATISFACTION e REVOLT.
+HAPPINESS = value(population_happiness(1.0, 0.1))
+
+# Nível de concentração de riqueza no top 1%. Também medido de (0, oo), 
+# onde um valor de CONCENTRATION = 1.0, representa 50% da riqueza 
+# concentrada nos 1% mais ricos do mundo. Valores maiores que isto
+# aumentam a concentração no 1% e menores diminuem. Concentração
+# alta tende a diminuir o nível de satisfação da população.
+#
+# Os seguidores no ramo empresarial estão no top 0.0001% da população
+# e acumulam um riqueza de forma proporcional a este valor. Isto
+# corresponde a aproximadamente 7000 pessoas na população mundial. 
+CONCENTRATION = value(1.0)
+
+# Qual a fração da renda dos seguidores que os Illuminati controlam
+# diretamente. Quanto menor a taxa, mais fácil de recrutar seguidores,
+# mas eles rendem menos dinheiro.
+ILLUMINATI_TAX = value(0.05)
+
+# Valor monetário (em U$ bi) na sua conta na Suíça. Você pode gastar
+# este dinheiro como convier.
+ACCOUNT = value(10.0)
+
+# Renda (em U$ bi) que será ganha no futuro. A cada ano, você recupera
+# uma quantia igual à ILLUMINATI_TAX desta renda para sua conta 
+# bancária
+FUTURE_EARNINGS = value(0.0)
+
+# Illuminati
+ILLUMINATI = value(illuminati.DATA)
+
+# Illuminati
+FOLLOWERS = value(illuminati.Followers(100, 100, 100))
+
+
 # Inicializamos com o estado inicial
 data = [_start]
+var_names = sorted((v, k) for k, v in globals().items() if k.isupper())
+var_names = [k for _, k in var_names]
 
 
 # =============================================================================
@@ -109,11 +193,11 @@ c_deep_eq = 1720
 # Dividimos por 5 porque o DICE utiliza um passo de 5 anos
 a = 0.12 / 5
 c = 0.07 / 5
-a, b, c, d =  a, a * c_atm_eq / c_ocean_eq, c, c * c_ocean_eq / c_deep_eq
+a, b, c, d = a, a * c_atm_eq / c_ocean_eq, c, c * c_ocean_eq / c_deep_eq
 phi = [
-    [-a,      b,  0],
-    [ a, -b - c,  d],
-    [ 0,      c, -d],
+    [-a, b, 0],
+    [a, -b - c, d],
+    [0, c, -d],
 ]
 
 # Parâmetros da função de danos
@@ -138,7 +222,8 @@ def step(dt=1):
     now = data[-1]
     new = now.copy()
     new[TIME] = now[TIME] + dt
-    
+    new[ILLUMINATI] = deepcopy(now[ILLUMINATI])
+
     # Variáveis da simulação
     t_atm = now[T_ATM]
     t_ocean = now[T_OCEAN]
@@ -161,33 +246,36 @@ def step(dt=1):
     damage = damage_coeff * t_atm ** damage_exp
     abatement_cost = abate_coeff * abatement ** abate_exp
     loss = 1 - (1 - damage) * (1 - abatement_cost)
-    
+
     # Variáveis derivadas
-    labor = now[LABOR_FORCE] * now[LABOR_INTENSITY] * now[LABOR_PARTICIPATION] * population
+    new[HAPPINESS] = happiness = population_happiness(now[SATISFACTION], now[REVOLT])
+    labor_dedication = production_adjustment(happiness)
+
+    labor = now[LABOR_FORCE] * now[LABOR_INTENSITY] * now[LABOR_PARTICIPATION] * labor_dedication * population
     production = now[PRODUCTIVITY] * capital ** alpha * labor ** (1 - alpha)
     emissions = now[CARBON_INTENSITY] * (1 - abatement) * production
-    
     rf_atm = rf_coeff * math.log(c_atm / c_atm_eq)
-    
+
     # Ambiente
     new[C_ATM]   = c_atm   + dt * (phi[0][0] * c_atm + phi[0][1] * c_ocean + phi[0][2] * c_deep) + emissions * dt
-    new[C_OCEAN] = c_ocean + dt * (phi[1][0] * c_atm + phi[1][1] * c_ocean + phi[1][2] * c_deep) 
-    new[C_DEEP]  = c_deep  + dt * (phi[2][0] * c_atm + phi[2][1] * c_ocean + phi[2][2] * c_deep) 
-    
-    new[T_ATM]   = t_atm   - dt * c1 * (t_atm - t_ocean) + sensitivity * rf_atm + c3 * t_atm
-    new[T_OCEAN] = t_ocean - dt * c2 * (t_ocean - t_atm) 
-    
+    new[C_OCEAN] = c_ocean + dt * (phi[1][0] * c_atm + phi[1][1] * c_ocean + phi[1][2] * c_deep)
+    new[C_DEEP]  = c_deep  + dt * (phi[2][0] * c_atm + phi[2][1] * c_ocean + phi[2][2] * c_deep)
+
+    new[T_ATM] = t_atm - dt * c1 * (t_atm - t_ocean) + sensitivity * rf_atm + c3 * t_atm
+    new[T_OCEAN] = t_ocean - dt * c2 * (t_ocean - t_atm)
+
     new[EMISSIONS] = emissions
     new[CLIMATE_LOSS] = loss
 
     # Economia
-    new[CAPITAL] = capital + dt * (1 - loss) * savings_rate * production - capital_decay * capital
+    new[CAPITAL] = capital + dt * (
+            1 - loss) * savings_rate * production - capital_decay * capital
     new[POPULATION] = population + dt * population * population_growth
     new[PRODUCTION] = production
-    
+
     # Salva resultado
     data.append(new)
-    return new
+    return get_vars()
 
 
 def steps(n, dt=1.0):
@@ -210,7 +298,7 @@ def restart():
     [2015, ...]
     """
     data[:] = [data[0]]
-    return data[0]
+    return get_vars()
 
 
 def get_var(name):
@@ -220,8 +308,16 @@ def get_var(name):
     >>> get_var('C_ATM')
     851
     """
-    idx = globals()[name.upper()] 
-    return data[-1][idx]    
+    idx = globals()[name.upper()]
+    return data[-1][idx]
+
+
+def get_vars():
+    """
+    Retorna dicionário com todas as variáveis de simulação.
+    """
+    names = map(str.lower, var_names)
+    return dict(zip(names, data[-1]))
 
 
 def set_var(name, value):
@@ -230,25 +326,51 @@ def set_var(name, value):
 
     >>> set_var('C_ATM', 1000)
     """
-    idx = globals()[name.upper()] 
+    idx = globals()[name.upper()]
     data[-1][idx] = value
 
 
 def get_series(name):
-    idx = globals()[name.upper()] 
+    """
+    Retorna série de valores para variável.
+    """
+    idx = globals()[name.upper()]
     return [st[idx] for st in data]
 
 
 def multiply_var(name, value):
+    """
+    Multiplica variável por valor.
+    """
     new = get_var(name) * value
     set_var(name, new)
     return new
 
 
 def add_var(name, value):
+    """
+    Soma variável com valor.
+    """
     new = get_var(name) + value
     set_var(name, new)
     return new
+
+
+def get_game_state():
+    """
+    Retorna estado completo do jogo.
+    """
+    return {'data': data}
+
+
+def set_game_state(state):
+    """
+    Recupera simulação a partir do estado fornecido.
+    """
+    global data
+
+    data[:] = state['data']
+
 
 def plot(name):
     """
@@ -258,5 +380,4 @@ def plot(name):
 
     time = get_series('time')
     value = get_series(name)
-    print(value)
     plt.plot(time, value, label=name)

@@ -5,7 +5,7 @@ import TechInfo from './components/TechInfo.component';
 import Tech from './components/Tech.component';
 import TechList from './components/TechList.component';
 import SearchBar from './components/SearchBar.component';
-import techsDB from './techs';
+import TechButton from './components/TechButton.component';
 
 /**
  * Componente para janela com árvore tecnológica e de desenvolvimento científico.
@@ -13,12 +13,19 @@ import techsDB from './techs';
 export class Science {
 
     effectEnabled: boolean;
-    estado: object;
+    estado: {
+        techs: any;
+        techsFilter: Object;
+        currentArea: string;
+        currentTech: string;
+        searchbox: string;
+        currentTechSpec: string;
+        currentTechProg?: number;
+    };
 
     constructor(){
         this.estado = {
-            techs: techsDB,
-
+            techs: [],
             techsFilter: {},
             currentArea: "",
             currentTech: "",
@@ -26,21 +33,24 @@ export class Science {
             currentTechSpec: "",
         };
         this.effectEnabled = true;
+        
+        m.request({ url: "http://localhost:5000/science/list-techs/",
+                    method: 'GET',
+
+            }).then(
+                (x) => { this.estado.techs = x }
+        );
     }
 
     oninit () {
-        console.log("eu quero morreeeeeeer");
-        console.log("Isso não é uma piada");
-        console.log("É um pedido de socorro");
-        const newTechsFilter = {};
-        this.estado.techs.forEach((tech) => {
-            if (!(tech.type_tech in newTechsFilter)) {
-            newTechsFilter[tech.type_tech] = [];
-            }
-            newTechsFilter[tech.type_tech].push(tech);
-        });
-        this.estado.techsFilter = newTechsFilter;
-        var element = document.getElementById("scienceWindow");
+      const newTechsFilter = {};
+      this.estado.techs.forEach((tech) => {
+        if (!(tech.type_tech in newTechsFilter)) {
+          newTechsFilter[tech.type_tech] = [];
+        }
+        newTechsFilter[tech.type_tech].push(tech);
+      });
+      this.estado.techsFilter = newTechsFilter;
     }
 
     voltar(){
@@ -50,50 +60,16 @@ export class Science {
         window.setTimeout(function(){element.parentNode.removeChild(element)}, 550);
     }
 
-    toggleEffect(){
-        const element = document.getElementById("scienceWindow");
-        const techs = document.querySelectorAll(".tech-btn") as HTMLCollectionOf<HTMLElement>;
-        const tabs = document.querySelectorAll(".Science__btn") as HTMLCollectionOf<HTMLElement>;
-        if (this.effectEnabled){
-            element.classList.remove("crt");
-            element.style.animation = "";
-            for(let i = 0; i < techs.length; i++){
-                techs[i].style = "";
-            }
-            for(let i = 0; i < tabs.length; i++){
-                tabs[i].style = "";
-            }
-        }else {
-            element.classList.add("crt");
-            element.style.animation = "textShadow 1.6s infinite";
-            for(let i = 0; i < techs.length; i++){
-                techs[i].style.animation = "textShadow 1.6s infinite";
-            }
-            for(let i = 0; i < tabs.length; i++){
-                tabs[i].style.animation = "textShadow 1.6s infinite";
-            }
-        }
-        this.effectEnabled = !this.effectEnabled;
-    }
-
-    oncreate(){
-        const element = document.getElementById("scienceWindow");
-        element.classList.add("crt");
-    }
-
     view () {
 
-        const { techs, searchbox, currentTech, techsFilter} = this.estado;
-        const filteredtechs = techs.filter(tech => tech.title.toLowerCase().includes(searchbox.toLowerCase()) && tech.status !== "1" )
+        const { techs, searchbox, currentTech, techsFilter } = this.estado;
+        const filteredtechs = techs.filter(tech => tech.title.toLowerCase().includes(searchbox.toLowerCase()))
         const element = document.getElementById("scienceWindow");
 
         return <Window id="scienceWindow" class="science">
 
             <Sidebar class="science__sidebar" title={
-                <div class="science__sidebar-btns">
-                    <button class="nes-btn science__sidebar-btn" onclick={this.voltar}>{"<"} Voltar</button>
-                    <button class="nes-btn science__sidebar-btn" onclick={this.toggleEffect}>Efeitos</button>
-                </div>
+                <button class="nes-btn science__sidebar-btn" onclick={this.voltar}>{"<"} Voltar</button>
             }/>
 
             <div class="scienceContent">
@@ -106,65 +82,89 @@ export class Science {
                                 <Tech title={tech.title} status={tech.status} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechListInfo = (tech.listInfo || []);
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}</div>
                         </TechList>    
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-warning Science__btn">Nuclear</button>}>
                         <TechList title="Nuclear">
-                            {(techsFilter['nuclear'] || []).map((tech) => (
+                            {(techs['nuclear'] || []).map((tech) => (
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechListInfo = (tech.listInfo || []);
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}
                         </TechList>
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-success Science__btn">Biológico</button>}>
                         <TechList title="Biológico">
-                            {(techsFilter['biológico'] || []).map((tech) => (
+                            {(techs['biológico'] || []).map((tech) => (
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechListInfo = (tech.listInfo || []);
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}
                         </TechList>
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-primary Science__btn">Energético</button>}>
                         <TechList title="Energético">
-                            {(techsFilter['energético'] || []).map((tech) => (
+                            {(techs['energético'] || []).map((tech) => (
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechListInfo = (tech.listInfo || []);
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}
                         </TechList>
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-error Science__btn">Transporte</button>}>
                         <TechList title="Transporte">
-                            {(techsFilter['transporte'] || []).map((tech) => (
+                            {(techs['transporte'] || []).map((tech) => (
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechListInfo = (tech.listInfo || []);
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}
                         </TechList>
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn industry Science__btn">Indústria</button>}>
                         <TechList title="Indústria">
-                            {(techsFilter['industrial'] || []).map((tech) => (
+                            {(techs['industrial'] || []).map((tech) => (
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
+                                    this.estado.currentTechListInfo = (tech.listInfo || []);
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}
                         </TechList>
                     </Tab>
                 </Tabs>
-
-                <TechInfo title={this.estado.currentTech} spec={this.estado.currentTechSpec}/>
+                <TechInfo title={this.estado.currentTech} prog={this.estado.currentTechProg} spec={this.estado.currentTechSpec} listInfo={this.estado.currentTechListInfo}>
+                  <div style="float: right; margin-bottom: .3rem">
+                    <TechButton onclick={() => document.getElementById('dialog-dark-rounded').showModal()}>Comprar</TechButton>
+                    <dialog class="nes-dialog is-dark is-rounded" id="dialog-dark-rounded">
+                      <form method="dialog">
+                        <p class="title">{`Deseja comprar ${currentTech}`}</p>
+                        <p></p>
+                        <menu class="dialog-menu">
+                          <button class="nes-btn">Cancel</button>
+                          <button class="nes-btn is-primary">Confirm</button>
+                        </menu>
+                      </form>
+                    </dialog>
+                  </div>
+                </TechInfo>  
             </div>
-            
         </Window>
     }
 }

@@ -1,3 +1,81 @@
 .Illuminati {
+  
+}
+
+.description{
+    float: right;
+    width: 420px;
+    margin-right: 10px;
+    margin-top: 10px; 
+}
+.taxa{
+    float: right;
+    width: 440px;
+    margin-top: 355px;
+    margin-right: -348px;
+}
+.IlluminatiImage{
+    float: right;
+    margin-top: 58px;
+    margin-right: -300px;
+    position: relative;
+
+
+    img {
+        display: block;
+        position: absolute;
+        transition: opacity 500ms;
+        top: 0;
+        right: 1rem;    
+    }
     
+    .topImg:hover {
+        opacity: 0.25;
+        z-index: 1000;
+    }
+
+}
+.IlluminatInformation{
+    width: 750px;
+    margin-left: 30px;
+    margin-top: 10px;
+    padding: 10px;
+    border-width: 10px;
+    background-color: rgb(194, 136, 10,0.5);
+    box-shadow: 2px 0 1.5rem rgba(48,55,66,.5),
+                0 0 4px 0px rgba(48,55,66,.75);
+}
+
+.TabsIlluminati {
+    background-image: url(/src/illuminati/imagens/olho_fundo.gif);
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-size: 90% 120%;
+    background-position-x: right;
+    background-position-y: center;
+
+    &-head {
+        display: flex;
+        background:rgb(194, 136, 10,0.5);
+    }
+    &-tab {
+        padding: 0.5rem 1rem;
+    }
+    &-tab.is-selected {
+        background:rgb(194, 136, 10);
+        color: white;
+    }
+    &-content {
+        overflow-y: auto;
+        height: 100%;
+    }
+}
+
+.Sidebar {
+    
+    &-title {
+        background:rgb(194, 136, 10);
+}
 }

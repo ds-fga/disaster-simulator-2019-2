@@ -1,0 +1,14 @@
+{
+    "nome": "Jorge Mario Bergoglio",
+    "idade": "82",
+    "atributos": {
+        "forca": 5,
+        "inteligencia": 15,
+        "influencia": 20,
+    },
+    "habilidades": {
+        "a": "Fé",
+        "b": "Paciência",
+        "c": "Exorcismo",
+      }
+}

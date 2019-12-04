@@ -1,74 +1,22 @@
-import m from 'mithril';
-import {Window, Tab, Tabs, Btn, Sidebar, VScroll} from '../ui';
+import {Window, Tab, Tabs, Sidebar, IGenericAttrs, Component} from '../ui';
+import {Leis} from './components/leis';
+import {Propostas} from './components/propostas';
+import {Apoiadores} from './components/apoiadores';
+import politicsImg from './politics.jpg';
 
 
 /**
  * Componente que mostra janela de política
  */
-export class Politics {
+export class Politics extends Component<IGenericAttrs> {
     view () {
         return <Window>
-        <div>
-            <h1>Politica</h1>
-            
-            <CollapseCard title = 'Hello Card'>
-                <h2>Hello World!</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-                officia deserunt mollit anim id est laborum. 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-                officia deserunt mollit anim id est laborum. 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-                officia deserunt mollit anim id est laborum. 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-                officia deserunt mollit anim id est laborum. 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-                officia deserunt mollit anim id est laborum. 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-                officia deserunt mollit anim id est laborum. 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-                officia deserunt mollit anim id est laborum. 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-                officia deserunt mollit anim id est laborum. 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-                officia deserunt mollit anim id est laborum. 
-                </p>
-            </CollapseCard>
-
-        </div>
+            <Sidebar title="Política" points="5" back={true} src={politicsImg}/>
+            <Tabs>
+                <Tab title="Propostas"><Propostas/></Tab>
+                <Tab title="Leis aprovadas"><Leis/></Tab>
+                <Tab title="Apoiadores"><Apoiadores/></Tab>
+            </Tabs>
         </Window>
-    }
-}
-
-export class CollapseCard {
-    constructor(vnode) {
-        this.expand = false; // O this se refere a instancia expecifica q estamos usando nesse momento
-    }
-    view (vnode) {
-
-        let btnClass = "nes-btn is-error scroll-btn active PoliticsCard-button"
-        
-        if (this.expand) {
-            let content = vnode.children;
-            btnClass += " is-rotated";
-        }
-        else {
-            content = "";
-        }
-
-        return <VScroll class = "PoliticsCard">
-            <div class="PoliticsCard-title" onclick = {() => {this.expand = !this.expand;}}>
-
-                {vnode.attrs.title}
-
-                <span><button type="button" class={btnClass}><span>&lt;</span></button></span>
-                <hr/>
-            </div>
-            
-            <div class="PoliticsCard-content">
-            
-                {content}
-            
-            </div>
-            </VScroll>
     }
 }
