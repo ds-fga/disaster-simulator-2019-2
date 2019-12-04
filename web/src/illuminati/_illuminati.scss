@@ -31,13 +31,13 @@
 
 }
 .IlluminatInformation{
-    font-size: 18px;
+    font-size: 15px;
     width: 1000px;
     margin-left: 30px;
     margin-top: 30px;
     margin-bottom: 30px;
     margin-right: 30px;
-    padding: 60px;
+    padding: 30px;
     border-width: 10px;
     background-color: rgb(194, 136, 10,0.5);
     box-shadow: 2px 0 1.5rem rgba(48,55,66,.5),
@@ -83,3 +83,14 @@
       box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .5);
 }
 }
+
+#IlluminatiWindow{
+    background-image: url(/src/illuminati/imagens/olho_fundo.gif);
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position-x: left;
+    background-position-y: center;
+}
+
