@@ -4,6 +4,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 from . import simulation
 from . import events
+from . import illuminati
 
 app = Flask(__name__)
 CORS(app)
@@ -35,7 +36,7 @@ def get_event():
 @app.route('/game/step/')
 def step():
     data = simulation.step()
-    return jsonify({'status': 'OK', 'data': data, 'year': data[0]})
+    return jsonify({'status': 'OK', 'data': data})
 
 
 @app.route('/game/step/<size>/')
@@ -43,6 +44,12 @@ def step_by(size):
     for _ in range(int(size) - 1):
         data = simulation.step()
     return step()
+
+
+@app.route('/game/restart/')
+def restart_game():
+    data = simulation.restart()
+    return jsonify({'status': 'OK', 'data': data})
 
 
 @app.route('/game/state/')
@@ -70,6 +77,20 @@ def load_game(name):
 @app.route('/science/list-techs/')
 def list_techs():
     return jsonify(science.list_techs())
+
+@app.route('/game/followers/')
+def followers():
+    to_dict = lambda x: dict(zip(x._fields, x))
+
+    def clean(d):
+        return [{'name': k, **to_dict(v['followers'])} for k, v in d.items()]
+        return [{**v['followers'], 'name': k} for k, v in d.items()]
+
+    data = {}
+    response = {'status': 'success', 'data': data}
+    data['followers'] = simulation.get_var('followers')
+    data['illuminati'] = clean(simulation.get_var('illuminati'))
+    return jsonify(response)
 
 @app.route('/')
 def root():
