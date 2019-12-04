@@ -5,6 +5,7 @@ from flask_cors import CORS
 from . import simulation
 from . import events
 from . import illuminati
+from . import science
 
 app = Flask(__name__)
 CORS(app)
