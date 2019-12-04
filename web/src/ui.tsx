@@ -4,7 +4,6 @@ import ChartJS = require('chart.js');
 import { classes } from './utils';
 import { model } from './model';
 import { MithrilTsxComponent as Component } from 'mithril-tsx-component';
-import { type } from 'os';
 export { MithrilTsxComponent as Component } from 'mithril-tsx-component';
 
 
@@ -15,7 +14,7 @@ export abstract class Elem extends Component<Object> {
     // Classe abstrata
 }
 
-interface IGenericAttrs {
+export interface IGenericAttrs {
     class?: string | string[];
     id?: string;
     onclick?: Function;
@@ -36,8 +35,19 @@ interface IBtnAttrs extends IGenericAttrs {
  */
 export class Btn extends Component<IBtnAttrs> {
     view(vnode: m.Vnode<IBtnAttrs>) {
-        let extraClasses = '';
-        return <button class={`btn ${extraClasses}`}>{vnode.children}</button>
+        let classes = ['nes-btn'];
+        if (vnode.attrs.class) {
+            this.asClasses(vnode.attrs.class).map(x => classes.push(x));
+        }
+        if (vnode.attrs.btn) {
+            classes.push("is-" + vnode.attrs.btn);
+        }
+        vnode.attrs.class = classes.join(" ");
+        return <button {...vnode.attrs}>{vnode.children}</button>
+    }
+
+    private asClasses(xs: string | string[]): string[] {
+        return (typeof xs === "string")? [xs]: xs;
     }
 }
 
@@ -67,7 +77,7 @@ export class Sidebar extends Component<ISidebarAttrs> {
                     pointsElem = <div class="Sidebar-points">+{points}</div>
                 }
                 return <div class="Sidebar-footer">
-                    <div class="Sidebar-back">
+                    <div class="Sidebar-back" onclick={() => model.menu()}>
                         <button>{"<"}</button>
                         <span>Voltar</span>
                     </div>
@@ -75,7 +85,7 @@ export class Sidebar extends Component<ISidebarAttrs> {
                 </div>
             }
             return null;
-        }
+        };
 
         let attrs = vnode.attrs,
             title = attrs.title,
@@ -98,6 +108,8 @@ export class Sidebar extends Component<ISidebarAttrs> {
 
 interface ITabAttrs extends IGenericAttrs {
     title: string;
+    horizontal?: boolean;
+    reverse?: boolean;
 }
 
 export class Tabs extends Elem {
@@ -109,9 +121,10 @@ export class Tabs extends Elem {
     }
 
     view(vnode) {
-        return <div class="Tabs">
-            {this.viewTabs(vnode)}
-            {this.viewContent(vnode)}
+        let [a, b] = [this.viewTabs(vnode), this.viewContent(vnode)];
+        let cls = vnode.attrs.reverse? " is-vertical": "";
+        return <div class={"Tabs" + cls}>
+            {vnode.attrs.reverse? [b, a]: [a, b]}
         </div>
     }
 
@@ -202,7 +215,7 @@ export class Chart extends Component<IChartAttrs> {
     oncreate(vnode: m.Vnode<IChartAttrs>) {
         let {type, data, options} = vnode.attrs,
             canvas = document.createElement('CANVAS'),
-            dom: HTMLElement = vnode.dom;
+            dom: HTMLElement = vnode['dom'];
         canvas.setAttribute('width', (vnode.attrs.width || 190).toString());
         canvas.setAttribute('height', (vnode.attrs.height || 90).toString());
         dom.appendChild(canvas);

@@ -6,4 +6,8 @@ export let model = {
     world: {
         year: 2010,
     },
+
+    menu () {
+        this.window = null;
+    }
 };

@@ -1,0 +1,30 @@
+.culture {
+  &_sidebar {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+.culture-comprar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Tabs-tab.is-selected > .nes-btn {
+  @extend .is-success;
+}
+
+.TabCulture {
+  &:hover {
+    transform: scaleX(1.1);
+  }
+}
+.nes-btn {
+  &:hover {
+    transform: scaleX(1.1);
+   }
+}
+.nes-btn.is-primary {
+  &:hover {
+    @extend .is-error;
+  }
+}

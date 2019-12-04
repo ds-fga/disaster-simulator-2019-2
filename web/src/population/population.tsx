@@ -16,11 +16,7 @@ export class Population {
                     </div>
                 </Tab>
 
-                <Tab title="Riqueza">
-                    <div id="riquezaChart">Riqueza:
-                        <Chart type="pie" data={dataRiqueza} options={options}></Chart>
-                    </div>
-                    
+               
                 </Tab>
             </Tabs>
         </Window>
@@ -78,6 +74,7 @@ let dataSatisfacao = {
         borderWidth: 1
     }]
 };
+
 
 let options = {
     scales: {
