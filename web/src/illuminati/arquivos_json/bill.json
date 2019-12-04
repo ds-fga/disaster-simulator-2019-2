@@ -11,5 +11,11 @@
         "a": "Criativo",
         "b": "Inovador",
         "c": "Empreendedor",
+      },
+      "objetivos": {
+        "ambiente": 90,
+        "tecnologia": 100,
+        "financas": 100,
+        "filantropia": 100,
       }
 }

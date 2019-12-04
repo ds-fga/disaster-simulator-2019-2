@@ -10,5 +10,11 @@
         "a": "Fé",
         "b": "Paciência",
         "c": "Exorcismo",
+      },
+      "objetivos": {
+          "ambiente": 45,
+          "tecnologia": 0,
+          "financas": 0,
+          "filantropia": 100,
       }
 }

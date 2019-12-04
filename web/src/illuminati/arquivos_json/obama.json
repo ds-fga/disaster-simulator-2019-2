@@ -10,5 +10,11 @@
         "a": "Política",
         "b": "Oratória",
         "c": "Cura",
+      },
+      "objetivos": {
+          "ambiente": 50,
+          "tecnologia": 20,
+          "financas": 50,
+          "filantropia": 70,
       }
 }

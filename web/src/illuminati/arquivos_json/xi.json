@@ -11,5 +11,11 @@
         "a": "Sorridente",
         "b": "Presidente",
         "c": "Kung Fu",
+      },
+      "objetivos": {
+          "ambiente": 0,
+          "tecnologia": 100,
+          "financas": 90,
+          "filantropia": 10,
       }
 }

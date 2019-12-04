@@ -34,7 +34,6 @@ let event = {
     img: terminatorImg,
 
 }
-function funcao
 
 let illuminatiList = [
     {
@@ -185,11 +184,11 @@ export class Illuminati {
             <Sidebar src={event.img} title="Conselho Illuminati" back={true}/>
             <Tabs>
                 
-                <Tab title="Ficha"> 
+                <Tab title={<button class="Illuminati_btn">Ficha</button}> 
                   <Tabs vertical={true} reverse={true}>{illuminatiList.map((e) => renderIlluminattiTab(e))}</Tabs>
                 </Tab>
                 
-                <Tab title="Seguidores">
+                <Tab title={<button class="Illuminati_btn">Seguidores</button}>
                     
              
                 </Tab>
@@ -197,12 +196,11 @@ export class Illuminati {
             </Tabs>
 
         </Window>
-
     }
 }
 
 function renderIlluminattiTab(x) {
-    return <Tab title={x.name}>
+    return <Tab title={<button class="Illuminati_n">{x.name}</button}>
         <div class="IlluminatiSheet">
         <div class = "illuminati_side">
             <Sidebar class="description" title = {x.introduction}></Sidebar>
@@ -219,13 +217,22 @@ function renderIlluminattiTab(x) {
             <dl>
                 <dt>Nome</dt><dd>{x.information.nome}</dd>
                 <dt>Idade</dt><dd>{x.information.idade}</dd>
-                <dt>Atributos</dt>
+                <br></br>
+                <h2>Atributos</h2>
+                <br></br>
                     <dd>Força: {x.information.atributos.forca}</dd>
                     <dd>Inteligência: {x.information.atributos.inteligencia}</dd>
-                <dt>Habilidades</dt>
+                    <br></br>
+                <h2>Habilidades</h2>
                     <dd>{x.information.habilidades.a}</dd>
                     <dd>{x.information.habilidades.b}</dd>
                     <dd>{x.information.habilidades.c}</dd>
+                <dt>Objetivos</dt>
+                    <dd>Ambiente: {x.information.objetivos.ambiente}%</dd>
+                    <dd>Tecnologia: {x.information.objetivos.tecnologia}%</dd>
+                    <dd>Finanças: {x.information.objetivos.financas}%</dd>
+                    <dd>Filantropia: {x.information.objetivos.filantropia}%</dd>
+            </dl>
             </dl>
 
         </div>

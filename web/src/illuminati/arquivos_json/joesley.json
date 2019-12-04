@@ -10,5 +10,11 @@
         "a": "Agricultura",
         "b": "Empreendorismo",
         "c": "Corrupção",
+      },
+      "objetivos": {
+          "ambiente": 0,
+          "tecnologia": 45,
+          "financas": 100,
+          "filantropia": 0,
       }
 }

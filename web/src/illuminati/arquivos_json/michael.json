@@ -10,5 +10,11 @@
         "a": "Gingado",
         "b": "Canto",
         "c": "Mudança de Cor",
+      },
+      "objetivos": {
+          "ambiente": 20,
+          "tecnologia": 75,
+          "financas": 30,
+          "filantropia": 80,
       }
     }

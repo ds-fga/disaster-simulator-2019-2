@@ -10,5 +10,11 @@
         "a": "Carisma",
         "b": "Caridade",
         "c": "Aeromodelismo",
+      },
+      "objetivos": {
+          "ambiente": 10,
+          "tecnologia": 20,
+          "financas": 100,
+          "filantropia": 80,
       }
 }

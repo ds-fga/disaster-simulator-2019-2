@@ -11,5 +11,11 @@
         "a": "Rainha",
         "b": "Imortalidade",
         "c": "Chapéus Estilosos"
+      },
+      "objetivos": {
+          "ambiente": 30,
+          "tecnologia": 15,
+          "financas": 45,
+          "filantropia": 90,
       }
 }

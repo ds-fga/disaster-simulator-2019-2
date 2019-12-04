@@ -11,5 +11,11 @@
         "a": "Comerciante Chefe",
         "b": "Amazoniano",
         "c": "Ricasso",
+      },
+      "objetivos": {
+          "ambiente": 10,
+          "tecnologia": 95,
+          "financas": 100,
+          "filantropia": 70,
       }
 }
