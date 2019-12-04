@@ -14,7 +14,7 @@ export abstract class Elem extends Component<Object> {
     // Classe abstrata
 }
 
-interface IGenericAttrs {
+export interface IGenericAttrs {
     class?: string | string[];
     id?: string;
     onclick?: Function;

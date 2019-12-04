@@ -39,7 +39,8 @@ export function get(...args) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', getUrl(args), false);
     xhr.send(null);
-    return JSON.parse(xhr.response);
+    let result = JSON.parse(xhr.response);
+    return result['data']? result['data']: result;
 }
 
 
@@ -58,15 +59,11 @@ export let game = {
     state: () => get('game/state'),
     save: (fname?) => get('game/save', fname || "game.json"),
     load: (fname?) => get('game/load', fname || "game.json"),
-}
-
-/**
- * Funções para controlar a API do jogo
- */
-export let data = {
+    
+    // Dados da simulação
     get: (x?) => get('value', x || 'state'),
     series: (x?) => get('series', x || 'state'),
+    followers: () => get('game/followers'),
 }
 
 window['game'] = game;
-window['data'] = data;
