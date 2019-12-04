@@ -233,7 +233,6 @@ function renderIlluminattiTab(x) {
                     <dd>Finanças: {x.information.objetivos.financas}%</dd>
                     <dd>Filantropia: {x.information.objetivos.filantropia}%</dd>
             </dl>
-            </dl>
 
         </div>
     </Tab>
