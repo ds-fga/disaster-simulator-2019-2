@@ -27,7 +27,7 @@ export class Science {
 
     effectEnabled: boolean;
     estado: {
-        techs: Array<TechAttrs>;
+        techs: any;
         techsFilter: Object;
         currentArea: string;
         currentTech: string;
@@ -47,9 +47,12 @@ export class Science {
         };
         this.effectEnabled = true;
         
-        m.request({ url: "http://localhost:5000/science/list-techs/" }).then(
-            (x) => { this.estado.techs = x }
-        )
+        m.request({ url: "http://localhost:5000/science/list-techs/",
+                    method: 'GET',
+
+            }).then(
+                (x) => { this.estado.techs = x }
+        );
     }
 
     oninit() {
@@ -101,7 +104,7 @@ export class Science {
     view () {
 
         const { techs, searchbox, currentTech, techsFilter } = this.estado;
-        const filteredtechs = techs.filter(tech => tech.title.toLowerCase().includes(searchbox.toLowerCase()) && tech.status !== "1")
+        const filteredtechs = techs.filter(tech => tech.title.toLowerCase().includes(searchbox.toLowerCase()))
         const element = document.getElementById("scienceWindow");
 
         return <Window id="scienceWindow" class="science">
