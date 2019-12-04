@@ -10,10 +10,7 @@ data = {
         'status': '',
         'price': '',
         'affects': {
-           'happy': '',
-           'indifferent': '',
-           'unhappy': '',     
-            'angry': '',
+            "revolt": ''#multiplicando 
         },
     },
 
