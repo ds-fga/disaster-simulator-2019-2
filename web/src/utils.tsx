@@ -55,6 +55,10 @@ export function request(...args) {
  * Funções para controlar a API do jogo
  */
 export let game = {
+    // Generico
+    url: (...args) => get(...args),
+
+    // Jogo
     step: n => get('game/step', (n === undefined)? 1: n),
     state: () => get('game/state'),
     save: (fname?) => get('game/save', fname || "game.json"),
