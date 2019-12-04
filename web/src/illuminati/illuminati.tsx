@@ -227,7 +227,11 @@ function renderIlluminattiTab(x) {
                     <dd>{x.information.habilidades.a}</dd>
                     <dd>{x.information.habilidades.b}</dd>
                     <dd>{x.information.habilidades.c}</dd>
-                
+                <h2>Objetivos</h2>
+                    <dd>Ambiente: {x.information.objetivos.ambiente}%</dd>
+                    <dd>Tecnologia: {x.information.objetivos.tecnologia}%</dd>
+                    <dd>Finanças: {x.information.objetivos.financas}%</dd>
+                    <dd>Filantropia: {x.information.objetivos.filantropia}%</dd>               
             </dl>
 
         </div>
