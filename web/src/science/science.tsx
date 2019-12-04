@@ -6,7 +6,6 @@ import Tech from './components/Tech.component';
 import TechList from './components/TechList.component';
 import SearchBar from './components/SearchBar.component';
 import TechButton from './components/TechButton.component';
-import techsDB from './techs';
 
 /**
  * Componente para janela com árvore tecnológica e de desenvolvimento científico.
@@ -26,135 +25,7 @@ export class Science {
 
     constructor(){
         this.estado = {
-            techs: [
-                {
-                    id: 1,
-                    title: "Conhecimento atômico",
-                    price: "50",
-                    type: "is-warning",
-                    spec: "Estudos necessários para entender melhor o funcionamento das partículas atômicas e subatômicas e como promover mudanças ambientalmente favoráveis.",
-                    type_tech: "nuclear",
-                    status: "0",
-                },
-                {
-                    id: 2,
-                    title: "Usinas nucleares",
-                    price: "100",
-                    type: "is-warning",
-                    spec: "Criação de polos de usinas nucleares para produzirem mais energia com um imacto ambiental menor.",
-                    type_tech: "nuclear",
-                    status: "1"
-                },
-                {
-                    id: 3,
-                    title: "Nuclear 3",
-                    price: "150",
-                    type: "is-warning",
-                    spec: "Permite pesquisa avançada em energia nuclear",
-                    type_tech: "nuclear",
-                    status: "1"
-                },
-                {
-                    id: 4,
-                    title: "Conhecimento molecular",
-                    price: "50",
-                    type: "is-success",
-                    spec: "Estudos necessários para entender melhor o funcionamento da microbiologia e como promover mudanças ambientalmente favoráveis.",
-                    type_tech: "biológico",
-                    status: "0"
-                },
-                {
-                    id: 5,
-                    title: "Biofiltro de algas",
-                    price: "100",
-                    type: "is-success",
-                    spec: "Biofiltros formados por microalgas aumentam a absorção de CO2 da atmosfera em um nível 100 vezes mais alto que as árvores, podendo melhorar a qualidade de vida na Terra.",
-                    type_tech: "biológico",
-                    status: "1"
-                },
-                {
-                    id: 6,
-                    title: "Biológico 3",
-                    price: "150",
-                    type: "is-success",
-                    spec: "Permite pesquisa avançada em biotecnologia",
-                    type_tech: "biológico",
-                    status: "1"
-                },
-                {
-                    id: 7,
-                    title: "Conhecimento de energias renováveis",
-                    price: "50",
-                    type: "is-error",
-                    spec: "Estudos necessários para fazer meios de transporte serem menos agressivos ambientalmente.",
-                    type_tech: "transporte",
-                    status: "0"
-                },
-                {
-                    id: 8,
-                    title: "Carro movido a motor de hidrogênio",
-                    price: "100",
-                    type: "is-error",
-                    spec: "DELiberação do motor movido a hidrogênio a preços acessíveis para a população, reduzindo a produção de CO2.SCRIÇÃO",
-                    type_tech: "transporte",
-                    status: "1"
-                },
-                {
-                    id: 0,
-                    title: "NOME",
-                    price: "",
-                    type: "is-error",
-                    spec: "DESCRIÇÃO",
-                    type_tech: "tipo",
-                    status: ""
-                },
-                {
-                  id: 9,
-                    title: "Conhecimentos sobre o fluxo energético",
-                    price: "50",
-                    type: "is-primary",
-                    spec: "Estudos necessários para promover o uso energético mais eficiente e menos poluente.",
-                    type_tech: "energético",
-                    status: "0"
-                },
-                {
-                  id: 10,
-                    title: "Usinas eólicas",
-                    price: "100",
-                    type: "is-primary",
-                    spec: "Instalação de usinas eólicas para maior produção energética.",
-                    type_tech: "energético",
-                    status: "1"
-                },
-                {
-                    id: 11,
-                    title: "NOME",
-                    price: "",
-                    type: "is-primary",
-                    spec: "DESCRIÇÃO",
-                    type_tech: "energético",
-                    status: "3"
-                },
-                {
-                    id: 12,
-                    title: "Conhecimentos industriais",
-                    price: "50",
-                    type: "is-success",
-                    spec: "Estudos necessários ara promover uma produção industrial ambientalmente melhor.",
-                    type_tech: "industrial",
-                    status: "0"
-                },
-                {
-                  id: 13,
-                    title: "Menos produção de lixo ",
-                    price: "100",
-                    type: "is-success",
-                    spec: "Produção industrial mais eficiente, fazendo com que a produção de lixo seja menor e ambientalmente favorável.",
-                    type_tech: "industrial",
-                    status: "1"
-                },
-            ],
-            techs: techsDB,
+            techs: [],
             techsFilter: {},
             currentArea: "",
             currentTech: "",
@@ -212,68 +83,74 @@ export class Science {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
                                     this.estado.currentTechListInfo = (tech.listInfo || []);
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}</div>
                         </TechList>    
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-warning Science__btn">Nuclear</button>}>
                         <TechList title="Nuclear">
-                            {(techsFilter['nuclear'] || []).map((tech) => (
+                            {(techs['nuclear'] || []).map((tech) => (
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
                                     this.estado.currentTechListInfo = (tech.listInfo || []);
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}
                         </TechList>
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-success Science__btn">Biológico</button>}>
                         <TechList title="Biológico">
-                            {(techsFilter['biológico'] || []).map((tech) => (
+                            {(techs['biológico'] || []).map((tech) => (
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
                                     this.estado.currentTechListInfo = (tech.listInfo || []);
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}
                         </TechList>
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-primary Science__btn">Energético</button>}>
                         <TechList title="Energético">
-                            {(techsFilter['energético'] || []).map((tech) => (
+                            {(techs['energético'] || []).map((tech) => (
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
                                     this.estado.currentTechListInfo = (tech.listInfo || []);
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}
                         </TechList>
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-error Science__btn">Transporte</button>}>
                         <TechList title="Transporte">
-                            {(techsFilter['transporte'] || []).map((tech) => (
+                            {(techs['transporte'] || []).map((tech) => (
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
                                     this.estado.currentTechListInfo = (tech.listInfo || []);
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}
                         </TechList>
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn industry Science__btn">Indústria</button>}>
                         <TechList title="Indústria">
-                            {(techsFilter['industrial'] || []).map((tech) => (
+                            {(techs['industrial'] || []).map((tech) => (
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
                                     this.estado.currentTechListInfo = (tech.listInfo || []);
+                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}
                         </TechList>
                     </Tab>
                 </Tabs>
-                <TechInfo title={this.estado.currentTech} spec={this.estado.currentTechSpec} listInfo={this.estado.currentTechListInfo}>
-                  <div style="float: right">
+                <TechInfo title={this.estado.currentTech} prog={this.estado.currentTechProg} spec={this.estado.currentTechSpec} listInfo={this.estado.currentTechListInfo}>
+                  <div style="float: right; margin-bottom: .3rem">
                     <TechButton onclick={() => document.getElementById('dialog-dark-rounded').showModal()}>Comprar</TechButton>
                     <dialog class="nes-dialog is-dark is-rounded" id="dialog-dark-rounded">
                       <form method="dialog">

@@ -43,12 +43,6 @@
     perspective: 1000px;
     transition: all .1s ease;
 
-    &:hover{
-      transform: scale(1.05);
-      margin: 0 .8rem .8rem;
-      box-shadow: 0 1rem .2rem rgba(0, 0, 0, .5);
-    }
-
     &:active{
       transform: scale(1.03);
       box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .5);
