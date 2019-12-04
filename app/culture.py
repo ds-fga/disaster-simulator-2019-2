@@ -1,4 +1,3 @@
-
 data = {
     # Religion:
     'Papa Francisco': {
@@ -45,3 +44,6 @@ data = {
         'affects': '',
     }
 }
+
+def get_culture():
+    return [culture for culture in data.values()]

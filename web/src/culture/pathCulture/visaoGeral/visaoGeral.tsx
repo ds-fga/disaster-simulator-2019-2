@@ -10,7 +10,7 @@ export class ContainersVisãoGeral {
                 <br />
                 <NegociosPapa />
                 <br />
-                <CreateReligion />
+                <CreateReligion /> 
                 <br />
                 <Kino />
                 <br />
