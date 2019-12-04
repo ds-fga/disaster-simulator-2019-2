@@ -40,7 +40,12 @@ export function get(...args) {
     xhr.open('GET', getUrl(args), false);
     xhr.send(null);
     let result = JSON.parse(xhr.response);
-    return result['data']? result['data']: result;
+    try {
+        return result['data']? result['data']: result;
+    } 
+    catch {
+        return undefined;
+    }
 }
 
 
@@ -57,6 +62,7 @@ export function request(...args) {
 export let game = {
     // Generico
     url: (...args) => get(...args),
+    multiply: (name, value) => get('multiply', name, value),
 
     // Jogo
     step: n => get('game/step', (n === undefined)? 1: n),

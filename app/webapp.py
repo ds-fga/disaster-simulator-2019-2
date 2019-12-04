@@ -22,6 +22,12 @@ def get_var(name):
     return jsonify({'name': name.lower(), 'value': value})
 
 
+@app.route('/multiply/<name>/<value>/')
+def multiply(name, value):
+    value = simulation.multiply_var(name.upper(), float(value))
+    return jsonify({'name': name.lower(), 'value': value})
+
+
 @app.route('/series/<name>/')
 def get_series(name):
     data = simulation.get_series(name)
