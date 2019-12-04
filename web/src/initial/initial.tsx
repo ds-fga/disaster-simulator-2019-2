@@ -1,7 +1,7 @@
 import m = require('mithril');
 import {model} from '../model'
 import {Window, Tab, Tabs, Btn, Sidebar} from '../ui';
-
+import {get} from "../utils"
 
 // Componentes
 import {Intro} from '../intro/intro';
@@ -98,6 +98,8 @@ function elementsColumn(itens, lado) {
  * Será apresentado o título do jogo
  */
 function header() {
+    console.log(get("value/state"));
+    
     return m('div', {class: 'header'}, [
         m('div', {class: 'nes-container is-rounded is-dark'}, [
             m('p', {class: 'title'}, 'Disaster Simulation')

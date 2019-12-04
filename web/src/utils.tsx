@@ -1,5 +1,7 @@
 import m from 'mithril';
 
+const FLASK_HTTP = 'http://localhost:5000'
+
 
 /**
  * Retorna uma lista de classes a partir dos argumentos.
@@ -23,3 +25,48 @@ export function classes(...args) {
     return clsList.join(" ");
 }
 
+
+function getUrl(args) {
+    let url = ('/' + args.join('/')).replace('//', '/');
+    return FLASK_HTTP + url;
+}
+
+
+/**
+ * Realiza uma requisição ao servidor Flask e retorna o resultado imediatamente.
+ */
+export function get(...args) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', getUrl(args), false);
+    xhr.send(null);
+    return JSON.parse(xhr.response);
+}
+
+
+/**
+ * Realiza uma requisição ao servidor Flask e retorna uma Promise (recomendado).
+ */
+export function request(...args) {
+    return m.request({url: getUrl(args)});
+}
+
+/**
+ * Funções para controlar a API do jogo
+ */
+export let game = {
+    step: n => get('game/step', (n === undefined)? 1: n),
+    state: () => get('game/state'),
+    save: (fname?) => get('game/save', fname || "game.json"),
+    load: (fname?) => get('game/load', fname || "game.json"),
+}
+
+/**
+ * Funções para controlar a API do jogo
+ */
+export let data = {
+    get: (x?) => get('value', x || 'state'),
+    series: (x?) => get('series', x || 'state'),
+}
+
+window['game'] = game;
+window['data'] = data;
