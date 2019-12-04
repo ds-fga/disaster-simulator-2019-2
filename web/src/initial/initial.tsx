@@ -42,10 +42,10 @@ var React = {
  */
 
 let leftMenuItens = {
-    "nome": ["Ciência", "Política", "Conspiração", "Economia"],
-    "caminho": ["Science", "Politics", "Conspiracy", "Economy"],
-    "tag": [Science, Politics, Conspiracy, Economy],
-    "icone": [frask, politic, conspirancy, money],
+    "nome": ["Ciência", "Política", "Conspiração", "Economia", "Cultura"],
+    "caminho": ["Science", "Politics", "Conspiracy", "Economy", "Culture"],
+    "tag": [Science, Politics, Conspiracy, Economy, Culture],
+    "icone": [frask, politic, conspirancy, money, reptle],
 };
 
 let barMenuItens = {
