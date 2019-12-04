@@ -11,5 +11,11 @@
         "a": "Nobelista",
         "b": "Argumentador",
         "c": "Americano",
-      }
+      },
+    "objetivos": {
+        "ambiente": 100,
+        "tecnologia": 85,
+        "financas": 50,
+        "filantropia": 90,
+    }
 }

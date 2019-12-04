@@ -11,5 +11,11 @@
         "a": "Liderança",
         "b": "Presidencia",
         "c": "Pescador",
+      },
+      "objetivos": {
+          "ambiente": 0,
+          "tecnologia": 90,
+          "financas": 20,
+          "filantropia": 0,
       }
 }

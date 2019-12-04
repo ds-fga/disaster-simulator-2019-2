@@ -10,5 +10,11 @@
         "a": "Liderança",
         "b": "Luta",
         "c": "Mudança de Forma",
+      },
+      "objetivos": {
+          "ambiente": 0,
+          "tecnologia": 100,
+          "financas": 0,
+          "filantropia": 70,
       }
 }
