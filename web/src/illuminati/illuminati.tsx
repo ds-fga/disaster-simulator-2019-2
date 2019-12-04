@@ -185,11 +185,11 @@ export class Illuminati {
             <Sidebar src={event.img} title="Conselho Illuminati" back={true}/>
             <Tabs>
                 
-                <Tab title="Ficha"> 
+                <Tab title={<button class="Illuminati_btn">Ficha</button}> 
                   <Tabs vertical={true} reverse={true}>{illuminatiList.map((e) => renderIlluminattiTab(e))}</Tabs>
                 </Tab>
                 
-                <Tab title="Seguidores">
+                <Tab title={<button class="Illuminati_btn">Seguidores</button}>
                     
              
                 </Tab>
@@ -197,12 +197,11 @@ export class Illuminati {
             </Tabs>
 
         </Window>
-
     }
 }
 
 function renderIlluminattiTab(x) {
-    return <Tab title={x.name}>
+    return <Tab title={<button class="Illuminati_n">{x.name}</button}>
         <div class="IlluminatiSheet">
         <div class = "illuminati_side">
             <Sidebar class="description" title = {x.introduction}></Sidebar>
