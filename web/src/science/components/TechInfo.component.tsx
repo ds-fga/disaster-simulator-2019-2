@@ -43,6 +43,7 @@ class TechInfo extends Component<InfoAttrs>{
                 </ul>
               </div>
               {vnode.children}
+              {this.progress(vnode.attrs.prog)}
           </div>
         )
     }
