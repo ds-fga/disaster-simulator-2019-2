@@ -218,10 +218,13 @@ function renderIlluminattiTab(x) {
             <dl>
                 <dt>Nome</dt><dd>{x.information.nome}</dd>
                 <dt>Idade</dt><dd>{x.information.idade}</dd>
-                <dt>Atributos</dt>
+                <br></br>
+                <h2>Atributos</h2>
+                <br></br>
                     <dd>Força: {x.information.atributos.forca}</dd>
                     <dd>Inteligência: {x.information.atributos.inteligencia}</dd>
-                <dt>Habilidades</dt>
+                    <br></br>
+                <h2>Habilidades</h2>
                     <dd>{x.information.habilidades.a}</dd>
                     <dd>{x.information.habilidades.b}</dd>
                     <dd>{x.information.habilidades.c}</dd>
