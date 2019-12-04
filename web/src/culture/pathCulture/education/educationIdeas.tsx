@@ -26,9 +26,9 @@ export class Unb {
                             <menu class="dialog-menu">
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <button class="nes-btn is-success">Confirmar</button>
+                            <button class="nes-btn culture is-success">Confirmar</button>
                                 &emsp;
-                            <button class="nes-btn is-error">Cancelar</button>
+                            <button class="nes-btn culture is-error">Cancelar</button>
                             </menu>
                         </div>
                     </form>
@@ -63,9 +63,9 @@ export class Mit {
                             <menu class="dialog-menu">
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <button class="nes-btn is-success">Confirmar</button>
+                            <button class="nes-btn culture is-success">Confirmar</button>
                                 &emsp;
-                            <button class="nes-btn is-error">Cancelar</button>
+                            <button class="nes-btn culture is-error">Cancelar</button>
                             </menu>
                         </div>
                     </form>

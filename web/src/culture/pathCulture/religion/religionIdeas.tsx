@@ -25,9 +25,9 @@ export class NegociosPapa {
                         <menu class="dialog-menu">
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                             &nbsp;
-                            <button class="nes-btn is-success">Confirmar</button>
+                            <button class="nes-btn culture is-success">Confirmar</button>
                             &emsp;
-                            <button class="nes-btn is-error">Cancelar</button>
+                            <button class="nes-btn culture is-error">Cancelar</button>
                         </menu>
                     </form>
                 </dialog>
@@ -59,8 +59,8 @@ export class CreateReligion {
                         </p>
                         <p>Gostaria de criar uma religião?</p>
                         <menu class="dialog-menu">
-                            <button class="nes-btn is-success">Confirmar</button>
-                            <button class="nes-btn is-error">Cancelar</button>
+                            <button class="nes-btn culture is-success">Confirmar</button>
+                            <button class="nes-btn culture is-error">Cancelar</button>
                         </menu>
                     </form>
                 </dialog>

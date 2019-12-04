@@ -9,7 +9,7 @@
   justify-content: flex-end;
 }
 
-.Tabs-tab.is-selected > .nes-btn {
+.Tabs-tab.is-selected > .culture {
   @extend .is-success;
 }
 
@@ -23,7 +23,7 @@
     transform: scaleX(1.1);
    }
 }
-.nes-btn.is-primary {
+.nes-btn.culture.is-primary {
   &:hover {
     @extend .is-error;
   }

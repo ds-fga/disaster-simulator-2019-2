@@ -45,5 +45,5 @@ data = {
     }
 }
 
-def get_culture():
-    return [culture for culture in data.values()]
+# def get_culture():
+#     return [culture for culture in data.values()]

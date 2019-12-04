@@ -30,9 +30,9 @@ export class Kino {
                             <p>Você deseja censurar esses filmes? </p>
                             <menu class="dialog-menu">
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                                <button class="nes-btn is-success">Confirmar</button>
+                                <button class="nes-btn culture is-success">Confirmar</button>
                                 &emsp;
-                                <button class="nes-btn is-error">Cancelar</button>
+                                <button class="nes-btn culture is-error">Cancelar</button>
                             </menu>
                         </div>
                     </form>
@@ -68,9 +68,9 @@ export class Tate {
                         <menu class="dialog-menu">
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <button class="nes-btn is-success">Confirmar</button>
+                            <button class="nes-btn culture is-success">Confirmar</button>
                             &emsp;
-                            <button class="nes-btn is-error">Cancelar</button>
+                            <button class="nes-btn culture is-error">Cancelar</button>
                         </menu>
                     </form>
                 </dialog>
@@ -105,9 +105,9 @@ export class Worldcup {
                         <menu class="dialog-menu">
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <button class="nes-btn is-success">Confirmar</button>
+                            <button class="nes-btn culture is-success">Confirmar</button>
                             &emsp;
-                            <button class="nes-btn is-error">Cancelar</button>
+                            <button class="nes-btn culture is-error">Cancelar</button>
                         </menu>
                     </form>
                 </dialog>

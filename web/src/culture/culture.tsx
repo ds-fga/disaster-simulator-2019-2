@@ -30,37 +30,37 @@ export class Culture {
                     &nbsp;&nbsp;Voltar &nbsp;
                </button>} />
                 <Tabs>
-                    <Tab title={<button type="button" class='nes-btn is-warning TabCulture' >Visão Geral</button>} >
+                    <Tab title={<button type="button" class='nes-btn culture is-warning TabCulture' >Visão Geral</button>} >
                         <VScroll>
                             <br />
                             <ContainersVisãoGeral />
                         </VScroll>
                     </Tab>
-                    <Tab title={<button type="button" class='nes-btn is-warning TabCulture' >Religião</button>} >
+                    <Tab title={<button type="button" class='nes-btn culture is-warning TabCulture' >Religião</button>} >
                         <VScroll>
                             <br />
                             <ContainerReligiao />
                         </VScroll>
                     </Tab>
-                    <Tab title={<button type="button" class='nes-btn is-warning TabCulture'>Notícias</button>}>
+                    <Tab title={<button type="button" class='nes-btn culture is-warning TabCulture'>Notícias</button>}>
                         <VScroll>
                             <br />
                             <ContainerNews />
                         </VScroll>
                     </Tab>
-                    <Tab title={<button type="button" class='nes-btn is-warning TabCulture'>Educação</button>}>
+                    <Tab title={<button type="button" class='nes-btn culture is-warning TabCulture'>Educação</button>}>
                         <VScroll>
                             <br />
                             <ContainerEducation />
                         </VScroll>
                     </Tab>
-                    <Tab title={<button type="button" class='nes-btn is-warning TabCulture'>Entretenimento</button>}>
+                    <Tab title={<button type="button" class='nes-btn culture is-warning TabCulture'>Entretenimento</button>}>
                         <VScroll>
                             <br />
                             <ContainerEntertainment />
                         </VScroll>
                     </Tab>
-                    <Tab title={<button type="button" class='nes-btn is-warning TabCulture' >{'?'}</button>} >
+                    <Tab title={<button type="button" class='nes-btn culture is-warning TabCulture' >{'?'}</button>} >
                     </Tab>
                 </Tabs>
             </Window >

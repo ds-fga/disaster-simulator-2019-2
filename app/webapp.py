@@ -6,7 +6,7 @@ from . import simulation
 from . import events
 from . import illuminati
 from . import science
-from . import culture
+# from . import culture
 
 app = Flask(__name__)
 CORS(app)
@@ -108,6 +108,6 @@ def root():
         data = fd.read()
     return data
 
-@app.route(/culture/get_culture)
-def get_culture():
-    return jsonify(culture.get_culture())
+# @app.route('/culture/get_culture')
+# def get_culture():
+#     return jsonify(culture.get_culture())
