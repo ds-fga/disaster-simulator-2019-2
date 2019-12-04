@@ -1,7 +1,7 @@
 from flask import Flask, escape, request, jsonify
+import science
+import simulation
 from flask_cors import CORS
-from . import simulation
-
 app = Flask(__name__)
 CORS(app)
 
@@ -57,3 +57,15 @@ def get_var(name):
 def get_series(name):
     data = simulation.get_series(name)
     return jsonify({'name': name, 'data': data})
+
+@app.route('/science/list-techs/')
+def list_techs():
+    return jsonify(science.list_techs())
+
+
+@app.route('/science/buy/<id>/')
+def buy_tech(id):
+    return jsonify(science.buy_tech(id))
+
+if __name__ == '__main__':
+    app.run(debug=True)
