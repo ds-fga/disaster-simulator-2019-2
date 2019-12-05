@@ -71,7 +71,7 @@ def save_game(name):
     state = simulation.get_game_state()
     with open(path, 'w') as fd:
         json.dump(state, fd)
-    return jsonify({'status': 'success', 'file': path, 'state': state})
+    return jsonify({'status': 'success', 'file': path, 'state': state, 'techs': science.list_techs()})
 
 
 @app.route('/game/load/<name>')
