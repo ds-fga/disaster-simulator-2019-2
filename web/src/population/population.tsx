@@ -1,6 +1,8 @@
 import m from 'mithril';
-import { Window, Tab, Tabs, Btn, Sidebar, Chart } from '../ui';
-import populationIcon from './icon.jpg'
+import { Window, Tab, Tabs, Btn, Sidebar, Chart, VScroll} from '../ui';
+import populationIcon from '../../img/icones_tela_inicial/people.png'
+import { Gerargraficos, GraphicTab, GraphicTabs } from '../graphics/UiGraphics';
+
 
 /**
  * Componente que mostra janela com informações demográficas.
@@ -11,13 +13,15 @@ export class Population {
             <Sidebar src={populationIcon} title="Populacao" />
             <Tabs>
                 <Tab title="Satisfação">
-                    <div id="satisfacaoChart">Satisfação:
+                    <div id="satisfacaoChart">
                         <Chart type="pie" data={dataSatisfacao} options={options}></Chart>
+                    </div>  
+                </Tab>
+                <GraphicTab title="Riqueza">
+                    <div>
+                        <Chart type="pie" data={dataRiqueza} options={options}></Chart>
                     </div>
-                </Tab>
-
-               
-                </Tab>
+                </GraphicTab>
             </Tabs>
         </Window>
     }   
@@ -31,10 +35,10 @@ let dataRiqueza = {
         backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
+            'rgba(255, 206, 86, 0.8)',
             'rgba(75, 192, 192, 0.2)',
             'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
+            'rgba(255, 159, 64, 0.5)'
         ],
         borderColor: [
             'rgba(255, 99, 132, 1)',
@@ -54,7 +58,7 @@ let dataSatisfacao = {
         label: '# of Votes',
         data: [50/100, 35/100, 5/100, 10/100,],
         backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 99, 132, 0.5)',
             'rgba(54, 162, 235, 0.2)',
             'rgba(255, 206, 86, 0.2)',
             'rgba(75, 192, 192, 0.2)'
@@ -96,6 +100,7 @@ let dataSaude = {
 
 
 let options = {
+    global: 'false',
     scales: {
         yAxes: [{
             ticks: {

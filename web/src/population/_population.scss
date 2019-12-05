@@ -1,0 +1,86 @@
+/*Gráficos de população*/
+
+.Polulation {
+ 
+      .pieContainer {
+           height: 100px;
+      }
+      .pieBackground {
+           background-color: green;
+           position: absolute;
+           width: 100px;
+           height: 100px;
+           -moz-border-radius: 50px;
+           -webkit-border-radius: 50px;
+           -o-border-radius: 50px;
+           border-radius: 50px;
+           -moz-box-shadow: -1px 1px 3px #000;
+           -webkit-box-shadow: -1px 1px 3px #000;
+           -o-box-shadow: -1px 1px 3px #000;
+           box-shadow: -1px 1px 3px #000;
+      } 
+ 
+      .pie {
+           position: absolute;
+           width: 100px;
+           height: 100px;
+           -moz-border-radius: 50px;
+           -webkit-border-radius: 50px;
+           -o-border-radius: 50px;
+           border-radius: 50px;
+           clip: rect(0px, 50px, 100px, 0px);
+      }
+      .hold {
+           position: absolute;
+           width: 100px;
+           height: 100px;
+           -moz-border-radius: 50px;
+           -webkit-border-radius: 50px;
+           -o-border-radius: 50px;
+           border-radius: 50px;
+           clip: rect(0px, 100px, 100px, 50px);
+      }
+      #pieSlice1 .pie {
+           background-color: #1b458b;
+           -webkit-transform:rotate(50deg);
+           -moz-transform:rotate(50deg);
+           -o-transform:rotate(50deg);
+           transform:rotate(50deg);
+      }
+      #pieSliceBlue .pie {
+           background-color: #1b458b;
+           -webkit-transform:rotate(180deg);
+           -moz-transform:rotate(180deg);
+           -o-transform:rotate(180deg);
+           transform:rotate(180deg);
+      }
+      #pieSliceBlue2 {
+           -webkit-transform:rotate(180deg);
+           -moz-transform:rotate(180deg);
+           -o-transform:rotate(180deg);
+           transform:rotate(180deg);
+      }
+      #pieSliceBlue2 .pie {
+           background-color: #1b458b;
+           -webkit-transform:rotate(40deg);
+           -moz-transform:rotate(40deg);
+           -o-transform:rotate(40deg);
+           transform:rotate(40deg);
+      }
+      #pieSliceRed {
+           -webkit-transform:rotate(220deg);
+           -moz-transform:rotate(220deg);
+           -o-transform:rotate(220deg);
+           transform:rotate(220deg);
+      }
+      #pieSliceRed .pie {
+           background-color: #cc0000;
+           -webkit-transform:rotate(140deg);
+           -moz-transform:rotate(140deg);
+           -o-transform:rotate(140deg);
+           transform:rotate(140deg);
+      }
+ 
+ 
+ 
+ }
