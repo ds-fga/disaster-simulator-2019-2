@@ -1,9 +1,11 @@
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, Chart, VScroll} from '../ui';
+import {MithrilTsxComponent as Component} from 'mithril-tsx-component';
+import ChartJS = require('chart.js');
 import populationIcon from '../../img/icones_tela_inicial/people.png'
 import demoingif from './src/demoin.gif';
 import telaback from './src/telaback.jpg';
-import { Gerargraficos, GraphicTab, GraphicTabs, GraphicsChart } from '../graphics/UiGraphics';
+import { GraphicTab} from '../graphics/UiGraphics';
 
 
 
@@ -131,8 +133,41 @@ class Saude {
             </div>
         </div>
 }
+
+class GraphicsChart extends Component<IChartAttrs> {
+    chart: any;
+
+    oncreate(vnode: m.Vnode<IChartAttrs>) {
+        let {type, data, options} = vnode.attrs,
+            canvas = document.createElement('CANVAS'),
+            dom: HTMLElement = vnode.dom;
+        dom.appendChild(canvas);
+        this.chart = new ChartJS(canvas, {type: type, data: data, options: options});
+    }
+
+    view(vnode: m.Vnode<IChartAttrs>) {
+        let attrs = {...vnode.attrs};
+        ["type", "data", "options"].map(x => {
+            delete attrs[x]
+        });
+        return <div class="Population chart-container">
+            <div class="Chart" {...attrs}/>
+        </div>
     }
 }
+
+interface IGenericAttrs {
+    class?: string | string[];
+    id?: string;
+    onclick?: Function;
+}
+
+interface IChartAttrs extends IGenericAttrs {
+    type: string;
+    data: object;
+    options: object;
+}
+
 
 let dataRiqueza = {
     labels: ['Super Ricos', 'Ricos', 'Classe média', 'Classe média-baixa', 'Pobres', 'Miseravéis'],
