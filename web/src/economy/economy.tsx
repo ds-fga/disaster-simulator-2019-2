@@ -6,6 +6,7 @@ import dataEconomy from '../economy/economyData.json';
 //colocar imagem. exampleImg nome <img src={exampleImg}></img>
 
 let dinheiro = 4500;
+let totalPoints = 5;
 
 function createCard ({ title, description, attrs, compraDeItem }) {
     function viewAttr ({ name, color, points }) {
@@ -13,12 +14,11 @@ function createCard ({ title, description, attrs, compraDeItem }) {
     }
 
     function createBotao (btn) {
-        let points = 1;     //pegar do PYTHON
         let {preco, btnAberto} = btn;
 
         function buying () {
-            if (points >= preco) {
-                points -= preco;
+            if (totalPoints >= preco) {
+                totalPoints -= preco;
                 btn.btnAberto = false;
             }
             else {
