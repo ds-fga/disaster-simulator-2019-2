@@ -1,30 +1,137 @@
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, Chart, VScroll} from '../ui';
 import populationIcon from '../../img/icones_tela_inicial/people.png'
-import { Gerargraficos, GraphicTab, GraphicTabs } from '../graphics/UiGraphics';
+import demoingif from './src/demoin.gif';
+import telaback from './src/telaback.jpg';
+import { Gerargraficos, GraphicTab, GraphicTabs, GraphicsChart } from '../graphics/UiGraphics';
+
 
 
 /**
  * Componente que mostra janela com informações demográficas.
  */
 export class Population {
+    background: object;
+
+    // a funcao constructor eh onde damos os valores iniciais as variaveis
+    constructor() {
+        // para referencia a variaveis, usamos o prefixo "this"
+        this.background = {
+            "Telainicial": telaback, 
+            "Riqueza": telaback,
+            "Satisfacao": telaback,
+            "Saude": telaback
+            
+        }
+    }
     view() {
-        return <Window>
-            <Sidebar src={populationIcon} title="Populacao" />
-            <Tabs>
-                <Tab title="Satisfação">
-                    <div id="satisfacaoChart">
-                        <Chart type="pie" data={dataSatisfacao} options={options}></Chart>
-                    </div>  
-                </Tab>
-                <GraphicTab title="Riqueza">
-                    <div>
-                        <Chart type="pie" data={dataRiqueza} options={options}></Chart>
+        return <Window id="PopulationWindow">
+                <VScroll class="Population vscroll">
+                    <div class="Population overlay">
+                        <Tabs>
+                            <GraphicTab title="Tela inicial" btn="warning" 
+                                        background={this.background.Telainicial}><Tela></Tela></GraphicTab>
+                            <GraphicTab title="Riqueza" btn="warning" 
+                                        background={this.background.Riqueza}><Riqueza></Riqueza></GraphicTab>
+                            <GraphicTab title="Satisfação" btn="warning"
+                                        background={this.background.Satisfacao}><Satisfacao></Satisfacao></GraphicTab>
+                            <GraphicTab title="Saúde" btn="warning"
+                                        background={this.background.Saude}><Saude></Saude></GraphicTab>
+                        </Tabs>
                     </div>
-                </GraphicTab>
-            </Tabs>
+                </VScroll>
+            
         </Window>
     }   
+}
+
+class Tela {
+    view() {
+        return <div class="Population tela">
+            <h1 class="Population Tela Title">informações populacional</h1>
+            <h2 class="Population Tela Content">Graficos para perceber o estrago</h2>
+            <img src={demoingif} height={173}></img>
+        </div>
+    }
+
+    oncreate(vnode) {
+        let demonio = vnode.dom.children[2];
+        demonio.style.transform = "translate(-800px, -50px)";
+        demonio.style.opacity = "0";
+        setTimeout(() => {
+            demonio.style.transition = "all 10s ease";
+            demonio.style.transform = "translate(0%)";
+            demonio.style.opacity = "100%";
+        }, 1000);
+
+        let backuptext = [];
+        vnode.instance.children.map((e, i) => {
+            if (e.dom.innerHTML != undefined) {
+                let texto = e.dom.innerHTML.split('');
+                e.dom.innerHTML = "";
+                let tempoescrita = backuptext.length == 0 ? 500 : (backuptext[backuptext.length - 1].length + 10) * 75;
+                backuptext.push(texto);
+                setTimeout(() => {
+                    texto.forEach((element, index) => {
+                        setTimeout(() => e.dom.innerHTML += element, 75 * index)
+                    });
+                    let hiddentext = "HELP".split('');
+                    setTimeout(() => {
+                        e.dom.innerHTML += "<br/>";
+                        hiddentext.forEach((element, index) => {
+                            setTimeout(() => e.dom.innerHTML += element, 650 * index)
+                        })
+                    }, 50000 / 1)
+                }, tempoescrita)
+
+            }
+        })
+    }
+}
+
+class Riqueza {
+
+    constructor(){
+
+    }
+
+    view(){
+        return <div>
+            <div class="Gerargraficos">
+                <GraphicsChart type="bar" data={dataRiqueza} options={options} ></GraphicsChart>
+            </div>
+        </div>
+    }
+}
+
+class Satisfacao {
+
+    constructor(){
+
+    }
+
+    view(){
+        return <div>
+            <div class="Gerargraficos">
+                <GraphicsChart type="bar" data={dataSatisfacao} options={options}></GraphicsChart>
+            </div>
+        </div>
+    }
+}
+
+class Saude {
+    constructor(){
+
+    }
+
+    view(){
+        return <div>
+            <div class="Gerargraficos">
+                <GraphicsChart type="bar" data={dataSaude} options={options}></GraphicsChart>
+            </div>
+        </div>
+}
+    }
 }
 
 let dataRiqueza = {
