@@ -54,7 +54,7 @@ export class Science {
     }
 
     voltar(){
-        var element = document.getElementById("scienceWindow");
+        const element = document.getElementsByClassName("Window")[1];
         var style = element.style;
         style.animation = "textShadow 1.6s infinite, turn-off 0.55s cubic-bezier(0.755, 0.050, 0.855, 0.060)";
         window.setTimeout(function(){element.parentNode.removeChild(element)}, 550);
@@ -64,9 +64,9 @@ export class Science {
 
         const { techs, searchbox, currentTech, techsFilter } = this.estado;
         const filteredtechs = techs.filter(tech => tech.title.toLowerCase().includes(searchbox.toLowerCase()))
-        const element = document.getElementById("scienceWindow");
+        const element = document.getElementsByClassName("Window");
 
-        return <Window id="scienceWindow" class="science">
+        return <Window class="science">
 
             <Sidebar class="science__sidebar" title={
                 <button class="nes-btn science__sidebar-btn" onclick={this.voltar}>{"<"} Voltar</button>
