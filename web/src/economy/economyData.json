@@ -10,6 +10,28 @@
             "compraDeItem": [
                 {"btnAberto": true, "preco": 5}
             ]
+        },
+        {
+            "title": "Ação 1 ",
+            "description": "dsjfoisdjfo si fasasfasfafs jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
+            "attrs": [
+                { "name": "População", "color": "color: red", "points": "-39%" },
+                { "name": "Economia", "color": "color: green", "points": "+R$3000,00" }
+            ],
+            "compraDeItem": [
+                {"btnAberto": true, "preco": 5}
+            ]
+        },
+        {
+            "title": "Ação 1 ",
+            "description": "dsjfoisdjfo si fasasfasfafs jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
+            "attrs": [
+                { "name": "População", "color": "color: red", "points": "-39%" },
+                { "name": "Economia", "color": "color: green", "points": "+R$3000,00" }
+            ],
+            "compraDeItem": [
+                {"btnAberto": true, "preco": 5}
+            ]
         }
     ],
     "prejuizo": [
@@ -37,7 +59,7 @@
     ],
     "luxos": [
         {
-            "title": "Test sdse ",
+            "title": "Para o inventario ",
             "description": "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             "imagemReferencia": "testImage",
             "compraDeItem": [
@@ -47,7 +69,7 @@
     ],
     "inventario": [
         {
-            "title": "Test sdse ",
+            "title": "Inventário 1 ",
             "description": "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             "imagemReferencia": "testImage",
             "compraDeItem": [

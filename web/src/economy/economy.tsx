@@ -3,7 +3,6 @@ import { Window, Tab, Tabs, Btn, Sidebar, VScroll } from '../ui';
 import sidebarImage from '../economy/idosa.jpg';
 import testImage from '../economy/testando.jpg';
 import dataEconomy from '../economy/economyData.json';
-//colocar imagem. exampleImg nome <img src={exampleImg}></img>
 
 let dinheiro = 4500;
 let totalPoints = 5;
@@ -62,7 +61,7 @@ function createCard ({ title, description, attrs, compraDeItem }) {
 
 function createCardSimple ({ title, description, attrs, compraDeItem }) {
     function createBotao (btn) {
-        let {preco, btnAberto} = btn;
+        let {preco, btnAberto, title} = btn;
 
         function buying () {
             if (dinheiro >= preco) {
@@ -107,21 +106,30 @@ function createCardSimple ({ title, description, attrs, compraDeItem }) {
     </ExpandirCard>
 }
 
-function createCardImage ({ title, description, imagemReferencia, compraDeItem }) {
+function createCardImage (moverInvetario) {
+    let { title, description, imagemReferencia, compraDeItem } = moverInvetario;
+
     function createBotao (btn) {
         let {preco, btnAberto, titleBtn} = btn;
 
         function buying () {
             if (dinheiro >= preco && titleBtn === "Comprar") {
                 dinheiro -= preco;
-                btn.btnAberto = false;
+                btn.titleBtn = "Vender";
+                let j = moverInvetario;
+                dataEconomy.inventario.push(j);
+                dataEconomy.luxos.splice(dataEconomy.luxos.indexOf(j), 1);
             }
             else if (dinheiro < preco && titleBtn === "Comprar"){
                 return alert("ERROR: dinheiro insuficiente. Tente novamente mais tarde.");       //tentar mudar para o nes-css
             }
             else if (titleBtn === "Vender"){
                 dinheiro += preco/2;
-                return alert("Ao vender esse item, irá lhe recomensar metade do seu preço");
+                alert("Ao vender esse item, irá lhe recomensar metade do seu preço");
+                btn.titleBtn = "Comprar";
+                let j = moverInvetario;
+                dataEconomy.luxos.push(j);
+                dataEconomy.inventario.splice(dataEconomy.inventario.indexOf(j), 1);
             }
         }
 
@@ -179,6 +187,7 @@ export class Economy {
                     </Tab>
 
                     <Tab title={<button class="nes-btn">Mercado</button>}>
+                        <p>Dinheiro: {dinheiro}</p>
                         <div class="flex-container">
                             <div style="flex-grow: 1">
                                 <h1>Investimentos</h1>
@@ -192,6 +201,7 @@ export class Economy {
                     </Tab>
 
                     <Tab title={<button class="nes-btn">Inventário</button>}>
+                        <p>Dinheiro: {dinheiro}</p>
                         <div class="flex-container">
                             <div style="flex-grow: 1">
                                 <h1>Luxos Comprados</h1>
