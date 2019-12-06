@@ -53,7 +53,7 @@ export class Intro {
     viewStart() {
         return [
             <div class="Intro">
-                <div class="nes-container is-rounded" style="background: white;">
+                <div class="nes-container is-rounded" style="background: white; max-width: 50rem; margin: auto;">
                     <h1>Disaster Simulator</h1>
                     <h2>Escolha seu Illuminati</h2>
                     {this.viewRegistrationForm()}
@@ -114,34 +114,37 @@ export class Intro {
         let player = model.player;
 
         return <div class="Intro">
-            <div class="nes-container is-rounded" style="background: white;">
+            <div class="nes-container is-rounded" style="background: white; max-width: 50rem; margin: auto;">
                 <h1></h1>
                 <p>Bem vindo <strong>{player.name}</strong>! Depois de anos de dedicação,
-                conspiração e controle mental dos súditos humanos, você finalmente conseguiu
+                conspiração e controle mental, você finalmente conseguiu
                 uma vaga no conselho Illuminati do planeta Terra.</p>
 
                 <p>Não é um lugar tão bom como seu lar, <strong>{player.planetDescription}</strong>,
                 mas trará incontáveis riquezas para sua conta na suiça e glória para sua espécie
                 de <strong>{player.speciesDescription}</strong>.</p>
                 <p>
-                    <Btn btn="error" onclick={() => { this.status = "fnord"} }>FNORD</Btn>
-                    <Btn btn="primary" onclick={() => this.continue()}>Clique aqui para conspirar!</Btn>
+                    <Btn btn="error" onclick={() => { this.status = "fnord" }}>FNORD?</Btn>
+                    <Btn btn="primary" onclick={() => this.continue()}>Vamos conspirar :-)</Btn>
                 </p>
             </div>
         </div>
     }
 
     viewFnord() {
-        return <div class="nes-container is-rounded" style="background: white;">
-            <style></style>
-            <VScroll>
-                <img src={logoImg} style="width: 100%" />
-                <p>
-                    Fnord? <Btn btn="error" onclick={() => { this.status = "intro" }}>x</Btn>
-                </p>
-            </VScroll>
+        // https://tympanus.net/codrops/2017/12/21/css-glitch-effect/
+        return <div class="Intro" style="padding: 0">
+            <p style="position: absolute; margin: 1rem auto; right: 1rem; z-index: 1000">
+                Fnord? <Btn btn="error" onclick={() => { this.status = "intro" }}>x</Btn>
+            </p>
+            <div class="glitch">
+                <div class="glitch__img"></div>
+                <div class="glitch__img"></div>
+                <div class="glitch__img"></div>
+                <div class="glitch__img"></div>
+                <div class="glitch__img"></div>
+            </div>
         </div>
-
     }
 
     toggleCredits() {
