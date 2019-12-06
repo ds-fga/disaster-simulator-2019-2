@@ -16,15 +16,13 @@ interface IGenericAttrs {
 }
 
 // TABS
-export abstract class Elem extends Component<Object> {
-    // Classe abstrata
-}
-
-export class GraphicTabs extends Elem {
+export class GraphicTabs extends Component<Sattrs> {
     selected: number;
-
-    constructor(vnode) {
+    extraclass: string;
+    constructor(vnode: m.Vnode<Sattrs>) {
         super();
+        this.extraclass = vnode.attrs.extraclass;
+        console.log(this.extraclass)
         this.selected = vnode.attrs.selected || 0;
     }
 
@@ -62,7 +60,8 @@ export class GraphicTabs extends Elem {
     }
 
     changeBackground(vnode) {
-        let graphicswindow = window.document.querySelector(".Graphics.vscroll");
+        let graphicswindow = window.document.querySelector(`.${this.extraclass}.vscroll`);
+        //let graphicswindow = window.document.querySelector(`.Graphics.vscroll`);
         let background = vnode.attrs.background || "";
         if (background != "") {
             graphicswindow.style.background = `url(${vnode.attrs.background})`;
@@ -79,7 +78,7 @@ interface Sattrs extends IGenericAttrs {
     background?: string;
     btn?: "primary" | "success" | "warning" | "error" | "disabled" | "normal";
     title?: string;
-
+    extraclass: string;
 }
 
 export class GraphicTab extends Component<Sattrs> {
