@@ -1,19 +1,24 @@
+.Propositions > * {
+    margin: 2rem !important;
+}
+
 .PoliticsCard {
     background: whitesmoke;
     color: black;
     padding: 1rem;
-    margin: 1rem;
     border-radius: 0.5rem;
     box-shadow: 4px 4px 3px 2px rgba(0, 0, 0, 0.15),
                 -2px 1px 2px 1px rgba(64, 64, 64, 0.3);
     height: 100%;
 }
+
 .PoliticsCard-title {
     font-size: 120%;
     font-weight: bold;
     color: red;
     position: relative;
 }
+
 .PoliticsCard-button {
     transform: rotate(-90deg);
     position: absolute;
@@ -21,7 +26,20 @@
     top: 0;
     transition: transform 200ms;
 }
+
 .PoliticsCard-button.is-rotated {
     transform: rotate(90deg);
 }
 
+.PropositionCard {
+    transition: 250ms;
+    button {
+        transition: 250ms;
+    }
+}
+
+.PropositionCard.is-collapsed {
+    button {
+        transform: rotate(180deg);
+    }
+}
