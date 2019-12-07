@@ -1,8 +1,4 @@
-import m from 'mithril';
-import { Window, Tab, Tabs, Btn, Sidebar, Elem } from '../../../ui';
-
-import { NegociosPapa, CreateReligion } from "./religionIdeas";
-import SearchBar from '../../components/searchbar';
+import { NegociosPapa, CreateReligion, Arautos } from "./religionIdeas";
 
 export class ContainerReligiao {
     view() {
@@ -11,6 +7,8 @@ export class ContainerReligiao {
                 <NegociosPapa />
                 <br />
                 <CreateReligion />
+                <br />
+                <Arautos />
             </div>
         );
     }

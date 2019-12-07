@@ -38,7 +38,7 @@ export class Culture {
                     </Tab>
                     <Tab title={<button type="button" class='nes-btn culture is-warning TabCulture' >Religião</button>} >
                         <VScroll>
-                            <br />
+                            <br />  
                             <ContainerReligiao />
                         </VScroll>
                     </Tab>

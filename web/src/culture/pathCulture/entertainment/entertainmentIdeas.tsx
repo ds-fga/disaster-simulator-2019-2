@@ -1,11 +1,14 @@
 import Kinoimg from '../../assets/Kino.jpeg';
 import Tateimg from '../../assets/Tate.jpg';
 import Worldcupimg from '../../assets/Fifa.jpg';
+import { game } from '../../../utils';
 
 export class Kino {
+    enabled: boolean = true;
+
     view() {
-        function clicar() {
-            document.getElementById('dialog-rounded').showModal();
+        if (!this.enabled) {
+            return null;
         }
 
         return (
@@ -14,7 +17,7 @@ export class Kino {
                     <h1>Kino International</h1>
                     <p id="p">Gostaria de censurar os filmes?</p>
                     <div class="culture-comprar" id='div-dialog'>
-                        <button type="button" id='botao' class="nes-btn is-primary" onclick={() => document.getElementById('kino').showModal()}
+                        <button type="button" id='botao' class="nes-btn is-primary culture" onclick={() => document.getElementById('kino').showModal()}
                         >Info</button>
                     </div>
                 </div></p>
@@ -30,9 +33,9 @@ export class Kino {
                             <p>Você deseja censurar esses filmes? </p>
                             <menu class="dialog-menu">
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                                <button class="nes-btn culture is-success">Confirmar</button>
+                                <button class="nes-btn is-success culture" onclick={() => { this.select() }}>Confirmar</button>
                                 &emsp;
-                                <button class="nes-btn culture is-error">Cancelar</button>
+                                <button class="nes-btn is-error culture">Cancelar</button>
                             </menu>
                         </div>
                     </form>
@@ -40,17 +43,31 @@ export class Kino {
             </div>
         );
     }
+    select() {
+        this.enabled = false;
+        game.multiply("revolt", 0.8);
+    }
+
 }
 
+
 export class Tate {
+
+    enabled: boolean = true;
+
     view() {
+
+        if (!this.enabled) {
+            return null;
+        }
+
         return (
             <div class="nes-container is-rounded">
                 <p><div class="nes-container is-rounded is-dark">
                     <h1>Tate Modern</h1>
                     <p id="p">Gostaria de adicionar obras ilusórias?</p>
                     <div class="culture-comprar" id='div-dialog'>
-                        <button type="button" id='botao' class="nes-btn is-primary" onclick={() => document.getElementById('Tate').showModal()}
+                        <button type="button" id='botao' class="nes-btn is-primary culture" onclick={() => document.getElementById('Tate').showModal()}
                         >Info</button>
                     </div>
                 </div></p>
@@ -68,26 +85,38 @@ export class Tate {
                         <menu class="dialog-menu">
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <button class="nes-btn culture is-success">Confirmar</button>
+                            <button class="nes-btn is-success culture" onclick={() => { this.select() }}>Confirmar</button>
                             &emsp;
-                            <button class="nes-btn culture is-error">Cancelar</button>
+                            <button class="nes-btn is-error culture">Cancelar</button>
                         </menu>
                     </form>
                 </dialog>
             </div>
         );
     }
+    select() {
+        this.enabled = false;
+        game.multiply("revolt", 0.8);
+    } 
 }
 
 export class Worldcup {
+    
+    enable: boolean = true;
+    
     view() {
+
+        if(!this.enable) {
+            return null;
+        }
+
         return (
             <div class="nes-container is-rounded">
                 <p><div class="nes-container is-rounded is-dark">
                     <h1>Copa do Mundo</h1>
                     <p id="p">Gostaria de subornar o presidente da Fifa?</p>
                     <div class="culture-comprar" id='div-dialog'>
-                        <button type="button" id='botao' class="nes-btn is-primary" onclick={() => document.getElementById('Worldcup').showModal()}
+                        <button type="button" id='botao' class="nes-btn is-primary culture" onclick={() => document.getElementById('Worldcup').showModal()}
                         >Info</button>
                     </div>
                 </div></p>
@@ -105,15 +134,20 @@ export class Worldcup {
                         <menu class="dialog-menu">
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <button class="nes-btn culture is-success">Confirmar</button>
+                            <button class="nes-btn culture is-success culture" onclick={()=>{this.select()}}>Confirmar</button>
                             &emsp;
-                            <button class="nes-btn culture is-error">Cancelar</button>
+                            <button class="nes-btn culture is-error culture">Cancelar</button>
                         </menu>
                     </form>
                 </dialog>
             </div>
 
         );
+    }
+
+    select() {
+        this.enable = false;
+        game.multiply('revolt', 0.8);
     }
 
 }

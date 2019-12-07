@@ -1,6 +1,6 @@
-import { CreateReligion, NegociosPapa } from '../religion/religionIdeas';
+import { CreateReligion, NegociosPapa, Arautos } from '../religion/religionIdeas';
 import { Kino, Tate, Worldcup } from '../entertainment/entertainmentIdeas';
-import { Unb, Mit } from '../education/educationIdeas';
+import { Unb, Mit, TokyoUni } from '../education/educationIdeas';
 
 
 export class ContainersVisãoGeral {
@@ -12,6 +12,8 @@ export class ContainersVisãoGeral {
                 <br />
                 <CreateReligion /> 
                 <br />
+                <Arautos />
+                <br/>
                 <Kino />
                 <br />
                 <Tate />
@@ -21,6 +23,8 @@ export class ContainersVisãoGeral {
                 <Unb />
                 <br/>
                 <Mit />
+                <br/>
+                <TokyoUni />
             </div>
         );
     }

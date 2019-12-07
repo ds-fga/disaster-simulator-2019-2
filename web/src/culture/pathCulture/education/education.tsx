@@ -1,4 +1,4 @@
-import { Unb, Mit } from './educationIdeas';
+import { Unb, Mit, TokyoUni } from './educationIdeas';
 
 export class ContainerEducation {
     view() {
@@ -7,6 +7,8 @@ export class ContainerEducation {
                 <Unb />
                 <br/>
                 <Mit />
+                <br/>
+                <TokyoUni />
             </div >
         );
     }

@@ -1,6 +1,6 @@
 import UNB from '../../assets/UNB.jpg';
 import MIT from '../../assets/MIT.jpg';
-
+import TOKYO from '../../assets/Tokyo.JPG'
 export class Unb {
     view() {
         return (
@@ -9,7 +9,7 @@ export class Unb {
                     <h1>UNB</h1>
                     <p id="p">Gostaria de colocar um infiltrado na universidade?</p>
                     <div class="culture-comprar" id='div-dialog'>
-                        <button type="button" id='botao' class="nes-btn is-primary" onclick={() => document.getElementById('unb').showModal()}
+                        <button type="button" id='botao' class="nes-btn is-primary culture" onclick={() => document.getElementById('unb').showModal()}
                         >Info</button>
                     </div>
                 </div></p>
@@ -46,7 +46,7 @@ export class Mit {
                     <h1>MIT</h1>
                     <p id="p">Gostaria de iniciar um movimento de apoio a nossas causas?</p>
                     <div class="culture-comprar" id='div-dialog'>
-                        <button type="button" id='botao' class="nes-btn is-primary" onclick={() => document.getElementById('mit').showModal()}
+                        <button type="button" id='botao' class="nes-btn is-primary culture" onclick={() => document.getElementById('mit').showModal()}
                         >Info</button>
                     </div>
                 </div></p>
@@ -60,6 +60,43 @@ export class Mit {
                             <p class="title">Istituto de Tecnologia de Massachusetts, Massachusetts, EUA.</p>
                             <p>Está entre as melhores universidades do mundo, com um total de 32 departamentos. <br /> É ,principalmente, conhecido por suas pesquisas nas areas científicas.</p>
                             <p>É uma boa ideia começar um movimento em uma universidade tão importante <br /> Gostaria de começar um movimento de apoio a nossas ideias?</p>
+                            <menu class="dialog-menu">
+                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                            <button class="nes-btn culture is-success">Confirmar</button>
+                                &emsp;
+                            <button class="nes-btn culture is-error">Cancelar</button>
+                            </menu>
+                        </div>
+                    </form>
+                </dialog>
+            </div>
+        );
+    }
+}
+
+export class TokyoUni {
+    view() {
+        return (
+            <div class="nes-container is-rounded">
+                <p><div class="nes-container is-rounded is-dark">
+                    <h1>Universidade de Tokyo</h1>
+                    <p id="p">Gostaria de comandar a instituição?</p>
+                    <div class="culture-comprar" id='div-dialog'>
+                        <button type="button" id='botao' class="nes-btn is-primary culture" onclick={() => document.getElementById('Tokyo').showModal()}
+                        >Info</button>
+                    </div>
+                </div></p>
+
+                <dialog class="nes-dialog is-rounded" id="Tokyo">
+                    <form method="dialog">
+                        <div>
+                            <h1>Universidade de Tokyo</h1>
+                            <img src={TOKYO} width="500" height="300" />
+                            <p />
+                            <p class="title">Universidade de Tokyo, Tokyo, Japão.</p>
+                            <p>Considerada a melhor universidade da Asia. Com, atualmente, 5 campi e 10 faculdades.<br />Além de ter 11 institutos de pesquisa. É a 21 melhor universidade do mundo.</p>
+                            <p>Seria uma boa ideia comandar a maior instituição de ensino da Asia! <br /> Gostaria de comprar a direção da universidade?</p>
                             <menu class="dialog-menu">
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
