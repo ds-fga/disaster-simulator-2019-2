@@ -1,11 +1,28 @@
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, VScroll } from '../ui';
 import sidebarImage from '../economy/idosa.jpg';
-import testImage from '../economy/testando.jpg';
 import dataEconomy from '../economy/economyData.json';
+import { request } from '../utils';
 
-let dinheiro = 4500;
+var EconomyMoney;
+var testeEconomy = {};
 let totalPoints = 5;
+
+request () {
+    m.request({url: "http://127.0.0.1:5000/value/capital/"}).then(dados =>{
+        EconomyMoney = dados.value
+        console.log("Dinheiro Total: ")
+        console.log(EconomyMoney)
+    })
+}
+
+request () {
+    m.request({url: "http://127.0.0.1:5000/economy/store-itens/"}).then(dados =>{
+        testeEconomy = dados
+        console.log("Itens do mercado: ")
+        console.log(testeEconomy)
+    })
+}
 
 function createCard ({ title, description, attrs, compraDeItem }) {
     function viewAttr ({ name, color, points }) {
@@ -61,21 +78,21 @@ function createCard ({ title, description, attrs, compraDeItem }) {
 
 function createCardSimple ({ title, description, attrs, compraDeItem }) {
     function createBotao (btn) {
-        let {preco, btnAberto, title} = btn;
+        let {preco, btnAberto} = btn;
 
         function buying () {
-            if (dinheiro >= preco) {
-                dinheiro -= preco;
+            if (EconomyMoney >= preco) {
+                EconomyMoney -= preco;
                 btn.btnAberto = false;
             }
             else {
-                return alert("ERROR: dinheiro insuficiente. Tente novamente mais tarde.");       //tentar mudar para o nes-css
+                return alert("ERROR: Dinheiro insuficiente. Tente novamente mais tarde.");       //tentar mudar para o nes-css
             }
         }
 
         if (btnAberto) {
             return <div> 
-                <tr><h2>R${preco},00</h2></tr>
+                <tr><h2>U${preco}T</h2></tr>
                 <div>
                     <button class="nes-btn" onclick={buying}>
                         <span>Comprar</span>
@@ -85,7 +102,7 @@ function createCardSimple ({ title, description, attrs, compraDeItem }) {
         }
         else {
             return <div>
-                <tr><h2>R${preco},00</h2></tr>
+                <tr><h2>U${preco},00</h2></tr>
             </div>
         }
     }
@@ -113,18 +130,18 @@ function createCardImage (moverInvetario) {
         let {preco, btnAberto, titleBtn} = btn;
 
         function buying () {
-            if (dinheiro >= preco && titleBtn === "Comprar") {
-                dinheiro -= preco;
+            if (EconomyMoney >= preco && titleBtn === "Comprar") {
+                EconomyMoney -= preco;
                 btn.titleBtn = "Vender";
                 let j = moverInvetario;
                 dataEconomy.inventario.push(j);
                 dataEconomy.luxos.splice(dataEconomy.luxos.indexOf(j), 1);
             }
-            else if (dinheiro < preco && titleBtn === "Comprar"){
-                return alert("ERROR: dinheiro insuficiente. Tente novamente mais tarde.");       //tentar mudar para o nes-css
+            else if (EconomyMoney < preco && titleBtn === "Comprar"){
+                return alert("ERROR: Dinheiro insuficiente. Tente novamente mais tarde.");       //tentar mudar para o nes-css
             }
             else if (titleBtn === "Vender"){
-                dinheiro += preco/2;
+                EconomyMoney += preco/2;
                 alert("Ao vender esse item, irá lhe recomensar metade do seu preço");
                 btn.titleBtn = "Comprar";
                 let j = moverInvetario;
@@ -135,7 +152,7 @@ function createCardImage (moverInvetario) {
 
         if (btnAberto) {
             return <div> 
-                <tr><h2>R${preco},00</h2></tr>
+                <tr><h2>U${preco}T</h2></tr>
                 <div>
                     <button class="nes-btn" onclick={buying}>
                         <span>{titleBtn}</span>
@@ -145,7 +162,7 @@ function createCardImage (moverInvetario) {
         }
         else {
             return <div>
-                <tr><h2>R${preco},00</h2></tr>
+                <tr><h2>U${preco}T</h2></tr>
             </div>
         }
     }
@@ -187,7 +204,7 @@ export class Economy {
                     </Tab>
 
                     <Tab title={<button class="nes-btn">Mercado</button>}>
-                        <p>Dinheiro: {dinheiro}</p>
+                        <p>Dinheiro: U${EconomyMoney}T</p>
                         <div class="flex-container">
                             <div style="flex-grow: 1">
                                 <h1>Investimentos</h1>
@@ -201,7 +218,7 @@ export class Economy {
                     </Tab>
 
                     <Tab title={<button class="nes-btn">Inventário</button>}>
-                        <p>Dinheiro: {dinheiro}</p>
+                        <p>Dinheiro: U${EconomyMoney}T</p>
                         <div class="flex-container">
                             <div style="flex-grow: 1">
                                 <h1>Luxos Comprados</h1>
@@ -254,9 +271,4 @@ export class ExpandirCard {
         </div>
     }
 }
-
-//criar um div na window pq só le um filho
 //vscroll rolamento
-//vnode.attrs pegar algum atributo passado
-//hr é a linha -----------
-//constructor uma variável é criada localmente

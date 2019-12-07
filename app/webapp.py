@@ -6,6 +6,7 @@ from . import simulation
 from . import events
 from . import illuminati
 from . import science
+from . import economy
 # from . import culture
 
 app = Flask(__name__)
@@ -96,6 +97,10 @@ def buy_tech(id):
 @app.route('/science/<techtype>')
 def get_type(techtype):
     return jsonify(science.get_type(techtype))
+    
+@app.route('/economy/store-itens/')
+def get_store():
+    return jsonify(economy.get_store())
 
 @app.route('/game/followers/')
 def followers():
