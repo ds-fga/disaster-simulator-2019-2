@@ -6,6 +6,7 @@ from . import simulation
 from . import events
 from . import illuminati
 from . import science
+from . import economy
 # from . import culture
 
 app = Flask(__name__)
@@ -85,6 +86,10 @@ def load_game(name):
 @app.route('/science/list-techs/')
 def list_techs():
     return jsonify(science.list_techs())
+
+@app.route('/economy/store-itens/')
+def get_store():
+    return jsonify(economy.get_store())
 
 @app.route('/game/followers/')
 def followers():

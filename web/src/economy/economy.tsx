@@ -4,13 +4,23 @@ import sidebarImage from '../economy/idosa.jpg';
 import dataEconomy from '../economy/economyData.json';
 import { request } from '../utils';
 
-let EconomyMoney;
+var EconomyMoney;
+var testeEconomy = {};
 let totalPoints = 5;
 
 request () {
     m.request({url: "http://127.0.0.1:5000/value/capital/"}).then(dados =>{
         EconomyMoney = dados.value
+        console.log("Dinheiro Total: ")
         console.log(EconomyMoney)
+    })
+}
+
+request () {
+    m.request({url: "http://127.0.0.1:5000/economy/store-itens/"}).then(dados =>{
+        testeEconomy = dados
+        console.log("Itens do mercado: ")
+        console.log(testeEconomy)
     })
 }
 
