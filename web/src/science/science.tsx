@@ -6,6 +6,8 @@ import Tech from './components/Tech.component';
 import TechList from './components/TechList.component';
 import SearchBar from './components/SearchBar.component';
 import TechButton from './components/TechButton.component';
+import '../model';
+import { model } from '../model';
 
 /**
  * Componente para janela com árvore tecnológica e de desenvolvimento científico.
@@ -13,6 +15,11 @@ import TechButton from './components/TechButton.component';
 export class Science {
 
     effectEnabled: boolean;
+    nuclear: any;
+    bio: any;
+    trans: any;
+    energy: any;
+    industry: any;
     estado: {
         techs: any;
         techsFilter: Object;
@@ -35,53 +42,57 @@ export class Science {
             currentTechMoney: ""
         };
         this.effectEnabled = true;
+        this.nuclear = [];
+        this.bio = [];
+        this.energy = [];
+        this.industry = [];
+        this.trans = [];
         
         this.request();
+        console.log(this.nuclear);
+    }
+
+    buy(id){
+        let techs = this.estado.techs;
+        m.request({url: `http://localhost:5000/science/buy-tech/${id}`});
+        for(let i = 0; i < this.estado.techs.lenght; i++){
+            if(techs[i].title === id){
+                m.request({url: `http://localhost:5000/multiply/${techs[i].affect}/${techs[i].much}`, method: 'GET'})
+            }
+        }
     }
 
     request(){
         m.request({ url: "http://localhost:5000/science/list-techs/",
                     method: 'GET',
-
             }).then(
-                (x) => { this.estado.techs = x }
+                (x) => { this.estado.techs = x}
         );
+        m.request({url: 'http://localhost:5000/science/nuclear', method: 'GET'}).then(x => {this.nuclear = x});
+        m.request({url: 'http://localhost:5000/science/energético', method: 'GET'}).then(x => {this.energy = x});
+        m.request({url: 'http://localhost:5000/science/transporte', method: 'GET'}).then(x => {this.trans = x});
+        m.request({url: 'http://localhost:5000/science/biológico', method: 'GET'}).then(x => {this.bio = x});
+        m.request({url: 'http://localhost:5000/science/industrial', method: 'GET'}).then(x => {this.industry = x});
     }
 
-    oninit () {
-      const newTechsFilter = {};
-      this.estado.techs.forEach((tech) => {
-        if (!(tech.type_tech in newTechsFilter)) {
-          newTechsFilter[tech.type_tech] = [];
-        }
-        newTechsFilter[tech.type_tech].push(tech);
-      });
-      this.estado.techsFilter = newTechsFilter;
-    }
-
-    voltar(){
-        const element = document.getElementsByClassName("Window")[1];
-        var style = element.style;
-        style.animation = "textShadow 1.6s infinite, turn-off 0.55s cubic-bezier(0.755, 0.050, 0.855, 0.060)";
-        window.setTimeout(function(){element.parentNode.removeChild(element)}, 550);
+    oninit(){
+        this.request();
     }
 
     view () {
-
+        this.request();
         const { techs, searchbox, currentTech, techsFilter } = this.estado;
-        const filteredtechs = techs.filter(tech => tech.title.toLowerCase().includes(searchbox.toLowerCase()))
-        const element = document.getElementsByClassName("Window");
+        const filteredtechs = techs.filter(tech => tech.title.toLowerCase().includes(searchbox.toLowerCase()));
 
         return <Window class="science">
 
             <Sidebar class="science__sidebar" title={
-                <button class="nes-btn science__sidebar-btn" onclick={this.voltar}>{"<"} Voltar</button>
+                <button class="nes-btn science__sidebar-btn" onclick={e=> model.menu()}>{"<"} Voltar</button>
             }/>
 
             <div class="scienceContent">
                 <Tabs>
                     <Tab class="science__tabs" title={<button class="nes-btn Science__btn">Visão Geral</button>}>
-                        {this.request()}
                         <TechList title="Tecnologias disponíveis">
                             <SearchBar placeholder="Buscar ciência" changeHandler={e => {
                                 this.estado.searchbox = e.target.value}}/>
@@ -89,78 +100,63 @@ export class Science {
                                 <Tech title={tech.title} status={tech.status} money={tech.price} dbclick={() => document.getElementById('dialog-dark-rounded').showModal()} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
-                                    this.estado.currentTechListInfo = (tech.listInfo || []);
-                                    this.estado.currentTechProg = tech.prog;
                                     this.estado.currentTechMoney = tech.price;
                                 }}/>
                             ))}</div>
                         </TechList>    
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-warning Science__btn">Nuclear</button>}>
-                        {this.request()}
                         <TechList title="Nuclear">
-                            {(techs['nuclear'] || []).map((tech) => (
+                            {this.nuclear.map((tech) => (
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
-                                    this.estado.currentTechListInfo = (tech.listInfo || []);
-                                    this.estado.currentTechProg = tech.prog;
                                     this.estado.currentTechMoney = tech.price;
                                 }}/>
                             ))}
                         </TechList>
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-success Science__btn">Biológico</button>}>
-                        {this.request()}
                         <TechList title="Biológico">
-                            {(techs['biológico'] || []).map((tech) => (
+                            {this.bio.map((tech) => (
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
-                                    this.estado.currentTechListInfo = (tech.listInfo || []);
-                                    this.estado.currentTechProg = tech.prog;
                                     this.estado.currentTechMoney = tech.price;
                                 }}/>
                             ))}
                         </TechList>
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-primary Science__btn">Energético</button>}>
-                        {this.request()}
+                        
                         <TechList title="Energético">
-                            {(techs['energético'] || []).map((tech) => (
-                                <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
-                                    this.estado.currentTechSpec = tech.spec;
-                                    this.estado.currentTech = tech.title;
-                                    this.estado.currentTechListInfo = (tech.listInfo || []);
-                                    this.estado.currentTechProg = tech.prog;
-                                    this.estado.currentTechMoney = tech.price;
-                                }}/>
+                            {this.energy.map((tech) => (
+                                    <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
+                                        this.estado.currentTechSpec = tech.spec;
+                                        this.estado.currentTech = tech.title;
+                                        this.estado.currentTechMoney = tech.price;
+                                    }}/>
                             ))}
                         </TechList>
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn is-error Science__btn">Transporte</button>}>
-                        {this.request()}
+                        
                         <TechList title="Transporte">
-                            {(techs['transporte'] || []).map((tech) => (
+                            {this.trans.map((tech) => (
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
-                                    this.estado.currentTech = tech.title;
-                                    this.estado.currentTechListInfo = (tech.listInfo || []);
+                                    this.estado.currentTech = tech.title;    
                                     this.estado.currentTechMoney = tech.price;
-                                    this.estado.currentTechProg = tech.prog;
                                 }}/>
                             ))}
                         </TechList>
                     </Tab>
                     <Tab class="science__tabs" title={<button class="nes-btn industry Science__btn">Indústria</button>}>
-                        {this.request()}
                         <TechList title="Indústria">
-                            {(techs['industrial'] || []).map((tech) => (
+                            {this.industry.map((tech) => (
                                 <Tech title={tech.title} spec={tech.spec} money={tech.price} type={tech.type || ""} changeHandler={e => {
                                     this.estado.currentTechSpec = tech.spec;
                                     this.estado.currentTech = tech.title;
-                                    this.estado.currentTechListInfo = (tech.listInfo || []);
-                                    this.estado.currentTechProg = tech.prog;
                                     this.estado.currentTechMoney = tech.price;
                                 }}/>
                             ))}
@@ -176,7 +172,11 @@ export class Science {
                         <p></p>
                         <menu class="dialog-menu">
                           <button class="nes-btn">Cancelar</button>
-                          <button class="nes-btn is-primary">Confirmar</button>
+                          <button onclick={e=> {
+                              console.log(techs);
+                              this.buy(currentTech);
+                              this.request();
+                            }} class="nes-btn is-primary">Confirmar</button>
                         </menu>
                       </form>
                     </dialog>

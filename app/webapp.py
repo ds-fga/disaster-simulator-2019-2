@@ -67,15 +67,17 @@ def params():
 
 @app.route('/game/save/<name>')
 def save_game(name):
+    science.save_techs()
     path = os.path.abspath(name)
     state = simulation.get_game_state()
     with open(path, 'w') as fd:
         json.dump(state, fd)
-    return jsonify({'status': 'success', 'file': path, 'state': state, 'techs': science.list_techs()})
+    return jsonify({'status': 'success', 'file': path, 'state': state})
 
 
 @app.route('/game/load/<name>')
 def load_game(name):
+    science.load_techs()
     path = os.path.abspath(name)
     with open(path, 'r') as fd:
         state = json.load(fd)
@@ -85,6 +87,15 @@ def load_game(name):
 @app.route('/science/list-techs/')
 def list_techs():
     return jsonify(science.list_techs())
+
+@app.route('/science/buy-tech/<id>')
+def buy_tech(id):
+    science.buy_tech(id)
+    return jsonify({'status': 'success', 'tech': id})
+
+@app.route('/science/<techtype>')
+def get_type(techtype):
+    return jsonify(science.get_type(techtype))
 
 @app.route('/game/followers/')
 def followers():

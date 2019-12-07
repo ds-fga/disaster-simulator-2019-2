@@ -1,6 +1,14 @@
 import m from 'mithril';
+import {MithrilTsxComponent as Component} from 'mithril-tsx-component';
 
-class TechList {
+interface list {
+}
+
+class TechList extends Component<list>{
+
+    constructor(vnode){
+        super();
+    }
 
     showBar(prog){
         if(prog <= 100 && prog >= 0) {

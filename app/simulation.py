@@ -1,7 +1,8 @@
 import math
 from collections import namedtuple
 from copy import deepcopy
-from . import illuminati 
+from . import illuminati
+from . import science
 
 # =============================================================================
 # Tipos auxiliares
@@ -172,7 +173,6 @@ ILLUMINATI = value(illuminati.DATA)
 
 # Illuminati
 FOLLOWERS = value(illuminati.Followers(100, 100, 100))
-
 
 # Inicializamos com o estado inicial
 data = [_start]
