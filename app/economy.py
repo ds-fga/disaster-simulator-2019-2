@@ -5,7 +5,7 @@ def get_store():
 data = {
     "lucro": [
         {
-            "title": "Ação 1 ",
+            "title": "Lucro ",
             "description": "dsjfoisdjfo si fasasfasfafs jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             "attrs": [
                 { "name": "População", "color": "color: red", "points": "-39%" },
@@ -18,7 +18,7 @@ data = {
     ],
     "prejuizo": [
         {
-            "title": "Test sdse ",
+            "title": "Prejuizo ",
             "description": "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             "attrs": [
                 { "name": "attr1", "color": "color: red", "points": "?" },
@@ -31,7 +31,7 @@ data = {
     ],
     "investimentos": [
         {
-            "title": "Test sdse ",
+            "title": "Investimentos ",
             "description": "dsjfoisdjfo sasfasfasfi jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             "attrs": "aumenta sei la",
             "compraDeItem": [
@@ -41,7 +41,7 @@ data = {
     ],
     "luxos": [
         {
-            "title": "Para o inventario ",
+            "title": "Luxos ",
             "description": "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             "imagemReferencia": "testImage",
             "compraDeItem": [
@@ -51,7 +51,7 @@ data = {
     ],
     "inventario": [
         {
-            "title": "Inventário 1 ",
+            "title": "Inventário ",
             "description": "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             "imagemReferencia": "testImage",
             "compraDeItem": [
