@@ -23,3 +23,5 @@ export let model = {
         this.window = null;
     },
 };
+
+window['model'] = model;
