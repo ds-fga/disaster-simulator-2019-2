@@ -197,17 +197,22 @@ export class Economy {
                 <Sidebar title="Economia" points="4" src={sidebarImage} />
                 <Tabs>
                     <Tab title={<button class="nes-btn">Ações</button>}>
+                        <p>Dinheiro: U${EconomyMoney}T</p>
                         <div class="flex-container">
                             <div style="flex-grow: 1">
                                 <VScroll>
-                                    <h1>Lucro</h1>
-                                    {dataEconomy[0].lucro.map(createCard)}
+                                    <div class="nes-container with-title is-centered is-rounded">
+                                        <p class="title">Lucro</p>
+                                            {dataEconomy[0].lucro.map(createCard)}
+                                    </div>
                                 </VScroll>
                             </div>
                             <div style="flex-grow: 1">
                                 <VScroll>
-                                    <h1>Prejuizo</h1>
-                                    {dataEconomy[0].prejuizo.map(createCard)}
+                                    <div class="nes-container with-title is-centered is-rounded">
+                                        <p class="title">Prejuizo</p>
+                                            {dataEconomy[0].prejuizo.map(createCard)}
+                                    </div>
                                 </VScroll>
                             </div>
                         </div>
@@ -218,14 +223,18 @@ export class Economy {
                         <div class="flex-container">
                             <div style="flex-grow: 1">
                                 <VScroll>
-                                    <h1>Investimentos</h1>
-                                    {dataEconomy[0].investimentos.map(createCardSimple)}
+                                    <div class="nes-container with-title is-centered is-rounded">
+                                        <p class="title">Investimentos</p>
+                                            {dataEconomy[0].investimentos.map(createCardSimple)}
+                                    </div>
                                 </VScroll>
                             </div>
                             <div style="flex-grow: 1">
                                 <VScroll>
-                                    <h1>Luxos</h1>
-                                    {dataEconomy[0].luxos.map(createCardImage)}
+                                    <div class="nes-container with-title is-centered is-rounded">
+                                        <p class="title">Luxos</p>
+                                            {dataEconomy[0].luxos.map(createCardImage)}
+                                    </div>
                                 </VScroll>
                             </div>
                         </div>
@@ -236,8 +245,10 @@ export class Economy {
                         <div class="flex-container">
                             <div style="flex-grow: 1">
                                 <VScroll>
-                                    <h1>Luxos Comprados</h1>
-                                    {dataEconomy[0].inventario.map(createCardImage)}
+                                    <div class="nes-container with-title is-centered is-rounded">
+                                        <p class="title">Luxos Comprados</p>
+                                            {dataEconomy[0].inventario.map(createCardImage)}
+                                    </div>
                                 </VScroll>
                             </div>
                         </div>
