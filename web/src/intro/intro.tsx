@@ -24,6 +24,19 @@ const AUTHORS = [
     "Erick Levy",
     "Enzo Govas",
     "Alan Marques",
+    "Eliás Yousef",
+    "Rodrigo Balbino",
+    "Rafael Leão",
+    "Roberto Santana",
+    "Roberto Nóbrega",
+    "Caetano Lúcio",
+    "greek",
+    "Erick Melo",
+    "Rodolfo Cabral Neves",
+    "Ugor Brandão",
+    "Matheus Raphael",
+    "Pedro Abreu",
+    "Eduardo Afonso",
 ];
 
 
@@ -96,11 +109,11 @@ export class Intro {
             </div>
             <div class="nes-field">
                 <label>Planeta:
-                        <select class="nes-input" value="terra">
-                        <option value="terra" selected>Profundezas da Terra</option>
-                        <option value="alpha">Alpha Centauri</option>
-                        <option value="marte">Marte</option>
-                        <option value="venus">Vênus</option>
+                        <select class="nes-input" value="terra" name="planet">
+                            <option value="terra" selected>Profundezas da Terra</option>
+                            <option value="alpha">Alpha Centauri</option>
+                            <option value="marte">Marte</option>
+                            <option value="venus">Vênus</option>
                     </select>
                 </label>
             </div>
@@ -115,7 +128,7 @@ export class Intro {
 
         return <div class="Intro">
             <div class="nes-container is-rounded" style="background: white; max-width: 50rem; margin: auto;">
-                <h1></h1>
+                <h2>Illuminatti: <span style="color: red">{player.name}</span></h2>
                 <p>Bem vindo <strong>{player.name}</strong>! Depois de anos de dedicação,
                 conspiração e controle mental, você finalmente conseguiu
                 uma vaga no conselho Illuminati do planeta Terra.</p>
@@ -153,10 +166,36 @@ export class Intro {
 
     continue() {
         if (this.status === "start") {
+            let player = model.player;
+            player.name = this.getValue('name', player.name);
+            player.species = this.getValue('species', player.species);
+            player.speciesDescription = this.getDescription('species', player.speciesDescription);
+            player.planet = this.getValue('planet', player.planet);
+            player.planetDescription = this.getDescription('planet', player.planetDescription);
+            player.age = parseInt(this.getValue('age', player.age));
             this.status = "intro";
         }
         else {
             model.window = null;
         }
+    }
+
+    getValue(name, opt) {
+        let form = document.getElementById('register-form');
+        let field = form.querySelector(`[name=${name}]`);
+        if (field && field['value']) {
+            return field['value'];
+        }
+        return opt;
+    }
+
+    getDescription(name, opt) {
+        let form = document.getElementById('register-form');
+        let field: HTMLSelectElement = form.querySelector(`[name=${name}]`);
+        if (field && field['value']) {
+            let opt = field.options[field.options.selectedIndex];
+            return opt.innerText;
+        }
+        return opt;
     }
 }
