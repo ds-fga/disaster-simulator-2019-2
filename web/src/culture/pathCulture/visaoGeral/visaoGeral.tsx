@@ -1,7 +1,7 @@
 import { CreateReligion, NegociosPapa, Arautos } from '../religion/religionIdeas';
 import { Kino, Tate, Worldcup } from '../entertainment/entertainmentIdeas';
 import { Unb, Mit, TokyoUni } from '../education/educationIdeas';
-
+import { AlJazeera, NewYork } from '../news/newsIdeas';
 
 export class ContainersVisãoGeral {
     view() {
@@ -10,10 +10,10 @@ export class ContainersVisãoGeral {
                 <br />
                 <NegociosPapa />
                 <br />
-                <CreateReligion /> 
+                <CreateReligion />
                 <br />
                 <Arautos />
-                <br/>
+                <br />
                 <Kino />
                 <br />
                 <Tate />
@@ -21,10 +21,14 @@ export class ContainersVisãoGeral {
                 <Worldcup />
                 <br />
                 <Unb />
-                <br/>
+                <br />
                 <Mit />
-                <br/>
+                <br />
                 <TokyoUni />
+                <br />
+                <AlJazeera />
+                <br />
+                <NewYork />
             </div>
         );
     }

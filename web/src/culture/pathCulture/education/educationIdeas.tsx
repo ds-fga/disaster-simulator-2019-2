@@ -1,8 +1,18 @@
+import { game } from '../../../ui';
+
 import UNB from '../../assets/UNB.jpg';
 import MIT from '../../assets/MIT.jpg';
 import TOKYO from '../../assets/Tokyo.JPG'
+
 export class Unb {
+
+    enabled: boolean = true;
+
     view() {
+        if (!this.enabled) {
+            return null;
+        }
+
         return (
             <div class="nes-container is-rounded">
                 <p><div class="nes-container is-rounded is-dark">
@@ -18,15 +28,16 @@ export class Unb {
                     <form method="dialog">
                         <div>
                             <h1>Universidade de Brasília</h1>
-                            <img src={UNB} width="500" height="300" />
+                            <img class="cultureImg" src={UNB} width="500" height="300" />
                             <p />
                             <p class="title">Universidade de Brasília, Brasília, Brasil.</p>
                             <p>É a oitava melhor universidade do Brasil, com mais de 100 cursos de graduação disponiveis. <br /> Recentemente, os alunos começaram a fazer revoltas.</p>
                             <p>Gostaria de colocar um professor infiltrado para influenciar os alunos a pararem?</p>
+                            <p class="preço_culture">Preço: 120$</p>
                             <menu class="dialog-menu">
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <button class="nes-btn culture is-success">Confirmar</button>
+                            <button class="nes-btn culture is-success" onclick={() => { this.select() }} >Confirmar</button>
                                 &emsp;
                             <button class="nes-btn culture is-error">Cancelar</button>
                             </menu>
@@ -36,10 +47,22 @@ export class Unb {
             </div>
         );
     }
+    select() {
+        this.enabled = false;
+        game.multiply("revolt", 1.2);
+        game.multiply("satisfaction", 0.9);
+    }
 }
 
 export class Mit {
+
+    enabled:boolean = true;
+
     view() {
+        if(!this.enabled){
+            return null;
+        }
+
         return (
             <div class="nes-container is-rounded">
                 <p><div class="nes-container is-rounded is-dark">
@@ -55,15 +78,16 @@ export class Mit {
                     <form method="dialog">
                         <div>
                             <h1>Istituto de Tecnologia de Massachusetts</h1>
-                            <img src={MIT} width="500" height="300" />
+                            <img class="cultureImg" src={MIT} width="500" height="300" />
                             <p />
                             <p class="title">Istituto de Tecnologia de Massachusetts, Massachusetts, EUA.</p>
                             <p>Está entre as melhores universidades do mundo, com um total de 32 departamentos. <br /> É ,principalmente, conhecido por suas pesquisas nas areas científicas.</p>
                             <p>É uma boa ideia começar um movimento em uma universidade tão importante <br /> Gostaria de começar um movimento de apoio a nossas ideias?</p>
+                            <p class="preço_culture">Preço: 150$</p>
                             <menu class="dialog-menu">
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <button class="nes-btn culture is-success">Confirmar</button>
+                            <button class="nes-btn culture is-success" onclick={() => {this.select()}}>Confirmar</button>
                                 &emsp;
                             <button class="nes-btn culture is-error">Cancelar</button>
                             </menu>
@@ -73,10 +97,18 @@ export class Mit {
             </div>
         );
     }
+    select() {
+        this.enabled = false;
+        game.multiply("revolt", 0.8);
+        game.multiply("satisfaction", 0.9);
+    }
 }
 
 export class TokyoUni {
+    enabled:boolean = true;
+
     view() {
+        if(!this.enabled){return null;}
         return (
             <div class="nes-container is-rounded">
                 <p><div class="nes-container is-rounded is-dark">
@@ -92,15 +124,16 @@ export class TokyoUni {
                     <form method="dialog">
                         <div>
                             <h1>Universidade de Tokyo</h1>
-                            <img src={TOKYO} width="500" height="300" />
+                            <img class="cultureImg" src={TOKYO} width="500" height="300" />
                             <p />
                             <p class="title">Universidade de Tokyo, Tokyo, Japão.</p>
                             <p>Considerada a melhor universidade da Asia. Com, atualmente, 5 campi e 10 faculdades.<br />Além de ter 11 institutos de pesquisa. É a 21 melhor universidade do mundo.</p>
                             <p>Seria uma boa ideia comandar a maior instituição de ensino da Asia! <br /> Gostaria de comprar a direção da universidade?</p>
+                            <p class="preço_culture">Preço: 500$</p>
                             <menu class="dialog-menu">
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <button class="nes-btn culture is-success">Confirmar</button>
+                            <button class="nes-btn culture is-success" onclick={() => {this.select()}}>Confirmar</button>
                                 &emsp;
                             <button class="nes-btn culture is-error">Cancelar</button>
                             </menu>
@@ -109,5 +142,10 @@ export class TokyoUni {
                 </dialog>
             </div>
         );
+    }
+    select() {
+        this.enabled = false;
+        game.multiply("revolt", 0.8);
+        game.multiply("satisfaction", 1.4);
     }
 }

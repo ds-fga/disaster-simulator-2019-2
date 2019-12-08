@@ -1,9 +1,15 @@
+import { game } from '../../../ui';
+
 import Papaimg from '../../assets/Papa.jpg';
 import Religião from '../../assets/CreateReligion.jpg';
 import ArautosImg from '../../assets/Arautos.jpg';
 
 export class NegociosPapa {
+    enabled: boolean = true;
     view() {
+        if (!this.enabled) {
+            return null;
+        }
         return (
             <div class="nes-container is-rounded">
                 <p><div class="nes-container is-rounded is-dark">
@@ -17,16 +23,17 @@ export class NegociosPapa {
                 <dialog class="nes-dialog is-rounded" id="NegociosPapa">
                     <form method="dialog">
                         <h1>Papa Francisco</h1>
-                        <img src={Papaimg} width="400" height="200" />
+                        <img  class="cultureImg" src={Papaimg} width="400" height="200" />
                         <p />
                         <p class="title">Papa Francisco é, atualmente, uma das pessoas mais influente do mundo. <br />
                             Poderiamos utiliza-lo para que ele pregue a nossa ideologia.
                         </p>
                         <p>Gostaria de suborna-lo?</p>
+                        <p class="preço_culture">Preço: 320$</p>
                         <menu class="dialog-menu">
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                             &nbsp;
-                            <button class="nes-btn culture is-success">Confirmar</button>
+                            <button class="nes-btn culture is-success" onclick={() => { this.select() }}>Confirmar</button>
                             &emsp;
                             <button class="nes-btn culture is-error">Cancelar</button>
                         </menu>
@@ -35,10 +42,20 @@ export class NegociosPapa {
             </div>
         );
     }
+    select() {
+        this.enabled = false;
+        game.multiply("revolt", 0.8);
+        game.multiply("satisfaction", 1.3);
+    }
 }
 
 export class CreateReligion {
+    enabled: boolean = true;
+
     view() {
+        if(!this.enabled){
+            return null;
+        }
         return (
             <div class="nes-container is-rounded">
                 <p><div class="nes-container is-rounded is-dark">
@@ -52,18 +69,19 @@ export class CreateReligion {
                 <dialog class="nes-dialog is-rounded" id="CreateReligion">
                     <form method="dialog">
                         <h1>Criar uma religião</h1>
-                        <img src={Religião} width="400" height="200" />
+                        <img class="cultureImg" src={Religião} width="400" height="200" />
                         <p />
                         <p class="title">Desde os primordios, as crenças religiosas fizeram parte da cultura de uma sociedade. <br />
                             Poderiamos criar uma religião que nos beneficie fazendo os crentes acreditarem que existe uma grupo<br />
                             maior e que nossas ações melhoram o mundo.
                         </p>
                         <p>Gostaria de criar uma religião?</p>
+                        <p class="preço_culture">Preço: 200$</p>
                         <menu class="dialog-menu">
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                             &nbsp;
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <button class="nes-btn culture is-success">Confirmar</button>
+                            <button class="nes-btn culture is-success" onclick={() => {this.select()}}>Confirmar</button>
                             &emsp;
                             <button class="nes-btn culture is-error">Cancelar</button>
                         </menu>
@@ -72,11 +90,22 @@ export class CreateReligion {
             </div>
         );
     }
+    select() {
+        this.enabled = false;
+        game.multiply("revolt", 1.3);
+        game.multiply("satisfaction", 1.4);
+    }
+
 }
 
 export class Arautos {
+    enabled: boolean = true;
 
     view() {
+        if(!this.enabled){
+            return null;
+        }
+
         return (
             <div class="nes-container is-rounded">
                 <p><div class="nes-container is-rounded is-dark">
@@ -90,17 +119,18 @@ export class Arautos {
                 <dialog class="nes-dialog is-rounded" id="Arautos">
                     <form method="dialog">
                         <h1>Arautos do Evangelho</h1>
-                        <img src={ArautosImg} width="400" height="200" />
+                        <img class="cultureImg" src={ArautosImg} width="400" height="200" />
                         <p />
                         <p class="title">Os Arautos do Evangelho (em latim Evangelii Præcones) são uma Associação Internacional de Fiéis de Direito Pontifício <br />
                             Poderiamos comprar a organização para que manipulem seus seguidores a gostarem do que fazemos.<br />
                         </p>
                         <p>Gostaria de comprar tal Associação?</p>
+                        <p class="preço_culture">Preço: 150$</p>
                         <menu class="dialog-menu">
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                             &nbsp;
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <button class="nes-btn culture is-success">Confirmar</button>
+                            <button class="nes-btn culture is-success" onclick={() => {this.select()}}>Confirmar</button>
                             &emsp;
                             <button class="nes-btn culture is-error">Cancelar</button>
                         </menu>
@@ -108,5 +138,10 @@ export class Arautos {
                 </dialog>
             </div>
         );
+    }
+    select() {
+        this.enabled = false;
+        game.multiply("revolt", 1.3);
+        game.multiply("satisfaction", 1.1);
     }
 }
