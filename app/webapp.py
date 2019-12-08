@@ -68,15 +68,17 @@ def params():
 
 @app.route('/game/save/<name>')
 def save_game(name):
+    science.save_techs()
     path = os.path.abspath(name)
     state = simulation.get_game_state()
     with open(path, 'w') as fd:
         json.dump(state, fd)
-    return jsonify({'status': 'success', 'file': path, 'state': state, 'techs': science.list_techs()})
+    return jsonify({'status': 'success', 'file': path, 'state': state})
 
 
 @app.route('/game/load/<name>')
 def load_game(name):
+    science.load_techs()
     path = os.path.abspath(name)
     with open(path, 'r') as fd:
         state = json.load(fd)
@@ -87,6 +89,38 @@ def load_game(name):
 def list_techs():
     return jsonify(science.list_techs())
 
+@app.route('/science/buy-tech/<id>')
+def buy_tech(id):
+    capital = simulation.get_var('capital')
+    decrement = science.buy_tech(id)['price']
+    simulation.set_var('capital', capital - decrement)
+    i=0
+    for effect in science.data[id]['affects']:
+        simulation.multiply_var(effect, science.data[id]['how'][i])
+        i-=-1
+    return jsonify({'status': 'success', 'tech': id, 'money': capital, 'decrement': science.buy_tech(id)})
+
+@app.route('/science/<techtype>')
+def get_type(techtype):
+    return jsonify(science.get_type(techtype))
+
+@app.route('/cheat/add')
+def cheat_add():
+    capital = simulation.get_var('capital') + 50
+    simulation.set_var('capital', capital)
+    return jsonify({'status': 'success', 'capital': capital})
+
+@app.route('/cheat/reset')
+def reset():
+    science.reset()
+    return jsonify({'status': 'success', 'techs': science.list_techs()})
+
+@app.route('/cheat/minus')
+def cheat_minus():
+    capital = simulation.get_var('capital') - 50
+    simulation.set_var('capital', capital)
+    return jsonify({'status': 'success', 'capital': capital})
+    
 @app.route('/economy/store-itens/')
 def get_store():
     return jsonify(economy.get_store())

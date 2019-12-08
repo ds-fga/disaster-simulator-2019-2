@@ -1,28 +1,34 @@
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, VScroll } from '../ui';
 import sidebarImage from '../economy/idosa.jpg';
-import dataEconomy from '../economy/economyData.json';
-import { request } from '../utils';
 
 var EconomyMoney;
-var testeEconomy = {};
+var dataEconomy = [{
+    lucro: [],
+    prejuizo: [],
+    investimentos: [],
+    luxos: [],
+    inventario: []
+}];
 let totalPoints = 5;
 
-request () {
-    m.request({url: "http://127.0.0.1:5000/value/capital/"}).then(dados =>{
-        EconomyMoney = dados.value
-        console.log("Dinheiro Total: ")
-        console.log(EconomyMoney)
-    })
-}
+m.request({url: "http://127.0.0.1:5000/value/capital/"}).then(dados =>{
+    EconomyMoney = dados.value
+    console.log("Dinheiro Total: ", EconomyMoney)
+})
 
-request () {
-    m.request({url: "http://127.0.0.1:5000/economy/store-itens/"}).then(dados =>{
-        testeEconomy = dados
-        console.log("Itens do mercado: ")
-        console.log(testeEconomy)
-    })
-}
+m.request({url: "http://127.0.0.1:5000/economy/store-itens/"}).then(dados =>{
+    dataEconomy[0].lucro = dados[0].lucro;
+    dataEconomy[0].prejuizo = dados[0].prejuizo;
+    dataEconomy[0].inventario = dados[0].inventario;
+    dataEconomy[0].luxos = dados[0].luxos;
+    dataEconomy[0].investimentos = dados[0].investimentos;
+    console.log("Lucro: ", dataEconomy[0].lucro);
+    console.log("prejuizo: ", dataEconomy[0].prejuizo);
+    console.log("investimentos: ", dataEconomy[0].investimentos);
+    console.log("luxos: ", dataEconomy[0].luxos);
+    console.log("inventario: ", dataEconomy[0].inventario);
+})
 
 function createCard ({ title, description, attrs, compraDeItem }) {
     function viewAttr ({ name, color, points }) {
@@ -134,8 +140,8 @@ function createCardImage (moverInvetario) {
                 EconomyMoney -= preco;
                 btn.titleBtn = "Vender";
                 let j = moverInvetario;
-                dataEconomy.inventario.push(j);
-                dataEconomy.luxos.splice(dataEconomy.luxos.indexOf(j), 1);
+                dataEconomy[0].inventario.push(j);
+                dataEconomy[0].luxos.splice(dataEconomy[0].luxos.indexOf(j), 1);
             }
             else if (EconomyMoney < preco && titleBtn === "Comprar"){
                 return alert("ERROR: Dinheiro insuficiente. Tente novamente mais tarde.");       //tentar mudar para o nes-css
@@ -145,8 +151,8 @@ function createCardImage (moverInvetario) {
                 alert("Ao vender esse item, irá lhe recomensar metade do seu preço");
                 btn.titleBtn = "Comprar";
                 let j = moverInvetario;
-                dataEconomy.luxos.push(j);
-                dataEconomy.inventario.splice(dataEconomy.inventario.indexOf(j), 1);
+                dataEconomy[0].luxos.push(j);
+                dataEconomy[0].inventario.splice(dataEconomy[0].inventario.indexOf(j), 1);
             }
         }
 
@@ -193,12 +199,16 @@ export class Economy {
                     <Tab title={<button class="nes-btn">Ações</button>}>
                         <div class="flex-container">
                             <div style="flex-grow: 1">
-                                <h1>Lucro</h1>
-                                {dataEconomy.lucro.map(createCard)}
+                                <VScroll>
+                                    <h1>Lucro</h1>
+                                    {dataEconomy[0].lucro.map(createCard)}
+                                </VScroll>
                             </div>
                             <div style="flex-grow: 1">
-                                <h1>Prejuizo</h1>
-                                {dataEconomy.prejuizo.map(createCard)}
+                                <VScroll>
+                                    <h1>Prejuizo</h1>
+                                    {dataEconomy[0].prejuizo.map(createCard)}
+                                </VScroll>
                             </div>
                         </div>
                     </Tab>
@@ -207,12 +217,16 @@ export class Economy {
                         <p>Dinheiro: U${EconomyMoney}T</p>
                         <div class="flex-container">
                             <div style="flex-grow: 1">
-                                <h1>Investimentos</h1>
-                                {dataEconomy.investimentos.map(createCardSimple)}
+                                <VScroll>
+                                    <h1>Investimentos</h1>
+                                    {dataEconomy[0].investimentos.map(createCardSimple)}
+                                </VScroll>
                             </div>
                             <div style="flex-grow: 1">
-                                <h1>Luxos</h1>
-                                {dataEconomy.luxos.map(createCardImage)}
+                                <VScroll>
+                                    <h1>Luxos</h1>
+                                    {dataEconomy[0].luxos.map(createCardImage)}
+                                </VScroll>
                             </div>
                         </div>
                     </Tab>
@@ -221,8 +235,10 @@ export class Economy {
                         <p>Dinheiro: U${EconomyMoney}T</p>
                         <div class="flex-container">
                             <div style="flex-grow: 1">
-                                <h1>Luxos Comprados</h1>
-                                {dataEconomy.inventario.map(createCardImage)}
+                                <VScroll>
+                                    <h1>Luxos Comprados</h1>
+                                    {dataEconomy[0].inventario.map(createCardImage)}
+                                </VScroll>
                             </div>
                         </div>
                     </Tab>

@@ -1,7 +1,8 @@
 import math
 from collections import namedtuple
 from copy import deepcopy
-from . import illuminati 
+from . import illuminati
+from . import science
 
 # =============================================================================
 # Tipos auxiliares
@@ -103,7 +104,7 @@ CAPITAL_ELASTICITY = value(0.3)
 # tecnologias renováveis, escolha de métodos mais ecológicos, plantar 
 # árvores etc. Corresponte somente às ações ecológicas que aumentam o 
 # custo de produção. (0-1)
-ABATEMENT = value(0.0)
+ABATEMENT = value(0.05)
 
 # PIB do mundo em (trilhões de U$)
 PRODUCTION = value(105)
@@ -172,7 +173,6 @@ ILLUMINATI = value(illuminati.DATA)
 
 # Illuminati
 FOLLOWERS = value(illuminati.Followers(100, 100, 100))
-
 
 # Inicializamos com o estado inicial
 data = [_start]
