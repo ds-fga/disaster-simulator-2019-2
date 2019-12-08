@@ -134,7 +134,7 @@
 }
 
 .listcontent{
-    height: 35rem;
+    height: 15rem;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -206,4 +206,3 @@
     animation: turn-off 0.55s cubic-bezier(0.755, 0.050, 0.855, 0.060);
     animation-fill-mode:forwards;
 }
-

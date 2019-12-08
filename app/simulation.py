@@ -104,7 +104,7 @@ CAPITAL_ELASTICITY = value(0.3)
 # tecnologias renováveis, escolha de métodos mais ecológicos, plantar 
 # árvores etc. Corresponte somente às ações ecológicas que aumentam o 
 # custo de produção. (0-1)
-ABATEMENT = value(0.0)
+ABATEMENT = value(0.05)
 
 # PIB do mundo em (trilhões de U$)
 PRODUCTION = value(105)
