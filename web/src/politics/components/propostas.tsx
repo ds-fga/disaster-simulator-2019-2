@@ -1,18 +1,7 @@
 import m = require('mithril');
-import {IGenericAttrs, Component, VScroll} from '../../ui';
+import { IGenericAttrs, Component, VScroll } from '../../ui';
+import { Law, laws } from '../laws';
 
-type Law =  {
-    support: boolean,
-    name: string,
-    description: string,
-    cost: number,
-    variants: Variant[],
-}
-
-type Variant = {
-    name: string,
-    support: boolean,
-}
 
 
 /**
@@ -23,14 +12,14 @@ export class Propostas extends Component<IGenericAttrs> {
 
     constructor() {
         super();
-        this.laws = laws;    
+        this.laws = laws;
     }
 
-    view () {
+    view() {
         return <VScroll>
-            <div class="Proposition">
+            <div class="Propositions">
                 <h2>Lista de propostas</h2>
-                {this.laws.map(x => m(PropositionCard, {law: x}))}
+                {this.laws.map(x => m(PropositionCard, { law: x }))}
             </div>
         </VScroll>
     }
@@ -38,33 +27,60 @@ export class Propostas extends Component<IGenericAttrs> {
 
 export class PropositionCard extends Component<IGenericAttrs> {
     law: Law;
+    collapsed: boolean = true;
+
+    constructor(vnode) {
+        super();
+        this.collapsed = vnode.attrs.collapsed !== false;
+        this.law = vnode.attrs.law;
+    }
 
     view(vnode) {
-        let law = vnode.attrs.law;
+        let classes = ["PropositionCard", "nes-container", "is-rounded"];
+        if (this.collapsed) {
+            classes.push("is-collapsed");
+        }
 
-        return <div class="nes-container is-rounded">
-            <h2>{law.name}
-                <button class="nes-btn is-error" 
-                        style="float: right; top: -1rem; right: -1rem">v</button></h2>
-            <div>
-            <p>{law.description}</p>
-            </div>
+        return <div class={classes.join(" ")} {...vnode.attrs}>
+            <h2>
+                <i class="fas fa-globe-americas" />{" "}
+                {this.law.name}
+                <button
+                    class="nes-btn is-error"
+                    style="float: right; top: -1rem; right: -1rem"
+                    onclick={() => { this.collapsed = !this.collapsed }}
+                >v</button>
+            </h2>
+            {this.collapsed ? null : this.viewContent(vnode)}
         </div>
     }
-}
 
+    viewContent(vnode) {
+        let observation = this.law.observation? <p>{this.law.observation}</p>: null;
 
-let laws : Law[] = [
-    {
-        name: "Taxa de Carbono",
-        description: 
-            `Cria um imposto sobre a utilização de carbono. Acredita-se que a criação de 
-            uma taxa de carbono pode ser uma política eficiente para incentivar a utilização 
-            de energias mais limpas e corrigir distorções fazendo os poluidores pagarem um 
-            prejuízo por sua poluição`,
-        support: false,
-        cost: 1000,
-        variants: [
-        ]
+        return <div class="PropositionCard-content">
+            <p>{this.law.description}</p>
+            {observation}
+            <form onsubmit={() => null}>
+                <p><strong>Qual a sua opinião?</strong></p>
+                <label>
+                    <input type="radio" class="nes-radio" name="choice" checked />
+                    <span>Neutro</span>
+                </label>
+                <label>
+                    <input type="radio" class="nes-radio" name="choice" />
+                    <span>Aprovar</span>
+                </label>
+                <label>
+                    <input type="radio" class="nes-radio" name="choice" />
+                    <span>Sabotar</span>
+                </label>
+
+                <div style="display: flex">
+                    <progress class="nes-progress is-primary" value="50" max="100" style="flex: 1"></progress>
+                    <button class="nes-btn is-primary">lobby</button>
+                </div>
+            </form>
+        </div >
     }
-] 
+}

@@ -24,6 +24,19 @@ const AUTHORS = [
     "Erick Levy",
     "Enzo Govas",
     "Alan Marques",
+    "Eliás Yousef",
+    "Rodrigo Balbino",
+    "Rafael Leão",
+    "Roberto Santana",
+    "Roberto Nóbrega",
+    "Caetano Lúcio",
+    "greek",
+    "Erick Melo",
+    "Rodolfo Cabral Neves",
+    "Ugor Brandão",
+    "Matheus Raphael",
+    "Pedro Abreu",
+    "Eduardo Afonso",
 ];
 
 
@@ -53,7 +66,7 @@ export class Intro {
     viewStart() {
         return [
             <div class="Intro">
-                <div class="nes-container is-rounded" style="background: white;">
+                <div class="nes-container is-rounded" style="background: white; max-width: 50rem; margin: auto;">
                     <h1>Disaster Simulator</h1>
                     <h2>Escolha seu Illuminati</h2>
                     {this.viewRegistrationForm()}
@@ -96,11 +109,11 @@ export class Intro {
             </div>
             <div class="nes-field">
                 <label>Planeta:
-                        <select class="nes-input" value="terra">
-                        <option value="terra" selected>Profundezas da Terra</option>
-                        <option value="alpha">Alpha Centauri</option>
-                        <option value="marte">Marte</option>
-                        <option value="venus">Vênus</option>
+                        <select class="nes-input" value="terra" name="planet">
+                            <option value="terra" selected>Profundezas da Terra</option>
+                            <option value="alpha">Alpha Centauri</option>
+                            <option value="marte">Marte</option>
+                            <option value="venus">Vênus</option>
                     </select>
                 </label>
             </div>
@@ -114,34 +127,37 @@ export class Intro {
         let player = model.player;
 
         return <div class="Intro">
-            <div class="nes-container is-rounded" style="background: white;">
-                <h1></h1>
+            <div class="nes-container is-rounded" style="background: white; max-width: 50rem; margin: auto;">
+                <h2>Illuminatti: <span style="color: red">{player.name}</span></h2>
                 <p>Bem vindo <strong>{player.name}</strong>! Depois de anos de dedicação,
-                conspiração e controle mental dos súditos humanos, você finalmente conseguiu
+                conspiração e controle mental, você finalmente conseguiu
                 uma vaga no conselho Illuminati do planeta Terra.</p>
 
                 <p>Não é um lugar tão bom como seu lar, <strong>{player.planetDescription}</strong>,
                 mas trará incontáveis riquezas para sua conta na suiça e glória para sua espécie
                 de <strong>{player.speciesDescription}</strong>.</p>
                 <p>
-                    <Btn btn="error" onclick={() => { this.status = "fnord"} }>FNORD</Btn>
-                    <Btn btn="primary" onclick={() => this.continue()}>Clique aqui para conspirar!</Btn>
+                    <Btn btn="error" onclick={() => { this.status = "fnord" }}>FNORD?</Btn>
+                    <Btn btn="primary" onclick={() => this.continue()}>Vamos conspirar :-)</Btn>
                 </p>
             </div>
         </div>
     }
 
     viewFnord() {
-        return <div class="nes-container is-rounded" style="background: white;">
-            <style></style>
-            <VScroll>
-                <img src={logoImg} style="width: 100%" />
-                <p>
-                    Fnord? <Btn btn="error" onclick={() => { this.status = "intro" }}>x</Btn>
-                </p>
-            </VScroll>
+        // https://tympanus.net/codrops/2017/12/21/css-glitch-effect/
+        return <div class="Intro" style="padding: 0">
+            <p style="position: absolute; margin: 1rem auto; right: 1rem; z-index: 1000">
+                Fnord? <Btn btn="error" onclick={() => { this.status = "intro" }}>x</Btn>
+            </p>
+            <div class="glitch">
+                <div class="glitch__img"></div>
+                <div class="glitch__img"></div>
+                <div class="glitch__img"></div>
+                <div class="glitch__img"></div>
+                <div class="glitch__img"></div>
+            </div>
         </div>
-
     }
 
     toggleCredits() {
@@ -150,10 +166,36 @@ export class Intro {
 
     continue() {
         if (this.status === "start") {
+            let player = model.player;
+            player.name = this.getValue('name', player.name);
+            player.species = this.getValue('species', player.species);
+            player.speciesDescription = this.getDescription('species', player.speciesDescription);
+            player.planet = this.getValue('planet', player.planet);
+            player.planetDescription = this.getDescription('planet', player.planetDescription);
+            player.age = parseInt(this.getValue('age', player.age));
             this.status = "intro";
         }
         else {
             model.window = null;
         }
+    }
+
+    getValue(name, opt) {
+        let form = document.getElementById('register-form');
+        let field = form.querySelector(`[name=${name}]`);
+        if (field && field['value']) {
+            return field['value'];
+        }
+        return opt;
+    }
+
+    getDescription(name, opt) {
+        let form = document.getElementById('register-form');
+        let field: HTMLSelectElement = form.querySelector(`[name=${name}]`);
+        if (field && field['value']) {
+            let opt = field.options[field.options.selectedIndex];
+            return opt.innerText;
+        }
+        return opt;
     }
 }

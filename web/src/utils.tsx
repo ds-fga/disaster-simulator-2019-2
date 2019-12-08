@@ -63,6 +63,7 @@ export let game = {
     // Generico
     url: (...args) => get(...args),
     multiply: (name, value) => get('multiply', name, value),
+    add: (name, value) => get('add', name, value),
 
     // Jogo
     step: n => get('game/step', (n === undefined)? 1: n),
