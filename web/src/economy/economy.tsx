@@ -8,12 +8,12 @@ var dataEconomy = [{
     prejuizo: [],
     investimentos: [],
     luxos: [],
-    inventario: []  
+    inventario: []
 }];
 let totalPoints = 5;
 
 m.request({url: "http://127.0.0.1:5000/value/capital/"}).then(dados =>{
-    EconomyMoney = dados.value + 100000
+    EconomyMoney = dados.value
     console.log("Dinheiro Total: ", EconomyMoney)
 })
 
@@ -199,12 +199,16 @@ export class Economy {
                     <Tab title={<button class="nes-btn">Ações</button>}>
                         <div class="flex-container">
                             <div style="flex-grow: 1">
-                                <h1>Lucro</h1>
-                                {dataEconomy[0].lucro.map(createCard)}
+                                <VScroll>
+                                    <h1>Lucro</h1>
+                                    {dataEconomy[0].lucro.map(createCard)}
+                                </VScroll>
                             </div>
                             <div style="flex-grow: 1">
-                                <h1>Prejuizo</h1>
-                                {dataEconomy[0].prejuizo.map(createCard)}
+                                <VScroll>
+                                    <h1>Prejuizo</h1>
+                                    {dataEconomy[0].prejuizo.map(createCard)}
+                                </VScroll>
                             </div>
                         </div>
                     </Tab>
@@ -213,12 +217,16 @@ export class Economy {
                         <p>Dinheiro: U${EconomyMoney}T</p>
                         <div class="flex-container">
                             <div style="flex-grow: 1">
-                                <h1>Investimentos</h1>
-                                {dataEconomy[0].investimentos.map(createCardSimple)}
+                                <VScroll>
+                                    <h1>Investimentos</h1>
+                                    {dataEconomy[0].investimentos.map(createCardSimple)}
+                                </VScroll>
                             </div>
                             <div style="flex-grow: 1">
-                                <h1>Luxos</h1>
-                                {dataEconomy[0].luxos.map(createCardImage)}
+                                <VScroll>
+                                    <h1>Luxos</h1>
+                                    {dataEconomy[0].luxos.map(createCardImage)}
+                                </VScroll>
                             </div>
                         </div>
                     </Tab>
@@ -227,8 +235,10 @@ export class Economy {
                         <p>Dinheiro: U${EconomyMoney}T</p>
                         <div class="flex-container">
                             <div style="flex-grow: 1">
-                                <h1>Luxos Comprados</h1>
-                                {dataEconomy[0].inventario.map(createCardImage)}
+                                <VScroll>
+                                    <h1>Luxos Comprados</h1>
+                                    {dataEconomy[0].inventario.map(createCardImage)}
+                                </VScroll>
                             </div>
                         </div>
                     </Tab>
