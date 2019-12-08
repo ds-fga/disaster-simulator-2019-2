@@ -16,15 +16,15 @@ class Tech extends Component<TechAttrs> {
     view(vnode){
 
         var isDisabled;
-        if (vnode.attrs.status === "2"){
+        if (vnode.attrs.status === "blocked"){
             isDisabled = " unTech";
         }else{
             isDisabled = "";
         }
 
-        return <button onclick={vnode.attrs.changeHandler} class={`nes-btn tech-btn ${vnode.attrs.type} ${isDisabled}`} data-tilt>
+        return <button onclick={vnode.attrs.changeHandler} ondblclick={vnode.attrs.dbclick} class={`nes-btn tech-btn ${vnode.attrs.type} ${isDisabled}`}>
             <div class="TechText"><p class="TechTitle">{vnode.attrs.title}</p>
-            <p>R${`${vnode.attrs.money}`}</p></div>
+            <p>{`${vnode.attrs.money}`}</p></div>
         </button>
     }
 }

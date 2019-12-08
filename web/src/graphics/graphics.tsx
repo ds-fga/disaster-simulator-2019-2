@@ -45,7 +45,7 @@ export class Graphics {
             <VScroll class="Graphics vscroll">
                 <div class="Graphics overlay">
                     <BackButton exception="Graphics"></BackButton>
-                    <GraphicTabs>
+                    <GraphicTabs extraclass="Graphics">
                         <GraphicTab title="Tela Principal" btn="warning"
                                     background={this.background.Telainicial}><Tela></Tela></GraphicTab>
                         <GraphicTab title="Clima" btn="warning"

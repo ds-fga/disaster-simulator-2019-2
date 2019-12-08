@@ -182,7 +182,7 @@ export class Illuminati {
     view() {
         //     
         return <Window id='IlluminatiWindow'> 
-            <Sidebar src={event.img} title="Conselho Illuminati" back={true}/>
+            <Sidebar class = "Image" src={event.img} title="Conselho Illuminati" back={true}/>
             <Tabs>
                 
                 <Tab title={<button class="Illuminati_btn">Ficha</button}> 
@@ -190,6 +190,39 @@ export class Illuminati {
                 </Tab>
                 
                 <Tab title={<button class="Illuminati_btn">Seguidores</button}>
+                    <div class="chart">Celebridades</div>
+                    <div class="chart">Politica</div>
+                    <div class="chart">Economia</div>
+
+
+
+<ul class="key">
+  <li>
+    <strong class="percent red">4%</strong>
+    <span class="choice">Al Gore</span>
+  </li>
+  <li>
+    <strong class="percent gray">4%</strong>
+    <span class="choice">Rainha Elizabeth II</span>
+  </li>
+  <li>
+    <strong class="percent purple">6%</strong>
+    <span class="choice">Bill Gates</span>
+  </li>
+  <li>
+    <strong class="percent blue">9%</strong>
+    <span class="choice">Jeff Bezos</span>
+  </li>
+  <li>
+    <strong class="percent yellow">31%</strong>
+    <span class="choice">Putin</span>
+  </li>
+  <li>
+    <strong class="percent orange">46%</strong>
+    <span class="choice">Xi Jinping</span>
+  </li>
+</ul>
+
                     
                 </Tab>
                
