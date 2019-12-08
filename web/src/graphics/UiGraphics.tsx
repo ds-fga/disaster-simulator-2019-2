@@ -1,13 +1,14 @@
 import m from 'mithril';
-import {MithrilTsxComponent as Component} from 'mithril-tsx-component';
-import {model} from '../model'
-import {pages} from '../main'
+import { MithrilTsxComponent as Component } from 'mithril-tsx-component';
+import { model } from '../model'
+import { pages } from '../main'
 import ChartJS = require('chart.js');
-import madokagif from './src/madokagifs.gif'
-import mikigif from './src/mikigif.gif'
-import homuragif from './src/homuragif.gif'
-import tomoegif from './src/tomoegif.gif'
-import demoingif from './src/demoin.gif'
+import madokagif from './src/madokagifs.gif';
+import mikigif from './src/mikigif.gif';
+import homuragif from './src/homuragif.gif';
+import tomoegif from './src/tomoegif.gif';
+import madokamusic from './src/madokamusic.mp3';
+
 
 interface IGenericAttrs {
     class?: string | string[];
@@ -22,7 +23,6 @@ export class GraphicTabs extends Component<Sattrs> {
     constructor(vnode: m.Vnode<Sattrs>) {
         super();
         this.extraclass = vnode.attrs.extraclass;
-        console.log(this.extraclass)
         this.selected = vnode.attrs.selected || 0;
     }
 
@@ -83,7 +83,7 @@ interface Sattrs extends IGenericAttrs {
 
 export class GraphicTab extends Component<Sattrs> {
     view(vnode) {
-        return <div class="Tab">
+        return <div class="Graphics Gtab">
             {vnode.children}
         </div>
     }
@@ -95,15 +95,9 @@ export class GraphicsButton extends Component<Sattrs> {
         let extraclass = vnode.attrs.btn || "normal";
         let fonclick = vnode.attrs.onclick || "";
         return <button type="button" class={`Graphics nes-btn is-${extraclass}`}
-                       onclick={fonclick}>{vnode.children}</button>
+            onclick={fonclick}>{vnode.children}</button>
     }
 }
-
-interface Gattrs {
-    dados?: object;
-    global?: string;
-}
-
 // Classe dos graficos
 interface IChartAttrs extends IGenericAttrs {
     type: string;
@@ -116,99 +110,84 @@ export class GraphicsChart extends Component<IChartAttrs> {
     chart: any;
 
     oncreate(vnode: m.Vnode<IChartAttrs>) {
-        let {type, data, options} = vnode.attrs,
+        let { type, data, options } = vnode.attrs,
             canvas = document.createElement('CANVAS'),
             dom: HTMLElement = vnode.dom;
         dom.appendChild(canvas);
-        this.chart = new ChartJS(canvas, {type: type, data: data, options: options});
+        this.chart = new ChartJS(canvas, { type: type, data: data, options: options });
     }
 
     view(vnode: m.Vnode<IChartAttrs>) {
-        let attrs = {...vnode.attrs};
+        let attrs = { ...vnode.attrs };
         ["type", "data", "options"].map(x => {
             delete attrs[x]
         });
         return <div class="Graphics chart-container">
-            <div class="Chart" {...attrs}/>
+            <div class="Chart" {...attrs} />
         </div>
     }
 }
 
+interface Gattrs {
+    dados?: object;
+    global?: string;
+    personagem?: "MADOKA" | "HOMURA" | "TOMOE" | "MIKI" | "madoka" | "homura" | "tomoe" | "miki";
+}
 // CONTEUDO DAS TABS COM OS GRAFICOS
 export class Gerargraficos extends Component<Gattrs> {
 
     selected: number;
-
+    errotext: string;
     constructor(vnode: m.Vnode<Gattrs>) {
         super();
         this.selected = vnode.attrs.global == "false" ? 0 : -1
+        this.errotext = "Você sabia?? Que se você se alimentar saudavelmente. Dormir bem, praticar exercícios regularmente. Não consumir álcool,tabaco ou drogas ilícitas. E sempre beber bastante água. Você vai morrer do mesmo jeito?"
     }
 
     view(vnode: m.Vnode<Gattrs>) {
-        {
-            let corbotao = 'warning';
-            let data = [];
-            let graph;
-            let gbutton;
-            let graphdata = vnode.attrs.dados;
-            let globalbotao = vnode.attrs.global;
-            for (let ii in graphdata.data) {
-                data.push(ii)
-            }
-            let buttons = data.map((e, i) => {
-                corbotao = 'warning';
-                if (this.selected == i) {
-                    corbotao = 'primary'
-                }
-                return <button type="button" class={`Graphics nes-btn is-${corbotao}`} onclick={() => {
-                    this.selected = i
-                }}>{e}</button>
-            });
-            corbotao = 'warning';
-            if (this.selected != -1) {
-                corbotao = 'warning';
-                graph = data.map((e, i) => {
-                    if (this.selected == i) {
-                        let data1 = this.graphicData(graphdata, e);
-                        return <GraphicsChart type="line" data={data1} options={data1.options}/>
-                    }
-                })
-            }
-            if (globalbotao == 'true') {
-                gbutton = <button type="button" class={`Graphics nes-btn is-${corbotao}`} onclick={() => {
-                    this.selected = -1
-                }}>Global</button>;
-
-                if (this.selected == -1) {
-                    corbotao = 'primary';
-                    gbutton = <button type="button" class={`Graphics nes-btn is-${corbotao}`} onclick={() => {
-                        this.selected = -1
-                    }}>Global</button>;
-                    let data1 = this.graphicData(graphdata, undefined);
-                    graph = <GraphicsChart type="line" data={data1} options={data1.options}/>
-                }
-            } else {
-                if (this.selected == -1) {
-                    corbotao = 'primary';
-                    let data1 = this.graphicData(graphdata, undefined);
-                    graph = <GraphicsChart type="line" data={data1} options={data1.options}/>
-                }
-
-            }
-            return <div> {graph}
-                <div class="Graphics buttons">
-                    {gbutton}
-                    {buttons}
-                </div>
-                <div class="Graphics audiobutton">
-                    <audio autoplay="true" src="http://soundbible.com/grab.php?id=1280&type=mp3" preload="auto" controls></audio>
-                </div>
-            </div>
-
+        let corbotao = 'warning';
+        let data = [];
+        let graph: any[];
+        let graphdata = vnode.attrs.dados;
+        let globalbotao = vnode.attrs.global;
+        for (let ii in graphdata.data) {
+            data.push(ii)
         }
+        let buttons = data.map((e, i) => {
+            corbotao = this.selected == i ? 'primary' : 'warning';
+            return <button type="button" class={`Graphics nes-btn is-${corbotao}`} onclick={() => {
+                this.selected = i
+            }}>{e}</button>
+        });
+        corbotao = this.selected == -1 ? 'primary' : 'warning';
+
+        let gbutton = globalbotao == "true" ? <button type="button" class={`Graphics nes-btn is-${corbotao}`} onclick={() => {
+            this.selected = -1;
+        }}>Global</button> : null;
+
+        if (this.selected != -1) {
+            graph = data.map((e, i) => {
+                if (this.selected == i) {
+                    let data1 = this.graphicData(graphdata, e);
+                    return <GraphicsChart type="line" data={data1} options={data1.options} />
+                }
+            })
+        } else {
+            let data1 = this.graphicData(graphdata, undefined);
+            graph = <GraphicsChart type="line" data={data1} options={data1.options} />
+        }
+        return <div class="Graphics gerargraficos"> {graph}
+            <div class="Graphics buttons">
+                {gbutton}
+                {buttons}
+            </div>
+            <Leftinfo personagem={vnode.attrs.personagem}>{graphdata.info[data[this.selected]]}</Leftinfo>
+            <div class="Graphics gaudio">
+                <audio autoplay="true" src="http://soundbible.com/grab.php?id=1280&type=mp3" preload="auto" controls></audio>
+            </div>
+        </div>
+
     }
-
-
     graphicData(generalData, specificData) {
         let graphicdata = {
             // eixo x
@@ -283,6 +262,26 @@ export class Gerargraficos extends Component<Gattrs> {
         return graphicdata;
     }
 }
+export class GraphicsMusics {
+    audio: boolean
+    constructor() {
+        this.audio = true;
+    }
+    view() {
+        // outro metodo de escrever ifs
+        // se this.audio for verdadeiro, entao musica vai ser igual ao html
+        // senao ":" musica recebe "" nada
+        let musica = this.audio ?
+            <div class="Graphics gaudio"><audio autoplay="true" src={madokamusic} preload="auto" controls volume="0.4"></audio></div>
+            : null;
+        return <div class="Graphics audiobutton">
+            <button class="Graphics nes-btn is-error" onclick={() => { this.audio = !this.audio }}>Musica
+                 </button>
+            {musica}
+        </div>
+
+    }
+}
 
 
 // botao voltar
@@ -315,34 +314,33 @@ export class BackButton extends Component<Backattrs> {
             paginas.push(ii);
             linkpagina.push(pages[ii])
         }
-        //if (this.hidebutton == "show") {
         buttons = paginas.map((e, i) => {
-            if (e !== "Intro" && e !== "Style" && e !== vnode.attrs.exception) {
+            if (e !== "Initial" && e !== "Intro" && e !== "Style" && e !== vnode.attrs.exception) {
                 color = corbotao == false ? "warning" : "primary";
                 corbotao = !corbotao;
                 return <div>
                     <GraphicsButton btn={color} onclick={() => {
                         model.window = linkpagina[i]
                     }}>{this.nomepagina[i]}</GraphicsButton>
-                    <br/>
+                    <br />
                 </div>
             }
         });
-        //}
         return <div class="Graphics back-Button" onmouseenter={() => {
             this.open = true;
             this.btn = "primary"
         }}
-                    onmouseleave={() => {
-                        this.open = false;
-                        this.btn = "warning"
-                    }}>
+            onmouseleave={() => {
+                this.open = false;
+                this.btn = "warning"
+            }}>
             <button type="button" class={`Graphics nes-btn is-${this.btn}`} onclick={() => {
                 model.menu()
-            }}>Fechar
+            }}>Inicio
             </button>
             <div class={`Graphics back-Button show`}>
                 {buttons}
+                <GraphicsMusics />
             </div>
         </div>
     }
@@ -381,9 +379,12 @@ export class Leftinfo extends Component<AttrsInfo> {
     personagens: object;
     titles: object;
     background: object;
-
+    translatexclose: string;
+    translatexopen: string;
     constructor() {
         super();
+        this.translatexclose = "-100%"
+        this.translatexopen = "-10%"
         this.open = false;
         this.personagens = {
             MADOKA: madokagif,
@@ -408,7 +409,7 @@ export class Leftinfo extends Component<AttrsInfo> {
     view(vnode: m.Vnode<AttrsInfo>) {
         let person = vnode.attrs.personagem.toUpperCase();
         return <div class="Graphics Leftinfo" onmouseenter={() => this.open = true}
-                    onmouseleave={() => this.open = false}>
+            onmouseleave={() => this.open = false}>
             <div class="Graphics nes-container with-title is-centered Lefttext">
                 <p class="title">{this.titles[person]}</p>
                 <img src={this.personagens[person]} class="Graphics Leftimage"></img>
@@ -418,12 +419,11 @@ export class Leftinfo extends Component<AttrsInfo> {
     }
 
     onupdate(vnode) {
-        let x = this.open ? "-15%" : "-105%";
+        let x = this.open ? this.translatexopen : this.translatexclose;
         vnode.dom.style.transform = `translateX(${x})`
     }
 
     oncreate(vnode: m.Vnode<AttrsInfo>) {
-        console.log(vnode);
         vnode.dom.style.color = this.background[vnode.attrs.personagem.toUpperCase()];
         vnode.dom.style.textShadow = "1px 1px 1px rgba(0, 0, 0, 0.5)";
         vnode.dom.style.transition = "all 1s ease";
@@ -433,7 +433,7 @@ export class Leftinfo extends Component<AttrsInfo> {
         let tempoescrita = -2000;
         if (firsttimee) {
             setTimeout(() => {
-                vnode.dom.style.transform = "translateX(-15%)"
+                vnode.dom.style.transform = `translateX(${this.translatexopen})`
             }, 1000);
             // escrita do texto
             let textorigin = vnode.dom.children[0].children[2];
@@ -449,7 +449,7 @@ export class Leftinfo extends Component<AttrsInfo> {
         firsttime[vnode.attrs.personagem.toUpperCase()] = false;
         // fecha a caixa de informação
         setTimeout(() => {
-            vnode.dom.style.transform = "translateX(-105%)"
+            vnode.dom.style.transform = `translateX(${this.translatexclose})`
         }, tempoescrita + 2000)
     }
 }
