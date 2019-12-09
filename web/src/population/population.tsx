@@ -50,9 +50,9 @@ export class Population {
 class Tela {
     view() {
         return <div class="Population tela">
-            <h1 class="Population Tela Title">informações populacional</h1>
+            <h1 class="Population Tela Title">Informações Populacionais</h1>
             <h2 class="Population Tela Content">Graficos para perceber o estrago</h2>
-            <img src={demoingif} height={173}></img>
+            
         </div>
     }
 
