@@ -46,6 +46,7 @@ let illuminatiList = [
         introduction: "Ambiente",
         information: alGoreJson,
         taxa: "--% alinhamento",
+
     },
     {
         name: "Rainha Elizabeth II",
@@ -214,15 +215,16 @@ function renderIlluminattiTab(x) {
         </div>
         <div class="IlluminatiImage">
             <img src={x.sauroUrl} width="250" height="290" alt={x.imgAlt}/>
-            <img class="topImg" src={x.imgUrl} width="250" height="290" alt={x.imgAlt}/>
+            <img class="topImg" src={x.imgUrl} width="250" height="290" />
         </div>
             
         </div>
         <div class = "IlluminatInformation">
             <h2>Informações</h2>
             <dl>
-                <dt>Nome</dt><dd>{x.information.nome}</dd>
+                <dt>Nome</dt><dd class = "nome_illuminati">{x.information.nome}</dd>
                 <dt>Idade</dt><dd>{x.information.idade}</dd>
+                <dt>Quem sou:</dt><dd>{x.information.introducao}</dd>
                 <br></br>
                 <h2>Atributos</h2>
                 <br></br>
