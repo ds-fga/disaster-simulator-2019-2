@@ -236,7 +236,7 @@ export class Science extends Component<ScienceAttrs>{
                 <Tabs>
                     <Tab class="science__tabs" title={<button onclick={this.estado.currentArea = ""} class="nes-btn Science__btn">Visão Geral</button>}>
                         <TechList title="Tecnologias disponíveis">
-                            <SearchBar placeholder="Buscar ciência" cheats={e=>this.cheats(searchbox)} changeHandler={e => {
+                            <SearchBar placeholder="Buscar ciência" cheats={e=>{e.preventDefault();this.cheats(searchbox)}} changeHandler={e => {
                                 this.estado.searchbox = e.target.value}}/>
                             <div class="listcontent">{filteredtechs.map(tech => (
                                 <Tech title={tech.title} status={tech.status} money={tech.price} dbclick={() => document.getElementById('dialog-dark-rounded').showModal()} type={tech.type || ""} changeHandler={e=>this.techSet(tech)}/>
