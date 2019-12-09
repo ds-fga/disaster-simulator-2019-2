@@ -32,3 +32,16 @@
   margin-right: auto;
   text-align: center;
 }
+.dinheiroShow {
+  text-align: center;
+  font-size: 1rem;
+  color: darkgreen;
+}
+.hiddenCode {
+  color: red;
+}
+.nes-btn.culture {
+  &:hover {
+    transform: scaleX(1.1);
+  }
+}

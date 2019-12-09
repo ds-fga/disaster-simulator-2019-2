@@ -1,13 +1,12 @@
 import { CreateReligion, NegociosPapa, Arautos } from '../religion/religionIdeas';
 import { Kino, Tate, Worldcup } from '../entertainment/entertainmentIdeas';
 import { Unb, Mit, TokyoUni } from '../education/educationIdeas';
-import { AlJazeera, NewYork } from '../news/newsIdeas';
+import { AlJazeera, NewYork, Anonymous } from '../news/newsIdeas';
 
 export class ContainersVisãoGeral {
     view() {
         return (
             <div>
-                <br />
                 <NegociosPapa />
                 <br />
                 <CreateReligion />
@@ -29,6 +28,8 @@ export class ContainersVisãoGeral {
                 <AlJazeera />
                 <br />
                 <NewYork />
+                <br/>
+                <Anonymous />
             </div>
         );
     }

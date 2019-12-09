@@ -5,9 +5,12 @@ import Tateimg from '../../assets/Tate.jpg';
 import Worldcupimg from '../../assets/Fifa.jpg';
 
 export class Kino {
+    currentMoney: number;
     enabled: boolean = true;
 
     view() {
+        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
+
         if (!this.enabled) {
             return null;
         }
@@ -46,19 +49,25 @@ export class Kino {
         );
     }
     select() {
-        this.enabled = false;
-        game.multiply("revolt", 0.8);
-        game.multiply("satisfaction", 0.8);
+        if (this.currentMoney < 140) {
+            window.alert("Dinheiro Insuficiente!");
+        } else {
+            this.enabled = false;
+            game.multiply("revolt", 0.8);
+            game.multiply("satisfaction", 0.8);
+            game.add("capital", -140);
+        }
     }
 
 }
 
 
 export class Tate {
-
+    currentMoney: boolean;
     enabled: boolean = true;
 
     view() {
+        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
 
         if (!this.enabled) {
             return null;
@@ -99,19 +108,25 @@ export class Tate {
         );
     }
     select() {
-        this.enabled = false;
-        game.multiply("revolt", 0.8);
-        game.multiply("satisfaction", 0.8);
-    } 
+        if (this.currentMoney < 100) {
+            window.alert("Dinheiro Insuficiente!");
+        } else {
+            this.enabled = false;
+            game.multiply("revolt", 0.8);
+            game.multiply("satisfaction", 0.8);
+            game.add("capital", -100);
+        }
+    }
 }
 
 export class Worldcup {
-    
+    currentMoney: number;
     enable: boolean = true;
-    
-    view() {
 
-        if(!this.enable) {
+    view() {
+        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
+
+        if (!this.enable) {
             return null;
         }
 
@@ -136,11 +151,11 @@ export class Worldcup {
                             Além de ser uma grande festividade, tem grande impacto na economia mundial.
                         </p>
                         <p> Suborne Joseph Blatter, atual presidente da Fifa, para ganhar influências sobre a copa do mundo.</p>
-                        <p class="preço_culture">Preço: 200$</p>
+                        <p class="preço_culture">Preço: 300$</p>
                         <menu class="dialog-menu">
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <button class="nes-btn culture is-success culture" onclick={()=>{this.select()}}>Confirmar</button>
+                            <button class="nes-btn culture is-success culture" onclick={() => { this.select() }}>Confirmar</button>
                             &emsp;
                             <button class="nes-btn culture is-error culture">Cancelar</button>
                         </menu>
@@ -152,9 +167,14 @@ export class Worldcup {
     }
 
     select() {
-        this.enable = false;
-        game.multiply('revolt', 1.1);
-        game.multiply('satisfaction', 1.3);
+        if (this.currentMoney < 300) {
+            window.alert("Dinheiro Insuficiente!");
+        } else {
+            this.enable = false;
+            game.multiply('revolt', 0.7);
+            game.multiply('satisfaction', 1.3);
+            game.add("capital", -300);
+        }
     }
 
 }
