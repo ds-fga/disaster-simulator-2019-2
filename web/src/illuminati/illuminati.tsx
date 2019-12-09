@@ -179,9 +179,9 @@ export class Illuminati {
                 <Tab title={<button class="Illuminati_btn">Seguidores</button}>
                     <h1 class="Titulo_Seguidores">Distribuição de seguidores:</h1>
                     <br></br>
-                    <div class="chart"><b>Empresários</b></div>
-                    <div class="chart"><b>Políticos</b></div>
-                    <div class="chart"><b>Mídia</b></div>
+                    <div class="chart"><Btn class = "btn_iluminatti">Empresarios</Btn></div>
+                    <div class="chart"><Btn class = "btn_iluminatti">Politicos</Btn></div>
+                    <div class="chart"><Btn class = "btn_iluminatti">Celebridades</Btn></div>
 
 <ul class="key">
   <li>
