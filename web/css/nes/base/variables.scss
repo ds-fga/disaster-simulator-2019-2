@@ -39,3 +39,37 @@ $error-colors: (
   hover: #ce372b,
   shadow: #8c2022
 ) !default;
+
+
+//Graphics Buttons
+$GraphicsSelected-colors: (
+  normal: rgb(190, 58, 58),
+  hover: rgb(138, 1, 1),
+  shadow:rgb(117, 0, 0),
+) !default;
+$GraphicsTab1-colors: (
+  normal: rgb(255, 255, 255),
+  hover: rgb(230, 215, 215),
+  shadow:rgb(184, 144, 144)
+) !default;
+$GraphicsTab2-colors: (
+  normal: rgb(255, 255, 255),
+  hover: rgb(230, 215, 215),
+  shadow:rgb(184, 144, 144)
+) !default;
+
+$GraphicsTab3-colors: (
+  normal: #f9f7f7,
+  hover: #f3ca1d,
+  shadow:#f3ca1d
+) !default;
+$GraphicsTab4-colors: (
+  normal: #f9f7f7,
+  hover: #5497ee,
+  shadow:#5497ee,
+) !default;
+$GraphicsTab5-colors: (
+  normal: #f9f7f7,
+  hover: #5497ee,
+  shadow:#5497ee,
+) !default;

@@ -1,32 +1,27 @@
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, Chart, VScroll, Component } from '../ui';
 import './_graphics.scss';
-import { GraphicsButton, GraphicTabs, GraphicTab, Gerargraficos, BackButton, Leftinfo } from './UiGraphics';
+import { GraphicsButton, GraphicTabs, GraphicTab, Gerargraficos, BackButton, Leftinfo, BottomInfo } from './UiGraphics';
 import telaback from './src/telaback.jpg';
-import climaback from './src/climaback.jpg';
+import Atmosferaback from './src/Atmosferaback.jpg';
 import economiaback from './src/economiaback.jpg';
 import populacaoback from './src/populacaoback.jpg';
-import energiaback from './src/energiaback.jpg';
-import demoingif from './src/demoin.gif';
+import Oceanosback from './src/Oceanosback.jpg';
+import demoin from './src/demoin01.gif';
+import demoin2 from './src/demoin02.gif';
 
-/* essa eh a classe principal que vai mostrar todo o conteudo que vai mostrar na tela
-classe seria coisas como <div> <span> <audio> <ul> <li> que podem ser personalizadas a gosto
-nesse caso a pagina inicial estaria requisitando nossa pagina usando <Graphics></Graphics>*/
+
 export class Graphics {
-    //essa primeira parte eh onde se declara as variaveis que seram usadas internamente na classe
-    // defino o nome da variavel e o tipo
     background: object;
     infotext: string;
     data: any;
-    // a funcao constructor eh onde damos os valores iniciais as variaveis
     constructor() {
-        // para referencia a variaveis, usamos o prefixo "this"
         this.background = {
             "Telainicial": telaback,
-            "Clima": climaback,
+            "Atmosfera": Atmosferaback,
             "Economia": economiaback,
             "Populacao": populacaoback,
-            "Energia": energiaback,
+            "Oceanos": Oceanosback,
         }
         pyrequest();
     }
@@ -35,44 +30,49 @@ export class Graphics {
             <VScroll class="Graphics vscroll" >
                 <div class="Graphics overlay">
                     <BackButton exception="Graphics"></BackButton>
-                    <GraphicTabs extraclass="Graphics">
-                        <GraphicTab title="Tela Principal" btn="warning" background={this.background.Telainicial}><Tela /></GraphicTab>
-                        <GraphicTab title="Clima" btn="warning" background={this.background.Clima}><Clima /></GraphicTab>
-                        <GraphicTab title="Economia" btn="warning" background={this.background.Economia}><Economia /></GraphicTab>
-                        <GraphicTab title="População" btn="warning" background={this.background.Populacao}><População /></GraphicTab>
+                    <GraphicTabs extraclass="Graphics" btnselected="GraphicsSelected">
+                        <GraphicTab title="Tela Principal" btn="GraphicsTab1" background={this.background.Telainicial}><Tela></Tela></GraphicTab>
+                        <GraphicTab title="Atmosfera" btn="GraphicsTab2" background={this.background.Atmosfera}><Atmosfera></Atmosfera></GraphicTab>
+                        <GraphicTab title="Oceanos" btn="GraphicsTab3" background={this.background.Oceanos}><Oceanos></Oceanos></GraphicTab>
+                        <GraphicTab title="Economia" btn="GraphicsTab4" background={this.background.Economia}><Economia></Economia></GraphicTab>
+                        <GraphicTab title="População" btn="GraphicsTab5" background={this.background.Populacao}><População></População></GraphicTab>
                     </GraphicTabs>
                 </div>
+                <BottomInfo />
             </VScroll>
         </Window>
     }
 }
 function pyrequest() {
     m.request({ url: "http://127.0.0.1:5000/series/time/" }).then(x => {
-        pydata.clima.labels = x.time;
+        pydata.Atmosfera.labels = x.time;
         m.request({ url: "http://127.0.0.1:5000/series/t_atm/" }).then(x => {
-            pydata.clima.data["Temperatura Atmosférica"] = x.data;
+            pydata.Atmosfera.data["Temperatura Atmosférica"] = x.data;
         })
-
-        m.request({ url: "http://127.0.0.1:5000/series/t_ocean/" }).then(x => {
-            pydata.clima.data["Temperatura Oceânica"] = x.data;
-        })
-
         m.request({ url: "http://127.0.0.1:5000/series/c_atm/" }).then(x => {
-            pydata.clima.data["Carbono na Atmosfera"] = x.data;
+            pydata.Atmosfera.data["Carbono na Atmosfera"] = x.data;
+        })
+        m.request({ url: "http://127.0.0.1:5000/series/emissions/" }).then(x => {
+            pydata.Atmosfera.data["Emissões de CO2"] = x.data;
+        })
+    })
+
+    m.request({ url: "http://127.0.0.1:5000/series/time/" }).then(x => {
+        pydata.Oceanos.labels = x.time;
+
+        m.request({ url: "http://127.0.0.1:5000/series/c_deep/" }).then(x => {
+            pydata.Oceanos.data["Carbono nos Oceanos Profundos"] = x.data;
         })
 
         m.request({ url: "http://127.0.0.1:5000/series/c_ocean/" }).then(x => {
-            pydata.clima.data["Carbono nos Oceanos Rasos"] = x.data;
+            pydata.Oceanos.data["Carbono nos Oceanos Rasos"] = x.data;
         })
 
-        m.request({ url: "http://127.0.0.1:5000/series/c_deep/" }).then(x => {
-            pydata.clima.data["Carbono nos Oceanos Profundos"] = x.data;
-        })
-
-        m.request({ url: "http://127.0.0.1:5000/series/emissions/" }).then(x => {
-            pydata.clima.data["Emissões de CO2"] = x.data;
+        m.request({ url: "http://127.0.0.1:5000/series/t_ocean/" }).then(x => {
+            pydata.Oceanos.data["Temperatura Oceânica"] = x.data;
         })
     })
+
     m.request({ url: "http://127.0.0.1:5000/series/time/" }).then(x => {
         pydata.Economia.labels = x.time;
 
@@ -104,39 +104,32 @@ function pyrequest() {
 
 
 let pydata = {
-    clima: {
+    Atmosfera: {
         labels: [],
         data: {
             "Temperatura Atmosférica": [],
-            "Temperatura Oceânica": [],
             "Carbono na Atmosfera": [],
-            "Carbono nos Oceanos Rasos": [],
-            "Carbono nos Oceanos Profundos": [],
             "Emissões de CO2": [],
         },
         backgroundColor: {
             "Temperatura Atmosférica": "rgba(214, 66, 153, 0.4)",
-            "Temperatura Oceânica": "rgba(157, 60, 150, 0.4)",
             "Carbono na Atmosfera": "rgba(150, 70, 150, 0.4)",
-            "Carbono nos Oceanos Rasos": "rgba(100, 20, 153, 0.4)",
-            "Carbono nos Oceanos Profundos": "rgba(100, 20, 153, 0.4)",
             "Emissões de CO2": "rgba(100, 20, 153, 0.4)",
         },
         borderColor: {
             "Temperatura Atmosférica": "rgba(214, 66, 153, 1)",
-            "Temperatura Oceânica": "rgba(210, 60, 150, 1)",
             "Carbono na Atmosfera": "rgba(150, 70, 150, 1)",
-            "Carbono nos Oceanos Rasos": "rgba(100, 20, 153, 1)",
-            "Carbono nos Oceanos Profundos": "rgba(100, 20, 153, 1)",
             "Emissões de CO2": "rgba(100, 20, 153, 1)",
         },
         info: {
+            "Temperatura Atmosférica": "A temperatura atmosférica pode alterar por fatores como a radiação solar,umidade e altitude. Porém é a ação humana que mais vem alterando esses valores, com a queima incansável de combustíveis fósseis, liberando gases do efeito estufa.",
+            "Carbono na Atmosfera": "Sem interferência humana, o carbono dos combustíveis fósseis vazaria lentamente na atmosfera através da atividade vulcânica ao longo de milhões de anos no lento ciclo do carbono. Ao queimar carvão, petróleo e gás natural, aceleramos o processo, liberando vastas quantidades de carbono (carbono que levou milhões de anos para acumular) na atmosfera todos os anos.",
+            "Emissões de CO2": "A emissão de CO2 está relacionada à queima de combustíveis fósseis e ao desmatamento.",
+        },
+        legenda: {
             "Temperatura Atmosférica": "Anomalia da Temperatura Atmosférica em Kelvin (k)",
-            "Temperatura Oceânica": "Anomalia da Temperatura dos oceanos em Kelvin (k)",
-            "Carbono na Atmosfera": "Estoque de carbono na atmosfera em gigatonelada de carbono (GtC",
-            "Carbono nos Oceanos Rasos": "Estoque de carbono nos Oceanos Rasos em gigatonelada de carbono (GtC)",
-            "Carbono nos Oceanos Profundos": "Estoque de carbono nos Oceanos Profundos em gigatonelada de carbono (GtC)",
-            "Emissões de CO2": "Emissões de carbono em gigatonelada de carbono por ano (GtC / ano",
+            "Carbono na Atmosfera": "Estoque de carbono na atmosfera em gigatonelada de carbono (GtC)",
+            "Emissões de CO2": "Emissões de carbono em gigatonelada de carbono por ano (GtC / ano)",
         }
     },
     Economia: {
@@ -147,14 +140,18 @@ let pydata = {
             "Capital": [],
         },
         backgroundColor: {
-            "Pib": "rgba(233, 235, 141, 0.4)",
-            "Capital": "rgba(233, 235, 141, 0.4)",
+            "Pib": "rgba(42, 238, 248, 0.4)",
+            "Capital": "rgba(10, 270, 248, 0.4)",
         },
         borderColor: {
-            "Pib": "rgba(233, 235, 141, 1)",
-            "Capital": "rgba(233, 235, 141, 1)",
+            "Pib": "rgba(42, 238, 248, 1)",
+            "Capital": "rgba(10, 270, 248, 0.4)",
         },
         info: {
+            "Pib": "O Produto Interno Bruto(Pib) é considerado o termômetro da economia,é calculado a partir da soma de todos os produtos e serviços finais produzidos em um país.",
+            "Capital": "Na economia, capital é qualquer ativo capaz de gerar um fluxo de rendimentos ao longo do tempo por meio de sua aplicação na produção. Esse conceito inclui não apenas o dinheiro propriamente dito, mas também os investimentos financeiros, os estoques e os bens que podem ser aplicados para gerar riqueza, dentre outros.",
+        },
+        legenda: {
             "Pib": "PIB do mundo em Trilhões de U$",
             "Capital": "Total em bens de capital em Trilhões de U$",
         }
@@ -168,67 +165,92 @@ let pydata = {
             "Revolta": [],
         },
         backgroundColor: {
-            "População Global": "rgba(214, 66, 153, 0.4)",
-            "Felicidade": "rgba(214, 66, 153, 0.4)",
-            "Satisfação": "rgba(210, 60, 150, 0.4)",
-            "Revolta": "rgba(150, 70, 150, 0.4)",
+            "População Global": "rgba(64, 55, 245, 0.4)",
+            "Felicidade": "rgba(64, 55, 245, 1)",
+            "Satisfação": "rgba(71, 21, 177, 0.4)",
+            "Revolta": "rgba(7, 5, 163, 0.4)",
         },
         borderColor: {
-            "População Global": "rgba(214, 66, 153, 1)",
-            "Felicidade": "rgba(214, 66, 153, 1)",
-            "Satisfação": "rgba(210, 60, 150, 1)",
-            "Revolta": "rgba(150, 70, 150, 1)",
+            "População Global": "rgba(64, 55, 245, 1)",
+            "Felicidade": "rgba(64, 55, 245, 1)",
+            "Satisfação": "rgba(71, 21, 177, 1)",
+            "Revolta": "rgba(7, 5, 163, 1)",
         },
         info: {
             "População Global": "População do mundo em milhões de pessoas",
             "Felicidade": "Distribuição de felicidade derivada de satisfação e dos revoltados",
             "Satisfação": "Nível de satisfação da população. É um número de (0, oo) onde em oo a população fica inteiramente feliz, e 0 inteiramente descontente. Um valor de 1.0 representa uma população com 50% das pessoas contentes (felizes ou neutras).",
             "Revolta": "Nível de revolta da população. Contabiliza, entre os descontentes, o quão engajados estão em tentar sabotar e destruir o sistema atual. Também é medido de (0, oo), com REVOLT=1 representando o caso em que metade da população descontente tramando algum tipo de sabotagem. Se mais de 1/3 da população total estiver revoltada, entra em um estado de guerra civil. ",
+        },
+        legenda: {
+            "População Global": "População do mundo em milhões de pessoas",
+            "Felicidade": "Distribuição de felicidade derivada de satisfação e dos revoltados",
+            "Satisfação": "Nível de satisfação da população",
+            "Revolta": "Nível de revolta da população",
         }
     },
-    /*Energia: {
-        labels: ['2000', '2005', '2010', '2015', '2020'],
+    Oceanos: {
+        labels: [],
         data: {
-            "Renováveis": [20, 5, 6, 4, 8],
-            "Não Renováveis": [10, 5, 7, 13, 14],
+            "Temperatura Oceânica": [],
+            "Carbono nos Oceanos Rasos": [],
+            "Carbono nos Oceanos Profundos": [],
         },
         backgroundColor: {
-            "Renováveis": "rgba(255,0,0,0.4)",
-            "Não Renováveis": "rgba(255,100,10,0.4)",
+            "Temperatura Oceânica": "rgba(260, 200, 9, 0.4)",
+            "Carbono nos Oceanos Rasos": "rgba(228, 239, 9, 0.4)",
+            "Carbono nos Oceanos Profundos": "rgba(200, 260, 9, 0.4)",
         },
         borderColor: {
-            "Renováveis": "rgba(255,0,0, 1)",
-            "Não Renováveis": "rgba(255,100,10,1)",
+            "Temperatura Oceânica": "rgba(260, 200, 9, 1)",
+            "Carbono nos Oceanos Rasos": "rgba(228, 239, 9, 1)",
+            "Carbono nos Oceanos Profundos": "rgba(200, 260, 9, 1)",
         },
-        info:{
-            "Renováveis": "rgba(255,0,0, 1)",
-            "Não Renováveis": "rgba(255,100,10,1)",   
+        info: {
+            "Temperatura Oceânica": "Intensificado pela ação humana o aquecimento oceânico desencadeia uma série de efeitos secundários de grande impacto por si mesmos, como a subida do nível do mar, mudanças na salinidade, oxigenação e estratificação das massas de água, prejuízos à biodiversidade, dentre outros.",
+            "Carbono nos Oceanos Rasos": "Estoque de carbono nos Oceanos Rasos em gigatonelada de carbono (GtC)",
+            "Carbono nos Oceanos Profundos": "Estoque de carbono nos Oceanos Profundos em gigatonelada de carbono (GtC)",
+        },
+        legenda: {
+            "Temperatura Oceânica": "Anomalia da Temperatura dos oceanos em Kelvin (k)",
+            "Carbono nos Oceanos Rasos": "Estoque de carbono nos Oceanos Rasos em gigatonelada de carbono (GtC)",
+            "Carbono nos Oceanos Profundos": "Estoque de carbono nos Oceanos Profundos em gigatonelada de carbono (GtC)",
         }
-    },/*/
+    },
 };
-// essa classe eh o conteudo da tela principal
+
 class Tela {
     view() {
         return <div class="Graphics tela">
             <h1 class="Graphics Tela Title">Aqui o caos pode ser contemplado</h1>
             <h2 class="Graphics Tela Content">Nunca é demais lembrar o peso e o significado destes problemas,
           uma vez que a percepção das dificuldades representa uma abertura para a
-          melhoria dos níveis de motivação departamental.
+          melhoria dos níveis de motivação departamental. Desta maneira, a contínua expansão de nossa atividade talvez venha
+                a ressaltar a relatividade da gestão inovadora da qual fazemos parte.
             </h2>
-            <img src={demoingif} height={173} ></img>
+            <img src={demoin} height={173} ></img>
         </div>
     }
-
     oncreate(vnode) {
-        let demonio = vnode.dom.children[2]
-        demonio.style.transform = "translate(-200%, -10%)"
+        let demonio = vnode.dom.children[2];
+        demonio.src = demoin2;
+        console.log(demonio)
+        demonio.style.transform = "translate(-300%, -10%)"
         demonio.style.opacity = "0";
         setTimeout(() => {
-            demonio.style.transition = "all 5s ease"
+            demonio.style.transition = "all 4s ease"
             demonio.style.transform = "translate(0%)"
             demonio.style.opacity = "100%";
-        }, 1000)
+            setTimeout(()=>{
+                demonio.style.transition = "all 0.1s ease"
+                demonio.src = demoin;
+                demonio.style.height = "250px";
+            }, 3500)
+        }, 4000)
 
+        this.writetext(vnode)
+    }
+    writetext(vnode) {
         let sizetext = []
         vnode.instance.children.map((e, i) => {
             if (e.dom.innerHTML != undefined) {
@@ -253,13 +275,11 @@ class Tela {
         })
     }
 }
-/* essa classe eh o conteudo da tab clima
-    o conteudo eh formado por um grafico global mais diversos botoes que direcionam para graficos especificos
-    */
-class Clima {
+
+class Atmosfera {
     view() {
         return <div class="Graphics Gcontent">
-            <Gerargraficos dados={pydata.clima} global='false' personagem="madoka"></Gerargraficos>
+            <Gerargraficos dados={pydata.Atmosfera} global='false' personagem="madoka"></Gerargraficos>
         </div>
     }
 }
@@ -281,25 +301,25 @@ class População {
             </div>
         }
     }
-
 }
-/*
-class Energia {
+
+class Oceanos {
     view() {
         {
             return <div class="Graphics Gcontent">
-                <Gerargraficos dados={pydata.Energia} global='true'></Gerargraficos>
-                <Leftinfo personagem={"tomoe"}>
-                Você sabia??
-                Que se você se alimentar saudavelmente.
-                Dormir bem, praticar exercícios regularmente.
-                Não consumir álcool,tabaco ou drogas ilícitas.
-                E sempre beber bastante água.
-                Você vai morrer do mesmo jeito?
-            </Leftinfo>
+                <Gerargraficos dados={pydata.Oceanos} global='false' personagem="TOMOE"></Gerargraficos>
             </div>
 
         }
     }
 }
-*/
+/*
+ <Leftinfo personagem={"tomoe"}>
+           Você sabia??
+                Que se você se alimentar saudavelmente.
+                Dormir bem, praticar exercícios regularmente.
+                Não consumir álcool,tabaco ou drogas ilícitas.
+                E sempre beber bastante água.
+              Você vai morrer do mesmo jeito?
+            </Leftinfo>
+  */

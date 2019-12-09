@@ -7,15 +7,19 @@ import madokagif from './src/madokagifs.gif';
 import mikigif from './src/mikigif.gif';
 import homuragif from './src/homuragif.gif';
 import tomoegif from './src/tomoegif.gif';
+import dokidokigif from './src/dokidokigif.gif'
 import madokamusic from './src/madokamusic.mp3';
-
+import Gsbutton from './src/Gsbutton.mp3';
+import posts from './src/posts.json';
 
 interface IGenericAttrs {
     class?: string | string[];
     id?: string;
     onclick?: Function;
 }
-
+let colorButtons = [];
+let colorButtonSelected = "";
+let tabselected = 0;
 // TABS
 export class GraphicTabs extends Component<Sattrs> {
     selected: number;
@@ -32,7 +36,16 @@ export class GraphicTabs extends Component<Sattrs> {
             {this.viewContent(vnode)}
         </div>
     }
-
+    oncreate(vnode){
+        vnode.children.map((e,i)=>{
+            colorButtons.push(e.attrs.btn);
+        })
+        colorButtonSelected= vnode.attrs.btnselected || "primary";
+        
+    }
+    onupdate(vnode){
+        tabselected = this.selected;
+    }
     viewTabs(vnode) {
         let selected = this.selected,
             self = this,
@@ -40,7 +53,7 @@ export class GraphicTabs extends Component<Sattrs> {
                 let cls = "Graphics Tabs-tab";
                 cls += i == selected ? " is-selected" : "";
                 let btn = e.attrs.btn || "warning";
-                btn = i == selected ? "primary" : btn;
+                btn = i == selected ? colorButtonSelected : colorButtons[tabselected];
                 return <div class={cls}>
                     <button type="button" class={`Graphics nes-btn is-${btn}`} onclick={() => {
                         self.selected = i;
@@ -76,7 +89,8 @@ export class GraphicTabs extends Component<Sattrs> {
 
 interface Sattrs extends IGenericAttrs {
     background?: string;
-    btn?: "primary" | "success" | "warning" | "error" | "disabled" | "normal";
+    btn?: "primary" | "success" | "warning" | "error" | "disabled" | "normal" | "GraphicsTab1" | "GraphicsTab2" | "GraphicsTab3" | "GraphicsTab4" | "GraphicsTab5";
+    btnselected?: "primary" | "GraphicsSelected"; 
     title?: string;
     extraclass: string;
 }
@@ -145,7 +159,7 @@ export class Gerargraficos extends Component<Gattrs> {
     }
 
     view(vnode: m.Vnode<Gattrs>) {
-        let corbotao = 'warning';
+        let corbotao = colorButtons[tabselected];
         let data = [];
         let graph: any[];
         let graphdata = vnode.attrs.dados;
@@ -154,12 +168,12 @@ export class Gerargraficos extends Component<Gattrs> {
             data.push(ii)
         }
         let buttons = data.map((e, i) => {
-            corbotao = this.selected == i ? 'primary' : 'warning';
+            corbotao = this.selected == i ? colorButtonSelected : colorButtons[tabselected];
             return <button type="button" class={`Graphics nes-btn is-${corbotao}`} onclick={() => {
                 this.selected = i
             }}>{e}</button>
         });
-        corbotao = this.selected == -1 ? 'primary' : 'warning';
+        corbotao = this.selected == -1 ? colorButtonSelected : colorButtons[tabselected];
 
         let gbutton = globalbotao == "true" ? <button type="button" class={`Graphics nes-btn is-${corbotao}`} onclick={() => {
             this.selected = -1;
@@ -183,7 +197,7 @@ export class Gerargraficos extends Component<Gattrs> {
             </div>
             <Leftinfo personagem={vnode.attrs.personagem}>{graphdata.info[data[this.selected]]}</Leftinfo>
             <div class="Graphics gaudio">
-                <audio autoplay="true" src="http://soundbible.com/grab.php?id=1280&type=mp3" preload="auto" controls></audio>
+                <audio autoplay="true" src={Gsbutton} preload="auto" controls volume="0.2"></audio>
             </div>
         </div>
 
@@ -238,8 +252,10 @@ export class Gerargraficos extends Component<Gattrs> {
         if (specificData != undefined) {
             for (let i in generalData.data) {
                 if (i == specificData) {
+                    let a = i
+                        a = generalData.legenda[i]
                     graphicdata.datasets.push({
-                        label: i,
+                        label: a,
                         data: generalData.data[i],
                         backgroundColor: generalData.backgroundColor[i],
                         borderColor: generalData.borderColor[i],
@@ -272,7 +288,7 @@ export class GraphicsMusics {
         // se this.audio for verdadeiro, entao musica vai ser igual ao html
         // senao ":" musica recebe "" nada
         let musica = this.audio ?
-            <div class="Graphics gaudio"><audio autoplay="true" src={madokamusic} preload="auto" controls volume="0.4"></audio></div>
+            <div class="Graphics gaudio"><audio autoplay="true" src={madokamusic} preload="auto" controls volume="0.01"></audio></div>
             : null;
         return <div class="Graphics audiobutton">
             <button class="Graphics nes-btn is-error" onclick={() => { this.audio = !this.audio }}>Musica
@@ -316,7 +332,7 @@ export class BackButton extends Component<Backattrs> {
         }
         buttons = paginas.map((e, i) => {
             if (e !== "Initial" && e !== "Intro" && e !== "Style" && e !== vnode.attrs.exception) {
-                color = corbotao == false ? "warning" : "primary";
+                color = corbotao == false ? colorButtons[tabselected] || "warning" : colorButtonSelected;
                 corbotao = !corbotao;
                 return <div>
                     <GraphicsButton btn={color} onclick={() => {
@@ -328,11 +344,11 @@ export class BackButton extends Component<Backattrs> {
         });
         return <div class="Graphics back-Button" onmouseenter={() => {
             this.open = true;
-            this.btn = "primary"
+            this.btn = colorButtonSelected || "primary";
         }}
             onmouseleave={() => {
                 this.open = false;
-                this.btn = "warning"
+                this.btn =  colorButtons[tabselected] || "warning";
             }}>
             <button type="button" class={`Graphics nes-btn is-${this.btn}`} onclick={() => {
                 model.menu()
@@ -355,19 +371,47 @@ export class BackButton extends Component<Backattrs> {
     }
 
     oncreate(vnode) {
+        setTimeout(() => {
+            this.btn = colorButtons[tabselected] || "warning";
+        }, 50);
         vnode.dom.children[1].style.visibility = "hidden";
         vnode.dom.children[1].style.transform = "translateY(-100%)";
         vnode.dom.children[1].style.opacity = "0";
         vnode.dom.children[1].style.transition = "all 0.5s ease";
     }
 }
-
-let firsttime = {
-    MADOKA: true,
-    HOMURA: true,
-    TOMOE: true,
-    MIKI: true
-};
+let girls = {
+    MADOKA: {
+        firsttime: true,
+        img: madokagif,
+        title: "Madoka Kaname",
+        background: "rgba(172, 30, 85, 0.6)",
+    },
+    HOMURA: {
+        firsttime: true,
+        img: homuragif,
+        title: "Homura Akemi",
+        background: "rgba(42, 238, 248, 0.6)",
+    },
+    TOMOE: {
+        firsttime: true,
+        img: tomoegif,
+        title: "Mami Tomoe",
+        background: "rgba(173, 98, 36, 0.6)",
+    },
+    MIKI: {
+        firsttime: true,
+        img: mikigif,
+        title: "Sayaka Miki",
+        background: "rgba(32, 23, 156, 0.6)",
+    },
+    DOKIDOKI:{
+        firsttime: true,
+        img: dokidokigif,
+        title: "ERROR",
+        background: "red",
+    }
+}
 
 // Caixa de informação
 interface AttrsInfo extends IGenericAttrs {
@@ -376,9 +420,6 @@ interface AttrsInfo extends IGenericAttrs {
 
 export class Leftinfo extends Component<AttrsInfo> {
     open: boolean;
-    personagens: object;
-    titles: object;
-    background: object;
     translatexclose: string;
     translatexopen: string;
     constructor() {
@@ -386,24 +427,7 @@ export class Leftinfo extends Component<AttrsInfo> {
         this.translatexclose = "-100%"
         this.translatexopen = "-10%"
         this.open = false;
-        this.personagens = {
-            MADOKA: madokagif,
-            HOMURA: homuragif,
-            TOMOE: tomoegif,
-            MIKI: mikigif
-        };
-        this.titles = {
-            MADOKA: "Madoka Kaname",
-            HOMURA: "Homura Akemi",
-            TOMOE: "Mami Tomoe",
-            MIKI: "Sayaka Miki"
-        };
-        this.background = {
-            MADOKA: "rgba(172, 30, 85, 0.6)",
-            HOMURA: "rgba(131, 158, 34, 0.6)",
-            TOMOE: "rgba(173, 98, 36, 0.6)",
-            MIKI: "rgba(32, 23, 156, 0.6)"
-        };
+
     }
 
     view(vnode: m.Vnode<AttrsInfo>) {
@@ -411,45 +435,158 @@ export class Leftinfo extends Component<AttrsInfo> {
         return <div class="Graphics Leftinfo" onmouseenter={() => this.open = true}
             onmouseleave={() => this.open = false}>
             <div class="Graphics nes-container with-title is-centered Lefttext">
-                <p class="title">{this.titles[person]}</p>
-                <img src={this.personagens[person]} class="Graphics Leftimage"></img>
+                <p class="title">{girls[person].title}</p>
+                <img src={girls[person].img} class="Graphics Leftimage"></img>
                 <p>{vnode.children}</p>
             </div>
         </div>
     }
 
     onupdate(vnode) {
-        let x = this.open ? this.translatexopen : this.translatexclose;
-        vnode.dom.style.transform = `translateX(${x})`
-    }
-
-    oncreate(vnode: m.Vnode<AttrsInfo>) {
-        vnode.dom.style.color = this.background[vnode.attrs.personagem.toUpperCase()];
-        vnode.dom.style.textShadow = "1px 1px 1px rgba(0, 0, 0, 0.5)";
-        vnode.dom.style.transition = "all 1s ease";
-        vnode.dom.style.backgroundColor = this.background[vnode.attrs.personagem.toUpperCase()];
-
-        let firsttimee = firsttime[vnode.attrs.personagem.toUpperCase()];
-        let tempoescrita = -2000;
-        if (firsttimee) {
-            setTimeout(() => {
-                vnode.dom.style.transform = `translateX(${this.translatexopen})`
-            }, 1000);
-            // escrita do texto
-            let textorigin = vnode.dom.children[0].children[2];
-            let text = vnode.children[0].split('');
-            //limpa texto
-            textorigin.innerHTML = "";
-            //adiciona texto
-            text.map((element, index) => {
-                setTimeout(() => textorigin.innerHTML += element, index * 75);
-                tempoescrita = index * 75;
-            });
+        if (this.open) {
+            this.oopen(vnode);
+        } else {
+            this.close(vnode);
         }
-        firsttime[vnode.attrs.personagem.toUpperCase()] = false;
-        // fecha a caixa de informação
+    }
+    oncreate(vnode: m.Vnode<AttrsInfo>) {
+        vnode.dom.style.color = girls[vnode.attrs.personagem.toUpperCase()].background;
+        vnode.dom.style.transition = "all 1s ease";
+        vnode.dom.style.backgroundColor = girls[vnode.attrs.personagem.toUpperCase()].background;
+
+        let tempoescrita = -2000;
+        let firsttimee = girls[vnode.attrs.personagem.toUpperCase()].firsttime;
+        if (firsttimee) {
+            setTimeout(() => { this.oopen(vnode) }, 1000);
+            tempoescrita = this.writetext(vnode);
+        }
+        girls[vnode.attrs.personagem.toUpperCase()].firsttime = false;
+        // fecha caixa
+        setTimeout(() => { this.close(vnode) }, tempoescrita + 3000);
+    }
+    oopen(vnode) {
+        setTimeout(() => {
+            vnode.dom.style.transform = `translateX(${this.translatexopen})`
+        }, 100);
+    }
+    close(vnode) {
         setTimeout(() => {
             vnode.dom.style.transform = `translateX(${this.translatexclose})`
-        }, tempoescrita + 2000)
+        }, 100)
     }
+    writetext(vnode) {
+        // escrita do texto
+        let textorigin = vnode.dom.children[0].children[2];
+        let text = vnode.children[0].split('');
+        //limpa texto
+        textorigin.innerHTML = "";
+        //adiciona texto
+        text.map((element, index) => {
+            setTimeout(() => textorigin.innerHTML += element, index * 75);
+        });
+        return text.length * 75;
+    }
+}
+
+let text = "alguma coisaaaaalguma coisaaaaalguma coisaaaaalguma coisaaaa"
+export class BottomInfo {
+    translateopen: string;
+    translateclosed: string;
+    oopen: boolean;
+    reopen: number;
+    reopentime: number;
+    constructor() {
+        this.translateclosed = "60%"
+        this.translateopen = "0%";
+        // quantidade de vezes que abrirá novamente
+        this.reopen = 10;
+        //tempo entre cada vez que abre em ms
+        this.reopentime = 1 * 60000;
+
+    }
+    view(vnode) {
+        return <div class="Graphics BottomInfo" onmouseenter={() => this.open(vnode)}
+            onmouseleave={() => this.close(vnode)}>
+            <img src={girls.MADOKA.img} class="Graphics Bottomimg"></img>
+            <div class="Graphics nes-container with-title is-centered bottomNesContainer">
+                <p style="color: red; font-size: 18px;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5); margin-bottom: 5px;">
+                    {girls["MADOKA"].title}
+                </p>
+                <p style="font-size: 14px">O que somos nós para ele, a não ser suportes no roteiro de uma peça?</p>
+            </div>
+        </div>
+    }
+    oncreate(vnode) {
+        vnode.dom.style.transition = "all 2s ease";
+        let girlsname = [];
+        for (let i in girls) {
+            girlsname.push(i);
+        }
+        let number = this.randomnumber(girlsname);
+        this.choosegirl(vnode, girlsname, number);
+        let tempoescrita = this.textwrite(vnode, number);
+        setTimeout(() => { this.open(vnode) }, 2000);
+        setTimeout(() => { this.close(vnode); this.openagain(vnode, girlsname) }, tempoescrita + 3000);
+    }
+    open(vnode) {
+        setTimeout(() => {
+            vnode.dom.style.transform = `translateY(${this.translateopen})`;
+        }, 50)
+    }
+    close(vnode) {
+        setTimeout(() => {
+            vnode.dom.style.transform = `translateY(${this.translateclosed})`;
+        }, 50)
+    }
+    randomnumber(girlsname) {
+        let number = [Math.floor(Math.random() * (girlsname.length)),
+        Math.floor(Math.random() * (posts["Frases"].length))];
+        return number;
+    }
+    choosegirl(vnode, girlsname, number) {
+        let auxgirl = girls[girlsname[number[0]]]
+        let img = vnode.dom.children[0];
+        img.src = auxgirl.img;
+        if (girlsname[number[0]] == "HOMURA") {
+            img.style.height = "250px";
+        } else if (girlsname[number[0]] == "MIKI") {
+            img.style.height = "135px";
+        }else if(girlsname[number[0]] == "DOKIDOKI"){
+            img.style.height = "160px";
+        }else {
+            img.style.height = "200px";
+        }
+        let title = vnode.dom.children[1].children[0];
+        title.innerHTML = auxgirl.title;
+        title.style.color = auxgirl.background;
+        vnode.dom.style.background = auxgirl.background;
+    }
+    textwrite(vnode, number) {
+        let origintext = vnode.dom.children[1].children[1];
+        origintext.innerHTML = "";
+        let splittext = posts["Frases"][number[1]].split('');
+        setTimeout(() => {
+            splittext.map((e, i) => {
+                setTimeout(() => {
+                    origintext.innerHTML += e;
+                }, i * 100)
+            })
+        },
+            2000)
+        return splittext.length * 100;
+    }
+    openagain(vnode, girlsname) {
+        let number: any;
+        let tempoescrita: number;
+        for (let i = 1; i <= this.reopen; i++) {
+            setTimeout(() => {
+                number = this.randomnumber(girlsname);
+                this.choosegirl(vnode, girlsname, number);
+                tempoescrita = this.textwrite(vnode, number);
+                setTimeout(() => { this.open(vnode) }, 2000);
+                setTimeout(() => { this.close(vnode) }, tempoescrita + 3000);
+            }, i * this.reopentime);
+        }
+    }
+
 }
