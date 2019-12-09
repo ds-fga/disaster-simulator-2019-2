@@ -111,19 +111,9 @@ export class Science extends Component<ScienceAttrs>{
     buy(id){
         let techs = this.estado.techs;
         let x;
-        m.request({url: 'http://localhost:5000/value/state/', method: 'GET'}).then(x => { this.currentMoney = x.capital});
+        m.request({url: 'http://localhost:5000/value/state/', method: 'GET'}).then(r => { this.currentMoney = r.capital});
         m.request({url: 'http://localhost:5000/science/list-techs/', method: 'GET'}).then(r => x = r);
         m.request({url: `http://localhost:5000/science/buy-tech/${id}`});
-        this.request();
-        for(let i=0; i < techs.length; i++){
-            if(x.includes(techs[i].title === id)){
-                console.log('Comprado');
-            }else{
-                for(let j=0; j < techs[i].affects.length; j++){
-                    m.request({url: `http://localhost:5000/multiply/${techs[i].affects[j]}/${techs[i].how[j]}`});
-                }
-            }
-        }
         this.request();
         if(this.estado.cheat){
             this.crt();
@@ -198,11 +188,6 @@ export class Science extends Component<ScienceAttrs>{
             this.crt();
             this.estado.cheat = true;
             m.request({url: 'http://localhost:5000/value/state/', method: 'GET'}).then(x => { this.currentMoney = x.capital});
-        }
-        if(cheat === 'reset'){
-            m.request({url: 'http://localhost:5000/cheat/reset', method: 'GET'});
-            this.crt();
-            this.estado.cheat = true;
         }
         if(cheat === 'deactivate'){
             this.crt(false);

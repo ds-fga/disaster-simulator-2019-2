@@ -10,11 +10,8 @@ class TechInfo extends Component<InfoAttrs>{
     view(vnode) {
         var spec = vnode.attrs.spec;
         var title = vnode.attrs.title;
-        var listInfo = vnode.attrs.listInfo;
         var techDisplay;
         var titleDisplay;
-        var effect1 = vnode.attrs.effect1;
-        var effect2 = vnode.attrs.effect2;
 
         if (spec !== ""){
             techDisplay = spec;
