@@ -1,22 +1,22 @@
 {
-    "nome": "Jeff Bezos",
-    "idade": "51",
-    "poder": "Riqueza", 
+    "nome": "Bill Gates (Tecnopata Réptil)",
+    "idade": "64",
+    "poder": "Tecnologia", 
     "atributos": {
-        "forca": 7,
-        "inteligencia": 18,
-        "influencia": 26,
+        "forca": 9,
+        "inteligencia": 20,
+        "influencia": 22,
     },
-    "introducao":"effrey Preston (Jeff) 'Bezos é um empresário estadunidense conhecido por fundar, ser o presidente e CEO da Amazon, uma importante e famosa empresa de comércio eletrônico dos Estados Unidos. Bezos nasceu em Albuquerque, no Novo México e cresceu em Houston, Texas.",
+    "introducao":"William Henry Gates III mais conhecido como Bill Gates, é um magnata, empresário, diretor executivo, investidor, filantropo e autor americano, que ficou conhecido por fundar junto com Paul Allen a Microsoft, a maior e mais conhecida empresa de software do mundo em termos de valor de mercado. ",
     "habilidades": {
-        "a": "Comerciante Chefe",
-        "b": "Amazoniano",
-        "c": "Ricasso",
+        "a": "Criativo",
+        "b": "Inovador",
+        "c": "Empreendedor",
       },
       "objetivos": {
-          "ambiente": 10,
-          "tecnologia": 95,
-          "financas": 100,
-          "filantropia": 70,
+        "ambiente": 90,
+        "tecnologia": 100,
+        "financas": 100,
+        "filantropia": 100,
       }
 }
