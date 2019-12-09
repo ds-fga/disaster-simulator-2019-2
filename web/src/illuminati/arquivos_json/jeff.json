@@ -1,5 +1,5 @@
 {
-    "nome": "Jeff Bezos",
+    "nome": "Jeff Bezos (Quer um Bezo?)",
     "idade": "51",
     "poder": "Riqueza", 
     "atributos": {
@@ -7,9 +7,16 @@
         "inteligencia": 18,
         "influencia": 26,
     },
+    "introducao":"effrey Preston (Jeff) 'Bezos é um empresário estadunidense conhecido por fundar, ser o presidente e CEO da Amazon, uma importante e famosa empresa de comércio eletrônico dos Estados Unidos. Bezos nasceu em Albuquerque, no Novo México e cresceu em Houston, Texas.",
     "habilidades": {
         "a": "Comerciante Chefe",
         "b": "Amazoniano",
         "c": "Ricasso",
+      },
+      "objetivos": {
+          "ambiente": 10,
+          "tecnologia": 95,
+          "financas": 100,
+          "filantropia": 70,
       }
 }

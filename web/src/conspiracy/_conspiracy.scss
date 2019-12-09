@@ -1,3 +1,76 @@
-.Conspiracy {
-    
+.consp_intro{
+  padding: 10px;
+  margin:4px;
+}
+
+///////////////////JANELA POPUP
+p{
+margin-top:0;
+}
+.modal-container {
+position:fixed;
+background-color:#fff;
+border:1px solid #000;
+width:70%;
+max-width:400px;
+left:50%;
+padding:20px;
+border-radius:5px;
+
+-webkit-transform:translate(-50%,-200%);
+-ms-transform: translate(-50%,-200%);
+transform: translate(-50%,-200%);
+
+-webkit-transition: -webkit-transform 200ms ease-out;
+transition: transform 200ms ease-out;
+}
+
+.modal:before {
+content: "";
+position:fixed;
+display:none;
+background-color: rgba(0,0,0,.8);
+top:0;
+left:0;
+height: 100%;
+width: 100%;
+}
+
+.modal:target:before{
+display:block;
+
+}
+
+.modal:target .modal-container{
+-webkit-transform:translate(-50%,0);
+-ms-transform: translate(-50%,0);
+transform: translate(-50%,0);
+}
+
+.card_title{
+  position: relative;
+  bottom: 200px;
+  left:450px;
+  font-size: xx-large;
+}
+
+////////////////SidebarImg
+.conspiracy {
+  &_sidebar {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+.Conspiracy_Tabs{
+    padding-bottom: 60px;
+}
+
+.imgs_VG{
+  padding: 30px;
+  position: relative;
+}
+
+.texto_VG{
+  padding-top: 25px;
 }

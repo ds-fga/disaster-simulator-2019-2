@@ -1,5 +1,5 @@
 {
-    "nome": "Elizabeth II",
+    "nome": "Elizabeth II (Líder dos Reptilianos na Terra)",
     "idade": "Infinity",
     "poder": "Política", 
     "atributos": {
@@ -7,9 +7,16 @@
         "inteligencia": 15,
         "influencia": 20
     },
+    "introducao":"Isabel II ou Elizabeth II é a Rainha do Reino Unido e de quinze outros estados independentes conhecidos como Reinos da Comunidade de Nações, além de chefe da Commonwealth formada por 53 estados.",
     "habilidades": {
         "a": "Rainha",
         "b": "Imortalidade",
         "c": "Chapéus Estilosos"
+      },
+      "objetivos": {
+          "ambiente": 30,
+          "tecnologia": 15,
+          "financas": 45,
+          "filantropia": 90,
       }
 }

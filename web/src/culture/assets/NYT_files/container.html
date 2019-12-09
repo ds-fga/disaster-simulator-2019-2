@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)https://tpc.googlesyndication.com/safeframe/1-0-37/html/container.html -->
+<html class="mti-inactive"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>SafeFrame Container</title>
+    <script>
+(function(){var n=this||self;var w={};var y=function(a){y[" "](a);return a};y[" "]=function(){};var B=null,G=function(a){var b=a.length,c=3*b/4;c%3?c=Math.floor(c):-1!="=.".indexOf(a[b-1])&&(c=-1!="=.".indexOf(a[b-2])?c-2:c-1);var d=new Uint8Array(c),f=0;C(a,function(g){d[f++]=g});return d.subarray(0,f)},C=function(a,b){function c(q){for(;d<a.length;){var e=a.charAt(d++),k=B[e];if(null!=k)return k;if(!/^[\s\xa0]*$/.test(e))throw Error("Unknown base64 encoding at char: "+e);}return q}H();for(var d=0;;){var f=c(-1),g=c(0),h=c(64),p=c(64);if(64===p&&-1===f)break;b(f<<2|g>>4);64!=h&&(b(g<<4&240|h>>2),64!=p&&b(h<<6&192|p))}},H=function(){if(!B){B={};for(var a="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".split(""),b=["+/=","+/","-_=","-_.","-_"],c=0;5>c;c++)for(var d=a.concat(b[c].split("")),f=0;f<d.length;f++){var g=d[f];void 0===B[g]&&(B[g]=f)}}};var I=function(a,b){if(a)for(var c in a)Object.prototype.hasOwnProperty.call(a,c)&&b.call(void 0,a[c],c,a)};var J=function(a,b){var c=void 0===c?{}:c;this.error=a;this.context=b.context;this.msg=b.message||"";this.id=b.id||"jserror";this.meta=c};var K=/^https?:\/\/(\w|-)+\.cdn\.ampproject\.(net|org)(\?|\/|$)/,L=function(a,b){this.a=a;this.b=b},M=function(a,b){this.url=a;this.g=!!b;this.depth=null};var N=function(a){n.google_image_requests||(n.google_image_requests=[]);var b=n.document.createElement("img");b.src=a;n.google_image_requests.push(b)};var O=function(){this.c="&";this.f=!1;this.b={};this.i=0;this.a=[]},Q=function(a,b){var c={};c[a]=b;return[c]},S=function(a,b,c,d,f){var g=[];I(a,function(h,p){(h=R(h,b,c,d,f))&&g.push(p+"="+h)});return g.join(b)},R=function(a,b,c,d,f){if(null==a)return"";b=b||"&";c=c||",$";"string"==typeof c&&(c=c.split(""));if(a instanceof Array){if(d=d||0,d<c.length){for(var g=[],h=0;h<a.length;h++)g.push(R(a[h],b,c,d+1,f));return g.join(c[d])}}else if("object"==typeof a)return f=f||0,2>f?encodeURIComponent(S(a,b,c,d,f+1)):"...";return encodeURIComponent(String(a))},T=function(a,b,c,d){a.a.push(b);a.b[b]=Q(c,d)},V=function(a){var b="https://pagead2.googlesyndication.com/pagead/gen_204?id=jserror&",c=U(a)-27;if(0>c)return"";a.a.sort(function(k,m){return k-m});for(var d=null,f="",g=0;g<a.a.length;g++)for(var h=a.a[g],p=a.b[h],q=0;q<p.length;q++){if(!c){d=null==d?h:d;break}var e=S(p[q],a.c,",$");if(e){e=f+e;if(c>=e.length){c-=e.length;b+=e;f=a.c;break}a.f&&(f=c,e[f-1]==a.c&&--f,b+=e.substr(0,f),f=a.c,c=0);d=null==d?h:d}}a="";null!=d&&(a=f+"trn="+d);return b+a+""},U=function(a){var b=1,c;for(c in a.b)b=c.length>b?c.length:b;return 3997-b-a.c.length-1};var W=function(a){if(.01>Math.random())try{if(a instanceof O)var b=a;else b=new O,I(a,function(d,f){var g=b,h=g.i++;d=Q(f,d);g.a.push(h);g.b[h]=d});var c=V(b);c&&N(c)}catch(d){}};var X=function(a){var b=a.toString();a.name&&-1==b.indexOf(a.name)&&(b+=": "+a.name);a.message&&-1==b.indexOf(a.message)&&(b+=": "+a.message);if(a.stack){a=a.stack;var c=b;try{-1==a.indexOf(c)&&(a=c+"\n"+a);for(var d;a!=d;)d=a,a=a.replace(/((https?:\/..*\/)[^\/:]*:\d+(?:.|\n)*)\2/,"$1");b=a.replace(/\n */g,"\n")}catch(f){b=c}}return b};var Y=function(a){if(!a)return a;var b=a.toLowerCase();return-1<b.indexOf("<!doctype")||-1<b.indexOf("<html")?a:"<html><head></head><body>"+a+"</body></html>"},Z=function(a){var b=/<startguard>(.*)<endguard>/g.exec(a);return b&&b[1]?b[1]:a};var aa=new function(){this.a=w===w&&"https://ff.doubleclick.net"||""};var ba=/^([^;]+);(\d+);([\s\S]*)$/,ca=function(){var a=window.name,b=ba.exec(a);if(null===b)throw Error("Cannot parse serialized data. "+a.substring(0,50));a=+b[2];var c=b[3];if(a>c.length)throw Error("Parsed content size doesn't match. "+a+":"+c.length);return{j:b[1],content:c.substr(0,a),h:c.substr(a)}};var da=/(<head(\s+[^>]*)?>)/i;(function(a){if(window.name){var b=function(e){try{var k=new O;k.f=!0;T(k,1,"context",507);e.error&&e.meta&&e.id||(e=new J(e,{message:X(e)}));e.msg&&T(k,2,"msg",e.msg.substring(0,512));var m=[e.meta||{}];k.a.push(3);k.b[3]=m;e=n;m=[];var D=null;do{var l=e;try{var z;if(z=!!l&&null!=l.location.href)b:{try{y(l.foo);z=!0;break b}catch(A){}z=!1}var P=z}catch(A){P=!1}if(P){var t=l.location.href;D=l.document&&l.document.referrer||null}else t=D,D=null;m.push(new M(t||""));try{e=l.parent}catch(A){e=null}}while(e&&l!=e);t=0;for(var u=m.length-1;t<=u;++t)m[t].depth=u-t;l=n;if(l.location&&l.location.ancestorOrigins&&l.location.ancestorOrigins.length==m.length-1)for(u=1;u<m.length;++u){var v=m[u];v.url||(v.url=l.location.ancestorOrigins[u-1]||"",v.g=!0)}var E=new M(n.location.href,!1);l=null;var F=m.length-1;for(v=F;0<=v;--v){var r=m[v];!l&&K.test(r.url)&&(l=r);if(r.url&&!r.g){E=r;break}}r=null;var ea=m.length&&m[F].url;0!=E.depth&&ea&&(r=m[F]);var x=new L(E,r);x.b&&T(k,4,"top",x.b.url||"");T(k,5,"url",x.a.url||"");W(k)}catch(A){try{W({context:"ecmserr",rctx:507,msg:X(A),url:x&&x.a.url})}catch(fa){}}};try{var c=ca(),d=JSON.parse(c.h),f=function(e){d.goog_safeframe_hlt&&(n.goog_safeframe_hlt=d.goog_safeframe_hlt);d._context&&(n.AMP_CONTEXT_DATA=d._context);n.sf_={v:c.j,cfg:d};var k=window.document;k.open("text/html","replace");k.write(e);k.close();n.sf_&&(window.name="")},g=void 0===d.encryptionMode?null:d.encryptionMode,h=d.secureFetchFrame,p=d.uid;if(h){var q=new MessageChannel;q.port1.onmessage=function(e){e=Y(e.data).replace(da,'$1<script>window.addEventListener("load", function() {window.parent.postMessage("sf-load:'+(p+'", "*");});\x3c/script>'));a(e,g,f,b);q.port1.close()};window.parent.frames[h].postMessage("sf-ready:"+p,aa.a,[q.port2])}else window.name="",a(c.content,g,f,b)}catch(e){b(e)}}})(function(a,b,c){2===b&&(a=Y((new TextDecoder).decode(G(Z(a)))));c(a)});}).call(this);
+    </script><meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"><script>var google_casm=[];</script><script></script><style>@font-face {
+  font-family:'Proxima N W01 Smbd';
+}
+
+@font-face {
+  font-family:'Proxima N W01 Reg';
+}
+
+@font-face {
+  font-family:'Proxima N W01 Bold';
+}
+
+@font-face {
+ font-family: "";
+ src: url() format("");
+}
+
+@font-face {
+ font-family: "";
+ src: url() format("");
+}
+
+
+
+
+p {
+  margin: 0px;
+}
+
+body {
+  height: 270px;
+  width: 100%;
+}
+
+.impression-tracker {
+  display: none;
+}
+
+a:link {
+  text-decoration: none;
+  color: white;
+  min-height: 1px;
+}
+
+a:visited {
+  color: white;
+}
+
+#container {
+  max-width: 1605px;
+  margin: 0 auto;
+  font-family: 'Proxima N W01 Reg', sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+#flex-frame {
+  position: relative;
+  width: 100%;
+  height: 270px;
+  background-size: cover;
+  background-position: right;
+  border: 1px solid #cccccc;
+  background-color:#000;
+  color:#fff;
+  
+  /* border issue fix by tanvir - added on 10.8.2019 */
+  box-sizing: border-box;
+  
+}
+
+.context-bullet {
+  color: black;
+  width: 100%;
+  padding-left: 10px;
+  display: table;
+  height: 30px;
+}
+
+.context-bullet-content {
+  font-family: 'Proxima N W01 Smbd', sans-serif;
+  font-size: 12px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  display: table-cell;
+}
+
+.context-bullet-content span {
+  /*font-family: 'Proxima N W01 Reg', sans-serif;*/
+  font-family: 'Proxima N W01 Reg', sans-serif;
+  font-size: 12px;
+}
+
+.media-container {
+  background:url('https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCn-ra4rgEQARgBMgjkmFfJxSy0Dw');
+  /*background: url('../messagingAssets/posterimage-1200x270.jpg');*/
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  float: left;
+  position: relative;
+  overflow: hidden;
+  max-width:600px;
+  
+}
+
+.media-content {
+  position: absolute;
+  z-index: 3;
+  left: 25px;
+  bottom: 20px;
+}
+
+.content-container {
+  height: 100%;
+  float: left;
+  position: relative;
+  
+  background: url('');
+  background-size: cover;
+  background-position: center;
+}
+
+.next-container{
+    background: url(https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCn-vayxgEQARgBMgjg2KB59_Boqg);
+    position: absolute;
+    width: 100%;
+    height: 270px;
+    display: inline-block;
+    transition: all 0.4s ease;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.next-main-container{
+  position: relative;
+    float: right;
+    height: 100%;
+    width: calc(100% - 1185px);
+    max-width: 420px;
+    /*background-color: gray;*/
+    overflow: hidden;
+}
+
+.gradient {
+  position: absolute;
+  left: 0;
+    background-image:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,0.7), rgba(255,255,255,0) 80%
+    );
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.content-container .logo {
+  margin-bottom: 20px;
+  position: absolute;
+  margin-top:25px;
+  margin-left: 25px;
+}
+
+.media-container .logo {
+  margin-bottom: 15px;
+  margin-left:25px;
+  margin-top:25px;
+}
+
+.logo img {
+  display: block;
+  text-align: left;
+  max-width: 235px;
+  max-height: 50px;
+}
+
+.logo .logo-hi-res {
+  display: none;
+}
+
+.content-well {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: space-between;
+  /*background-color: */
+  height:270px; 
+}
+
+.content-middle-well {
+  align-self: flex-end;
+  margin-left: 25px;
+  /*margin-right: 30px;*/
+  max-width:400px;
+}
+
+.kicker {
+  /* font-family: 'Proxima N W01 Bold', sans-serif; */
+  font-family: 'ProximaNova-Bold', sans-serif;
+  font-size: 14px;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.title {
+  font-family: 'Proxima N W01 Smbd', sans-serif;
+  /*font-family: 'Proxima N W01 Smbd', sans-serif;*/
+  font-size: 27px;
+  max-width: 485px;
+  margin-bottom: 1px;
+  line-height: 1.1;
+}
+
+.media-container .title {
+  margin-bottom:1px;
+
+}
+
+.summary {
+  font-size: 18px;
+  max-width: 355px;
+  margin-bottom: 0px;
+}
+
+.content-container .summary {
+  margin-bottom: 0px;
+}
+
+.cta {
+  font-family: 'Proxima N W01 Bold', sans-serif;
+  background-color: transparent;
+  color:white;
+  pointer-events: all;
+  flex: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px 15px;
+  background-color:rgba(0, 0, 0, .5);
+  text-transform: uppercase;
+  font-weight: 800;
+  border: 1px solid #fff;
+  color:#fff;
+  text-align: center;
+  display: inline-block;
+}
+
+.content-container .cta {
+  margin-bottom: 25px;
+  margin-top:12px;
+}
+
+/* Breakpoints */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .logo .logo-hi-res {
+    display: block;
+  }
+  .logo .logo-std {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 961px) {
+  .media-container {
+    width: calc(104% - 500px);
+  }
+
+  .media-content {
+    display: none;
+  }
+
+  .gradient {
+    display: none;
+  }
+  
+  .media-container .logo {
+    display: none;
+  
+  }
+}
+
+
+
+/* 
+@media screen and (max-width: 700px) {
+  #container {
+    display: none;
+  }
+}
+This controls font color on tablet view */ 
+
+@media screen and (max-width: 960px) {
+
+#flex-frame {
+    color:#fff;
+  }
+  .cta{
+    color:#fff;
+    margin-top:12px;
+  }
+
+
+.media-content {
+    display: none;
+    
+  }
+
+
+  .media-container {
+    width:calc(105% - 500px);
+  
+  }
+
+  .media-container .logo {
+      display:none;
+  }
+
+  .gradient {
+      display:none;
+  }
+
+
+}
+
+
+@media screen and (min-width: 1500px){
+.media-container {
+
+  width: calc(100% - 643px)
+
+}
+.content-container {
+    width: 585px;
+}
+}
+
+
+
+@media screen and (max-width: 1350px) {
+
+/*.next-container{
+  display:none; 
+}
+
+.next-main-container{
+  display:none; 
+}*/
+
+}
+
+@media screen and (max-width: 750px) {
+  
+#flex-frame{
+  display:none 
+  }
+}
+  
+.title {
+    font-size: 24px;}
+
+
+</style><style type="text/css" id="mti_fontface_4221a460-4ed2-4039-a07f-d1f4a2739cad">@font-face{
+font-family:"Proxima N W01 Reg";
+src:url("https://fast.fonts.net/dv2/14/64017d81-9430-4cba-8219-8f5cc28b923e.woff2?d44f19a684109620e484147faf90e818e91fbfe6a113aa2749f26bfa29c567201013b729c4701c6018a692b15a42ad2f5ccab08c40c012f3f760269f734724b070bc4b6d&projectId=4221a460-4ed2-4039-a07f-d1f4a2739cad") format('woff2');}
+@font-face{
+font-family:"Proxima N W01 Smbd";
+src:url("https://fast.fonts.net/dv2/14/ae47a7f5-89da-4879-b934-29722c3dd451.woff2?d44f19a684109620e484147faf90e818e91fbfe6a113aa2749f26bfa29c567201013b729c4701c6018a692b15a42ad2f5ccab08c40c012f3f760269f734724b070bc4b6d&projectId=4221a460-4ed2-4039-a07f-d1f4a2739cad") format('woff2');}
+@font-face{
+font-family:"Proxima N W01 Bold";
+src:url("https://fast.fonts.net/dv2/14/0d416408-95c6-4ad7-b08d-e60573d3b37d.woff2?d44f19a684109620e484147faf90e818e91fbfe6a113aa2749f26bfa29c567201013b729c4701c6018a692b15a42ad2f5ccab08c40c012f3f760269f734724b070bc4b6d&projectId=4221a460-4ed2-4039-a07f-d1f4a2739cad") format('woff2');}
+</style><script type="text/javascript" src="./mt.js"></script><link id="MonoTypeFontApiFontTracker" type="text/css" rel="stylesheet" href="./1.css"></head><body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" data-integralas-id-dc5e0112-edec-46a3-4c79-0e3344168120=""><script src="./ext.js"></script><script>window.dicnf = {};</script><script data-jc="42">(function(){window.viewReq=[];function b(a){var c=new Image;c.src=a.replace("&amp;","&");viewReq.push(c)}function d(a){fetch(a,{keepalive:!0,credentials:"include",redirect:"follow",method:"get",mode:"no-cors"}).catch(function(){b(a)})}window.vu=function(a){window.fetch?d(a):b(a)};}).call(this);</script><script>vu("https://securepubads.g.doubleclick.net/pcs/view?xai\x3dAKAOjss9WdxmAr_6Atg62_ni0rk8ct07-G935G20bRXZ9Lnv2OEFAVZ5syuKS68DPv-5gjXTu9Kt9S5RySELIi1F4xZoQ3D077jqC-E0dA2RcxtLZgjvRnQR3wk6P0DM-oJ9xTeW9bA5Q1Jya415XQ7XXrSyp-6Wg6czX5nWRJ2lG9imCstPRFSFi59518Z9L6A5L8vIrjMusP0V_HulQ3mnwIynj50Js9Yi4I2bvsddR-M-FWQrEmL91Ojc7x-o_2hRnxRlW__6-x294BEtMueo3Wws\x26sig\x3dCg0ArKJSzFjpPXmhv8-PEAE\x26urlfix\x3d1\x26adurl\x3dhttps://googleads.g.doubleclick.net/dbm/ad%3Fdbm_c%3DAKAmf-AcjXO3hhzPUhyqw8hDIAI8afZ9301yjyIiFQ7Sa28KEMVXB_YKa3hwIq6mu4Jg_kpr7yHr%26dbm_d%3DAKAmf-ACVZAIFwxIRx6re4p-MDScY6F3HYwIg49Um-afbrCTZEQKc7nD9wMKbPDgONZfzBHQQQhzr3xtpq0pboUteH2RusQG3bhl3_jh_p9cz2r7bdIDf6BSyEdjFd6vKx1iDRsQxtmaAJUrM-ZBzBu05tQZEAYUMlZvp-PmIiSkFPfSk-Fmc7VXz14ux2JDbo5vgUW7nt3WkVfNxAyo6bCK2kcJD09wPJiDw70e6jsx0KJQgk4o0yhM-pjHv-HECswVZqRcdplFUL5mnMzQYcfEdE-BlP_JOPO_mc2v7awl1w8tkIIgpdcOaeafKjjM1IcXoL9n49KJRiAiE5l2VWaDjz-TQNI3zNDY1j9RSbRD7EEHKfC0dvZQr_e66t1zXUE7qGa46aD6ZYZ3WGNs_Q52rR9enyUg88SaccZdic16xvO4tvGOl_fzQa20NredRIpF5ir4QDkXHfxDrpFX95FBghKBu4zfNorgiQBWXbGuUfy4YrxJQR957ZSe4NZ0AJvhbFHTwhSoeKIM-wIlUyDdzZIY-k5WftKFgFqLeapsaDGjxMOvHxdeLk_E91T0CuUdwB7PFDNXS1kNFxKRiq2cmAmJvdLHCN5vb91PiuLVQaPtD4UIEQadbk3drax2ylyQVLsdxvZxMSpt_LqscjceWdlxhk4p1eEsg_LMLXGIZV5ZRYUkU5RPJBVjBCY1hHCHTEZUxIDfcnOfth7fi-3FxxGMtmmRf160cBFv1f2DDYzB1NPSRhbgkBlSPWfGj1EOxkT48YhU1bfYK00bofU87V1FDfJ24RVQAbFIbR28irshYrDV6ZkPXF5Y3oCGQGnuOORtWPb_l7HFfsbU742fn96tlk5oAVen7XRU0CRal7Jnbfyh5_hO9wNxEoOizDvX-BJIn3rQsOspGm0rkULr5dPxwvx89lp4K4B2D0aKiU0ej97sLcyKIppki0DcgYpKMmWJb4tTUdhrj4JNGKpxskY3eBjkXclmpRRP9GMnJ-m30EkMCB9DEqZzmg5nlMAvM3VgB9gARBx7HYNGzMdCEBlrY7bfJkSTIlDf8EKTMFLeVOflJy9vWJMQ8Hq9At6Z2rjp1kY6Q60N9oo1PPFnFfr6CAQLKmTO_s3DYKPTKCDa8dalTYeCwUqmUSCXsoyxQptveJEy%26cid%3DCAASEuRomG70tjCnppcZEIzz7wS-KQ%26adurl%3D")</script><div class="GoogleActiveViewElement" data-google-av-cxn="https://pagead2.googlesyndication.com/pcs/activeview?xai=AKAOjssC1MTPNbQHR28HpLsGy5Q159845KqoqT3_5vBo784J3BIzkYYHE_YpsN3ihP84qS-ZHQkN800Hh6UoJL5ieN9N742XqVygQOjh8mYKo3xHym1AsuL9TiihWUxVBVyAVdlyJXYihKXZPm5k1vk1uZqtFwxSCAqUaORBAV3MgVIm6QZ1Hll0h6_BDWXO4dF9yxJFon73YqJN49OY&amp;sai=AMfl-YS41p-_lJgGNgXfaP8tsZlhr6csQn4kw_KkGz2z1BQ-So3dGLQy5fZXd9icGB0keHFr3LcNKmavmo9FX-0eoz4GPabwTa_D0IjbDF4Lppm_xF25IaWqkKMAEWQ&amp;sig=Cg0ArKJSzOni4cQ18NuVEAE" data-google-av-adk="1508954645" data-google-av-metadata="eocm=1&amp;la=0&amp;alp=xai&amp;alh=468148853&amp;xdi=0&amp;" data-google-av-override="-1" data-google-av-dm="2" data-google-av-immediate="" data-google-av-aid="0" data-google-av-naid="1" data-google-av-slift="" data-google-av-cpmav="" data-google-av-itpl="7" data-google-av-rs="4"><!--[Template] Flex Frame: Messaging (3-Panel)(Desktop) (updated 6/14/19 1:15pm)(PM for ET2 added)-->
+
+<script type="text/javascript" src="./4221a460-4ed2-4039-a07f-d1f4a2739cad.js"></script>
+
+<a target="_blank" href="https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjsuaDlMVBmF6RFHWyXZoZfmnAzD-N8ToL5ORN5KlVqzAj87flaW3BkhoWa2FvMtoUuPp5KQjVW5ReSBZhDG7kFJ4TIjbRoYG6tENv7whg7NsMahCjcbi27G7o1xWOgmLNAOvjrXjh04d5Pmk3EsOD4_3gIQMDGt47FUtqFCT8PU5eXERccYL0MyYQaxRTZHgQUhHXgJj3bnL9CqBMagyIcesrX3RUnS5_1rwirbgUHZnc_X5h89KfGQZxiMRjaVhf2JmNhjvVfxkS-3m&amp;sig=Cg0ArKJSzCNissU3w-tCEAE&amp;urlfix=1&amp;adurl=https://googleads.g.doubleclick.net/dbm/clk%3Fsa%3DL%26ai%3DCbJDg3h3tXdPJFY6mhQatuqTICoao28Zaz5vS-KQLoveRqc4YEAEgyNb1GWDNsOCA7AKgAdmFuI8DyAEJqAMBqgSFAU_Q1yP93V2pjkx4IU8GCnxW4ShaFM_cBq7yUTrGJ74F38uCmHeAgv832hQ6J2RaK3cFtapGT75csfgScVrcEP78MtOXrKxrmvwDthtLv8ft1cZ5xDwKU9K7kWcUnawnjR5A0mSGwAbfqYnmwDoWacZHFCnHqUF9rtkUbPvhfOgnTWusRgzABPLigrLGAuAEA5AGAaAGTYAHj_rHcKgHjs4bqAfVyRuoB5PYG6gHugaoB9nLG6gHz8wbqAfs1RuoB6a-G6gH7NUbqAfz0RvYBwDSCAcIgAEQARgdgAoDyAsBsBOHw-4H0BMA2BMD2BQB%26ae%3D1%26num%3D1%26cid%3DCAASEuRomG70tjCnppcZEIzz7wS-KQ%26sig%3DAOD64_3mT8Gxd0ZcOXv19LISvBZ_oWmWGw%26dbm_c%3DAKAmf-AKCEkbEDI3QLAs5RmuoCqgWol07E5_j4Ao8TQhUIbenVUC2Mg8jwxWuLMtuIoCydwQALzw%26dbm_d%3DAKAmf-DsQa6iSVLxEdpD7WTx828OJnjsHdRPL_ATAV2XE1jEWxc3b9R9BrxQGOf8D59l_l-7JyUASOh0teqDkah0ul7X1hfTFQBORaaR04li1fn7UtXL-Uz-1PNSIEXlHxDL4TU4xWQiJzlMX6y0xcNL_4ul5Z5UtvUZnZ9Z18C4V4v6HhrtvdPjGGoJm6VkC8h354Ph2RLrnqWMNcFaw4E6lwutdjcupw%26adurl%3Dhttps://ad.doubleclick.net/ddm/trackclk/N8897.3006099DBM_LEDESK/B23423032.259318826%3Bdc_trk_aid%3D455392034%3Bdc_trk_cid%3D124047486%3Bdc_lat%3D%3Bdc_rdid%3D%3Btag_for_child_directed_treatment%3D%3Btfua%3D">
+<div id="container">
+    <div id="flex-frame">
+      <div class="media-container">
+      <div class="gradient"></div>
+      <div class="logo">
+            <img onclick="eventTracker.generalEventTrack(&#39;clickURL&#39;, &#39;logo&#39;, &#39;https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjsuaDlMVBmF6RFHWyXZoZfmnAzD-N8ToL5ORN5KlVqzAj87flaW3BkhoWa2FvMtoUuPp5KQjVW5ReSBZhDG7kFJ4TIjbRoYG6tENv7whg7NsMahCjcbi27G7o1xWOgmLNAOvjrXjh04d5Pmk3EsOD4_3gIQMDGt47FUtqFCT8PU5eXERccYL0MyYQaxRTZHgQUhHXgJj3bnL9CqBMagyIcesrX3RUnS5_1rwirbgUHZnc_X5h89KfGQZxiMRjaVhf2JmNhjvVfxkS-3m&amp;sig=Cg0ArKJSzCNissU3w-tCEAE&amp;urlfix=1&amp;adurl=https://googleads.g.doubleclick.net/dbm/clk%3Fsa%3DL%26ai%3DCbJDg3h3tXdPJFY6mhQatuqTICoao28Zaz5vS-KQLoveRqc4YEAEgyNb1GWDNsOCA7AKgAdmFuI8DyAEJqAMBqgSFAU_Q1yP93V2pjkx4IU8GCnxW4ShaFM_cBq7yUTrGJ74F38uCmHeAgv832hQ6J2RaK3cFtapGT75csfgScVrcEP78MtOXrKxrmvwDthtLv8ft1cZ5xDwKU9K7kWcUnawnjR5A0mSGwAbfqYnmwDoWacZHFCnHqUF9rtkUbPvhfOgnTWusRgzABPLigrLGAuAEA5AGAaAGTYAHj_rHcKgHjs4bqAfVyRuoB5PYG6gHugaoB9nLG6gHz8wbqAfs1RuoB6a-G6gH7NUbqAfz0RvYBwDSCAcIgAEQARgdgAoDyAsBsBOHw-4H0BMA2BMD2BQB%26ae%3D1%26num%3D1%26cid%3DCAASEuRomG70tjCnppcZEIzz7wS-KQ%26sig%3DAOD64_3mT8Gxd0ZcOXv19LISvBZ_oWmWGw%26dbm_c%3DAKAmf-AKCEkbEDI3QLAs5RmuoCqgWol07E5_j4Ao8TQhUIbenVUC2Mg8jwxWuLMtuIoCydwQALzw%26dbm_d%3DAKAmf-DsQa6iSVLxEdpD7WTx828OJnjsHdRPL_ATAV2XE1jEWxc3b9R9BrxQGOf8D59l_l-7JyUASOh0teqDkah0ul7X1hfTFQBORaaR04li1fn7UtXL-Uz-1PNSIEXlHxDL4TU4xWQiJzlMX6y0xcNL_4ul5Z5UtvUZnZ9Z18C4V4v6HhrtvdPjGGoJm6VkC8h354Ph2RLrnqWMNcFaw4E6lwutdjcupw%26adurl%3Dhttps://ad.doubleclick.net/ddm/trackclk/N8897.3006099DBM_LEDESK/B23423032.259318826;dc_trk_aid=455392034;dc_trk_cid=124047486;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=&#39;)" class="logo-std" src="./image.png">
+            <img onclick="eventTracker.generalEventTrack(&#39;clickURL&#39;, &#39;logo&#39;, &#39;https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjsuaDlMVBmF6RFHWyXZoZfmnAzD-N8ToL5ORN5KlVqzAj87flaW3BkhoWa2FvMtoUuPp5KQjVW5ReSBZhDG7kFJ4TIjbRoYG6tENv7whg7NsMahCjcbi27G7o1xWOgmLNAOvjrXjh04d5Pmk3EsOD4_3gIQMDGt47FUtqFCT8PU5eXERccYL0MyYQaxRTZHgQUhHXgJj3bnL9CqBMagyIcesrX3RUnS5_1rwirbgUHZnc_X5h89KfGQZxiMRjaVhf2JmNhjvVfxkS-3m&amp;sig=Cg0ArKJSzCNissU3w-tCEAE&amp;urlfix=1&amp;adurl=https://googleads.g.doubleclick.net/dbm/clk%3Fsa%3DL%26ai%3DCbJDg3h3tXdPJFY6mhQatuqTICoao28Zaz5vS-KQLoveRqc4YEAEgyNb1GWDNsOCA7AKgAdmFuI8DyAEJqAMBqgSFAU_Q1yP93V2pjkx4IU8GCnxW4ShaFM_cBq7yUTrGJ74F38uCmHeAgv832hQ6J2RaK3cFtapGT75csfgScVrcEP78MtOXrKxrmvwDthtLv8ft1cZ5xDwKU9K7kWcUnawnjR5A0mSGwAbfqYnmwDoWacZHFCnHqUF9rtkUbPvhfOgnTWusRgzABPLigrLGAuAEA5AGAaAGTYAHj_rHcKgHjs4bqAfVyRuoB5PYG6gHugaoB9nLG6gHz8wbqAfs1RuoB6a-G6gH7NUbqAfz0RvYBwDSCAcIgAEQARgdgAoDyAsBsBOHw-4H0BMA2BMD2BQB%26ae%3D1%26num%3D1%26cid%3DCAASEuRomG70tjCnppcZEIzz7wS-KQ%26sig%3DAOD64_3mT8Gxd0ZcOXv19LISvBZ_oWmWGw%26dbm_c%3DAKAmf-AKCEkbEDI3QLAs5RmuoCqgWol07E5_j4Ao8TQhUIbenVUC2Mg8jwxWuLMtuIoCydwQALzw%26dbm_d%3DAKAmf-DsQa6iSVLxEdpD7WTx828OJnjsHdRPL_ATAV2XE1jEWxc3b9R9BrxQGOf8D59l_l-7JyUASOh0teqDkah0ul7X1hfTFQBORaaR04li1fn7UtXL-Uz-1PNSIEXlHxDL4TU4xWQiJzlMX6y0xcNL_4ul5Z5UtvUZnZ9Z18C4V4v6HhrtvdPjGGoJm6VkC8h354Ph2RLrnqWMNcFaw4E6lwutdjcupw%26adurl%3Dhttps://ad.doubleclick.net/ddm/trackclk/N8897.3006099DBM_LEDESK/B23423032.259318826;dc_trk_aid=455392034;dc_trk_cid=124047486;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=&#39;)" class="logo-hi-res" src="./image.png">
+      </div>
+        <div class="media-content">
+           
+          <div class="title">This holiday, the Enchanted Blizzard envelops the iconic Flowerbomb </div>
+          <div class="summary">Holiday Limited Edition Flowerbomb 3.4 oz </div>
+          <div onclick="eventTracker.generalEventTrack(&#39;clickURL&#39;, &#39;cta&#39;, &#39;https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjsuaDlMVBmF6RFHWyXZoZfmnAzD-N8ToL5ORN5KlVqzAj87flaW3BkhoWa2FvMtoUuPp5KQjVW5ReSBZhDG7kFJ4TIjbRoYG6tENv7whg7NsMahCjcbi27G7o1xWOgmLNAOvjrXjh04d5Pmk3EsOD4_3gIQMDGt47FUtqFCT8PU5eXERccYL0MyYQaxRTZHgQUhHXgJj3bnL9CqBMagyIcesrX3RUnS5_1rwirbgUHZnc_X5h89KfGQZxiMRjaVhf2JmNhjvVfxkS-3m&amp;sig=Cg0ArKJSzCNissU3w-tCEAE&amp;urlfix=1&amp;adurl=https://googleads.g.doubleclick.net/dbm/clk%3Fsa%3DL%26ai%3DCbJDg3h3tXdPJFY6mhQatuqTICoao28Zaz5vS-KQLoveRqc4YEAEgyNb1GWDNsOCA7AKgAdmFuI8DyAEJqAMBqgSFAU_Q1yP93V2pjkx4IU8GCnxW4ShaFM_cBq7yUTrGJ74F38uCmHeAgv832hQ6J2RaK3cFtapGT75csfgScVrcEP78MtOXrKxrmvwDthtLv8ft1cZ5xDwKU9K7kWcUnawnjR5A0mSGwAbfqYnmwDoWacZHFCnHqUF9rtkUbPvhfOgnTWusRgzABPLigrLGAuAEA5AGAaAGTYAHj_rHcKgHjs4bqAfVyRuoB5PYG6gHugaoB9nLG6gHz8wbqAfs1RuoB6a-G6gH7NUbqAfz0RvYBwDSCAcIgAEQARgdgAoDyAsBsBOHw-4H0BMA2BMD2BQB%26ae%3D1%26num%3D1%26cid%3DCAASEuRomG70tjCnppcZEIzz7wS-KQ%26sig%3DAOD64_3mT8Gxd0ZcOXv19LISvBZ_oWmWGw%26dbm_c%3DAKAmf-AKCEkbEDI3QLAs5RmuoCqgWol07E5_j4Ao8TQhUIbenVUC2Mg8jwxWuLMtuIoCydwQALzw%26dbm_d%3DAKAmf-DsQa6iSVLxEdpD7WTx828OJnjsHdRPL_ATAV2XE1jEWxc3b9R9BrxQGOf8D59l_l-7JyUASOh0teqDkah0ul7X1hfTFQBORaaR04li1fn7UtXL-Uz-1PNSIEXlHxDL4TU4xWQiJzlMX6y0xcNL_4ul5Z5UtvUZnZ9Z18C4V4v6HhrtvdPjGGoJm6VkC8h354Ph2RLrnqWMNcFaw4E6lwutdjcupw%26adurl%3Dhttps://ad.doubleclick.net/ddm/trackclk/N8897.3006099DBM_LEDESK/B23423032.259318826;dc_trk_aid=455392034;dc_trk_cid=124047486;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=&#39;)" class="cta">SHOP NOW</div>
+        </div>   
+      </div>
+
+      <div class="content-container">
+      <div class="logo">
+              <img onclick="eventTracker.generalEventTrack(&#39;clickURL&#39;, &#39;logo&#39;, &#39;https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjsuaDlMVBmF6RFHWyXZoZfmnAzD-N8ToL5ORN5KlVqzAj87flaW3BkhoWa2FvMtoUuPp5KQjVW5ReSBZhDG7kFJ4TIjbRoYG6tENv7whg7NsMahCjcbi27G7o1xWOgmLNAOvjrXjh04d5Pmk3EsOD4_3gIQMDGt47FUtqFCT8PU5eXERccYL0MyYQaxRTZHgQUhHXgJj3bnL9CqBMagyIcesrX3RUnS5_1rwirbgUHZnc_X5h89KfGQZxiMRjaVhf2JmNhjvVfxkS-3m&amp;sig=Cg0ArKJSzCNissU3w-tCEAE&amp;urlfix=1&amp;adurl=https://googleads.g.doubleclick.net/dbm/clk%3Fsa%3DL%26ai%3DCbJDg3h3tXdPJFY6mhQatuqTICoao28Zaz5vS-KQLoveRqc4YEAEgyNb1GWDNsOCA7AKgAdmFuI8DyAEJqAMBqgSFAU_Q1yP93V2pjkx4IU8GCnxW4ShaFM_cBq7yUTrGJ74F38uCmHeAgv832hQ6J2RaK3cFtapGT75csfgScVrcEP78MtOXrKxrmvwDthtLv8ft1cZ5xDwKU9K7kWcUnawnjR5A0mSGwAbfqYnmwDoWacZHFCnHqUF9rtkUbPvhfOgnTWusRgzABPLigrLGAuAEA5AGAaAGTYAHj_rHcKgHjs4bqAfVyRuoB5PYG6gHugaoB9nLG6gHz8wbqAfs1RuoB6a-G6gH7NUbqAfz0RvYBwDSCAcIgAEQARgdgAoDyAsBsBOHw-4H0BMA2BMD2BQB%26ae%3D1%26num%3D1%26cid%3DCAASEuRomG70tjCnppcZEIzz7wS-KQ%26sig%3DAOD64_3mT8Gxd0ZcOXv19LISvBZ_oWmWGw%26dbm_c%3DAKAmf-AKCEkbEDI3QLAs5RmuoCqgWol07E5_j4Ao8TQhUIbenVUC2Mg8jwxWuLMtuIoCydwQALzw%26dbm_d%3DAKAmf-DsQa6iSVLxEdpD7WTx828OJnjsHdRPL_ATAV2XE1jEWxc3b9R9BrxQGOf8D59l_l-7JyUASOh0teqDkah0ul7X1hfTFQBORaaR04li1fn7UtXL-Uz-1PNSIEXlHxDL4TU4xWQiJzlMX6y0xcNL_4ul5Z5UtvUZnZ9Z18C4V4v6HhrtvdPjGGoJm6VkC8h354Ph2RLrnqWMNcFaw4E6lwutdjcupw%26adurl%3Dhttps://ad.doubleclick.net/ddm/trackclk/N8897.3006099DBM_LEDESK/B23423032.259318826;dc_trk_aid=455392034;dc_trk_cid=124047486;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=&#39;)" class="logo-std" src="./image.png">
+              <img onclick="eventTracker.generalEventTrack(&#39;clickURL&#39;, &#39;logo&#39;, &#39;https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjsuaDlMVBmF6RFHWyXZoZfmnAzD-N8ToL5ORN5KlVqzAj87flaW3BkhoWa2FvMtoUuPp5KQjVW5ReSBZhDG7kFJ4TIjbRoYG6tENv7whg7NsMahCjcbi27G7o1xWOgmLNAOvjrXjh04d5Pmk3EsOD4_3gIQMDGt47FUtqFCT8PU5eXERccYL0MyYQaxRTZHgQUhHXgJj3bnL9CqBMagyIcesrX3RUnS5_1rwirbgUHZnc_X5h89KfGQZxiMRjaVhf2JmNhjvVfxkS-3m&amp;sig=Cg0ArKJSzCNissU3w-tCEAE&amp;urlfix=1&amp;adurl=https://googleads.g.doubleclick.net/dbm/clk%3Fsa%3DL%26ai%3DCbJDg3h3tXdPJFY6mhQatuqTICoao28Zaz5vS-KQLoveRqc4YEAEgyNb1GWDNsOCA7AKgAdmFuI8DyAEJqAMBqgSFAU_Q1yP93V2pjkx4IU8GCnxW4ShaFM_cBq7yUTrGJ74F38uCmHeAgv832hQ6J2RaK3cFtapGT75csfgScVrcEP78MtOXrKxrmvwDthtLv8ft1cZ5xDwKU9K7kWcUnawnjR5A0mSGwAbfqYnmwDoWacZHFCnHqUF9rtkUbPvhfOgnTWusRgzABPLigrLGAuAEA5AGAaAGTYAHj_rHcKgHjs4bqAfVyRuoB5PYG6gHugaoB9nLG6gHz8wbqAfs1RuoB6a-G6gH7NUbqAfz0RvYBwDSCAcIgAEQARgdgAoDyAsBsBOHw-4H0BMA2BMD2BQB%26ae%3D1%26num%3D1%26cid%3DCAASEuRomG70tjCnppcZEIzz7wS-KQ%26sig%3DAOD64_3mT8Gxd0ZcOXv19LISvBZ_oWmWGw%26dbm_c%3DAKAmf-AKCEkbEDI3QLAs5RmuoCqgWol07E5_j4Ao8TQhUIbenVUC2Mg8jwxWuLMtuIoCydwQALzw%26dbm_d%3DAKAmf-DsQa6iSVLxEdpD7WTx828OJnjsHdRPL_ATAV2XE1jEWxc3b9R9BrxQGOf8D59l_l-7JyUASOh0teqDkah0ul7X1hfTFQBORaaR04li1fn7UtXL-Uz-1PNSIEXlHxDL4TU4xWQiJzlMX6y0xcNL_4ul5Z5UtvUZnZ9Z18C4V4v6HhrtvdPjGGoJm6VkC8h354Ph2RLrnqWMNcFaw4E6lwutdjcupw%26adurl%3Dhttps://ad.doubleclick.net/ddm/trackclk/N8897.3006099DBM_LEDESK/B23423032.259318826;dc_trk_aid=455392034;dc_trk_cid=124047486;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=&#39;)" class="logo-hi-res" src="./image.png">
+            </div>
+        <div class="content-well">
+          <div class="content-middle-well">
+          	
+            <div class="title">This holiday, the Enchanted Blizzard envelops the iconic Flowerbomb </div>
+            <div class="summary">Holiday Limited Edition Flowerbomb 3.4 oz </div>
+            <div onclick="eventTracker.generalEventTrack(&#39;clickURL&#39;, &#39;cta&#39;, &#39;https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjsuaDlMVBmF6RFHWyXZoZfmnAzD-N8ToL5ORN5KlVqzAj87flaW3BkhoWa2FvMtoUuPp5KQjVW5ReSBZhDG7kFJ4TIjbRoYG6tENv7whg7NsMahCjcbi27G7o1xWOgmLNAOvjrXjh04d5Pmk3EsOD4_3gIQMDGt47FUtqFCT8PU5eXERccYL0MyYQaxRTZHgQUhHXgJj3bnL9CqBMagyIcesrX3RUnS5_1rwirbgUHZnc_X5h89KfGQZxiMRjaVhf2JmNhjvVfxkS-3m&amp;sig=Cg0ArKJSzCNissU3w-tCEAE&amp;urlfix=1&amp;adurl=https://googleads.g.doubleclick.net/dbm/clk%3Fsa%3DL%26ai%3DCbJDg3h3tXdPJFY6mhQatuqTICoao28Zaz5vS-KQLoveRqc4YEAEgyNb1GWDNsOCA7AKgAdmFuI8DyAEJqAMBqgSFAU_Q1yP93V2pjkx4IU8GCnxW4ShaFM_cBq7yUTrGJ74F38uCmHeAgv832hQ6J2RaK3cFtapGT75csfgScVrcEP78MtOXrKxrmvwDthtLv8ft1cZ5xDwKU9K7kWcUnawnjR5A0mSGwAbfqYnmwDoWacZHFCnHqUF9rtkUbPvhfOgnTWusRgzABPLigrLGAuAEA5AGAaAGTYAHj_rHcKgHjs4bqAfVyRuoB5PYG6gHugaoB9nLG6gHz8wbqAfs1RuoB6a-G6gH7NUbqAfz0RvYBwDSCAcIgAEQARgdgAoDyAsBsBOHw-4H0BMA2BMD2BQB%26ae%3D1%26num%3D1%26cid%3DCAASEuRomG70tjCnppcZEIzz7wS-KQ%26sig%3DAOD64_3mT8Gxd0ZcOXv19LISvBZ_oWmWGw%26dbm_c%3DAKAmf-AKCEkbEDI3QLAs5RmuoCqgWol07E5_j4Ao8TQhUIbenVUC2Mg8jwxWuLMtuIoCydwQALzw%26dbm_d%3DAKAmf-DsQa6iSVLxEdpD7WTx828OJnjsHdRPL_ATAV2XE1jEWxc3b9R9BrxQGOf8D59l_l-7JyUASOh0teqDkah0ul7X1hfTFQBORaaR04li1fn7UtXL-Uz-1PNSIEXlHxDL4TU4xWQiJzlMX6y0xcNL_4ul5Z5UtvUZnZ9Z18C4V4v6HhrtvdPjGGoJm6VkC8h354Ph2RLrnqWMNcFaw4E6lwutdjcupw%26adurl%3Dhttps://ad.doubleclick.net/ddm/trackclk/N8897.3006099DBM_LEDESK/B23423032.259318826;dc_trk_aid=455392034;dc_trk_cid=124047486;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=&#39;)" class="cta">SHOP NOW</div>
+          </div>
+        </div>
+      </div>
+      <div class="next-main-container">
+      <div class="next-container">
+        <div class="gradient"></div>
+      </div>
+       
+           
+          
+      </div>
+    </div>
+  </div>
+</a></div><a target="_blank" href="https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjsuaDlMVBmF6RFHWyXZoZfmnAzD-N8ToL5ORN5KlVqzAj87flaW3BkhoWa2FvMtoUuPp5KQjVW5ReSBZhDG7kFJ4TIjbRoYG6tENv7whg7NsMahCjcbi27G7o1xWOgmLNAOvjrXjh04d5Pmk3EsOD4_3gIQMDGt47FUtqFCT8PU5eXERccYL0MyYQaxRTZHgQUhHXgJj3bnL9CqBMagyIcesrX3RUnS5_1rwirbgUHZnc_X5h89KfGQZxiMRjaVhf2JmNhjvVfxkS-3m&amp;sig=Cg0ArKJSzCNissU3w-tCEAE&amp;urlfix=1&amp;adurl=https://googleads.g.doubleclick.net/dbm/clk%3Fsa%3DL%26ai%3DCbJDg3h3tXdPJFY6mhQatuqTICoao28Zaz5vS-KQLoveRqc4YEAEgyNb1GWDNsOCA7AKgAdmFuI8DyAEJqAMBqgSFAU_Q1yP93V2pjkx4IU8GCnxW4ShaFM_cBq7yUTrGJ74F38uCmHeAgv832hQ6J2RaK3cFtapGT75csfgScVrcEP78MtOXrKxrmvwDthtLv8ft1cZ5xDwKU9K7kWcUnawnjR5A0mSGwAbfqYnmwDoWacZHFCnHqUF9rtkUbPvhfOgnTWusRgzABPLigrLGAuAEA5AGAaAGTYAHj_rHcKgHjs4bqAfVyRuoB5PYG6gHugaoB9nLG6gHz8wbqAfs1RuoB6a-G6gH7NUbqAfz0RvYBwDSCAcIgAEQARgdgAoDyAsBsBOHw-4H0BMA2BMD2BQB%26ae%3D1%26num%3D1%26cid%3DCAASEuRomG70tjCnppcZEIzz7wS-KQ%26sig%3DAOD64_3mT8Gxd0ZcOXv19LISvBZ_oWmWGw%26dbm_c%3DAKAmf-AKCEkbEDI3QLAs5RmuoCqgWol07E5_j4Ao8TQhUIbenVUC2Mg8jwxWuLMtuIoCydwQALzw%26dbm_d%3DAKAmf-DsQa6iSVLxEdpD7WTx828OJnjsHdRPL_ATAV2XE1jEWxc3b9R9BrxQGOf8D59l_l-7JyUASOh0teqDkah0ul7X1hfTFQBORaaR04li1fn7UtXL-Uz-1PNSIEXlHxDL4TU4xWQiJzlMX6y0xcNL_4ul5Z5UtvUZnZ9Z18C4V4v6HhrtvdPjGGoJm6VkC8h354Ph2RLrnqWMNcFaw4E6lwutdjcupw%26adurl%3Dhttps://ad.doubleclick.net/ddm/trackclk/N8897.3006099DBM_LEDESK/B23423032.259318826%3Bdc_trk_aid%3D455392034%3Bdc_trk_cid%3D124047486%3Bdc_lat%3D%3Bdc_rdid%3D%3Btag_for_child_directed_treatment%3D%3Btfua%3D">
+</a>
+
+<script type="text/javascript">
+
+ "use strict";
+
+// Native Tracking Code --------------------------------------------- //
+
+var eventTracker = function () {
+var ETLink = "https://et.nytimes.com/?subject=dfp-ad-events&dfp_creativeid=138296875565&dfp_lineitemid=5241186670&dfp_orderid=2634633488&dfp_viewport=large&pageviewid=eopbDlP3H42100AOlZMAVpWg&dfp_pos=top&dfp_prop=nyt";
+
+var slideCSSClass = "slide";
+var slideNavType = "slideURL";
+var slideClickType = "clickURL";
+
+//Slide navigation control
+var slidesNum = document.getElementsByClassName(slideCSSClass).length;
+var currentSlide = 1;
+
+/*
+* function to call the Nytimes ET pixel link for the slide templte
+* @param curr - current slide
+* @param type - event type 
+*/
+var ETSlideCall = function ETSlideCall(type, curr) {
+var next = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+
+var trackingLink = ETLink + "&dfp_event_type=" + type + "&dfp_event_location=slide-" + curr;
+if (next != "") {
+trackingLink += "_" + "slide-" + next;
+}
+document.createElement('img').src = trackingLink;
+};
+//Public functions
+return {
+/*
+*Next slide function - Updates the current slide and call the ET function
+*/
+nextSlideET: function nextSlideET() {
+var prevSlide = currentSlide;
+if (currentSlide >= slidesNum) {
+currentSlide = 1;
+} else {
+currentSlide++;
+}
+ETSlideCall(slideNavType, prevSlide, currentSlide);
+},
+
+/*
+* Previous slide function - Updates the current slide and call the ET function
+*/
+prevSlideET: function prevSlideET() {
+var prevSlide = currentSlide;
+if (currentSlide <= 1) {
+currentSlide = slidesNum;
+} else {
+currentSlide--;
+}
+ETSlideCall(slideNavType, prevSlide, currentSlide);
+},
+
+/*
+* Click slide function - Redirects to target url
+* @param tag - HTML anchor tag the called this func. 
+* @param next - sums up to the current slide number 
+* usage: <a href="link-to-the-ad-redirect" onclick="eventTracker.slideClickET(this)">
+*/
+slideClickET: function slideClickET(tag) {
+var next = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+// console.log("this", tag);
+event.preventDefault();
+var slideTrack = currentSlide;
+if (next) {
+slideTrack = currentSlide == slidesNum ? 1 : currentSlide + 1;
+}
+ETSlideCall(slideClickType, slideTrack);
+var url = tag.href;
+window.open(url, '_blank');
+},
+
+/*
+* General event tracker call
+* @param eventType - event type to be tracked
+* @param eventLocation - event location to be tracked
+* @param redirectLink - Link to ad page to be called after eventtracker
+*/
+
+generalEventTrack: function generalEventTrack(type, curr) {
+var redirectLink = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+
+event.preventDefault();
+var trackingLink = ETLink + "&dfp_event_type=" + type + "&dfp_event_location=" + curr;
+document.createElement('img').src = trackingLink;
+if (redirectLink != "") {
+window.open(redirectLink, '_blank');
+}
+  
+parent.postMessage({
+  event: 'send-direct',
+  payload: {
+    dfp_creativeid: '138296875565',
+    dfp_orderid: '2634633488',
+    dfp_viewport: 'large',
+    dfp_pos: 'top',
+    dfp_prop: 'nyt',
+    dfp_event_type: type,
+    dfp_event_location: curr,
+    subject: 'dfp-ad-events'
+  }
+},		
+'https://www.nytimes.com/'
+);
+  
+},
+
+setETLink: function setETLink(link) {
+ETLink = link;
+},
+
+setSlideCSSClass: function setSlideCSSClass(cssClass) {
+slideCSSClass = cssClass;
+slidesNum = document.getElementsByClassName(slideCSSClass).length;
+},
+setSlideClicktype: function setSlideClicktype(type) {
+slideClickType = type;
+},
+
+setSlideNavType: function setSlideNavType(type) {
+slideNavType = type;
+}
+};
+}();
+
+// End of Native Tracking Code // 
+
+(function() {
+  var header = document.getElementsByClassName('context-bullet')[0];
+  var headerContent = document.getElementsByClassName('context-bullet-content')[0];
+  var noHeaderPages = ['hp', 'int', 'art', 'art,rev', 'art,oak'];
+  var pageType = 'art';
+  var pagePos = 'top';
+  var prop = 'nyt';
+
+  if (pagePos === 'top') {
+    if (noHeaderPages.indexOf(pageType) > -1) {
+      header.style.display = 'none';
+    } else {
+      headerContent.style.display = 'none';
+    }
+  } else if (prop === 'itabapp') {
+    header.style.display = 'table';
+  } else if (pageType === 'hp') {
+    header.style.display = 'none';
+  } 
+})();
+
+</script>
+
+
+<script type="text/javascript">
+(function() {
+// Hide gradient if necessary
+var toggleGradient = 0;
+var gradients = [].slice.call(document.getElementsByClassName('gradient'));
+if (toggleGradient > 0) {
+  gradients.forEach(function(el) {
+    el.style.display = 'none';
+  });
+}
+})();
+</script>
+<div style="display: none;">
+BORDER="0" HEIGHT="1" WIDTH="1" ALT="Advertisement"&gt;<script type="application/javascript" src="./skeleton.js" data-ias-script-tag="found"></script><script type="text/javascript" src="./dtc"></script><script src="./skeleton(1).js"></script> <noscript><IMG SRC="https://pixel.adsafeprotected.com/rfw/st/361276/40293754/skeleton.gif" BORDER=0 WIDTH=1 HEIGHT=1 ALT=""></noscript>
+
+<script type="text/javascript" src="./moatad.js"></script>
+</div><div style="position: absolute; width: 100%; opacity: 0; height: 100%; z-index: -999; top: 0px; left: 0px;"></div><script type="text/javascript" src="./n.js"></script><iframe src="./saved_resource.html" style="width: 0px !important; height: 0px !important; border: 0px !important; position: absolute !important; top: -10000px !important; left: -10000px !important;"></iframe>
+<div id="impression-pixel" class="impression-tracker">
+  <img src="./B23423032.259318826" width="1" height="1" border="0">
+</div>
+<div id="impression-pixel-2" class="impression-tracker">
+  <img src="./blank.gif" width="1" height="1" border="0">
+</div>
+<script type="text/javascript">
+parent.postMessage({exclusive: , type: '', div:'top'},'*');
+</script><script src="./osd_listener.js"></script><script type="text/javascript">osdlfm(-1,'','BClPV3h3tXYvqEo6mhQatuqTICgAAAAAQATgByAEJwAIC4AIA4AQBoAYf0ggFCIABEAE','',1508954645,true,'eocm\x3d1\x26la\x3d0\x26alp\x3dxai\x26alh\x3d468148853\x26xdi\x3d0\x26',3,'CAASEuRomPoKKGBW8nSVlq1o1NT36Q','https://pagead2.googlesyndication.com/pcs/activeview?xai\x3dAKAOjssC1MTPNbQHR28HpLsGy5Q159845KqoqT3_5vBo784J3BIzkYYHE_YpsN3ihP84qS-ZHQkN800Hh6UoJL5ieN9N742XqVygQOjh8mYKo3xHym1AsuL9TiihWUxVBVyAVdlyJXYihKXZPm5k1vk1uZqtFwxSCAqUaORBAV3MgVIm6QZ1Hll0h6_BDWXO4dF9yxJFon73YqJN49OY\x26sai\x3dAMfl-YS41p-_lJgGNgXfaP8tsZlhr6csQn4kw_KkGz2z1BQ-So3dGLQy5fZXd9icGB0keHFr3LcNKmavmo9FX-0eoz4GPabwTa_D0IjbDF4Lppm_xF25IaWqkKMAEWQ\x26sig\x3dCg0ArKJSzOni4cQ18NuVEAE','');</script><script>if (window.top && window.top.postMessage) {window.top.postMessage('{"key_value":[{"key":"qid","value":"CIvRhei1puYCFQ5TwQodLR0JqQ"}],"googMsgType":"adpnt"}','*');}</script><div style="bottom:0;right:0;width:100px;height:100px;background:initial !important;position:absolute !important;max-width:100% !important;max-height:100% !important;pointer-events:none !important;image-rendering:pixelated !important;z-index:2147483647;background-image:url(&#39;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAWBAMAAACrl3iAAAAABlBMVEUAAAD+AciWmZzWAAAAAnRSTlMAApidrBQAAAB8SURBVBjTbVDRDUQxCKIbsP+076pANTk/Wo2ICPA/TscvWRVYXepxdS4C5/313g5JAZkq/ZsstGk5ubU7/FLioJDRDeNROGEZUoqfrcSIykRtuTmWcUF67QmWkt7Sg1N3LB1XFhqtBMM5nLdpOSji4sZjNnJzj5ntYC74APnTBXdXkSw3AAAAAElFTkSuQmCC&#39;) !important;"></div>
+  
+  
+  
+
+</body></html>

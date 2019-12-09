@@ -1,184 +1,270 @@
 import m from 'mithril';
-import {Window, Tab, Tabs, Btn, Sidebar, Chart, VScroll, Component} from '../ui';
+import { Window, Tab, Tabs, Btn, Sidebar, Chart, VScroll, Component } from '../ui';
 import './_graphics.scss';
-import {GraphicsButton, GraphicTabs, GraphicTab, Gerargraficos, BackButton, Leftinfo} from './UiGraphics';
+import { GraphicsButton, GraphicTabs, GraphicTab, Gerargraficos, BackButton, Leftinfo, BottomInfo } from './UiGraphics';
 import telaback from './src/telaback.jpg';
-import climaback from './src/climaback.jpg';
+import Atmosferaback from './src/Atmosferaback.jpg';
 import economiaback from './src/economiaback.jpg';
 import populacaoback from './src/populacaoback.jpg';
-import energiaback from './src/energiaback.jpg';
-import madokamusic from './src/madokamusic.mp3'
-import demoingif from './src/demoin.gif';
+import Oceanosback from './src/Oceanosback.jpg';
+import demoin from './src/demoin01.gif';
+import demoin2 from './src/demoin02.gif';
 
-/* essa eh a classe principal que vai mostrar todo o conteudo que vai mostrar na tela
-classe seria coisas como <div> <span> <audio> <ul> <li> que podem ser personalizadas a gosto
-nesse caso a pagina inicial estaria requisitando nossa pagina usando <Graphics></Graphics>*/
+
 export class Graphics {
-    //essa primeira parte eh onde se declara as variaveis que seram usadas internamente na classe
-    // defino o nome da variavel e o tipo
     background: object;
-
-    // a funcao constructor eh onde damos os valores iniciais as variaveis
+    infotext: string;
+    data: any;
     constructor() {
-        // para referencia a variaveis, usamos o prefixo "this"
         this.background = {
             "Telainicial": telaback,
-            "Clima": climaback,
+            "Atmosfera": Atmosferaback,
             "Economia": economiaback,
             "Populacao": populacaoback,
-            "Energia": energiaback,
+            "Oceanos": Oceanosback,
         }
+        pyrequest();
     }
-
-    // a funcao this é a funcao principal que retorna o conteudo da classe
     view() {
-        /* estamos retornando a pagina inteira, entao tudo estara aqui
-         podemos escrever o html direto aqui, no entando, para fins de organizacao,
-        criamos "subclasses" como a classe "GraphicsTabs", "Tab", "Clima", etc
-         cada Tab tem o seu titulo que sera mostrado em cima e seu conteudo que esta dentro de si
-         exemplo <Tab title="exemplo" btn="error" background=****> {===CONTEUDO===} </Tab>
-         ondeo title é o titulo da tab, btn é o tipo do butao e background a imagem que sera mostrada quando clicar na tab
-         poderiamos colocar o conteudo direto dentro dela, mas criamos outras classes, que estao mais abaixo no codigo, para melhor organizacao
-         esses conteudos seriam essas classes "Tela", "Clima", "Economia", "Politica", "Energia". quando eu clicar na tab ele ira mostrar esse conteudo
-        */
         return <Window id="GraphicsWindow">
-            <VScroll class="Graphics vscroll">
+            <VScroll class="Graphics vscroll" >
                 <div class="Graphics overlay">
                     <BackButton exception="Graphics"></BackButton>
-                    <GraphicTabs>
-                        <GraphicTab title="Tela Principal" btn="warning"
-                                    background={this.background.Telainicial}><Tela></Tela></GraphicTab>
-                        <GraphicTab title="Clima" btn="warning"
-                                    background={this.background.Clima}><Clima></Clima></GraphicTab>
-                        <GraphicTab title="Economia" btn="warning"
-                                    background={this.background.Economia}><Economia></Economia></GraphicTab>
-                        <GraphicTab title="População" btn="warning"
-                                    background={this.background.Populacao}><Populacao></Populacao></GraphicTab>
-                        <GraphicTab title="Energia" btn="warning"
-                                    background={this.background.Energia}><Energia></Energia></GraphicTab>
+                    <GraphicTabs extraclass="Graphics" btnselected="GraphicsSelected">
+                        <GraphicTab title="Tela Principal" btn="GraphicsTab1" background={this.background.Telainicial}><Tela></Tela></GraphicTab>
+                        <GraphicTab title="Atmosfera" btn="GraphicsTab2" background={this.background.Atmosfera}><Atmosfera></Atmosfera></GraphicTab>
+                        <GraphicTab title="Oceanos" btn="GraphicsTab3" background={this.background.Oceanos}><Oceanos></Oceanos></GraphicTab>
+                        <GraphicTab title="Economia" btn="GraphicsTab4" background={this.background.Economia}><Economia></Economia></GraphicTab>
+                        <GraphicTab title="População" btn="GraphicsTab5" background={this.background.Populacao}><População></População></GraphicTab>
                     </GraphicTabs>
-                    <GraphicsAudio></GraphicsAudio>
                 </div>
+                <BottomInfo />
             </VScroll>
         </Window>
     }
 }
+function pyrequest() {
+    m.request({ url: "http://127.0.0.1:5000/series/time/" }).then(x => {
+        pydata.Atmosfera.labels = x.time;
+        m.request({ url: "http://127.0.0.1:5000/series/t_atm/" }).then(x => {
+            pydata.Atmosfera.data["Temperatura Atmosférica"] = x.data;
+        })
+        m.request({ url: "http://127.0.0.1:5000/series/c_atm/" }).then(x => {
+            pydata.Atmosfera.data["Carbono na Atmosfera"] = x.data;
+        })
+        m.request({ url: "http://127.0.0.1:5000/series/emissions/" }).then(x => {
+            pydata.Atmosfera.data["Emissões de CO2"] = x.data;
+        })
+    })
 
-// algumas dessas classes acima nao estao nesse documento, elas podem ser encontradas no UiGraphics.tsx
-// essa eh a variavel que guarda os dados dos graficos
+    m.request({ url: "http://127.0.0.1:5000/series/time/" }).then(x => {
+        pydata.Oceanos.labels = x.time;
+
+        m.request({ url: "http://127.0.0.1:5000/series/c_deep/" }).then(x => {
+            pydata.Oceanos.data["Carbono nos Oceanos Profundos"] = x.data;
+        })
+
+        m.request({ url: "http://127.0.0.1:5000/series/c_ocean/" }).then(x => {
+            pydata.Oceanos.data["Carbono nos Oceanos Rasos"] = x.data;
+        })
+
+        m.request({ url: "http://127.0.0.1:5000/series/t_ocean/" }).then(x => {
+            pydata.Oceanos.data["Temperatura Oceânica"] = x.data;
+        })
+    })
+
+    m.request({ url: "http://127.0.0.1:5000/series/time/" }).then(x => {
+        pydata.Economia.labels = x.time;
+
+        m.request({ url: "http://127.0.0.1:5000/series/production/" }).then(x => {
+            pydata.Economia.data["Pib"] = x.data;
+        })
+
+        m.request({ url: "http://127.0.0.1:5000/series/capital/" }).then(x => {
+            pydata.Economia.data["Capital"] = x.data;
+        })
+    })
+    m.request({ url: "http://127.0.0.1:5000/series/population/" }).then(x => {
+        pydata.Populacao.labels = x.time;
+        pydata.Populacao.data["População Global"] = x.data;
+
+        m.request({ url: "http://127.0.0.1:5000/series/SATISFACTION/" }).then(x => {
+            pydata.Populacao.data["Satisfação"] = x.data;
+        })
+        m.request({ url: "http://127.0.0.1:5000/series/HAPPINESS/" }).then(x => {
+            pydata.Populacao.data["Felicidade"] = x.data;
+        })
+        m.request({ url: "http://127.0.0.1:5000/series/revolt/" }).then(x => {
+            pydata.Populacao.data["Revolta"] = x.data;
+        })
+
+    })
+    return
+}
+
+
 let pydata = {
-    clima: {
-        labels: ['2000', '2005', '2010', '2015', '2020'],
+    Atmosfera: {
+        labels: [],
         data: {
-            "CO2": [20, 5, 30, 2, 20, 10],
-            "Temperatura Atmosférica": [25, 10, 3, 2, 5, 100],
-            "Temperatura Oceânica": [1, 100, 88, 21, 45, 110],
-            "Dano Climático": [10, 22, 15, 12, 14],
+            "Temperatura Atmosférica": [],
+            "Carbono na Atmosfera": [],
+            "Emissões de CO2": [],
         },
         backgroundColor: {
-            "CO2": "rgba(214, 66, 153, 0.4)",
-            "Temperatura Atmosférica": "rgba(157, 60, 150, 0.4)",
-            "Temperatura Oceânica": "rgba(150, 70, 150, 0.4)",
-            "Dano Climático": "rgba(100, 20, 153, 0.4)",
+            "Temperatura Atmosférica": "rgba(214, 66, 153, 0.4)",
+            "Carbono na Atmosfera": "rgba(150, 70, 150, 0.4)",
+            "Emissões de CO2": "rgba(100, 20, 153, 0.4)",
         },
         borderColor: {
-            "CO2": "rgba(214, 66, 153, 1)",
-            "Temperatura Atmosférica": "rgba(210, 60, 150, 1)",
-            "Temperatura Oceânica": "rgba(150, 70, 150, 1)",
-            "Dano Climático": "rgba(100, 20, 153, 1)",
+            "Temperatura Atmosférica": "rgba(214, 66, 153, 1)",
+            "Carbono na Atmosfera": "rgba(150, 70, 150, 1)",
+            "Emissões de CO2": "rgba(100, 20, 153, 1)",
+        },
+        info: {
+            "Temperatura Atmosférica": "A temperatura atmosférica pode alterar por fatores como a radiação solar,umidade e altitude. Porém é a ação humana que mais vem alterando esses valores, com a queima incansável de combustíveis fósseis, liberando gases do efeito estufa.",
+            "Carbono na Atmosfera": "Sem interferência humana, o carbono dos combustíveis fósseis vazaria lentamente na atmosfera através da atividade vulcânica ao longo de milhões de anos no lento ciclo do carbono. Ao queimar carvão, petróleo e gás natural, aceleramos o processo, liberando vastas quantidades de carbono (carbono que levou milhões de anos para acumular) na atmosfera todos os anos.",
+            "Emissões de CO2": "A emissão de CO2 está relacionada à queima de combustíveis fósseis e ao desmatamento.",
+        },
+        legenda: {
+            "Temperatura Atmosférica": "Anomalia da Temperatura Atmosférica em Kelvin (k)",
+            "Carbono na Atmosfera": "Estoque de carbono na atmosfera em gigatonelada de carbono (GtC)",
+            "Emissões de CO2": "Emissões de carbono em gigatonelada de carbono por ano (GtC / ano)",
         }
     },
     Economia: {
-        labels: ['2000', '2005', '2010', '2015', '2020'],
+        labels: [],
         data:
-            {
-                "Pib": [20, 5, 30, 2, 20],
-                "Custo do carbono": [10, 15, 22, 10, 14],
-            },
+        {
+            "Pib": [],
+            "Capital": [],
+        },
         backgroundColor: {
-            "Pib": "rgba(233, 235, 141, 0.4)",
-            "Custo do carbono": "rgba(233, 235, 141, 0.4)"
+            "Pib": "rgba(42, 238, 248, 0.4)",
+            "Capital": "rgba(10, 270, 248, 0.4)",
         },
         borderColor: {
-            "Pib": "rgba(233, 235, 141, 1)",
-            "Custo do carbono": "rgba(233, 235, 141, 0.4)"
+            "Pib": "rgba(42, 238, 248, 1)",
+            "Capital": "rgba(10, 270, 248, 0.4)",
+        },
+        info: {
+            "Pib": "O Produto Interno Bruto(Pib) é considerado o termômetro da economia,é calculado a partir da soma de todos os produtos e serviços finais produzidos em um país.",
+            "Capital": "Na economia, capital é qualquer ativo capaz de gerar um fluxo de rendimentos ao longo do tempo por meio de sua aplicação na produção. Esse conceito inclui não apenas o dinheiro propriamente dito, mas também os investimentos financeiros, os estoques e os bens que podem ser aplicados para gerar riqueza, dentre outros.",
+        },
+        legenda: {
+            "Pib": "PIB do mundo em Trilhões de U$",
+            "Capital": "Total em bens de capital em Trilhões de U$",
         }
     },
     Populacao: {
-        labels: ['2000', '2005', '2010', '2015', '2020'],
+        labels: [],
         data: {
-            "Feliz": [20, 5, 30, 2, 20],
-            "Indiferente": [30, 13, 10, 34, 33],
-            "Infeliz": [12, 22, 25, 26, 33],
-            "Revoltado": [10, 12, 9, 10, 12],
+            "População Global": [],
+            "Felicidade": [],
+            "Satisfação": [],
+            "Revolta": [],
         },
         backgroundColor: {
-            "Feliz": "rgba(214, 66, 153, 0.4)",
-            "Indiferente": "rgba(210, 60, 150, 0.4)",
-            "Infeliz": "rgba(150, 70, 150, 0.4)",
-            "Revoltado": "rgba(100, 20, 153, 0.4)"
+            "População Global": "rgba(64, 55, 245, 0.4)",
+            "Felicidade": "rgba(64, 55, 245, 1)",
+            "Satisfação": "rgba(71, 21, 177, 0.4)",
+            "Revolta": "rgba(7, 5, 163, 0.4)",
         },
         borderColor: {
-            "Feliz": "rgba(214, 66, 153, 1)",
-            "Indiferente": "rgba(210, 60, 150, 1)",
-            "Infeliz": "rgba(150, 70, 150, 1)",
-            "Revoltado": "rgba(100, 20, 153, 1)"
+            "População Global": "rgba(64, 55, 245, 1)",
+            "Felicidade": "rgba(64, 55, 245, 1)",
+            "Satisfação": "rgba(71, 21, 177, 1)",
+            "Revolta": "rgba(7, 5, 163, 1)",
+        },
+        info: {
+            "População Global": "População do mundo em milhões de pessoas",
+            "Felicidade": "Distribuição de felicidade derivada de satisfação e dos revoltados",
+            "Satisfação": "Nível de satisfação da população. É um número de (0, oo) onde em oo a população fica inteiramente feliz, e 0 inteiramente descontente. Um valor de 1.0 representa uma população com 50% das pessoas contentes (felizes ou neutras).",
+            "Revolta": "Nível de revolta da população. Contabiliza, entre os descontentes, o quão engajados estão em tentar sabotar e destruir o sistema atual. Também é medido de (0, oo), com REVOLT=1 representando o caso em que metade da população descontente tramando algum tipo de sabotagem. Se mais de 1/3 da população total estiver revoltada, entra em um estado de guerra civil. ",
+        },
+        legenda: {
+            "População Global": "População do mundo em milhões de pessoas",
+            "Felicidade": "Distribuição de felicidade derivada de satisfação e dos revoltados",
+            "Satisfação": "Nível de satisfação da população",
+            "Revolta": "Nível de revolta da população",
         }
     },
-    Energia: {
-        labels: ['2000', '2005', '2010', '2015', '2020'],
+    Oceanos: {
+        labels: [],
         data: {
-            "Renováveis": [20, 5, 6, 4, 8],
-            "Não Renováveis": [10, 5, 7, 13, 14],
+            "Temperatura Oceânica": [],
+            "Carbono nos Oceanos Rasos": [],
+            "Carbono nos Oceanos Profundos": [],
         },
         backgroundColor: {
-            "Renováveis": "rgba(255,0,0,0.4)",
-            "Não Renováveis": "rgba(255,100,10,0.4)",
+            "Temperatura Oceânica": "rgba(260, 200, 9, 0.4)",
+            "Carbono nos Oceanos Rasos": "rgba(228, 239, 9, 0.4)",
+            "Carbono nos Oceanos Profundos": "rgba(200, 260, 9, 0.4)",
         },
         borderColor: {
-            "Renováveis": "rgba(255,0,0, 1)",
-            "Não Renováveis": "rgba(255,100,10,1)",
+            "Temperatura Oceânica": "rgba(260, 200, 9, 1)",
+            "Carbono nos Oceanos Rasos": "rgba(228, 239, 9, 1)",
+            "Carbono nos Oceanos Profundos": "rgba(200, 260, 9, 1)",
+        },
+        info: {
+            "Temperatura Oceânica": "Intensificado pela ação humana o aquecimento oceânico desencadeia uma série de efeitos secundários de grande impacto por si mesmos, como a subida do nível do mar, mudanças na salinidade, oxigenação e estratificação das massas de água, prejuízos à biodiversidade, dentre outros.",
+            "Carbono nos Oceanos Rasos": "Estoque de carbono nos Oceanos Rasos em gigatonelada de carbono (GtC)",
+            "Carbono nos Oceanos Profundos": "Estoque de carbono nos Oceanos Profundos em gigatonelada de carbono (GtC)",
+        },
+        legenda: {
+            "Temperatura Oceânica": "Anomalia da Temperatura dos oceanos em Kelvin (k)",
+            "Carbono nos Oceanos Rasos": "Estoque de carbono nos Oceanos Rasos em gigatonelada de carbono (GtC)",
+            "Carbono nos Oceanos Profundos": "Estoque de carbono nos Oceanos Profundos em gigatonelada de carbono (GtC)",
         }
     },
 };
 
-// essa classe eh o conteudo da tela principal
 class Tela {
     view() {
         return <div class="Graphics tela">
             <h1 class="Graphics Tela Title">Aqui o caos pode ser contemplado</h1>
             <h2 class="Graphics Tela Content">Nunca é demais lembrar o peso e o significado destes problemas,
-                uma vez que a percepção das dificuldades representa uma abertura para a
-                melhoria dos níveis de motivação departamental.
+          uma vez que a percepção das dificuldades representa uma abertura para a
+          melhoria dos níveis de motivação departamental. Desta maneira, a contínua expansão de nossa atividade talvez venha
+                a ressaltar a relatividade da gestão inovadora da qual fazemos parte.
             </h2>
-            <img src={demoingif} height={173}></img>
+            <img src={demoin} height={173} ></img>
         </div>
     }
-
     oncreate(vnode) {
         let demonio = vnode.dom.children[2];
-        demonio.style.transform = "translate(-800px, -50px)";
+        demonio.src = demoin2;
+        console.log(demonio)
+        demonio.style.transform = "translate(-300%, -10%)"
         demonio.style.opacity = "0";
         setTimeout(() => {
-            demonio.style.transition = "all 10s ease";
-            demonio.style.transform = "translate(0%)";
+            demonio.style.transition = "all 4s ease"
+            demonio.style.transform = "translate(0%)"
             demonio.style.opacity = "100%";
-        }, 1000);
+            setTimeout(()=>{
+                demonio.style.transition = "all 0.1s ease"
+                demonio.src = demoin;
+                demonio.style.height = "250px";
+            }, 3500)
+        }, 4000)
 
-        let backuptext = [];
+        this.writetext(vnode)
+    }
+    writetext(vnode) {
+        let sizetext = []
         vnode.instance.children.map((e, i) => {
             if (e.dom.innerHTML != undefined) {
                 let texto = e.dom.innerHTML.split('');
-                e.dom.innerHTML = "";
-                let tempoescrita = backuptext.length == 0 ? 500 : (backuptext[backuptext.length - 1].length + 10) * 75;
-                backuptext.push(texto);
+                e.dom.innerHTML = ""
+                let tempoescrita = sizetext.length == 0 ? 500 : (sizetext[sizetext.length - 1] + 10) * 75
+                sizetext.push(texto.length)
                 setTimeout(() => {
                     texto.forEach((element, index) => {
                         setTimeout(() => e.dom.innerHTML += element, 75 * index)
-                    });
-                    let hiddentext = "HELP".split('');
+                    })
+                    let hiddentext = "HELP".split('')
                     setTimeout(() => {
-                        e.dom.innerHTML += "<br/>";
+                        e.dom.innerHTML += "<br/>"
                         hiddentext.forEach((element, index) => {
                             setTimeout(() => e.dom.innerHTML += element, 650 * index)
                         })
@@ -190,129 +276,50 @@ class Tela {
     }
 }
 
-/* essa classe eh o conteudo da tab clima
-    o conteudo eh formado por um grafico global mais diversos botoes que direcionam para graficos especificos
-    */
-class Clima {
-    infotext: string;
-
-    constructor() {
-    }
-
+class Atmosfera {
     view() {
-        return <div>
-            <div class="Gerargraficos">
-                <Gerargraficos dados={pydata.clima} global='false'></Gerargraficos>
-            </div>
-            <Leftinfo personagem={"madoka"}>
-                Você já sentiu que não existem motivos reais para você estar vivo?
-                Eu não quero dizer no sentido de suicídio. Só quero dizer como nada que fazemos é especial.
-                Só estar na escola ou trabalhar em algum emprego para alguma companhia.
-                É como se você fosse completamente substituível e o mundo não sentiria falta se você sumisse.
-                Isso me fez querer mudar o mundo após eu me graduar. Mas quanto mais velha eu fico,
-                mais eu percebo que é uma forma imatura de se pensar.
-            </Leftinfo>
+        return <div class="Graphics Gcontent">
+            <Gerargraficos dados={pydata.Atmosfera} global='false' personagem="madoka"></Gerargraficos>
         </div>
     }
 }
-
 // eessas abaixos sao semelhante a classe acima
 class Economia {
     view() {
         {
-            return <div>
-                <div class="Gerargraficos">
-                    <Gerargraficos dados={pydata.Economia} global='false'></Gerargraficos>
-                </div>
-                <Leftinfo personagem={"homura"}>
-                    Já perdi a fome,
-                    a vontade de viver.
-                    Já perdi o mundo,
-                    e um motivo pra morrer.
-                    Não é a tristeza que me mata,
-                    nem a alegria que me faz viver.
-                    É apenas um vazio...
-                    que me deixa assim.
-                    Longe de todos e até de mim.
-                </Leftinfo>
+            return <div class="Graphics Gcontent">
+                <Gerargraficos dados={pydata.Economia} global='false' personagem="HOMURA"></Gerargraficos>
             </div>
-
         }
     }
-
 }
-
-
-class Populacao {
+class População {
     view() {
         {
-            return <div>
-                <div class="Gerargraficos">
-                    <Gerargraficos dados={pydata.Populacao} global='true'></Gerargraficos>
-                </div>
-                <Leftinfo personagem={"miki"}>
-                    Estou enlouquecendo,
-                    Estou perdendo as estribeiras,
-                    não sei quais vão ser as consequências,
-                    só sei, que serei punida, por minha mente suicida.
-                    Cansei de ser julgada,
-                    eu quero ser compreendida,
-                    não aguento mais tanta dor,mas já que não conheço o amor,
-                    só cultivarei a dor.
-                </Leftinfo>
+            return <div class="Graphics Gcontent">
+                <Gerargraficos dados={pydata.Populacao} global='false' personagem="MIKI"></Gerargraficos>
             </div>
         }
     }
 }
 
-
-class Energia {
+class Oceanos {
     view() {
         {
-            return <div>
-                <div class="Gerargraficos">
-                    <Gerargraficos dados={pydata.Energia} global='true'></Gerargraficos>
-                </div>
-                <Leftinfo personagem={"tomoe"}>
-                    Você sabia??
-                    Que se você se alimentar saudavelmente.
-                    Dormir bem, praticar exercícios regularmente.
-                    Não consumir álcool,tabaco ou drogas ilícitas.
-                    E sempre beber bastante água.
-                    Você vai morrer do mesmo jeito?
-                </Leftinfo>
+            return <div class="Graphics Gcontent">
+                <Gerargraficos dados={pydata.Oceanos} global='false' personagem="TOMOE"></Gerargraficos>
             </div>
 
         }
     }
 }
-
-
-class GraphicsAudio {
-    audio: boolean;
-
-    constructor() {
-        this.audio = true;
-    }
-
-    view() {
-        // outro metodo de escrever ifs
-        // se this.audio for verdadeiro, entao musica vai ser igual ao html
-        // senao ":" musica recebe "" nada
-        let musica = this.audio ?
-            <div class="Graphics audio">
-                <audio autoplay="true" src={madokamusic} preload="auto" controls volume="0.4"></audio>
-            </div>
-            : "";
-        return <div>
-            <div class="Graphics Teste">
-                <div class="Graphics buttonsom" onclick={() => {
-                    this.audio = !this.audio
-                }}>Musica
-                </div>
-                {musica}
-            </div>
-        </div>
-
-    }
-}
+/*
+ <Leftinfo personagem={"tomoe"}>
+           Você sabia??
+                Que se você se alimentar saudavelmente.
+                Dormir bem, praticar exercícios regularmente.
+                Não consumir álcool,tabaco ou drogas ilícitas.
+                E sempre beber bastante água.
+              Você vai morrer do mesmo jeito?
+            </Leftinfo>
+  */

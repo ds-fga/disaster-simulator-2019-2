@@ -71,7 +71,13 @@
     "primary" $background-color map-get($primary-colors, "normal") map-get($primary-colors, "hover") map-get($primary-colors, "shadow"),
     "success" $background-color map-get($success-colors, "normal") map-get($success-colors, "hover") map-get($success-colors, "shadow"),
     "warning" $base-color map-get($warning-colors, "normal") map-get($warning-colors, "hover") map-get($warning-colors, "shadow"),
-    "error" $background-color map-get($error-colors, "normal") map-get($error-colors, "hover") map-get($error-colors, "shadow");
+    "error" $background-color map-get($error-colors, "normal") map-get($error-colors, "hover") map-get($error-colors, "shadow"),
+    "GraphicsSelected" $base-color map-get($GraphicsSelected-colors, "normal") map-get($GraphicsSelected-colors, "hover") map-get($GraphicsSelected-colors, "shadow"),
+    "GraphicsTab1" $base-color map-get($GraphicsTab1-colors, "normal") map-get($GraphicsTab1-colors, "hover") map-get($GraphicsTab1-colors, "shadow"),
+    "GraphicsTab2" $base-color map-get($GraphicsTab2-colors, "normal") map-get($GraphicsTab2-colors, "hover") map-get($GraphicsTab2-colors, "shadow"),
+    "GraphicsTab3" $base-color map-get($GraphicsTab3-colors, "normal") map-get($GraphicsTab3-colors, "hover") map-get($GraphicsTab3-colors, "shadow")
+    "GraphicsTab4" $base-color map-get($GraphicsTab4-colors, "normal") map-get($GraphicsTab4-colors, "hover") map-get($GraphicsTab4-colors, "shadow"),
+    "GraphicsTab5" $base-color map-get($GraphicsTab5-colors, "normal") map-get($GraphicsTab5-colors, "hover") map-get($GraphicsTab5-colors, "shadow");
 
   @each $type in $types {
     &.is-#{nth($type, 1)} {

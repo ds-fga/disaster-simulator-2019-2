@@ -9,7 +9,7 @@
   justify-content: flex-end;
 }
 
-.Tabs-tab.is-selected > .nes-btn {
+.Tabs-tab.is-selected > .culture {
   @extend .is-success;
 }
 
@@ -18,13 +18,30 @@
     transform: scaleX(1.1);
   }
 }
-.nes-btn {
+.culture_sidebar-btn {
   &:hover {
     transform: scaleX(1.1);
-   }
+  }
 }
-.nes-btn.is-primary {
+.preço_culture {
+  color: green;
+}
+.cultureImg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.dinheiroShow {
+  text-align: center;
+  font-size: 1rem;
+  color: darkgreen;
+}
+.hiddenCode {
+  color: red;
+}
+.nes-btn.culture {
   &:hover {
-    @extend .is-error;
+    transform: scaleX(1.1);
   }
 }

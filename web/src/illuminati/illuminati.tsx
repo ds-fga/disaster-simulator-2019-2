@@ -15,6 +15,20 @@ import papaImg from './imagens/papa.jpg';
 import silvioImg from './imagens/silvio.jpg';
 import optimusImg from './imagens/optimus.jpg';
 import putinImg from './imagens/putin.jpg';
+
+import rainha_dino from './imagens/rainha_dino.jpg';
+import alGore_dino from './imagens/al_gore_dino.jpg';
+import bill_dino from './imagens/bill_dino.jpg';
+import jeff_dino from './imagens/jeff_dino.jpg';
+import joesley_dino from './imagens/joesley_dino.jpg';
+import michael_dino from './imagens/michael_dino.jpg';
+import obama_dino from './imagens/obama_dino.jpg';
+import xi_dino from './imagens/xi_dino.jpg';
+import papa_dino from './imagens/papa_dino.jpg';
+import silvio_dino from './imagens/silvio_dino.jpg';
+import optimus_dino from './imagens/optimus_dino.jpg';
+import putin_dino from './imagens/putin_dino.jpg';
+
 import rainhaJson from './arquivos_json/rainha.json'; 
 import alGoreJson from './arquivos_json/alGore.json';
 import billJson from './arquivos_json/bill.json';
@@ -34,144 +48,117 @@ let event = {
     img: terminatorImg,
 
 }
-function funcao
-
 let illuminatiList = [
     {
         name: "Al Gore",
         imgUrl: alGoreImg,
         imgAlt: "Imagem Al Gore", 
-        sauroUrl: billImg,
+        sauroUrl: alGore_dino,
         introduction: "Ambiente",
         information: alGoreJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
+
     },
     {
         name: "Rainha Elizabeth II",
         imgUrl: rainhaImg,
         imgAlt: "Imagem Rainha",
-        sauroUrl: billImg,
+        sauroUrl: rainha_dino,
         introduction: "Politica",
         information: rainhaJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Bill Gates",
         imgUrl: billImg,
         imgAlt: "Imagem Bill Gates",
-        sauroUrl: alGoreImg,
+        sauroUrl: bill_dino,
         introduction: "Tecnologia",
         information: billJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Jeff Bezos",
         imgUrl: jeffImg,
         imgAlt: "Imagem Jeff",
-        sauroUrl: rainhaImg,
+        sauroUrl: jeff_dino,
         introduction: "Comércio",
         information: jeffJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Putin",
         imgUrl: putinImg,
         imgAlt: "Imagem Putin",
-        sauroUrl: michaelImg,
+        sauroUrl: putin_dino,
         introduction: "Guerra",
         information: putinJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Xi Jinping",
         imgUrl: xiImg,
         imgAlt: "Imagem Xi",
-        sauroUrl: papaImg,
+        sauroUrl: xi_dino,
         introduction: "Indústria",
         information: xiJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Michael Jackson",
         imgUrl: michaelImg,
         imgAlt: "Imagem Michael",
-        sauroUrl: xiImg,
+        sauroUrl: michael_dino,
         introduction: "Cultura",
         information: michaelJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Papa Francisco",
         imgUrl: papaImg,
         imgAlt: "Imagem Papa",
-        sauroUrl: silvioImg,
+        sauroUrl: papa_dino,
         introduction: "Religião",
         information: papaJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Silvio Santos",
         imgUrl: silvioImg,
         imgAlt: "Imagem Silvio",
-        sauroUrl: obamaImg,
+        sauroUrl: silvio_dino,
         introduction: "Mídia/Informação",
         information: silvioJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Obama",
         imgUrl: obamaImg,
         imgAlt: "Imagem Obama",
-        sauroUrl: joesleyImg,
+        sauroUrl: obama_dino,
         introduction: "Saúde",
         information: obamaJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Optimus Prime",
         imgUrl: optimusImg,
         imgAlt: "Imagem Optimus",
-        sauroUrl: obamaImg,
+        sauroUrl: optimus_dino,
         introduction: "Transporte",
         information: optimusJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Joesley",
         imgUrl: joesleyImg,
         imgAlt: "Imagem Joesley",
-        sauroUrl: xiImg,
+        sauroUrl: joesley_dino,
         introduction: "Agropecuária",
         information: joesleyJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
 ]
-
-function Graph(){
-var data = [
-    {
-        value: 300,
-        color:"#F7464A",
-        highlight: "#FF5A5E",
-        label: "Red"
-    },
-    {
-        value: 50,
-        color: "#46BFBD",
-        highlight: "#5AD3D1",
-        label: "Green"
-    },
-    {
-        value: 100,
-        color: "#FDB45C",
-        highlight: "#FFC870",
-        label: "Yellow"
-    }
-];
-
-var ctx = document.getElementById("myChart").getContext("2d");
-new Chart(ctx).Pie(data);
-}
 
 /**
  * Componente que mostra janela do conselho Illuminati.
@@ -181,28 +168,57 @@ export class Illuminati {
 
     view() {
         //     
-        return <Window> 
-            <Sidebar src={event.img} title="Conselho Illuminati" back={true}/>
+        return <Window id='IlluminatiWindow'> 
+            <Sidebar class = "Image" src={event.img} title="Conselho Illuminati" back={true}/>
             <Tabs>
                 
-                <Tab title="Ficha"> 
+                <Tab title={<button class="Illuminati_btn">Ficha</button}> 
                   <Tabs vertical={true} reverse={true}>{illuminatiList.map((e) => renderIlluminattiTab(e))}</Tabs>
                 </Tab>
                 
-                <Tab title="Seguidores">
-                    
-             
+                <Tab title={<button class="Illuminati_btn">Seguidores</button}>
+                    <h1 class="Titulo_Seguidores">Distribuição de seguidores:</h1>
+                    <br></br>
+                    <div class="chart"><Btn class = "btn_iluminatti">Empresarios</Btn></div>
+                    <div class="chart"><Btn class = "btn_iluminatti">Politicos</Btn></div>
+                    <div class="chart"><Btn class = "btn_iluminatti">Celebridades</Btn></div>
+
+<ul class="key">
+  <li>
+    <strong class="percent red">4%</strong>
+    <span class="choice">Al Gore</span>
+  </li>
+  <li>
+    <strong class="percent gray">4%</strong>
+    <span class="choice">Rainha Elizabeth II</span>
+  </li>
+  <li>
+    <strong class="percent purple">6%</strong>
+    <span class="choice">Bill Gates</span>
+  </li>
+  <li>
+    <strong class="percent blue">9%</strong>
+    <span class="choice">Jeff Bezos</span>
+  </li>
+  <li>
+    <strong class="percent yellow">31%</strong>
+    <span class="choice">Putin</span>
+  </li>
+  <li>
+    <strong class="percent orange">46%</strong>
+    <span class="choice">Xi Jinping</span>
+  </li>
+</ul>
                 </Tab>
                
             </Tabs>
 
         </Window>
-
     }
 }
 
 function renderIlluminattiTab(x) {
-    return <Tab title={x.name}>
+    return <Tab title={<button class="Illuminati_n">{x.name}</button}>
         <div class="IlluminatiSheet">
         <div class = "illuminati_side">
             <Sidebar class="description" title = {x.introduction}></Sidebar>
@@ -210,22 +226,32 @@ function renderIlluminattiTab(x) {
         </div>
         <div class="IlluminatiImage">
             <img src={x.sauroUrl} width="250" height="290" alt={x.imgAlt}/>
-            <img class="topImg" src={x.imgUrl} width="250" height="290" alt={x.imgAlt}/>
+            <img class="topImg" src={x.imgUrl} width="250" height="290" />
         </div>
             
         </div>
         <div class = "IlluminatInformation">
             <h2>Informações</h2>
             <dl>
-                <dt>Nome</dt><dd>{x.information.nome}</dd>
+                <dt>Nome</dt><dd class = "nome_illuminati">{x.information.nome}</dd>
                 <dt>Idade</dt><dd>{x.information.idade}</dd>
-                <dt>Atributos</dt>
+                <dt>Quem sou:</dt><dd class="sou">{x.information.introducao}</dd>
+                <br></br>
+                <h2>Atributos</h2>
+                <br></br>
                     <dd>Força: {x.information.atributos.forca}</dd>
                     <dd>Inteligência: {x.information.atributos.inteligencia}</dd>
-                <dt>Habilidades</dt>
+                    <br></br>
+                <h2>Habilidades</h2>
                     <dd>{x.information.habilidades.a}</dd>
                     <dd>{x.information.habilidades.b}</dd>
                     <dd>{x.information.habilidades.c}</dd>
+                    <br></br>
+                <h2>Objetivos</h2>
+                    <dd>Ambiente: {x.information.objetivos.ambiente}%</dd>
+                    <dd>Tecnologia: {x.information.objetivos.tecnologia}%</dd>
+                    <dd>Finanças: {x.information.objetivos.financas}%</dd>
+                    <dd>Filantropia: {x.information.objetivos.filantropia}%</dd>               
             </dl>
 
         </div>

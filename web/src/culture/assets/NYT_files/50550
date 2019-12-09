@@ -1,0 +1,138 @@
+var bk_results = {
+ "campaigns": [
+  {
+    "campaign": 244993,
+    "timestamp": 1575820780,
+    "categories": [
+    {
+     "categoryID": 1046034,
+     "timestamp": 1575820772
+    }
+    ]
+  },
+  {
+    "campaign": 221329,
+    "timestamp": 1575820780,
+    "categories": [
+    {
+     "categoryID": 1024818,
+     "timestamp": 1575820772
+    }
+    ]
+  },
+  {
+    "campaign": 239948,
+    "timestamp": 1575820780,
+    "categories": [
+    {
+     "categoryID": 1046034,
+     "timestamp": 1575820772
+    }
+    ]
+  },
+  {
+    "campaign": 237534,
+    "seg_id": "10202010046",
+    "timestamp": 1575820780,
+    "categories": [
+    {
+     "categoryID": 1021885,
+     "timestamp": 1575820772
+    }
+    ]
+  },
+  {
+    "campaign": 240926,
+    "amp;guid": "ON",
+    "amp;script": "0",
+    "label": "coAPCP2uiXwQyL734AM",
+    "timestamp": 1575820780,
+    "categories": [
+    {
+     "categoryID": 1068954,
+     "timestamp": 1575820772
+    }
+    ]
+  },
+  {
+    "campaign": 283588,
+    "amp;guid": "ON",
+    "amp;script": "0",
+    "label": "L0PfCLK4-oIBEMi-9-AD",
+    "timestamp": 1575820780,
+    "categories": [
+    {
+     "categoryID": 997862,
+     "timestamp": 1575820772
+    },
+    {
+     "categoryID": 1021866,
+     "timestamp": 1575820772
+    }
+    ]
+  },
+  {
+    "campaign": 244990,
+    "timestamp": 1575820780,
+    "categories": [
+    {
+     "categoryID": 1046034,
+     "timestamp": 1575820772
+    }
+    ]
+  },
+  {
+    "campaign": 239945,
+    "timestamp": 1575820780,
+    "categories": [
+    {
+     "categoryID": 1046034,
+     "timestamp": 1575820772
+    }
+    ]
+  },
+  {
+    "campaign": 221330,
+    "timestamp": 1575820780,
+    "categories": [
+    {
+     "categoryID": 1021885,
+     "timestamp": 1575820772
+    }
+    ]
+  },
+  {
+    "campaign": 221243,
+    "timestamp": 1575820780,
+    "categories": [
+    {
+     "categoryID": 997862,
+     "timestamp": 1575820772
+    }
+    ]
+  },
+  {
+    "campaign": 283578,
+    "amp;guid": "ON",
+    "amp;script": "0",
+    "label": "oWTTCJWJjYMBEMi-9-AD",
+    "timestamp": 1575820780,
+    "categories": [
+    {
+     "categoryID": 1046034,
+     "timestamp": 1575820772
+    }
+    ]
+  },
+  {
+    "campaign": 244991,
+    "timestamp": 1575820780,
+    "categories": [
+    {
+     "categoryID": 1046034,
+     "timestamp": 1575820772
+    }
+    ]
+  }
+ ]
+};

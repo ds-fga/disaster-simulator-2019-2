@@ -6,20 +6,12 @@ interface InfoAttrs {
 }
 
 class TechInfo extends Component<InfoAttrs>{
-    progress(prog) {
-        if (prog >= 0 && prog <= 100) {
-            return(<progress class="nes-progress is-success" value={prog} max="100"/>)
-        }
-    }
     
     view(vnode) {
         var spec = vnode.attrs.spec;
         var title = vnode.attrs.title;
-        var listInfo = vnode.attrs.listInfo;
         var techDisplay;
         var titleDisplay;
-        var effect1 = vnode.attrs.effect1;
-        var effect2 = vnode.attrs.effect2;
 
         if (spec !== ""){
             techDisplay = spec;
@@ -30,20 +22,13 @@ class TechInfo extends Component<InfoAttrs>{
         }
         return (
           <div style="margin-right: auto; margin-left: auto;" class="nes-container with-title is-rounded scienceInfo">
-              <p class="title nes-container is-rounded">Info</p>
-              <h2>{`${titleDisplay}`}</h2>
-              {techDisplay}
-              <div class="lists">
-                <ul class="nes-list is-disc">
-                  {(listInfo || []).map(item => (
-                    <li>
-                      {item.teste}
-                    </li>
-                  ))}
-                </ul>
+              <div class="title" style={'display: flex; justify-content: space-between'}>
+                <p style={'padding: .3rem; height: 2.5rem'} class="nes-container is-rounded">Info</p>
+                <p style={'padding: .3rem; height: 2.5rem; color: rgb(120, 160, 65)'} class="nes-container is-rounded">${vnode.attrs.money}</p>
               </div>
+              <h2>{`${titleDisplay}`}</h2>
+              <p>{techDisplay}</p>
               {vnode.children}
-              {this.progress(vnode.attrs.prog)}
           </div>
         )
     }

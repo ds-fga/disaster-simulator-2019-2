@@ -1,11 +1,13 @@
 import m from 'mithril';
+import {MithrilTsxComponent as Component} from 'mithril-tsx-component';
 
-class TechList {
+interface list {
+}
 
-    showBar(prog){
-        if(prog <= 100 && prog >= 0) {
-            return(<progress class="nes-progress is-primary" value={prog} max="100"/>)
-        }
+class TechList extends Component<list>{
+
+    constructor(vnode){
+        super();
     }
 
     view(vnode){

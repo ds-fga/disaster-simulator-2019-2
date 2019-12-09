@@ -11,14 +11,17 @@ class SearchBar extends Component<sbox>{
         super();
     }
     
-    view(vnode){
-        return<div class="science__search-bar">
+    view(vnode){    
+
+        return<form onsubmit={vnode.attrs.cheats} class="science__search-bar">
             <input
                 placeholder={vnode.attrs.placeholder}
                 oninput={vnode.attrs.changeHandler}
                 type="search"
-                class="nes-input science__search-bar--component"/>
-        </div>
+                class="nes-input science__search-bar--component"
+                id="scienceInput"/>
+                <input type="submit" style={"display: none"}/>
+        </form>
     }
 }
 

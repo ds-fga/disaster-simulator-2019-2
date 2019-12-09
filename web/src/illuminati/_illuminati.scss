@@ -1,25 +1,20 @@
-.Illuminati {
-  
-}
-
 .description{
     float: right;
     width: 420px;
-    margin-right: 10px;
-    margin-top: 10px; 
+    margin-right: 50px;
+    margin-top: 50px; 
 }
 .taxa{
     float: right;
     width: 440px;
-    margin-top: 355px;
+    margin-top: 395px;
     margin-right: -348px;
 }
 .IlluminatiImage{
     float: right;
-    margin-top: 58px;
+    margin-top: 100px;
     margin-right: -300px;
     position: relative;
-
 
     img {
         display: block;
@@ -30,52 +25,166 @@
     }
     
     .topImg:hover {
-        opacity: 0.25;
+        opacity: 0;
         z-index: 1000;
     }
 
 }
+
 .IlluminatInformation{
-    width: 750px;
+    font-size: 15px;
+    width: 1000px;
     margin-left: 30px;
-    margin-top: 10px;
-    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-right: 30px;
+    padding: 30px;
     border-width: 10px;
-    background-color: rgb(194, 136, 10,0.5);
+    background-color: rgb(194, 136, 10,0.8);
     box-shadow: 2px 0 1.5rem rgba(48,55,66,.5),
                 0 0 4px 0px rgba(48,55,66,.75);
+    &:hover{
+        background-color: rgb(194, 136, 10,0.5);
+    }
+    
+}
+.sou{
+  text-align: justify;
+}
+.Illuminati_btn{
+    background-color: rgb(194, 136, 10,0.8);
+    text-shadow: inherit;
+    transition: all .1s ease;
+    padding: 20px;
+    transform: scaleX(1.1);
+    border-style: ridge;
+    border-radius: 25%;
+    border-width: 2px;
+    border-color:  rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 2px 2px black;
+    &:hover{
+        background-color: rgb(194, 136, 10,0.5);
+        margin-left: .5rem;
+        margin-right: .5rem;
+    }
+    &:active{
+        transform: scale(1.03);
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.5);
+    }
+}
+.Illuminati_n{
+    background-color: rgb(194, 136, 10,0.8);
+    width: 16rem;
+    margin-bottom: -.2rem;
+    margin-right: .75rem;
+    text-shadow: inherit;
+    perspective: 1000px;
+    transition: all .1s ease;
+    padding: 10px;
+    &:hover{
+     background-color: rgb(194, 136, 10,0.5);
+      transform: scale(1.05);
+      margin: 0 .8rem .8rem;
+      box-shadow: 0 1rem .2rem rgba(0, 0, 0, .5);
+    }
+
+    &:active{
+      transform: scale(1.03);
+      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .5);
+}
 }
 
-.TabsIlluminati {
+#IlluminatiWindow{
     background-image: url(/src/illuminati/imagens/olho_fundo.gif);
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    background-size: 90% 120%;
-    background-position-x: right;
+    background-position-x: left;
     background-position-y: center;
-
-    &-head {
-        display: flex;
-        background:rgb(194, 136, 10,0.5);
-    }
-    &-tab {
-        padding: 0.5rem 1rem;
-    }
-    &-tab.is-selected {
-        background:rgb(194, 136, 10);
-        color: white;
-    }
-    &-content {
-        overflow-y: auto;
-        height: 100%;
-    }
 }
 
-.Sidebar {
-    
-    &-title {
-        background:rgb(194, 136, 10);
+.chart {
+  background: 
+    conic-gradient(red 4%, 
+      gray 0 8%, 
+      blue 0 20%,
+      yellow 0 48%,
+      purple 0 54%,
+      orange 0
+    );
+  
+  color: green;
+  border-radius: 50%;
+  width: 20%;
+  padding-top: 20%;
+  float: left;
+  display: inline;
+  text-indent: -1.5rem;
+  margin-top: 60px;
+  margin-right: 20px;
+  margin-left: 40px;
 }
+
+.key {
+  width: 20%;
+  margin-top: 60px;
+  float: left;
+  list-style: none;
+  display: table;
+  border-collapse: separate;
+  background-color:rgb(194, 136, 10,0.5);
+  > li {
+    display: table-row;
+    > * {
+      display: table-cell;
+      border-bottom: 12px solid rgb(194, 136, 10,0.5);
+    }
+  }
 }
+
+.Titulo_Seguidores{
+  margin-top: 30px;
+  margin-left: 40px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+}
+.percent {
+  color: white;
+  padding: 10px 2px;
+  text-shadow: 0 0 1px black;
+  text-align: center;
+}
+.choice {
+  padding-left: 40px;
+}
+
+.red {
+  background: red;
+}
+.gray {
+  background: gray;
+}
+.blue {
+  background: blue;
+}
+.yellow {
+  background: yellow;
+}
+.purple {
+  background: purple;
+}
+.orange {
+  background: orange;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.btn_iluminatti{
+  position: absolute; top: 85 px;
+  padding-left: 50 px;
+  
+}
+

@@ -1,14 +1,21 @@
 {
-    "nome": "Senor Abravanel",
+    "nome": "Senor Abravanel (Olha o aviãozinho)" ,
     "idade": "88",
     "atributos": {
         "forca": 5,
         "inteligencia": 15,
         "influencia": 20,
     },
+    "introducao":"Silvio Santos OMC, nome artístico de Senor Abravanel, é um apresentador de televisão e empresário brasileiro. Possui mais de 60 anos de carreira. Nasceu em Travessa Bemtevi, no bairro da Lapa, na região central da cidade do Rio de Janeiro, então capital do Brasil e sede do então Distrito Federal.",
     "habilidades": {
         "a": "Carisma",
         "b": "Caridade",
         "c": "Aeromodelismo",
+      },
+      "objetivos": {
+          "ambiente": 10,
+          "tecnologia": 20,
+          "financas": 100,
+          "filantropia": 80,
       }
 }

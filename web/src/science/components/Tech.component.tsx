@@ -4,7 +4,6 @@ import { MithrilTsxComponent as Component } from 'mithril-tsx-component';
 interface TechAttrs {
     title: string;
     money: string;
-    myClass: string;
 }
 
 class Tech extends Component<TechAttrs> {
@@ -13,18 +12,24 @@ class Tech extends Component<TechAttrs> {
         super();
     }
 
+    showMoney(status, money){
+        if(status !== "purchased"){
+            return("$" + money);
+        }
+    }
+
     view(vnode){
 
         var isDisabled;
-        if (vnode.attrs.status === "2"){
+        if (vnode.attrs.status === "blocked"){
             isDisabled = " unTech";
         }else{
             isDisabled = "";
         }
 
-        return <button onclick={vnode.attrs.changeHandler} class={`nes-btn tech-btn ${vnode.attrs.type} ${isDisabled}`} data-tilt>
+        return <button id={vnode.attrs.title} onclick={vnode.attrs.changeHandler} ondblclick={vnode.attrs.dbclick} class={`nes-btn tech-btn ${vnode.attrs.type} ${isDisabled}`}>
             <div class="TechText"><p class="TechTitle">{vnode.attrs.title}</p>
-            <p>R${`${vnode.attrs.money}`}</p></div>
+            <p>{this.showMoney(vnode.attrs.status, vnode.attrs.money)}</p></div>
         </button>
     }
 }

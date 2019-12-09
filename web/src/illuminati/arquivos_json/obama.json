@@ -1,14 +1,21 @@
 {
-    "nome": "Barack Hussein Obama II",
+    "nome": "Barack Hussein Obama II (Esposo da Michelliana)",
     "idade": "58",
     "atributos": {
         "forca": 5,
         "inteligencia": 15,
         "influencia": 20,
     },
+    "introducao":"Barack Hussein Obama II é um advogado e político norte-americano que serviu como o 44.º presidente dos Estados Unidos de 2009 a 2017, sendo o primeiro afro-americano a ocupar o cargo.",
     "habilidades": {
         "a": "Política",
         "b": "Oratória",
         "c": "Cura",
+      },
+      "objetivos": {
+          "ambiente": 50,
+          "tecnologia": 20,
+          "financas": 50,
+          "filantropia": 70,
       }
 }

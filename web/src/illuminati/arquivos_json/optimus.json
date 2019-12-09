@@ -1,14 +1,21 @@
 {
-    "nome": "Optimus Prime",
+    "nome": "Optimus Prime (Primeiro Réptil Robô)",
     "idade": "???",
     "atributos": {
         "forca": 5,
         "inteligencia": 15,
         "influencia": 20,
     },
+    "introducao":"Optimus Prime é o protagonista do universo Transformers. Ele é o lider dos Autobots, um grupo de robôs Cybertron, e detentor da Matriz da Liderança em quase todas as suas versões. Seu maior inimigo é Megatron, líder dos Decepticons, que na maioria das séries já foi amigo de Optimus em Cybertron.",
     "habilidades": {
         "a": "Liderança",
         "b": "Luta",
         "c": "Mudança de Forma",
+      },
+      "objetivos": {
+          "ambiente": 0,
+          "tecnologia": 100,
+          "financas": 0,
+          "filantropia": 70,
       }
 }
