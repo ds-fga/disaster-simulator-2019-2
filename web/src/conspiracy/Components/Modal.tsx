@@ -67,7 +67,7 @@ export class ModalPresentear  {
                 <a href ={link} class="nes-btn">{btn_text}</a>,
                 <div class="modal" id={nome}>
                             <div class="modal-container">
-                        <p>VOCE PRESENTEOU {n} PONTOS</p>
+                        <p>VOCE PRESENTEOU {n} SEGUIDORES</p>
                         <a href="#">Close</a>
                     </div>
                 </div>
