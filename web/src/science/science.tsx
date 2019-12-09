@@ -9,6 +9,7 @@ import TechButton from './components/TechButton.component';
 import '../model';
 import { model } from '../model';
 import {MithrilTsxComponent as Component} from 'mithril-tsx-component';
+import image from './images/Science.png';
 
 /**
  * Componente para janela com árvore tecnológica e de desenvolvimento científico.
@@ -37,6 +38,7 @@ export class Science extends Component<ScienceAttrs>{
         currentTechSpec: string;
         currentTechProg?: number;
         currentTechMoney: number;
+        cheat: boolean;
     };
     cheatActive: any;
 
@@ -49,7 +51,8 @@ export class Science extends Component<ScienceAttrs>{
             currentTech: "",
             searchbox: "",
             currentTechSpec: "",
-            currentTechMoney: 0
+            currentTechMoney: 0,
+            cheat: false
         };
         this.effectEnabled = true;
         this.nuclear = [];
@@ -120,6 +123,9 @@ export class Science extends Component<ScienceAttrs>{
             }
         }
         this.request();
+        if(this.estado.cheat){
+            this.crt();
+        }
     }
 
     request(){
@@ -179,17 +185,21 @@ export class Science extends Component<ScienceAttrs>{
         if(cheat === 'add'){
             m.request({url: 'http://localhost:5000/cheat/add', method: 'GET'});
             this.crt();
+            this.estado.cheat = true;
         }
         if(cheat === 'minus'){
             m.request({url: 'http://localhost:5000/cheat/minus', method: 'GET'});
             this.crt();
+            this.estado.cheat = true;
         }
         if(cheat === 'reset'){
             m.request({url: 'http://localhost:5000/cheat/reset', method: 'GET'});
             this.crt();
+            this.estado.cheat = true;
         }
         if(cheat === 'deactivate'){
             this.crt(false);
+            this.estado.cheat = false;
             for(let i = 0; i < 5; i++){
                 this.estado.techs.pop();
                 this.request();
@@ -197,6 +207,7 @@ export class Science extends Component<ScienceAttrs>{
         }
         if(cheat === 'activate'){
             this.crt();
+            this.estado.cheat = true;
             for(let i = 0; i < 5; i++){
                 this.estado.techs.push(this.cheatActive[i]);
             }
@@ -205,6 +216,9 @@ export class Science extends Component<ScienceAttrs>{
 
     oninit(){
         this.request();
+        if(this.estado.cheat){
+            this.crt();
+        }
     }
 
     crt(bool = true){
@@ -222,7 +236,7 @@ export class Science extends Component<ScienceAttrs>{
 
         return <Window class="science">
 
-            <Sidebar class="science__sidebar" title={
+            <Sidebar class="science__sidebar" src={image} title={
                 <button class="nes-btn science__sidebar-btn" onclick={e=> model.menu()}>{"<"} Voltar</button>
             }/>
 
