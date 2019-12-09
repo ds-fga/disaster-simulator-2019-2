@@ -1,11 +1,12 @@
 {
-    "nome": "Joesley Mendonça Batista",
+    "nome": "Joesley Mendonça Batista (Agro é reptil)",
     "idade": "47",
     "atributos": {
         "forca": 5,
         "inteligencia": 15,
         "influencia": 20,
     },
+    "introducao":"Joesley Batista é um empresário brasileiro, um dos donos e responsável pelo processo de expansão e internacionalização da JBS, uma das principais empresas do agronegócio no Brasil. Foi presidente do Conselho de Administração da JBS.",
     "habilidades": {
         "a": "Agricultura",
         "b": "Empreendorismo",

@@ -1,11 +1,12 @@
 {
-    "nome": "Michael Joseph Jackson",
+    "nome": "Michael Joseph Jackson (Criador do Moon Walker Reptiliano)",
     "idade": "61",
     "atributos": {
         "forca": 5,
         "inteligencia": 15,
         "influencia": 20,
     },
+    "introducao":"Michael Joseph Jackson foi um cantor, compositor e dançarino estadunidense. Apelidado de Rei do Pop, ele é considerado uma das figuras culturais mais importantes do século XX e um dos maiores artistas da história da música.",
     "habilidades": {
         "a": "Gingado",
         "b": "Canto",

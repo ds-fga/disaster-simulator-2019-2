@@ -1,11 +1,12 @@
 {
-    "nome": "Jorge Mario Bergoglio",
+    "nome": "Jorge Mario Bergoglio (Que os répteis sejam louvados)",
     "idade": "82",
     "atributos": {
         "forca": 5,
         "inteligencia": 15,
         "influencia": 20,
     },
+    "introducao":"Francisco, S.J., nascido Jorge Mario Bergoglio, é o 266º Papa da Igreja Católica e atual Chefe de Estado da Cidade Estado do Vaticano, sucedendo ao Papa Bento XVI, que abdicou ao papado em 28 de fevereiro de 2013.",
     "habilidades": {
         "a": "Fé",
         "b": "Paciência",

@@ -16,6 +16,19 @@ import silvioImg from './imagens/silvio.jpg';
 import optimusImg from './imagens/optimus.jpg';
 import putinImg from './imagens/putin.jpg';
 
+import rainha_dino from './imagens/rainha_dino.jpg';
+import alGore_dino from './imagens/al_gore_dino.jpg';
+import bill_dino from './imagens/bill_dino.jpg';
+import jeff_dino from './imagens/jeff_dino.jpg';
+import joesley_dino from './imagens/joesley_dino.jpg';
+import michael_dino from './imagens/michael_dino.jpg';
+import obama_dino from './imagens/obama_dino.jpg';
+import xi_dino from './imagens/xi_dino.jpg';
+import papa_dino from './imagens/papa_dino.jpg';
+import silvio_dino from './imagens/silvio_dino.jpg';
+import optimus_dino from './imagens/optimus_dino.jpg';
+import putin_dino from './imagens/putin_dino.jpg';
+
 import rainhaJson from './arquivos_json/rainha.json'; 
 import alGoreJson from './arquivos_json/alGore.json';
 import billJson from './arquivos_json/bill.json';
@@ -35,23 +48,22 @@ let event = {
     img: terminatorImg,
 
 }
-function funcao
-
 let illuminatiList = [
     {
         name: "Al Gore",
         imgUrl: alGoreImg,
         imgAlt: "Imagem Al Gore", 
-        sauroUrl: billImg,
+        sauroUrl: alGore_dino,
         introduction: "Ambiente",
         information: alGoreJson,
         taxa: "--% alinhamento",
+
     },
     {
         name: "Rainha Elizabeth II",
         imgUrl: rainhaImg,
         imgAlt: "Imagem Rainha",
-        sauroUrl: billImg,
+        sauroUrl: rainha_dino,
         introduction: "Politica",
         information: rainhaJson,
         taxa: "--% alinhamento",
@@ -60,7 +72,7 @@ let illuminatiList = [
         name: "Bill Gates",
         imgUrl: billImg,
         imgAlt: "Imagem Bill Gates",
-        sauroUrl: alGoreImg,
+        sauroUrl: bill_dino,
         introduction: "Tecnologia",
         information: billJson,
         taxa: "--% alinhamento",
@@ -69,7 +81,7 @@ let illuminatiList = [
         name: "Jeff Bezos",
         imgUrl: jeffImg,
         imgAlt: "Imagem Jeff",
-        sauroUrl: rainhaImg,
+        sauroUrl: jeff_dino,
         introduction: "Comércio",
         information: jeffJson,
         taxa: "--% alinhamento",
@@ -78,7 +90,7 @@ let illuminatiList = [
         name: "Putin",
         imgUrl: putinImg,
         imgAlt: "Imagem Putin",
-        sauroUrl: michaelImg,
+        sauroUrl: putin_dino,
         introduction: "Guerra",
         information: putinJson,
         taxa: "--% alinhamento",
@@ -87,7 +99,7 @@ let illuminatiList = [
         name: "Xi Jinping",
         imgUrl: xiImg,
         imgAlt: "Imagem Xi",
-        sauroUrl: papaImg,
+        sauroUrl: xi_dino,
         introduction: "Indústria",
         information: xiJson,
         taxa: "--% alinhamento",
@@ -96,7 +108,7 @@ let illuminatiList = [
         name: "Michael Jackson",
         imgUrl: michaelImg,
         imgAlt: "Imagem Michael",
-        sauroUrl: xiImg,
+        sauroUrl: michael_dino,
         introduction: "Cultura",
         information: michaelJson,
         taxa: "--% alinhamento",
@@ -105,7 +117,7 @@ let illuminatiList = [
         name: "Papa Francisco",
         imgUrl: papaImg,
         imgAlt: "Imagem Papa",
-        sauroUrl: silvioImg,
+        sauroUrl: papa_dino,
         introduction: "Religião",
         information: papaJson,
         taxa: "--% alinhamento",
@@ -114,7 +126,7 @@ let illuminatiList = [
         name: "Silvio Santos",
         imgUrl: silvioImg,
         imgAlt: "Imagem Silvio",
-        sauroUrl: obamaImg,
+        sauroUrl: silvio_dino,
         introduction: "Mídia/Informação",
         information: silvioJson,
         taxa: "--% alinhamento",
@@ -123,7 +135,7 @@ let illuminatiList = [
         name: "Obama",
         imgUrl: obamaImg,
         imgAlt: "Imagem Obama",
-        sauroUrl: joesleyImg,
+        sauroUrl: obama_dino,
         introduction: "Saúde",
         information: obamaJson,
         taxa: "--% alinhamento",
@@ -132,7 +144,7 @@ let illuminatiList = [
         name: "Optimus Prime",
         imgUrl: optimusImg,
         imgAlt: "Imagem Optimus",
-        sauroUrl: obamaImg,
+        sauroUrl: optimus_dino,
         introduction: "Transporte",
         information: optimusJson,
         taxa: "--% alinhamento",
@@ -141,7 +153,7 @@ let illuminatiList = [
         name: "Joesley",
         imgUrl: joesleyImg,
         imgAlt: "Imagem Joesley",
-        sauroUrl: xiImg,
+        sauroUrl: joesley_dino,
         introduction: "Agropecuária",
         information: joesleyJson,
         taxa: "--% alinhamento",
@@ -167,9 +179,9 @@ export class Illuminati {
                 <Tab title={<button class="Illuminati_btn">Seguidores</button}>
                     <h1 class="Titulo_Seguidores">Distribuição de seguidores:</h1>
                     <br></br>
-                    <div class="chart"><b>Empresários</b></div>
-                    <div class="chart"><b>Políticos</b></div>
-                    <div class="chart"><b>Mídia</b></div>
+                    <div class="chart"><Btn class = "btn_iluminatti">Empresarios</Btn></div>
+                    <div class="chart"><Btn class = "btn_iluminatti">Politicos</Btn></div>
+                    <div class="chart"><Btn class = "btn_iluminatti">Celebridades</Btn></div>
 
 <ul class="key">
   <li>
@@ -214,15 +226,16 @@ function renderIlluminattiTab(x) {
         </div>
         <div class="IlluminatiImage">
             <img src={x.sauroUrl} width="250" height="290" alt={x.imgAlt}/>
-            <img class="topImg" src={x.imgUrl} width="250" height="290" alt={x.imgAlt}/>
+            <img class="topImg" src={x.imgUrl} width="250" height="290" />
         </div>
             
         </div>
         <div class = "IlluminatInformation">
             <h2>Informações</h2>
             <dl>
-                <dt>Nome</dt><dd>{x.information.nome}</dd>
+                <dt>Nome</dt><dd class = "nome_illuminati">{x.information.nome}</dd>
                 <dt>Idade</dt><dd>{x.information.idade}</dd>
+                <dt>Quem sou:</dt><dd class="sou">{x.information.introducao}</dd>
                 <br></br>
                 <h2>Atributos</h2>
                 <br></br>

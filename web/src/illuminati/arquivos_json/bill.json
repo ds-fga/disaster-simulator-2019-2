@@ -1,5 +1,5 @@
 {
-    "nome": "Bill Gates",
+    "nome": "Bill Gates (Tecnopata Réptil)",
     "idade": "64",
     "poder": "Tecnologia", 
     "atributos": {
@@ -7,6 +7,7 @@
         "inteligencia": 20,
         "influencia": 22,
     },
+    "introducao":"William Henry Gates III mais conhecido como Bill Gates, é um magnata, empresário, diretor executivo, investidor, filantropo e autor americano, que ficou conhecido por fundar junto com Paul Allen a Microsoft, a maior e mais conhecida empresa de software do mundo em termos de valor de mercado. ",
     "habilidades": {
         "a": "Criativo",
         "b": "Inovador",

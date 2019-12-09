@@ -116,11 +116,6 @@ def cheat_add():
     simulation.set_var('capital', capital)
     return jsonify({'status': 'success', 'capital': capital})
 
-@app.route('/cheat/reset')
-def reset():
-    science.reset()
-    return jsonify({'status': 'success', 'techs': science.list_techs()})
-
 @app.route('/cheat/minus')
 def cheat_minus():
     capital = simulation.get_var('capital') - 50

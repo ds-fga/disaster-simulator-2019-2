@@ -42,7 +42,6 @@
     overflow-x: visible;
     background: none;
     text-align: center;
-    
   }
   .Gtab {
     height: 95%;
@@ -63,6 +62,7 @@
     z-index: 10;
     border-radius: 0px 5px 5px 0;
     transform: translateX(-98%);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   }
   .Lefttext {
     margin: 15px;
@@ -77,7 +77,6 @@
     position: block;
     max-height: 150px;
     float: left;
-    box-shadow: 10px -10px -5px black;
   }
   .gerargraficos {
     height: 90%;
@@ -105,7 +104,7 @@
     visibility: hidden;
     position: absolute;
   }
-  
+
   .Tela {
     margin-top: 1rem;
     padding: 5px;
@@ -115,7 +114,43 @@
       color: red;
     }
   }
+  .BottomInfo {
+    position: absolute;
+    background: black;
+    overflow: hidden;
+    height: 15%;
+    width: 100%;
+    bottom: 0;
+    z-index: 100;
+    transform: translateY(100%);
+    border-radius: 1rem;
+    text-align: center;
+    padding: 10px;
+    padding-bottom: 0;
+    transition: all 2s ease;
+  }
+  .bottomNesContainer {
+    background: white;
+    text-align: left;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    padding-left: 170px;
+    padding-bottom: 0;
+  }
+  
+  .Bottomimg{
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-height: 200px;
+    margin: 1rem;
+  }
+  
 }
+
 #GraphicsWindow {
   background: black;
   background-size: cover;
@@ -142,8 +177,8 @@
       padding: 1%;
       padding-bottom: 0;
     }
-    .back-Button and .audiobutton {
-      margin-top: 1%;
+    .back-Button{
+      margin-top: 1.2%;
       margin-right: 1%;
       margin-left: 0;
       .show {
@@ -187,8 +222,8 @@
       padding: 1%;
       padding-bottom: 0;
     }
-    .back-Button and .audiobutton{
-      margin-top: 1%;
+    .back-Button {
+      margin-top: 1.2%;
       margin-right: 1%;
       margin-left: 0;
       .show {

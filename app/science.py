@@ -1,7 +1,7 @@
 # Status: "available", "purchased", "blocked"
 import os, json
 
-data = {   
+original = {   
     #NUCLEAR ----------------------------
     'Conhecimento atômico': {
         'title': "Conhecimento atômico",
@@ -232,14 +232,11 @@ data = {
     },
 }
 
-original = data
+data = original
 
 def list_techs():
     return [sc for sc in data.values() if sc["status"] == "available"]
 
-def reset():
-    global data
-    data = original
 
 def save_techs():
     path = os.path.abspath('techs.json')

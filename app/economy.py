@@ -5,20 +5,52 @@ def get_store():
 data = {
     "lucro": [
         {
-            "title": "Lucro ",
+            "title": "Lucro 1 ",
             "description": "dsjfoisdjfo si fasasfasfafs jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             "attrs": [
-                { "name": "População", "color": "color: red", "points": "-39%" },
-                { "name": "Economia", "color": "color: green", "points": "+R$3000,00" }
+                { "name": "Economia", "color": "color: green", "points": "50" }
             ],
             "compraDeItem": [
-                {"btnAberto": "true", "preco": "5"}
+                {"btnAberto": "true", "preco": "3"}
+            ]
+        },
+        {
+            "title": "Lucro 2 ",
+            "description": "dsjfoisdjfo si fasasfasfafs jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
+            "attrs": [
+                { "name": "População", "color": "color: red", "points": "-39" },
+                { "name": "Economia", "color": "color: green", "points": "+50" }
+            ],
+            "compraDeItem": [
+                {"btnAberto": "true", "preco": "2"}
+            ]
+        },
+        {
+            "title": "Lucro 3 ",
+            "description": "dsjfoisdjfo si fasasfasfafs jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
+            "attrs": [
+                { "name": "População", "color": "color: red", "points": "-39" },
+                { "name": "Economia", "color": "color: green", "points": "+50" }
+            ],
+            "compraDeItem": [
+                {"btnAberto": "true", "preco": "4"}
             ]
         }
     ],
     "prejuizo": [
         {
-            "title": "Prejuizo ",
+            "title": "Prejuízo 1 ",
+            "description": "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
+            "attrs": [
+                { "name": "attr1", "color": "color: red", "points": "?" },
+                { "name": "attr2", "color": "color: green", "points": "?" }
+            ],
+            "compraDeItem": [
+                {"btnAberto": "true", "preco": "1"}
+            ]
+        },
+        {
+            "title": "Prejuízo 2 ",
             "description": "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             "attrs": [
                 { "name": "attr1", "color": "color: red", "points": "?" },
@@ -35,7 +67,7 @@ data = {
             "description": "dsjfoisdjfo sasfasfasfi jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             "attrs": "aumenta sei la",
             "compraDeItem": [
-                {"btnAberto": "true", "preco": "3000"}
+                {"btnAberto": "true", "preco": "23"}
             ]
         }
     ],
@@ -45,7 +77,7 @@ data = {
             "description": "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             "imagemReferencia": "testImage",
             "compraDeItem": [
-                {"btnAberto": "true", "preco": "3000", "titleBtn": "Comprar"}
+                {"btnAberto": "true", "preco": "200", "titleBtn": "Comprar"}
             ]
         }
     ],
@@ -55,23 +87,7 @@ data = {
             "description": "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
             "imagemReferencia": "testImage",
             "compraDeItem": [
-                {"btnAberto": "true", "preco": "3000", "titleBtn": "Vender"}
-            ]
-        },
-        {
-            "title": "Inventário ",
-            "description": "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
-            "imagemReferencia": "testImage",
-            "compraDeItem": [
-                {"btnAberto": "true", "preco": "3000", "titleBtn": "Vender"}
-            ]
-        },
-        {
-            "title": "Inventário ",
-            "description": "dsjfoisdjfo si jfosij afsohfsauhifasuhosafhuohuoafshoasfhoifosi jfoisdj foisj dfois jdofisodjf osi jfos",
-            "imagemReferencia": "testImage",
-            "compraDeItem": [
-                {"btnAberto": "true", "preco": "3000", "titleBtn": "Vender"}
+                {"btnAberto": "true", "preco": "10", "titleBtn": "Vender"}
             ]
         }
     ]

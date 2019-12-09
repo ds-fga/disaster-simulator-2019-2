@@ -1,6 +1,6 @@
 import m from 'mithril';
 import { Window, Tab, Tabs, Btn, Sidebar, VScroll } from '../ui';
-import sidebarImage from '../economy/idosa.jpg';
+import EconomySidebarImage from '../economy/src/idosa.jpg';
 
 var EconomyMoney;
 var dataEconomy = [{
@@ -32,7 +32,7 @@ m.request({url: "http://127.0.0.1:5000/economy/store-itens/"}).then(dados =>{
 
 function createCard ({ title, description, attrs, compraDeItem }) {
     function viewAttr ({ name, color, points }) {
-        return <tr style={color}><td>{name}</td> <td>{points}</td></tr>
+        return <tr style={color}><td>{name}</td><td>U${points}T</td></tr>
     }
 
     function createBotao (btn) {
@@ -119,7 +119,7 @@ function createCardSimple ({ title, description, attrs, compraDeItem }) {
         <table>
             <thead>
                 <tr><h3><th>Atributos adicionais</th></h3></tr>
-                <p>{attrs}</p>
+                <p>{attrs}%</p>
             </thead>
             <tbody>
                 <tr><h3><th>Preço</th></h3></tr>
@@ -194,7 +194,7 @@ export class Economy {
     view() {
         return <div>
             <Window>
-                <Sidebar title="Economia" points="4" src={sidebarImage} />
+                <Sidebar title="Economia" points={totalPoints} src={EconomySidebarImage}/>
                 <Tabs>
                     <Tab title={<button class="nes-btn">Ações</button>}>
                         <p>Dinheiro: U${EconomyMoney}T</p>
@@ -210,7 +210,7 @@ export class Economy {
                             <div style="flex-grow: 1">
                                 <VScroll>
                                     <div class="nes-container with-title is-centered is-rounded">
-                                        <p class="title">Prejuizo</p>
+                                        <p class="title">Prejuízo</p>
                                             {dataEconomy[0].prejuizo.map(createCard)}
                                     </div>
                                 </VScroll>
@@ -298,4 +298,3 @@ export class ExpandirCard {
         </div>
     }
 }
-//vscroll rolamento
