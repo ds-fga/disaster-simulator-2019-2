@@ -9,6 +9,7 @@ import TechButton from './components/TechButton.component';
 import '../model';
 import { model } from '../model';
 import {MithrilTsxComponent as Component} from 'mithril-tsx-component';
+import image from './images/Science.png';
 
 /**
  * Componente para janela com árvore tecnológica e de desenvolvimento científico.
@@ -37,7 +38,9 @@ export class Science extends Component<ScienceAttrs>{
         currentTechSpec: string;
         currentTechProg?: number;
         currentTechMoney: number;
+        cheat: boolean;
     };
+    cheatActive: any;
 
     constructor(){
         super();
@@ -48,7 +51,8 @@ export class Science extends Component<ScienceAttrs>{
             currentTech: "",
             searchbox: "",
             currentTechSpec: "",
-            currentTechMoney: 0
+            currentTechMoney: 0,
+            cheat: false
         };
         this.effectEnabled = true;
         this.nuclear = [];
@@ -58,19 +62,69 @@ export class Science extends Component<ScienceAttrs>{
         this.trans = [];
         this.isBuyable = false;
         this.purchased = false;
-        this.currentArea = "";
+        this.cheatActive = [{
+            title: 'Bomba de fusão a frio',
+            type: 'is-cheat',
+            spec: 'Desenvolvimento de uma bomba de fusão fria, extremamente perigosa',
+            status: 'available',
+            price: 2000,
+            affects: ['ABATEMENT', 'PRODUCTION', 'EMISSIONS', 'CARBON_INTENSITY', 'CARBON_BACKSTOP_PRICE'],
+            how: [1.5, 1.25, .7, .7, .5]
+        },
+        {
+            title: 'Antrax',
+            type: 'is-cheat',
+            spec: 'Desenvolvimento de armas biológicas para controle populacional',
+            status: 'available',
+            price: 2000,
+            affects: ['C_ATM', 'ABATEMENT', 'population', 'POPULATION_GROWTH'],
+            how: [.7, 1.8, .8, .8]
+        },
+        {
+            title: 'Reator de antimatéria',
+            type: 'is-cheat',
+            spec: 'Desenvolvimento de reatores de antimatéria através do mundo, para assim, diminuir o uso de combustíveis fósseis',
+            status: 'available',
+            price: 2500,
+            affects: ['PRODUCTIVITY', 'ABATEMENT', 'PRODUCTION'],
+            how: [2, 1.5, 2]
+        },
+        {
+            title: 'Teletransporte',
+            type: 'is-cheat',
+            spec: 'Com o teletransporte, quem precisa de transporte?',
+            status: 'available',
+            price: 2500,
+            affects: ['PRODUCTIVITY', 'ABATEMENT', 'PRODUCTION'],
+            how: [2, 1.5, 2]
+        },
+        {
+            title: 'Empresários do bem',
+            type: 'is-cheat',
+            spec: 'Imagina se os empresários não tentassem acabar com o mundo todo dia',
+            status: 'available',
+            price: 2000 }]
         
         this.request();
-        console.log(this.nuclear);
     }
 
     buy(id){
         let techs = this.estado.techs;
+        let x;
+        m.request({url: 'http://localhost:5000/science/list-techs/', method: 'GET'}).then(r => x = r);
         m.request({url: `http://localhost:5000/science/buy-tech/${id}`});
-        for(let i = 0; i < this.estado.techs.lenght; i++){
-            if(techs[i].title === id){
-                m.request({url: `http://localhost:5000/multiply/${techs[i].affect}/${techs[i].much}`, method: 'GET'})
+        for(let i=0; i < techs.length; i++){
+            if(x.includes(techs[i].title === id)){
+                console.log('Comprado')
+            }else{
+                for(let j=0; j < techs[i].affects.length; j++){
+                    m.request({url: `http://localhost:5000/multiply/${techs[i].affects[j]}/${techs[i].how[j]}`});
+                }
             }
+        }
+        this.request();
+        if(this.estado.cheat){
+            this.crt();
         }
     }
 
@@ -109,7 +163,7 @@ export class Science extends Component<ScienceAttrs>{
                     <TechButton onclick={() => document.getElementById('dialog-dark-rounded').showModal()}>{`Comprar $${this.estado.currentTechMoney}`}</TechButton>
                     <dialog class="nes-dialog is-dark is-rounded" id="dialog-dark-rounded">
                         <form method="dialog">
-                        <p style={'margin-bottom: 3rem'} class="title">{`Deseja comprar ${this.estado.currentTech}?`}</p>
+                        <p style={'margin-bottom: 3rem'} class="title">{`Deseja comprar ${this.estado.currentTech} por ${this.estado.currentTechMoney}?`}</p>
                         <p></p>
                         <menu class="dialog-menu">
                             <button class="nes-btn">Cancelar</button>
@@ -130,28 +184,59 @@ export class Science extends Component<ScienceAttrs>{
     cheats(cheat){
         if(cheat === 'add'){
             m.request({url: 'http://localhost:5000/cheat/add', method: 'GET'});
+            this.crt();
+            this.estado.cheat = true;
         }
         if(cheat === 'minus'){
             m.request({url: 'http://localhost:5000/cheat/minus', method: 'GET'});
+            this.crt();
+            this.estado.cheat = true;
         }
         if(cheat === 'reset'){
             m.request({url: 'http://localhost:5000/cheat/reset', method: 'GET'});
+            this.crt();
+            this.estado.cheat = true;
+        }
+        if(cheat === 'deactivate'){
+            this.crt(false);
+            this.estado.cheat = false;
+            for(let i = 0; i < 5; i++){
+                this.estado.techs.pop();
+                this.request();
+            }
+        }
+        if(cheat === 'activate'){
+            this.crt();
+            this.estado.cheat = true;
+            for(let i = 0; i < 5; i++){
+                this.estado.techs.push(this.cheatActive[i]);
+            }
         }
     }
 
     oninit(){
         this.request();
+        if(this.estado.cheat){
+            this.crt();
+        }
+    }
+
+    crt(bool = true){
+        let element = document.querySelectorAll('.Window')[1];
+        if(bool){
+            element.classList.add('crt');
+        }else{
+            element.classList.remove('crt');
+        }
     }
 
     view () {
-        console.log(this.nuclear);
-        window.setTimeout(this.request(), 3000);
         const { techs, searchbox, currentTech, techsFilter } = this.estado;
         const filteredtechs = techs.filter(tech => tech.title.toLowerCase().includes(searchbox.toLowerCase()));
 
         return <Window class="science">
 
-            <Sidebar class="science__sidebar" title={
+            <Sidebar class="science__sidebar" src={image} title={
                 <button class="nes-btn science__sidebar-btn" onclick={e=> model.menu()}>{"<"} Voltar</button>
             }/>
 
@@ -159,7 +244,7 @@ export class Science extends Component<ScienceAttrs>{
                 <Tabs>
                     <Tab class="science__tabs" title={<button onclick={this.estado.currentArea = ""} class="nes-btn Science__btn">Visão Geral</button>}>
                         <TechList title="Tecnologias disponíveis">
-                            <SearchBar placeholder="Buscar ciência" cheats={e=>this.cheats(this.estado.searchbox)} changeHandler={e => {
+                            <SearchBar placeholder="Buscar ciência" cheats={e=>this.cheats(searchbox)} changeHandler={e => {
                                 this.estado.searchbox = e.target.value}}/>
                             <div class="listcontent">{filteredtechs.map(tech => (
                                 <Tech title={tech.title} status={tech.status} money={tech.price} dbclick={() => document.getElementById('dialog-dark-rounded').showModal()} type={tech.type || ""} changeHandler={e=>this.techSet(tech)}/>

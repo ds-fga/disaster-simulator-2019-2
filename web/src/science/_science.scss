@@ -144,6 +144,46 @@
 .industry {
     background-color: #3f3f3f;
     color: #fff;
+    &:hover{
+        background: #323232;
+        color: #fff;
+        &::after {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            bottom: -4px;
+            left: -4px;
+            content: "";
+            box-shadow: #232323 -4px -4px inset;
+        }
+    }
+    &::after {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        bottom: -4px;
+        left: -4px;
+        content: "";
+        box-shadow: #333333 -4px -4px inset;
+    }
+}
+
+.is-cheat {
+    background-color: #3f3f3f;
+    color: #af0d18;
+    &:hover{
+        background: #323232;
+        color: #af0d18;
+        &::after {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            bottom: -4px;
+            left: -4px;
+            content: "";
+            box-shadow: #232323 -4px -4px inset;
+        }
+    }
     &::after {
         position: absolute;
         top: -4px;
