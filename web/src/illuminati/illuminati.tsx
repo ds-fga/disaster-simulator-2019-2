@@ -15,6 +15,7 @@ import papaImg from './imagens/papa.jpg';
 import silvioImg from './imagens/silvio.jpg';
 import optimusImg from './imagens/optimus.jpg';
 import putinImg from './imagens/putin.jpg';
+
 import rainhaJson from './arquivos_json/rainha.json'; 
 import alGoreJson from './arquivos_json/alGore.json';
 import billJson from './arquivos_json/bill.json';
@@ -44,7 +45,7 @@ let illuminatiList = [
         sauroUrl: billImg,
         introduction: "Ambiente",
         information: alGoreJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Rainha Elizabeth II",
@@ -53,7 +54,7 @@ let illuminatiList = [
         sauroUrl: billImg,
         introduction: "Politica",
         information: rainhaJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Bill Gates",
@@ -62,7 +63,7 @@ let illuminatiList = [
         sauroUrl: alGoreImg,
         introduction: "Tecnologia",
         information: billJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Jeff Bezos",
@@ -71,7 +72,7 @@ let illuminatiList = [
         sauroUrl: rainhaImg,
         introduction: "Comércio",
         information: jeffJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Putin",
@@ -80,7 +81,7 @@ let illuminatiList = [
         sauroUrl: michaelImg,
         introduction: "Guerra",
         information: putinJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Xi Jinping",
@@ -89,7 +90,7 @@ let illuminatiList = [
         sauroUrl: papaImg,
         introduction: "Indústria",
         information: xiJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Michael Jackson",
@@ -98,7 +99,7 @@ let illuminatiList = [
         sauroUrl: xiImg,
         introduction: "Cultura",
         information: michaelJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Papa Francisco",
@@ -107,7 +108,7 @@ let illuminatiList = [
         sauroUrl: silvioImg,
         introduction: "Religião",
         information: papaJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Silvio Santos",
@@ -116,7 +117,7 @@ let illuminatiList = [
         sauroUrl: obamaImg,
         introduction: "Mídia/Informação",
         information: silvioJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Obama",
@@ -125,7 +126,7 @@ let illuminatiList = [
         sauroUrl: joesleyImg,
         introduction: "Saúde",
         information: obamaJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Optimus Prime",
@@ -134,7 +135,7 @@ let illuminatiList = [
         sauroUrl: obamaImg,
         introduction: "Transporte",
         information: optimusJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
     {
         name: "Joesley",
@@ -143,35 +144,9 @@ let illuminatiList = [
         sauroUrl: xiImg,
         introduction: "Agropecuária",
         information: joesleyJson,
-        taxa: "50% alinhamento",
+        taxa: "--% alinhamento",
     },
 ]
-
-function Graph(){
-var data = [
-    {
-        value: 300,
-        color:"#F7464A",
-        highlight: "#FF5A5E",
-        label: "Red"
-    },
-    {
-        value: 50,
-        color: "#46BFBD",
-        highlight: "#5AD3D1",
-        label: "Green"
-    },
-    {
-        value: 100,
-        color: "#FDB45C",
-        highlight: "#FFC870",
-        label: "Yellow"
-    }
-];
-
-var ctx = document.getElementById("myChart").getContext("2d");
-new Chart(ctx).Pie(data);
-}
 
 /**
  * Componente que mostra janela do conselho Illuminati.
@@ -190,11 +165,11 @@ export class Illuminati {
                 </Tab>
                 
                 <Tab title={<button class="Illuminati_btn">Seguidores</button}>
-                    <div class="chart">Celebridades</div>
-                    <div class="chart">Politica</div>
-                    <div class="chart">Economia</div>
-
-
+                    <h1 class="Titulo_Seguidores">Distribuição de seguidores:</h1>
+                    <br></br>
+                    <div class="chart"><b>Empresários</b></div>
+                    <div class="chart"><b>Políticos</b></div>
+                    <div class="chart"><b>Mídia</b></div>
 
 <ul class="key">
   <li>
@@ -222,8 +197,6 @@ export class Illuminati {
     <span class="choice">Xi Jinping</span>
   </li>
 </ul>
-
-                    
                 </Tab>
                
             </Tabs>
@@ -260,6 +233,7 @@ function renderIlluminattiTab(x) {
                     <dd>{x.information.habilidades.a}</dd>
                     <dd>{x.information.habilidades.b}</dd>
                     <dd>{x.information.habilidades.c}</dd>
+                    <br></br>
                 <h2>Objetivos</h2>
                     <dd>Ambiente: {x.information.objetivos.ambiente}%</dd>
                     <dd>Tecnologia: {x.information.objetivos.tecnologia}%</dd>
