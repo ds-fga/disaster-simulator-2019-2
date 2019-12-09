@@ -21,8 +21,9 @@ let img = {
 };
 
 export class Culture {
-
+    currentMoney: number;
     view() {
+        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
 
         return (
             <Window id='cultureWindow'>
@@ -38,7 +39,7 @@ export class Culture {
                     </Tab>
                     <Tab title={<button type="button" class='nes-btn culture is-warning TabCulture' >Religião</button>} >
                         <VScroll>
-                            <br />  
+                            <br />
                             <ContainerReligiao />
                         </VScroll>
                     </Tab>
@@ -61,6 +62,33 @@ export class Culture {
                         </VScroll>
                     </Tab>
                     <Tab title={<button type="button" class='nes-btn culture is-warning TabCulture' >{'?'}</button>} >
+                        <div>
+                            <br />
+                            <div class="nes-container is-rounded with-title">
+                                <p class="title nes-text is-primary">Ajuda</p>
+                                <p>
+                                    O mundo é um lugar belo, um lugar diferente...Existem, ou já existiram, mais de milhares de civilizações na terra,
+                                    cada uma mais diferente que a outra. Conhecimento, Crenças, Artes, Leis, Morais, Costumes...Tudo isso, e muito mais, faz parte
+                                    da cultura de cada sociedade.  Cada uma com seu modo de pensar, agir, influenciar, ser influenciada e o mais belo de tudo, elas
+                                    coexistindo e definindo o destino do mundo.
+                                    <br />
+                                    <br />
+                                    Que tal brincar um pouco com isso e deixar o mundo um pouco mais caótico?
+                                    <br />
+                                    Seu objetivo é utilizar o seu maior poder, o dinheiro, para modificar e influenciar na cultura mundial. Compre a midia,
+                                    afete na educação dos países, crie novas religiões. Domine tudo que puder! Mas não se esqueça interferir
+                                    no modo de viver da sociedade pode lhe custar caro...
+                                </p>
+                            </div>
+                            <br />
+                            <br />
+                            <div class="nes-container is-rounded with-title">
+                                <p class="title nes-text is-error">Dinheiro</p>
+                                <div class="nes-container is-rounded is-dark">
+                                    <p class="dinheiroShow">Voce possui: {this.currentMoney} $</p>
+                                </div>
+                            </div>
+                        </div>
                     </Tab>
                 </Tabs>
             </Window >

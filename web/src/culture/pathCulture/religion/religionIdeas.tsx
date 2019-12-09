@@ -1,12 +1,15 @@
-import { game } from '../../../ui';
+import { game } from '../../../utils';
 
 import Papaimg from '../../assets/Papa.jpg';
 import Religião from '../../assets/CreateReligion.jpg';
 import ArautosImg from '../../assets/Arautos.jpg';
 
 export class NegociosPapa {
+    currentMoney: number;
     enabled: boolean = true;
     view() {
+        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
+
         if (!this.enabled) {
             return null;
         }
@@ -23,13 +26,13 @@ export class NegociosPapa {
                 <dialog class="nes-dialog is-rounded" id="NegociosPapa">
                     <form method="dialog">
                         <h1>Papa Francisco</h1>
-                        <img  class="cultureImg" src={Papaimg} width="400" height="200" />
+                        <img class="cultureImg" src={Papaimg} width="400" height="200" />
                         <p />
                         <p class="title">Papa Francisco é, atualmente, uma das pessoas mais influente do mundo. <br />
                             Poderiamos utiliza-lo para que ele pregue a nossa ideologia.
                         </p>
                         <p>Gostaria de suborna-lo?</p>
-                        <p class="preço_culture">Preço: 320$</p>
+                        <p class="preço_culture">Preço: 450$</p>
                         <menu class="dialog-menu">
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                             &nbsp;
@@ -43,17 +46,25 @@ export class NegociosPapa {
         );
     }
     select() {
-        this.enabled = false;
-        game.multiply("revolt", 0.8);
-        game.multiply("satisfaction", 1.3);
+        if (this.currentMoney < 450) {
+            window.alert("Dinheiro insuficiente!");
+        } else {
+            this.enabled = false;
+            game.multiply("revolt", 0.8);
+            game.multiply("satisfaction", 1.3);
+            game.add("capital", -450);
+        }
     }
 }
 
 export class CreateReligion {
+    currentMoney: number;
     enabled: boolean = true;
 
     view() {
-        if(!this.enabled){
+        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
+
+        if (!this.enabled) {
             return null;
         }
         return (
@@ -76,12 +87,12 @@ export class CreateReligion {
                             maior e que nossas ações melhoram o mundo.
                         </p>
                         <p>Gostaria de criar uma religião?</p>
-                        <p class="preço_culture">Preço: 200$</p>
+                        <p class="preço_culture">Preço: 300$</p>
                         <menu class="dialog-menu">
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                             &nbsp;
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <button class="nes-btn culture is-success" onclick={() => {this.select()}}>Confirmar</button>
+                            <button class="nes-btn culture is-success" onclick={() => { this.select() }}>Confirmar</button>
                             &emsp;
                             <button class="nes-btn culture is-error">Cancelar</button>
                         </menu>
@@ -91,18 +102,26 @@ export class CreateReligion {
         );
     }
     select() {
-        this.enabled = false;
-        game.multiply("revolt", 1.3);
-        game.multiply("satisfaction", 1.4);
+        if (this.currentMoney < 300) {
+            window.alert("Dinheiro insuficiente!");
+        } else {
+            this.enabled = false;
+            game.multiply("revolt", 1.3);
+            game.multiply("satisfaction", 1.4);
+            game.add("capital", -300);
+        }
     }
 
 }
 
 export class Arautos {
+    currentMoney: number;
     enabled: boolean = true;
 
     view() {
-        if(!this.enabled){
+        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
+
+        if (!this.enabled) {
             return null;
         }
 
@@ -130,7 +149,7 @@ export class Arautos {
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                             &nbsp;
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <button class="nes-btn culture is-success" onclick={() => {this.select()}}>Confirmar</button>
+                            <button class="nes-btn culture is-success" onclick={() => { this.select() }}>Confirmar</button>
                             &emsp;
                             <button class="nes-btn culture is-error">Cancelar</button>
                         </menu>
@@ -140,8 +159,13 @@ export class Arautos {
         );
     }
     select() {
-        this.enabled = false;
-        game.multiply("revolt", 1.3);
-        game.multiply("satisfaction", 1.1);
+        if (this.currentMoney < 150) {
+            window.alert("Dinheiro insuficiente!");
+        } else {
+            this.enabled = false;
+            game.multiply("revolt", 1.3);
+            game.multiply("satisfaction", 1.1);
+            game.add("capital", -150);
+        }
     }
 }

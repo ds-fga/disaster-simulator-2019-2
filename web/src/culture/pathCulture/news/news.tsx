@@ -1,13 +1,14 @@
-import { AlJazeera, NewYork } from './newsIdeas';
+import { AlJazeera, NewYork, Anonymous } from './newsIdeas';
 
 export class ContainerNews {
     view() {
         return (
             <div>
-                <br />
                 <AlJazeera />
                 <br />
                 <NewYork />
+                <br/>
+                <Anonymous />
             </div>
         );
     }

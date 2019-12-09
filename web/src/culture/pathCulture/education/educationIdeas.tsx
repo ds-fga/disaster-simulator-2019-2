@@ -1,14 +1,15 @@
-import { game } from '../../../ui';
+import { game } from '../../../utils';
 
 import UNB from '../../assets/UNB.jpg';
 import MIT from '../../assets/MIT.jpg';
 import TOKYO from '../../assets/Tokyo.JPG'
 
 export class Unb {
-
+    currentMoney: number;
     enabled: boolean = true;
 
     view() {
+        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
         if (!this.enabled) {
             return null;
         }
@@ -48,18 +49,28 @@ export class Unb {
         );
     }
     select() {
-        this.enabled = false;
-        game.multiply("revolt", 1.2);
-        game.multiply("satisfaction", 0.9);
+        if (this.currentMoney < 120) {
+            window.alert('Dinheiro insuficiente!')
+        }
+        else {
+            this.enabled = false;
+            game.multiply("revolt", 1.2);
+            game.multiply("satisfaction", 0.9);
+            game.add("capital", -120);
+        }
     }
 }
 
 export class Mit {
 
-    enabled:boolean = true;
+    currentMoney: number;
+    enabled: boolean = true;
 
     view() {
-        if(!this.enabled){
+
+        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
+
+        if (!this.enabled) {
             return null;
         }
 
@@ -87,7 +98,7 @@ export class Mit {
                             <menu class="dialog-menu">
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <button class="nes-btn culture is-success" onclick={() => {this.select()}}>Confirmar</button>
+                            <button class="nes-btn culture is-success" onclick={() => { this.select() }}>Confirmar</button>
                                 &emsp;
                             <button class="nes-btn culture is-error">Cancelar</button>
                             </menu>
@@ -98,17 +109,26 @@ export class Mit {
         );
     }
     select() {
-        this.enabled = false;
-        game.multiply("revolt", 0.8);
-        game.multiply("satisfaction", 0.9);
+        if (this.currentMoney < 0) {
+            window.alert("Dinheiro insuficiente!");
+        }
+        else {
+            this.enabled = false;
+            game.multiply("revolt", 0.8);
+            game.multiply("satisfaction", 0.9);
+            game.add("capital", -150);
+        }
     }
 }
 
 export class TokyoUni {
-    enabled:boolean = true;
+    currentMoney: number;
+    enabled: boolean = true;
 
     view() {
-        if(!this.enabled){return null;}
+        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
+
+        if (!this.enabled) { return null; }
         return (
             <div class="nes-container is-rounded">
                 <p><div class="nes-container is-rounded is-dark">
@@ -133,7 +153,7 @@ export class TokyoUni {
                             <menu class="dialog-menu">
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <button class="nes-btn culture is-success" onclick={() => {this.select()}}>Confirmar</button>
+                            <button class="nes-btn culture is-success" onclick={() => { this.select() }}>Confirmar</button>
                                 &emsp;
                             <button class="nes-btn culture is-error">Cancelar</button>
                             </menu>
@@ -144,8 +164,13 @@ export class TokyoUni {
         );
     }
     select() {
-        this.enabled = false;
-        game.multiply("revolt", 0.8);
-        game.multiply("satisfaction", 1.4);
+        if (this.currentMoney < 500) {
+            window.alert("Dinheiro insuficiente!");
+        } else {
+            this.enabled = false;
+            game.multiply("revolt", 0.8);
+            game.multiply("satisfaction", 1.4);
+            game.add("capital", -500);
+        }
     }
 }
