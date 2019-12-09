@@ -223,8 +223,8 @@ export class Anonymous {
         } else {
             this.enabled1 = false;
             this.enabled2 = true;
-            game.multiply("revolt", 0.8);
-            game.multiply("satisfaction", 1.2);
+            game.multiply("revolt", 0.5);
+            game.multiply("satisfaction", 1.3);
             game.add("capital", -800);
         }
     }
@@ -233,7 +233,7 @@ export class Anonymous {
             window.alert("Dinheiro insuficiente!");
         } else {
             this.enabled2 = false;
-            game.multiply("revolt", 0.8);
+            game.multiply("revolt", 1.3);
             game.multiply("satisfaction", 1.2);
             game.add("capital", -800);
         }
