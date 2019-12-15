@@ -4,11 +4,12 @@ import Papaimg from '../../assets/Papa.jpg';
 import Religião from '../../assets/CreateReligion.jpg';
 import ArautosImg from '../../assets/Arautos.jpg';
 
+let currentMoney;
+m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => {currentMoney = x.capital });
+
 export class NegociosPapa {
-    currentMoney: number;
     enabled: boolean = true;
     view() {
-        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
 
         if (!this.enabled) {
             return null;
@@ -46,7 +47,7 @@ export class NegociosPapa {
         );
     }
     select() {
-        if (this.currentMoney < 450) {
+        if (currentMoney < 450) {
             window.alert("Dinheiro insuficiente!");
         } else {
             this.enabled = false;
@@ -58,11 +59,10 @@ export class NegociosPapa {
 }
 
 export class CreateReligion {
-    currentMoney: number;
     enabled: boolean = true;
 
     view() {
-        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
+        // m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
 
         if (!this.enabled) {
             return null;
@@ -102,7 +102,7 @@ export class CreateReligion {
         );
     }
     select() {
-        if (this.currentMoney < 300) {
+        if (currentMoney < 300) {
             window.alert("Dinheiro insuficiente!");
         } else {
             this.enabled = false;
@@ -115,11 +115,10 @@ export class CreateReligion {
 }
 
 export class Arautos {
-    currentMoney: number;
     enabled: boolean = true;
 
     view() {
-        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
+        // m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
 
         if (!this.enabled) {
             return null;
@@ -159,7 +158,7 @@ export class Arautos {
         );
     }
     select() {
-        if (this.currentMoney < 150) {
+        if (currentMoney < 150) {
             window.alert("Dinheiro insuficiente!");
         } else {
             this.enabled = false;

@@ -1,3 +1,4 @@
+import m from "mithril";
 import { game } from '../../../utils';
 
 import Alimg from '../../assets/Aljazeera.jpg';
@@ -5,12 +6,15 @@ import NYimg from '../../assets/NYT.jpg';
 import Anonymousimg from '../../assets/Anonymous.png';
 import Googleimg from '../../assets/google.png';
 
+let currentMoney;
+
+m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { currentMoney = x.capital });
+
 export class AlJazeera {
-    currentMoney: number;
     enabled: boolean = true;
 
     view() {
-        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
+       
 
         if (!this.enabled) {
             return null;
@@ -54,7 +58,7 @@ export class AlJazeera {
         );
     }
     select() {
-        if (this.currentMoney < 200) {
+        if (currentMoney < 200) {
             window.alert("Dinheiro insuficiente!");
         } else {
             this.enabled = false;
@@ -67,10 +71,9 @@ export class AlJazeera {
 }
 
 export class NewYork {
-    currentMoney: number;
     enabled: boolean = true;
     view() {
-        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
+        // m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
 
         if (!this.enabled) {
             return null;
@@ -114,7 +117,7 @@ export class NewYork {
         );
     }
     select() {
-        if (this.currentMoney < 250) {
+        if (currentMoney < 250) {
             window.alert("Dinheiro insuficiente!");
         } else {
             this.enabled = false;
@@ -126,11 +129,10 @@ export class NewYork {
 }
 
 export class Anonymous {
-    currentMoney: number;
     enabled1: boolean = true;
     enabled2: boolean;
     view() {
-        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
+        // m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
 
         if (!this.enabled1) {
             if (!this.enabled2) {
@@ -218,7 +220,7 @@ export class Anonymous {
         }
     }
     select() {
-        if (this.currentMoney < 800) {
+        if (currentMoney < 800) {
             window.alert("Dinheiro insuficiente!");
         } else {
             this.enabled1 = false;
@@ -229,7 +231,7 @@ export class Anonymous {
         }
     }
     select2() {
-        if (this.currentMoney < 100) {
+        if (currentMoney < 100) {
             window.alert("Dinheiro insuficiente!");
         } else {
             this.enabled2 = false;

@@ -1,9 +1,7 @@
 .Graphics {
   &::-webkit-scrollbar {
-    width: 12px;
-    background: rgba(80, 78, 72, 0.9);
+    background: rgba(0, 0, 0, 0.6);
     border-radius: 10px;
-    margin-top: 2rem;
   }
 
   &::-webkit-scrollbar-track {
@@ -13,10 +11,18 @@
 
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.2);
   }
   .vscroll {
     overflow: hidden;
+  }
+  .back-Button {
+    overflow: hidden;
+    float: right;
+    .show {
+      display: list-item;
+      position: absolute;
+    }
   }
   .overlay {
     z-index: 1;
@@ -61,7 +67,7 @@
     max-height: 90%;
     z-index: 10;
     border-radius: 0px 5px 5px 0;
-    transform: translateX(-98%);
+    transform: translateX(-99%);
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   }
   .Lefttext {
@@ -70,7 +76,8 @@
     background: white;
     position: relative;
     padding: 15px;
-    text-align: justify;
+    text-align: left;
+    border-radius: 0.5rem;
   }
   .Leftimage {
     z-index: 2;
@@ -78,6 +85,7 @@
     max-height: 150px;
     float: left;
   }
+
   .gerargraficos {
     height: 90%;
     width: 99%;
@@ -90,16 +98,7 @@
   .buttons {
     text-align: center;
   }
-  .back-Button {
-    overflow: hidden;
-    float: right;
-    .show {
-      display: list-item;
-      position: absolute;
-    }
-  }
-  .audiobutton {
-  }
+
   .gaudio {
     visibility: hidden;
     position: absolute;
@@ -118,7 +117,7 @@
     position: absolute;
     background: black;
     overflow: hidden;
-    height: 15%;
+    height: 20%;
     width: 100%;
     bottom: 0;
     z-index: 100;
@@ -138,6 +137,7 @@
     padding: 20px;
     padding-left: 170px;
     padding-bottom: 0;
+    border-radius: 1rem;
   }
   
   .Bottomimg{
@@ -151,10 +151,6 @@
   
 }
 
-#GraphicsWindow {
-  background: black;
-  background-size: cover;
-}
 
 @media screen and (min-width: 1285px) {
   .Graphics {
@@ -191,7 +187,10 @@
       min-width: 8.5rem;
     }
     .overlay {
-      border-radius: 2rem;
+      border-radius: 0.5rem;
+      border-top-left-radius: 2rem;
+      border-bottom-left-radius: 2rem;
+    
       margin-right: 3%;
       margin-left: 3%;
       padding: 1%;
@@ -236,9 +235,9 @@
       min-width: 8rem;
     }
     .overlay {
-      border-radius: 2rem;
-      margin-right: 2%;
-      margin-left: 2%;
+      border-radius: 0.5rem;
+      border-top-left-radius: 1rem;
+      border-bottom-left-radius: 1rem;  
       padding: 0.5%;
       margin-top: 0.5%;
       padding-bottom: 1%;

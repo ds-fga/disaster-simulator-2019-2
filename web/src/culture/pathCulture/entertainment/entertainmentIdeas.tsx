@@ -4,12 +4,15 @@ import Kinoimg from '../../assets/Kino.jpeg';
 import Tateimg from '../../assets/Tate.jpg';
 import Worldcupimg from '../../assets/Fifa.jpg';
 
+let currentMoney;
+
+m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => {currentMoney = x.capital });
+
+
 export class Kino {
-    currentMoney: number;
     enabled: boolean = true;
 
     view() {
-        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
 
         if (!this.enabled) {
             return null;
@@ -49,7 +52,7 @@ export class Kino {
         );
     }
     select() {
-        if (this.currentMoney < 140) {
+        if (currentMoney < 140) {
             window.alert("Dinheiro Insuficiente!");
         } else {
             this.enabled = false;
@@ -63,11 +66,10 @@ export class Kino {
 
 
 export class Tate {
-    currentMoney: boolean;
     enabled: boolean = true;
 
     view() {
-        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
+        // m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
 
         if (!this.enabled) {
             return null;
@@ -108,7 +110,7 @@ export class Tate {
         );
     }
     select() {
-        if (this.currentMoney < 100) {
+        if (currentMoney < 100) {
             window.alert("Dinheiro Insuficiente!");
         } else {
             this.enabled = false;
@@ -120,11 +122,10 @@ export class Tate {
 }
 
 export class Worldcup {
-    currentMoney: number;
     enable: boolean = true;
 
     view() {
-        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
+        // m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
 
         if (!this.enable) {
             return null;
@@ -167,7 +168,7 @@ export class Worldcup {
     }
 
     select() {
-        if (this.currentMoney < 300) {
+        if (currentMoney < 300) {
             window.alert("Dinheiro Insuficiente!");
         } else {
             this.enable = false;

@@ -12,6 +12,7 @@ import { ContainerEducation } from './pathCulture/education/education';
 import { ContainerNews } from './pathCulture/news/news';
 
 import { ContainerEntertainment } from './pathCulture/entertainment/entertainment';
+import { request } from '../utils';
 
 /**
  * Objetos para interação: (se necessário, n esquecer de importar)
@@ -20,10 +21,12 @@ let img = {
     icon: cultureIcon,
 };
 
+let currentMoney;
+
+m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { currentMoney = x.capital });
 export class Culture {
-    currentMoney: number;
+
     view() {
-        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
 
         return (
             <Window id='cultureWindow'>
@@ -85,7 +88,7 @@ export class Culture {
                             <div class="nes-container is-rounded with-title">
                                 <p class="title nes-text is-error">Dinheiro</p>
                                 <div class="nes-container is-rounded is-dark">
-                                    <p class="dinheiroShow">Voce possui: {this.currentMoney} $</p>
+                                    <p class="dinheiroShow">Voce possui: {currentMoney} $</p>
                                 </div>
                             </div>
                         </div>

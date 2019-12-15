@@ -4,12 +4,14 @@ import UNB from '../../assets/UNB.jpg';
 import MIT from '../../assets/MIT.jpg';
 import TOKYO from '../../assets/Tokyo.JPG'
 
+let currentMoney;
+
+m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => {currentMoney = x.capital });
+
 export class Unb {
-    currentMoney: number;
     enabled: boolean = true;
 
     view() {
-        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
         if (!this.enabled) {
             return null;
         }
@@ -49,7 +51,7 @@ export class Unb {
         );
     }
     select() {
-        if (this.currentMoney < 120) {
+        if (currentMoney < 120) {
             window.alert('Dinheiro insuficiente!')
         }
         else {
@@ -63,12 +65,11 @@ export class Unb {
 
 export class Mit {
 
-    currentMoney: number;
     enabled: boolean = true;
 
     view() {
 
-        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
+        // m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
 
         if (!this.enabled) {
             return null;
@@ -109,7 +110,7 @@ export class Mit {
         );
     }
     select() {
-        if (this.currentMoney < 0) {
+        if (currentMoney < 0) {
             window.alert("Dinheiro insuficiente!");
         }
         else {
@@ -122,11 +123,10 @@ export class Mit {
 }
 
 export class TokyoUni {
-    currentMoney: number;
     enabled: boolean = true;
 
     view() {
-        m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
+        // m.request({ url: 'http://localhost:5000/value/state/', method: 'GET' }).then(x => { this.currentMoney = x.capital });
 
         if (!this.enabled) { return null; }
         return (
@@ -164,7 +164,7 @@ export class TokyoUni {
         );
     }
     select() {
-        if (this.currentMoney < 500) {
+        if (currentMoney < 500) {
             window.alert("Dinheiro insuficiente!");
         } else {
             this.enabled = false;
