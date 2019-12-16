@@ -32,7 +32,7 @@ import conspirancy from '../../img/icones_tela_inicial/conspirancy.png';
 import big_earth from '../../img/icones_tela_inicial/big-earth.png';
 import bg_earth_pixels from '../../img/icones_tela_inicial/bg-earth-pixels.jpeg';
 import bg_earth_normal from '../../img/icones_tela_inicial/bg-earth-normal.jpg';
-import culture from '../../img/icones_tela_inicial/culture.png';
+import culture from '../../img/icones_tela_inicial/Culture.png';
 
 var React = {
     createElement: m
