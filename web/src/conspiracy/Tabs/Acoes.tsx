@@ -1,4 +1,4 @@
-import {Illums} from '../components/Illums'
+import {Illums} from '../Components/Illums'
 import silvio from '../Imgs/silvio.jpg';
 import michael from '../Imgs/michael.jpg';
 import algore from '../Imgs/al gore.jpg';
